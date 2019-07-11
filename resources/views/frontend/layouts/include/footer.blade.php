@@ -21,20 +21,19 @@
                                     <h4 class="widget-title">{{__('front.Earn With Us')}}</h4>
                                     <ul class="links">
                                         <li>
-                                            <a href="{{route('home-sell-on')}}">{{__('front.Sell on Golden Gate')}}
-                                                (hk)</a>
+                                            <a href="{{route('home-sell-on')}}">{{__('front.Sell on ')}} {{env('APP_NAME')}}</a>
                                         </li>
-                                        <li>
-                                            <a href="{{route('home-become-affiliate')}}">
-                                                @if(!Auth::check())
-                                                    {{__('front.Become an Affiliate')}}
-                                                @else
-                                                    @if(!Auth::user()->is_member)
-                                                        {{__('front.Upgrade Membership')}}
-                                                    @endif
-                                                @endif
-                                            </a>
-                                        </li>
+                                        {{--<li>--}}
+                                            {{--<a href="{{route('home-become-affiliate')}}">--}}
+                                                {{--@if(!Auth::check())--}}
+                                                    {{--{{__('front.Become an Affiliate')}}--}}
+                                                {{--@else--}}
+                                                    {{--@if(!Auth::user()->is_member)--}}
+                                                        {{--{{__('front.Upgrade Membership')}}--}}
+                                                    {{--@endif--}}
+                                                {{--@endif--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
                                     </ul>
                                 </div>
                                 <div class="col-sm-4">
@@ -86,7 +85,7 @@
 
         <div class="container">
             <div class="footer-bottom">
-                <p class="footer-copyright">Golden Gate (hk) &copy; {{Carbon\Carbon::now()->format('Y')}}
+                <p class="footer-copyright">{{env('APP_NAME')}} &copy; {{Carbon\Carbon::now()->format('Y')}}
                     . {{__('front.All Rights Reserved')}}</p>
 
                 {{--                    <img src="{{ URL::asset('frontend/assets/images/payments.png')}}" alt="payment methods" class="footer-payments">--}}

@@ -20,39 +20,39 @@
                         </div>
                     </div>
                     <div class="container">
-                        <div class="portlet light">
-                            <div class="portlet-body">
-                                <h3>{{__('dashboard.Transferred to member')}}</h3>
-                                <table class="table table-striped table-bordered table-hover dataTable dtr-inline"
-                                       id="sample_2">
-                                    <thead>
-                                    <tr>
-                                        <th>{{__('dashboard.SN')}}</th>
+                        {{--<div class="portlet light">--}}
+                            {{--<div class="portlet-body">--}}
+                                {{--<h3>{{__('dashboard.Transferred to member')}}</h3>--}}
+                                {{--<table class="table table-striped table-bordered table-hover dataTable dtr-inline"--}}
+                                       {{--id="sample_2">--}}
+                                    {{--<thead>--}}
+                                    {{--<tr>--}}
+                                        {{--<th>{{__('dashboard.SN')}}</th>--}}
                                         {{--                                    <th>{{__('dashboard.Member Id')}}</th>--}}
-                                        <th>{{__('dashboard.To Member Id')}}</th>
-                                        <th>{{__('dashboard.Wallet')}}</th>
-                                        <th>{{__('dashboard.Amount')}}</th>
-                                        <th>{{__('dashboard.Status')}}</th>
-                                        <th>{{__('dashboard.Remarks')}}</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($reports as $key=>$report)
-                                        <tr>
-                                            <td>{{++$key}}</td>
-                                            <td>{{$report->getToMember->user_name}}</td>
-                                            <td>{{$report->getWallet->detail}}</td>
-                                            <td>{{$report->amount}}</td>
-                                            <td>
-                                                {{$report->status?__('dashboard.True'):__('dashboard.Cancelled')}}</td>
-                                            <td>{{$report->remarks}}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                        {{--<th>{{__('dashboard.To Member Id')}}</th>--}}
+                                        {{--<th>{{__('dashboard.Wallet')}}</th>--}}
+                                        {{--<th>{{__('dashboard.Amount')}}</th>--}}
+                                        {{--<th>{{__('dashboard.Status')}}</th>--}}
+                                        {{--<th>{{__('dashboard.Remarks')}}</th>--}}
+                                    {{--</tr>--}}
+                                    {{--</thead>--}}
+                                    {{--<tbody>--}}
+                                    {{--@foreach($reports as $key=>$report)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{++$key}}</td>--}}
+                                            {{--<td>{{$report->getToMember->user_name}}</td>--}}
+                                            {{--<td>{{$report->getWallet->detail}}</td>--}}
+                                            {{--<td>{{$report->amount}}</td>--}}
+                                            {{--<td>--}}
+                                                {{--{{$report->status?__('dashboard.True'):__('dashboard.Cancelled')}}</td>--}}
+                                            {{--<td>{{$report->remarks}}</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                    {{--</tbody>--}}
+                                {{--</table>--}}
+                            {{--</div>--}}
 
-                        </div>
+                        {{--</div>--}}
 
                         <div class="portlet light">
                             <div class="portlet-body">

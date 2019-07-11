@@ -175,24 +175,24 @@
                             </ul>
                         </div>
                     @else
-                        <div class="account-dropdown-menu business-list" style="max-height: 68px">
+                        <div class="account-dropdown-menu business-list" style="max-height: 34px">
                             <ul>
                                 <li>
                                     <a href="{{route('home-sell-on')}}"
-                                       class="business-item">{{__('front.Sell on Golden Gate')}} (hk)</a>
+                                       class="business-item">{{__('front.Sell on ')}}{{env('APP_NAME')}}</a>
                                 </li>
 
-                                <li>
-                                    <a href="{{route('home-become-affiliate')}}"
-                                       class="business-item">
+                                {{--<li>--}}
+                                    {{--<a href="{{route('home-become-affiliate')}}"--}}
+                                       {{--class="business-item">--}}
 
-                                        @if(!Auth::check())
-                                            {{__('front.Become an Affiliate')}}
-                                        @else
-                                            {{__('front.Upgrade Membership')}}
-                                        @endif
-                                    </a>
-                                </li>
+                                        {{--@if(!Auth::check())--}}
+                                            {{--{{__('front.Become an Affiliate')}}--}}
+                                        {{--@else--}}
+                                            {{--{{__('front.Upgrade Membership')}}--}}
+                                        {{--@endif--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
                             </ul>
                         </div>
                     @endif

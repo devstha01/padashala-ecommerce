@@ -5,24 +5,24 @@
 </head>
 <body>
 <p>
-    <b> {{__('email.Hi')}} {{$full_name}} ,</b>
+    <b> Hi {{$full_name}} ,</b>
     <br>
     <br>
-    {{__("email.Thank you for creating an account in GoldenGate (HK).")}}
+    Thank you for creating an account in {{env('APP_NAME')}}.
     <br>
     <br>
     <br>
-    <b style="color:lightgray;font-size: 30px">{{__('email.DISCOVER GOLDEN GATE (HK)')}}</b>
+    <b style="color:lightgray;font-size: 30px">DISCOVER {{env('APP_NAME')}}</b>
     <br>
     <br>
-    {{__("email.Explore the unlimited choices of products provided by our dedicated merchants from around the world.")}}
+    Explore the unlimited choices of products provided by our dedicated merchants from around the world.
     <br>
     <br>
-    {{__('email.Enjoy your new  account.')}}
+    Enjoy your new account.
     <br><br>
-    {{__('email.Regards')}},
+    Regards,
     <br>
-    Goldengate (hk) Team
+    {{env('APP_NAME')}} Team
 
 </p>
 

@@ -589,5 +589,7 @@ return [
     'View Only Permissions' => ' View Only Permissions',
     'All Permissions' => ' All Permissions',
     'Stop' => ' Stop',
+    'Merchant Wallet Transfer' => ' Merchant Wallet Transfer',
+    'User' => ' User',
 
     ];

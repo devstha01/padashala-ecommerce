@@ -112,99 +112,99 @@ Route::group(['namespace' => 'backend\Admin', 'prefix' => 'admin'], function () 
 
 });
 
-//Member Section
-Route::group(['namespace' => 'backend\Member', 'prefix' => 'member'], function () {
-    Route::get('/dashboard', 'DashboardController@dashboard')->name('member/dashboard');
-    Route::get('/success', 'DashboardController@success')->name('member/success');
-
-    Route::get('edit-bank/{id}', 'DashboardController@editBank')->name('edit-bank');
-    Route::post('update-bank', 'DashboardController@updateBank')->name('update-bank');
-
-    Route::get('bidding-win', 'BiddingController@getBidProduct');
-    Route::get('bidding-product/{slug}', 'BiddingController@getProductDetail');
-
-    Route::group(['middleware' => 'staff_permission:Member Master View'], function () {
-        Route::get('memberLists', 'MemberController@memberLists')->middleware('member');
-
-        //placement tree
-        Route::get('standard-placement-tree', 'TreeViewController@Standardplacementtree')->middleware('member');
-        Route::get('auto-placement-tree', 'TreeViewController@Autoplacementtree')->middleware('member');
-        Route::get('special-placement-tree', 'TreeViewController@Specialplacementtree')->middleware('member');
-
-    });
-
-    Route::group(['middleware' => 'staff_permission:Member Master Edit'], function () {
-        Route::get('add-new-member', 'MemberController@showRegister');
-        Route::post('add-new-member', 'MemberController@postMemberRegister');
-        Route::post('add-new-member-check', 'MemberController@postMemberValidation');
-    });
-
-    Route::get('ismember', 'MemberController@checkMemberExist');
-    Route::get('getPositon', 'MemberController@getPosition');
-
-
-    Route::post('update-member/{id}', 'MemberController@updateMember');
-    Route::get('view-member/{id}', 'MemberController@viewMember');
-
-
-    //confirm transaction password
-    Route::post('confirm-transaction-password', 'DashboardController@confirmTransactionPassword');
-
-
-    //placement tree
-    Route::get('getStandardTree', 'TreeViewController@getStandardTree');
-    Route::get('getAutoTree', 'TreeViewController@getAutoTree');
-    Route::get('getSpecialTree', 'TreeViewController@getSpecialTree');
-
-    Route::get('getMemberList', 'TreeViewController@getMemberList');
-
-    //Wallet Convert
-    Route::get('wallet-convert', 'WalletManagementController@convertWallet');
-    Route::post('wallet-convert', 'WalletManagementController@postWalletConvert');
-
-    //Wallet Transfer
-    Route::get('wallet-transfer', 'WalletManagementController@transferWallet');
-    Route::post('wallet-transfer', 'WalletManagementController@postWalletTransfer');
-
-
-//    suspended for now - by QA
-//    Route::get('wallet-transfer-request', 'WalletManagementController@transferRequestWallet');
-//    Route::post('wallet-transfer-request', 'WalletManagementController@postWalletTransferRequest');
-//    Route::post('wallet-transfer-approve/{id}', 'WalletManagementController@WalletTransferApprove');
-//    Route::post('wallet-transfer-decline/{id}', 'WalletManagementController@WalletTransferDecline');
-
-    Route::get('shopping-calculate', 'WalletManagementController@shopCalculate');
-    Route::get('shopping-withdraw', 'WalletManagementController@shopWithdraw');
-    Route::post('shopping-withdraw', 'WalletManagementController@shopWithdrawPost');
-
-    Route::get('asset-value-from-wallet-selection', 'WalletManagementController@getWalletValueFromSelection');
-    Route::get('asset-new-amount', 'WalletManagementController@getNewAmount');
-    Route::get('check-member', 'WalletManagementController@checkMember');
-
-    Route::post('qr-check-member', 'WalletManagementController@qrCheckMember')->name('qr-check-member');
-
-    //Ecash Withdrawal
-    Route::get('wallet-withdraw', 'WalletManagementController@walletWithdraw');
-    Route::post('wallet-withdraw', 'WalletManagementController@submitWalletWithdraw');
-
-    Route::get('dividend-withdraw', 'WalletManagementController@dividendWithdraw');
-    Route::post('dividend-withdraw', 'WalletManagementController@dividendWithdrawPost');
-
-    //Ecash withdrawl reoprt
-    Route::get('cash-withdraw-report', 'ReportController@cashWithdrawReport')->name('cash-withdraw-report');
-    Route::get('wallet-convert-report', 'ReportController@walletConvertReport')->name('wallet-convert-report');
-    Route::get('wallet-transfer-report', 'ReportController@walletTransferReport')->name('wallet-transfer-report');
-    Route::get('payment-report', 'ReportController@paymentReport')->name('payment-report');
-    Route::get('purchase-report', 'ReportController@purchaseReport')->name('purchase-report');
-    Route::get('bonus-report', 'ReportController@GenerationBonusReport')->name('bonus-report');
-    Route::get('ecash-wallet-report', 'ReportController@ecashReport')->name('ecash-wallet-report');
-    Route::get('evoucher-wallet-report', 'ReportController@evoucherReport')->name('evoucher-wallet-report');
-    Route::get('rpoint-wallet-report', 'ReportController@rpointReport')->name('rpoint-wallet-report');
-    Route::get('chip-wallet-report', 'ReportController@chipReport')->name('chip-wallet-report');
-    Route::get('daily-bonus-report', 'ReportController@DailyBonusReport')->name('daily-bonus-report');
-    Route::get('shop-point-report', 'ReportController@shopPointWithdrawReport')->name('shop-point-withdraw-report');
-
-});
+////Member Section
+//Route::group(['namespace' => 'backend\Member', 'prefix' => 'member'], function () {
+//    Route::get('/dashboard', 'DashboardController@dashboard')->name('member/dashboard');
+//    Route::get('/success', 'DashboardController@success')->name('member/success');
+//
+//    Route::get('edit-bank/{id}', 'DashboardController@editBank')->name('edit-bank');
+//    Route::post('update-bank', 'DashboardController@updateBank')->name('update-bank');
+//
+//    Route::get('bidding-win', 'BiddingController@getBidProduct');
+//    Route::get('bidding-product/{slug}', 'BiddingController@getProductDetail');
+//
+//    Route::group(['middleware' => 'staff_permission:Member Master View'], function () {
+//        Route::get('memberLists', 'MemberController@memberLists')->middleware('member');
+//
+//        //placement tree
+//        Route::get('standard-placement-tree', 'TreeViewController@Standardplacementtree')->middleware('member');
+//        Route::get('auto-placement-tree', 'TreeViewController@Autoplacementtree')->middleware('member');
+//        Route::get('special-placement-tree', 'TreeViewController@Specialplacementtree')->middleware('member');
+//
+//    });
+//
+//    Route::group(['middleware' => 'staff_permission:Member Master Edit'], function () {
+//        Route::get('add-new-member', 'MemberController@showRegister');
+//        Route::post('add-new-member', 'MemberController@postMemberRegister');
+//        Route::post('add-new-member-check', 'MemberController@postMemberValidation');
+//    });
+//
+//    Route::get('ismember', 'MemberController@checkMemberExist');
+//    Route::get('getPositon', 'MemberController@getPosition');
+//
+//
+//    Route::post('update-member/{id}', 'MemberController@updateMember');
+//    Route::get('view-member/{id}', 'MemberController@viewMember');
+//
+//
+//    //confirm transaction password
+//    Route::post('confirm-transaction-password', 'DashboardController@confirmTransactionPassword');
+//
+//
+//    //placement tree
+//    Route::get('getStandardTree', 'TreeViewController@getStandardTree');
+//    Route::get('getAutoTree', 'TreeViewController@getAutoTree');
+//    Route::get('getSpecialTree', 'TreeViewController@getSpecialTree');
+//
+//    Route::get('getMemberList', 'TreeViewController@getMemberList');
+//
+//    //Wallet Convert
+//    Route::get('wallet-convert', 'WalletManagementController@convertWallet');
+//    Route::post('wallet-convert', 'WalletManagementController@postWalletConvert');
+//
+//    //Wallet Transfer
+//    Route::get('wallet-transfer', 'WalletManagementController@transferWallet');
+//    Route::post('wallet-transfer', 'WalletManagementController@postWalletTransfer');
+//
+//
+////    suspended for now - by QA
+////    Route::get('wallet-transfer-request', 'WalletManagementController@transferRequestWallet');
+////    Route::post('wallet-transfer-request', 'WalletManagementController@postWalletTransferRequest');
+////    Route::post('wallet-transfer-approve/{id}', 'WalletManagementController@WalletTransferApprove');
+////    Route::post('wallet-transfer-decline/{id}', 'WalletManagementController@WalletTransferDecline');
+//
+//    Route::get('shopping-calculate', 'WalletManagementController@shopCalculate');
+//    Route::get('shopping-withdraw', 'WalletManagementController@shopWithdraw');
+//    Route::post('shopping-withdraw', 'WalletManagementController@shopWithdrawPost');
+//
+//    Route::get('asset-value-from-wallet-selection', 'WalletManagementController@getWalletValueFromSelection');
+//    Route::get('asset-new-amount', 'WalletManagementController@getNewAmount');
+//    Route::get('check-member', 'WalletManagementController@checkMember');
+//
+//    Route::post('qr-check-member', 'WalletManagementController@qrCheckMember')->name('qr-check-member');
+//
+//    //Ecash Withdrawal
+//    Route::get('wallet-withdraw', 'WalletManagementController@walletWithdraw');
+//    Route::post('wallet-withdraw', 'WalletManagementController@submitWalletWithdraw');
+//
+//    Route::get('dividend-withdraw', 'WalletManagementController@dividendWithdraw');
+//    Route::post('dividend-withdraw', 'WalletManagementController@dividendWithdrawPost');
+//
+//    //Ecash withdrawl reoprt
+//    Route::get('cash-withdraw-report', 'ReportController@cashWithdrawReport')->name('cash-withdraw-report');
+//    Route::get('wallet-convert-report', 'ReportController@walletConvertReport')->name('wallet-convert-report');
+//    Route::get('wallet-transfer-report', 'ReportController@walletTransferReport')->name('wallet-transfer-report');
+//    Route::get('payment-report', 'ReportController@paymentReport')->name('payment-report');
+//    Route::get('purchase-report', 'ReportController@purchaseReport')->name('purchase-report');
+//    Route::get('bonus-report', 'ReportController@GenerationBonusReport')->name('bonus-report');
+//    Route::get('ecash-wallet-report', 'ReportController@ecashReport')->name('ecash-wallet-report');
+//    Route::get('evoucher-wallet-report', 'ReportController@evoucherReport')->name('evoucher-wallet-report');
+//    Route::get('rpoint-wallet-report', 'ReportController@rpointReport')->name('rpoint-wallet-report');
+//    Route::get('chip-wallet-report', 'ReportController@chipReport')->name('chip-wallet-report');
+//    Route::get('daily-bonus-report', 'ReportController@DailyBonusReport')->name('daily-bonus-report');
+//    Route::get('shop-point-report', 'ReportController@shopPointWithdrawReport')->name('shop-point-withdraw-report');
+//
+//});
 
 
 //Merchant Section

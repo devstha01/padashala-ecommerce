@@ -284,6 +284,7 @@ return [
     "Purchase Report" => "Purchase Report",
     "Product Purchase Report" => "Product Purchase Report",
     "Transfer Report" => "Transfer Report",
+    "Sell on " => "Sell on ",
 
 ];
 ?>

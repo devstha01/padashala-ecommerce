@@ -67,7 +67,14 @@ class LoginController extends Controller
                 'no-match-error' => __('message.Login name/ Password must be entered')
             ]);
         }
-        $status = User::where('user_name', $request->user_name)->first()->status ?? false;
+        $user = User::where('user_name', $request->user_name)->first();
+        $member = $user->is_member ?? 1;
+        if ($member ===1)
+            return back()->withInput($request->only('user_name'))->withErrors([
+                'no-match-error' => __('message.Login name/ Password must be entered')
+            ]);
+
+        $status = $user->status ?? false;
         if (!$status)
             return redirect()->back()->with('verify-email', __('email.Email verification required!'));
 

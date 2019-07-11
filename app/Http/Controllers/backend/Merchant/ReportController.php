@@ -80,7 +80,7 @@ class ReportController extends Controller
 
     function walletTransferReport()
     {
-        $this->_data['reports'] = MerchantWalletTransfer::where('from_merchant_id', $this->_merchant_id)->get();
+//        $this->_data['reports'] = MerchantWalletTransfer::where('from_merchant_id', $this->_merchant_id)->get();
         $this->_data['from_reports'] = MerchantWalletTransferMerchant::where('from_merchant_id', $this->_merchant_id)->get();
         $this->_data['to_reports'] = MerchantWalletTransferMerchant::where('to_merchant_id', $this->_merchant_id)->get();
         return view('backend.merchant.report.wallet-transfer-report', $this->_data);

@@ -63,7 +63,7 @@ class ReportController extends Controller
 
     public function grantRetainReport()
     {
-        $this->_data['reports'] = GrantRetain::orderBy('id', 'desc')->get();
+//        $this->_data['reports'] = GrantRetain::orderBy('id', 'desc')->get();
         $this->_data['merchant_reports'] = MerchantGrantRetain::orderBy('id', 'desc')->get();
         return view('backend.admin.reports.grant-retain-wallet-report', $this->_data);
     }

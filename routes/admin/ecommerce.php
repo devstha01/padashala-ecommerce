@@ -5,9 +5,9 @@
 Route::group(['namespace' => 'Request', 'prefix' => 'request'], function () {
 
 
-    Route::group(['middleware' => 'staff_permission:1.E-Commerce.Member Cash Withdrawal Request'], function () {
-        Route::get('member-cash-withdraw-request', 'RequestController@memberCashWithdrawRequest')->name('admin-member-cash-withdraw-request');
-    });
+//    Route::group(['middleware' => 'staff_permission:1.E-Commerce.Member Cash Withdrawal Request'], function () {
+//        Route::get('member-cash-withdraw-request', 'RequestController@memberCashWithdrawRequest')->name('admin-member-cash-withdraw-request');
+//    });
 
     Route::group(['middleware' => 'staff_permission:1.E-Commerce.Merchant Cash Withdrawal Request'], function () {
         Route::get('merchant-cash-withdraw-request', 'RequestController@merchantCashWithdrawRequest')->name('admin-merchant-cash-withdraw-request');
@@ -17,9 +17,9 @@ Route::group(['namespace' => 'Request', 'prefix' => 'request'], function () {
         Route::get('merchant-featured-product-request', 'RequestController@merchantFeaturedProductRequest')->name('admin-merchant-featured-product-request');
     });
 
-    Route::group(['middleware' => 'staff_permission:2.E-Commerce.Member Cash Withdrawal Request'], function () {
-        Route::get('member-cash-withdraw-accept/{id}', 'RequestController@withdrawAcceptance')->name('admin-member-cash-withdraw-accept');
-    });
+//    Route::group(['middleware' => 'staff_permission:2.E-Commerce.Member Cash Withdrawal Request'], function () {
+//        Route::get('member-cash-withdraw-accept/{id}', 'RequestController@withdrawAcceptance')->name('admin-member-cash-withdraw-accept');
+//    });
 
     Route::group(['middleware' => 'staff_permission:2.E-Commerce.Merchant Cash Withdrawal Request'], function () {
 

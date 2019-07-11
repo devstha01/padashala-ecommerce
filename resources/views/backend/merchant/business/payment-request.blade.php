@@ -47,7 +47,7 @@
                             <span id="are-you-sure-message" style="display: none"></span>
 
                             <div class="col-md-6 portlet light">
-                                <h4> {{__('dashboard.Member')}} <br><i class="fa fa-qrcode"></i> {{__('dashboard.Qr code')}}</h4>
+                                <h4> {{__('dashboard.User')}} <br><i class="fa fa-qrcode"></i> {{__('dashboard.Qr code')}}</h4>
                                 <br>
                                 <script>
                                     var qr_scan_url = "{!! route('qr-check-customer') !!}";

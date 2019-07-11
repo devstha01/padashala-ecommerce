@@ -33,7 +33,8 @@ class MinMaxController extends Controller
     {
         $this->_data['config'] = WithdrawConfig::where('name', 'transfer_ecash')->first();
         $this->_data['url'] = 'transfer_ecash';
-        $this->_data['name'] = __('dashboard.Cash Wallet Config') . '| ' . __('dashboard.Member-Member Wallet Transfer');
+        $this->_data['name'] = __('dashboard.Cash Wallet Config');
+//        . '| ' . __('dashboard.Member-Member Wallet Transfer');
         return view($this->_path . 'minmax-config', $this->_data);
     }
 

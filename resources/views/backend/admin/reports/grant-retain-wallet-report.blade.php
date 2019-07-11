@@ -20,39 +20,39 @@
                         </div>
                     </div>
                     <div class="container">
-                        <div class="portlet light">
-                            <h3>{{__('dashboard.Member')}}</h3>
-                            <div class="portlet-body">
-                                <table class="table table-striped table-bordered table-hover dataTable dtr-inline"
-                                       id="sample_2">
-                                    <thead>
-                                    <tr>
-                                        <th>{{__('dashboard.SN')}}</th>
+                        {{--<div class="portlet light">--}}
+                            {{--<h3>{{__('dashboard.Member')}}</h3>--}}
+                            {{--<div class="portlet-body">--}}
+                                {{--<table class="table table-striped table-bordered table-hover dataTable dtr-inline"--}}
+                                       {{--id="sample_2">--}}
+                                    {{--<thead>--}}
+                                    {{--<tr>--}}
+                                        {{--<th>{{__('dashboard.SN')}}</th>--}}
                                         {{--                                    <th>{{__('dashboard.Member Id')}}</th>--}}
                                         {{--<th>Transaction Type</th>--}}
-                                        <th> Member</th>
-                                        <th> Value</th>
-                                        <th>Type</th>
-                                        <th>Created At</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($reports as $key=>$report)
-                                        <tr>
-                                            <td>{{++$key}}</td>
+                                        {{--<th> Member</th>--}}
+                                        {{--<th> Value</th>--}}
+                                        {{--<th>Type</th>--}}
+                                        {{--<th>Created At</th>--}}
+                                    {{--</tr>--}}
+                                    {{--</thead>--}}
+                                    {{--<tbody>--}}
+                                    {{--@foreach($reports as $key=>$report)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{++$key}}</td>--}}
                                             {{--<td>{{strtoupper($report->transaction_type)}}</td>--}}
-                                            <td>{{$report->getMember->name}} ({{ $report->getMember->user_name}} )</td>
-                                            <td>{{$report->value}}</td>
-                                            <td>{{$report->transaction_type}}</td>
-                                            <td>{{$report->created_at}}</td>
+                                            {{--<td>{{$report->getMember->name}} ({{ $report->getMember->user_name}} )</td>--}}
+                                            {{--<td>{{$report->value}}</td>--}}
+                                            {{--<td>{{$report->transaction_type}}</td>--}}
+                                            {{--<td>{{$report->created_at}}</td>--}}
 
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                    {{--</tbody>--}}
+                                {{--</table>--}}
+                            {{--</div>--}}
 
-                        </div>
+                        {{--</div>--}}
                         <div class="portlet light">
                             <h3>{{__('dashboard.Merchant')}}</h3>
                             <div class="portlet-body">

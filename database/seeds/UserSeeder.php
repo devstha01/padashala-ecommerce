@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'member@mlm.com',
             'password' => bcrypt('password'),
             'transaction_password' => bcrypt('password'),
-            'is_member' => 1,
+            'is_member' => 0,
             'contact_number' => '9849898311',
             'dob' => '1994-04-01',
             'country_id' => 9,
@@ -35,22 +35,22 @@ class UserSeeder extends Seeder
         ];
         $member = \App\Models\User::create($details);
 
-        \App\Models\Members\MemberNominee::create([
-            'member_id'=>$member->id,
-            'nominee_name'=>'Nominee Test',
-            'identification_type'=>'citizenship',
-            'identification_number'=>'123456789',
-            'contact_number'=>'0123456789',
-            'relationship'=>'master'
-        ]);
-
-        \App\Models\Members\MemberBankInfo::create([
-            'member_id' => $member->id,
-            'bank_name' => 'Test Bank',
-            'acc_name' => 'Root Member',
-            'acc_number' => '00085436956665',
-            'contact_number' => '9845663546'
-        ]);
+//        \App\Models\Members\MemberNominee::create([
+//            'member_id'=>$member->id,
+//            'nominee_name'=>'Nominee Test',
+//            'identification_type'=>'citizenship',
+//            'identification_number'=>'123456789',
+//            'contact_number'=>'0123456789',
+//            'relationship'=>'master'
+//        ]);
+//
+//        \App\Models\Members\MemberBankInfo::create([
+//            'member_id' => $member->id,
+//            'bank_name' => 'Test Bank',
+//            'acc_name' => 'Root Member',
+//            'acc_number' => '00085436956665',
+//            'contact_number' => '9845663546'
+//        ]);
         $details2 = [
 //                'salutation'=>'Mr.',
             'surname' => 'Customer',

@@ -1,3 +1,4 @@
+
 <?php $staffHeader = new \App\Library\StaffPermission(); ?>
 <div class="page-wrapper-row">
     <div class="page-wrapper-top">
@@ -231,52 +232,52 @@
                                             <span class="arrow"></span>
                                         </a>
                                     </li>
-                                    <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown hide-if-li-0">
-                                        <a href="javascript:;"> <i
-                                                    class="fa header-fa fa-user"></i> {{ __('dashboard.Member Master') }}
-                                            <span class="arrow"></span>
-                                        </a>
-                                        <ul class="dropdown-menu pull-left">
-                                            @if($staffHeader->staffHasPermission('1.Member Master.Add New Member'))
-                                                <li>
-                                                    <a href="{{ url('/admin/add-new-member') }}"
-                                                       class="nav-link"> {{ __('dashboard.Add New Member') }}
-                                                    </a>
-                                                </li>
-                                            @endif
-                                            @if($staffHeader->staffHasPermission('1.Member Master.List'))
-                                                <li>
-                                                    <a href="{{ url('/admin/memberLists') }}"
-                                                       class="nav-link">{{ __('dashboard.Member Lists') }}
-                                                    </a>
-                                                </li>
-                                            @endif
-                                            @if($staffHeader->staffHasPermission('1.Member Master.Placement Tree'))
-                                                <li>
-                                                    <a href="{{ url('/admin/standard-placement-tree') }}">
-                                                        {{ __('dashboard.Standard Placement Tree') }}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ url('/admin/auto-placement-tree') }}">
-                                                        {{ __('dashboard.Auto Placement Tree') }}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ url('/admin/special-placement-tree') }}">
-                                                        {{ __('dashboard.Special Placement Tree') }}
-                                                    </a>
-                                                </li>
-                                            @endif
-                                            @if($staffHeader->staffHasPermission('1.Member Master.Upgrade Membership'))
-                                                <li>
-                                                    <a href="{{ url('/admin/upgrade-customer') }}">
-                                                        {{ __('dashboard.Upgrade Membership') }}
-                                                    </a>
-                                                </li>
-                                            @endif
-                                        </ul>
-                                    </li>
+                                    {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown hide-if-li-0">--}}
+                                        {{--<a href="javascript:;"> <i--}}
+                                                    {{--class="fa header-fa fa-user"></i> {{ __('dashboard.Member Master') }}--}}
+                                            {{--<span class="arrow"></span>--}}
+                                        {{--</a>--}}
+                                        {{--<ul class="dropdown-menu pull-left">--}}
+                                            {{--@if($staffHeader->staffHasPermission('1.Member Master.Add New Member'))--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{ url('/admin/add-new-member') }}"--}}
+                                                       {{--class="nav-link"> {{ __('dashboard.Add New Member') }}--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
+                                            {{--@if($staffHeader->staffHasPermission('1.Member Master.List'))--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{ url('/admin/memberLists') }}"--}}
+                                                       {{--class="nav-link">{{ __('dashboard.Member Lists') }}--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
+                                            {{--@if($staffHeader->staffHasPermission('1.Member Master.Placement Tree'))--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{ url('/admin/standard-placement-tree') }}">--}}
+                                                        {{--{{ __('dashboard.Standard Placement Tree') }}--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{ url('/admin/auto-placement-tree') }}">--}}
+                                                        {{--{{ __('dashboard.Auto Placement Tree') }}--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{ url('/admin/special-placement-tree') }}">--}}
+                                                        {{--{{ __('dashboard.Special Placement Tree') }}--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
+                                            {{--@if($staffHeader->staffHasPermission('1.Member Master.Upgrade Membership'))--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{ url('/admin/upgrade-customer') }}">--}}
+                                                        {{--{{ __('dashboard.Upgrade Membership') }}--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
+                                        {{--</ul>--}}
+                                    {{--</li>--}}
 
                                     <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown hide-if-li-0">
                                         <a href="javascript:;"> <i
@@ -291,13 +292,13 @@
                                                         {{ __('dashboard.Category') }}</a>
                                                 </li>
                                             @endif
-                                            @if($staffHeader->staffHasPermission('1.E-Commerce.Member Cash Withdrawal Request'))
-                                                <li aria-haspopup="true" class=" ">
+                                            {{--@if($staffHeader->staffHasPermission('1.E-Commerce.Member Cash Withdrawal Request'))--}}
+                                                {{--<li aria-haspopup="true" class=" ">--}}
 
-                                                    <a href="{{route('admin-member-cash-withdraw-request')}}"
-                                                       class="nav-link  ">{{ __('dashboard.Member Cash Withdrawal Request') }}</a>
-                                                </li>
-                                            @endif
+                                                    {{--<a href="{{route('admin-member-cash-withdraw-request')}}"--}}
+                                                       {{--class="nav-link  ">{{ __('dashboard.Member Cash Withdrawal Request') }}</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
                                             @if($staffHeader->staffHasPermission('1.E-Commerce.Merchant Cash Withdrawal Request'))
                                                 <li aria-haspopup="true" class=" ">
 
@@ -363,30 +364,30 @@
                                             <span class="arrow"></span>
                                         </a>
                                         <ul class="dropdown-menu pull-left">
-                                            @if($staffHeader->staffHasPermission('1.Reports.Member Cash Withdrawal Request'))
-                                                <li aria-haspopup="true" class=" ">
-                                                    <a href="{{route('admin-member-cash-withdraw-report')}}"
-                                                       class="nav-link  ">{{ __('dashboard.Member Cash Withdrawal Report')}}</a>
-                                                </li>
-                                            @endif
+                                            {{--@if($staffHeader->staffHasPermission('1.Reports.Member Cash Withdrawal Request'))--}}
+                                                {{--<li aria-haspopup="true" class=" ">--}}
+                                                    {{--<a href="{{route('admin-member-cash-withdraw-report')}}"--}}
+                                                       {{--class="nav-link  ">{{ __('dashboard.Member Cash Withdrawal Report')}}</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
                                             @if($staffHeader->staffHasPermission('1.Reports.Merchant Cash Withdrawal Request'))
                                                 <li aria-haspopup="true" class=" ">
                                                     <a href="{{route('admin-merchant-cash-withdraw-report')}}"
                                                        class="nav-link  ">{{ __('dashboard.Merchant Cash Withdrawal Report')}}</a>
                                                 </li>
                                             @endif
-                                            @if($staffHeader->staffHasPermission('1.Reports.Member Wallet Convert Report'))
-                                                <li aria-haspopup="true" class=" ">
-                                                    <a href="{{route('admin-member-wallet-convert-report')}}"
-                                                       class="nav-link  ">{{ __('dashboard.Member Wallet Converts Report')}}</a>
-                                                </li>
-                                            @endif
-                                            @if($staffHeader->staffHasPermission('1.Reports.Member Wallet Transfer Report'))
-                                                <li aria-haspopup="true" class=" ">
-                                                    <a href="{{route('admin-member-wallet-transfer-report')}}"
-                                                       class="nav-link  ">{{ __('dashboard.Member Wallet Transfers Report')}}</a>
-                                                </li>
-                                            @endif
+                                            {{--@if($staffHeader->staffHasPermission('1.Reports.Member Wallet Convert Report'))--}}
+                                                {{--<li aria-haspopup="true" class=" ">--}}
+                                                    {{--<a href="{{route('admin-member-wallet-convert-report')}}"--}}
+                                                       {{--class="nav-link  ">{{ __('dashboard.Member Wallet Converts Report')}}</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
+                                            {{--@if($staffHeader->staffHasPermission('1.Reports.Member Wallet Transfer Report'))--}}
+                                                {{--<li aria-haspopup="true" class=" ">--}}
+                                                    {{--<a href="{{route('admin-member-wallet-transfer-report')}}"--}}
+                                                       {{--class="nav-link  ">{{ __('dashboard.Member Wallet Transfers Report')}}</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
                                             @if($staffHeader->staffHasPermission('1.Reports.Merchant Wallet Transfer Report'))
                                                 <li aria-haspopup="true" class=" ">
                                                     <a href="{{route('admin-merchant-wallet-transfer-report')}}"
@@ -400,20 +401,20 @@
                                                        class="nav-link  ">{{ __('dashboard.Merchant Payment Report')}}</a>
                                                 </li>
                                             @endif
-                                            @if($staffHeader->staffHasPermission('1.Reports.Monthly Bonus Report'))
+                                            {{--@if($staffHeader->staffHasPermission('1.Reports.Monthly Bonus Report'))--}}
 
-                                                <li aria-haspopup="true" class=" ">
-                                                    <a href="{{route('monthly-bonus-report')}}"
-                                                       class="nav-link  ">{{ __('dashboard.Monthly Bonus Report')}}</a>
-                                                </li>
-                                            @endif
-                                            @if($staffHeader->staffHasPermission('1.Reports.Shopping Point Transform Report'))
-                                                <li>
-                                                    <a href="{{route('admin-shop-point-withdraw-report')}}"
-                                                       class="nav-link">{{__('dashboard.Shopping Point Transform Report')}}
-                                                    </a>
-                                                </li>
-                                            @endif
+                                                {{--<li aria-haspopup="true" class=" ">--}}
+                                                    {{--<a href="{{route('monthly-bonus-report')}}"--}}
+                                                       {{--class="nav-link  ">{{ __('dashboard.Monthly Bonus Report')}}</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
+                                            {{--@if($staffHeader->staffHasPermission('1.Reports.Shopping Point Transform Report'))--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{route('admin-shop-point-withdraw-report')}}"--}}
+                                                       {{--class="nav-link">{{__('dashboard.Shopping Point Transform Report')}}--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
                                             @if($staffHeader->staffHasPermission('1.Reports.Product Purchase Report'))
                                                 <li>
                                                     <a href="{{route('admin-purchase-report')}}"
@@ -465,22 +466,22 @@
                                                 <span class="arrow"></span>
                                             </a>
                                             <ul class="dropdown-menu pull-left">
-                                                <li>
-                                                    <a href="{{route('packages')}}" class="nav-link">
-                                                        Packages </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{route('refaral-bonus-list')}}" class="nav-link">
-                                                        {{ __('dashboard.Referral Bonus')}} </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{route('holiday-dates')}}" class="nav-link">
-                                                        {{ __('dashboard.Holiday Date')}}</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{route('admin-shopping-list')}}"
-                                                       class="nav-link">{{ __('dashboard.Shopping Bonus')}}</a>
-                                                </li>
+                                                {{--<li>--}}
+                                                    {{--<a href="{{route('packages')}}" class="nav-link">--}}
+                                                        {{--Packages </a>--}}
+                                                {{--</li>--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{route('refaral-bonus-list')}}" class="nav-link">--}}
+                                                        {{--{{ __('dashboard.Referral Bonus')}} </a>--}}
+                                                {{--</li>--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{route('holiday-dates')}}" class="nav-link">--}}
+                                                        {{--{{ __('dashboard.Holiday Date')}}</a>--}}
+                                                {{--</li>--}}
+                                                {{--<li>--}}
+                                                    {{--<a href="{{route('admin-shopping-list')}}"--}}
+                                                       {{--class="nav-link">{{ __('dashboard.Shopping Bonus')}}</a>--}}
+                                                {{--</li>--}}
                                                 <li>
                                                     <a href="{{route('admin-withdraw-config')}}"
                                                        class="nav-link">{{ __('dashboard.Min-Max Config')}}</a>
@@ -546,24 +547,10 @@
                                         </a>
                                         <ul class="dropdown-menu pull-left">
 
-                                            <li aria-haspopup="true" class="dropdown-submenu">
-                                                <a href="javascript:;"
-                                                   class="nav-link nav-toggle">{{__('dashboard.Wallet Transfer')}}
-                                                    <span class="arrow"></span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li aria-haspopup="true" class=" ">
-                                                        <a href="{{route('merchant-member-wallet-transfer')}}"
-                                                           class="nav-link  ">
-                                                            {{__('dashboard.Member')}} </a>
-                                                    </li>
 
-                                                    <li aria-haspopup="true" class=" ">
-                                                        <a href="{{route('merchant-merchant-wallet-transfer')}}"
-                                                           class="nav-link  ">
-                                                            {{__('dashboard.Merchant')}} </a>
-                                                    </li>
-                                                </ul>
+                                            <li aria-haspopup="true" class=" ">
+                                                <a href="{{route('merchant-merchant-wallet-transfer')}}" class="nav-link  ">
+                                                    {{__('dashboard.Merchant Wallet Transfer')}} </a>
                                             </li>
 
                                             <li aria-haspopup="true" class=" ">

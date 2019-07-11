@@ -121,11 +121,11 @@
                                     : {{$order->getUser->gender }} | {{__('dashboard.Marital Status')}}
                                     : {{$order->getUser->marital_status=='yes'?__('dashboard.Married'):__('dashboard.Single')}}</i>
                                 <br>
-                                @if($order->getUser->is_member)
-                                    <i class="fa fa-check text-success"> {{__('dashboard.Member')}}</i>
-                                @else
-                                    <i class="fa fa-times text-danger"> {{__('dashboard.Member')}}</i>
-                                @endif
+                                {{--@if($order->getUser->is_member)--}}
+                                    {{--<i class="fa fa-check text-success"> {{__('dashboard.Member')}}</i>--}}
+                                {{--@else--}}
+                                    {{--<i class="fa fa-times text-danger"> {{__('dashboard.Member')}}</i>--}}
+                                {{--@endif--}}
 
                                 {{--                                @include('backend.merchant.order.shipping-detail')--}}
                             </div>
