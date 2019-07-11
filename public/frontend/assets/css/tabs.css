@@ -1,0 +1,139 @@
+#coverPhotoDiv {
+    width: 100%;
+    max-height: 120px;
+    overflow: hidden;
+}
+
+#coverPhotoDiv img {
+    width: 100%;
+}
+
+#merchantLogoDiv {
+    width: 250px;
+    border: 1px solid #f4f4f4;
+    background: #fff;
+    margin-top: -25px;
+    z-index: 2;
+    /* position: absolute; */
+    box-shadow: 3px 3px #f5f1f14d;
+}
+
+#merchantInfoDiv {
+    position: relative !important;
+    margin-bottom: 3%;
+}
+
+#merchantLogo {
+    width: fit-content;
+}
+
+.merchant #name {
+    margin-bottom: 1%;
+}
+
+.merchant #description {
+    color: #d1d1d1;
+    /*color: #959393;*/
+}
+
+.merchant .fa-map-marker-alt {
+    color: #7c7977;
+    margin-right: 10px;
+}
+
+.merchant .cashInfoBox {
+    border: 1px solid;
+    width: fit-content;
+    padding: 2%;
+    background: #fff;
+    color: #19134c;
+    text-transform: uppercase;
+    margin: 4%;
+    font-size: 8px;
+}
+
+.merchant #cashInfo {
+    /*margin-top: 2%;*/
+}
+
+.merchant #closed {
+    text-transform: uppercase;
+    background: red;
+    color: white;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    font-weight: 600;
+    text-align: center;
+    font-size: 18px;
+    width: fit-content;
+    float: right;
+}
+
+#merchantTabs ul li a {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#merchantTabs ul {
+    width: fit-content;
+    margin: auto;
+}
+
+#merchantHr {
+    margin: 1rem auto 3rem;
+}
+
+ul li a .active .show {
+    background: #f4f4f4;
+}
+
+.merchantSale .product-price {
+    color: #e10909;
+}
+
+.footer {
+    margin-top: 5%;
+}
+
+.merchant h4 {
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+    #merchantInfo {
+        margin-left: 9%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .merchant .cashInfoBox {
+        font-size: 13px;
+    }
+
+    .merchant #cashInfo {
+        margin-top: 1%;
+    }
+
+    .merchant #closed {
+        margin-right: 7%;
+    }
+
+    .merchant p {
+        font-size: 1.2em;
+    }
+
+    .merchant h3 {
+        font-size: 3rem !important;
+    }
+
+    .merchant .cashInfoBox {
+        font-size: 11px;
+    }
+}
+
+/*#closed > span {*/
+    /*height: 100px!important;*/
+    /*margin-bottom: 4%;*/
+/*}*/
+
+  

@@ -1,0 +1,35 @@
+#comingSoon #logo img{
+    width: 150px;
+}
+#comingSoon{
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden !important;
+}
+#comingSoon #logo{
+    margin-bottom: 6%;
+}
+#comingSoon #main{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    font-family: 'Open Sans', sans-serif;
+}
+#comingSoon #main p{
+    width: 60%;
+    text-align: justify;
+    font-size: 16px;
+}
+#comingSoon #main h1{
+    color: #9a7446;;
+}
+#comingSoon .right{
+    background: linear-gradient(0deg,rgba(0, 4, 14, 0.8),rgba(59, 60, 61, .7)), url(fashion-friends.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media (max-width:700px){
+    #comingSoon #main p {
+        width: 87%;
+    }
+}

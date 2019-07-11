@@ -1,0 +1,52 @@
+
+
+
+.testi_item {
+  padding: 30px 0px;
+}
+
+.testi_item .media {
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  padding: 40px;
+  -webkit-transition: all 300ms linear 0s;
+  -o-transition: all 300ms linear 0s;
+  transition: all 300ms linear 0s;
+}
+
+.testi_item .media .d-flex {
+  padding-right: 25px;
+}
+
+.testi_item .media .media-body p {
+  margin-bottom: 20px;
+}
+
+.testi_item .media .media-body h4 {
+  color: #222222;
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  -webkit-transition: all 300ms linear 0s;
+  -o-transition: all 300ms linear 0s;
+  transition: all 300ms linear 0s;
+}
+
+.testi_item .media .media-body h5 {
+  margin-bottom: 0px;
+  font-size: 14px;
+  color: #777777;
+  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+}
+
+ .media:hover {
+  -webkit-box-shadow: 0px 10px 30px 0px rgba(157, 157, 157, 0.2);
+  box-shadow: 0px 10px 30px 0px rgba(157, 157, 157, 0.2);
+  background: #ccccff;
+  border-color: #fff;
+}
+
+.testi_item:hover .media .media-body h4 {
+  color: #ff0000;
+}

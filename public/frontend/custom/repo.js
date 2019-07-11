@@ -1,0 +1,271 @@
+//Ajax call
+function performAjaxCall(url, method, data, successCallBack) {
+    var csrfToken = getCSRFToken();
+
+    $.ajax({
+        url: serverCustom.base_url + url,
+        method: method,
+        data: data,
+        dataType: "json",
+        beforeSend: function (request) {
+            request.setRequestHeader('Csrf-Token', csrfToken);
+        },
+        success: function (result) {
+            successCallBack(result);
+        }
+
+    })
+        .done(function (data) {
+
+
+        });
+}
+
+//full page loader
+function getCSRFToken() {
+    return $('meta[name="csrf-token"]').attr('content');
+}
+
+function showFullPageLoader() {
+    $('.page-load-new').fadeIn()
+}
+
+function hideFullPageLoader() {
+    $('.page-load-new').fadeOut(100)
+}
+
+//get page url
+function getPageUrl() {
+    var fullUrl = window.location.href.split("/");
+    var route = "";
+    $.each(fullUrl, function (index, value) {
+        if (index > 2) {
+            route = ((route == "") ? "" : (route + "/")) + value;
+        }
+
+    });
+    return route;
+
+}
+
+//show message in popupr
+function showPopupMessage(Message, headding = "Message", isError = false) {
+    if (!isError) {
+        swal(headding, Message);
+
+    }
+    else {
+        swal({
+            type: 'error',
+            title: headding,
+            text: Message,
+        });
+    }
+    // $('#responsivePopupMessage h4.modal-title').html(headding);
+    // $('#responsivePopupMessage h4.message1').html(Message);
+    // $('#responsivePopupMessage').fadeIn();
+
+}
+
+
+//show message in popup
+function hidePopupMessage() {
+    swal.close();
+
+    // $('#responsivePopupMessage').fadeOut(function(){
+    //   $('#responsivePopupMessage h4.modal-title').html("");
+    //   $('#responsivePopupMessage h4.message1').html("");
+    // });
+
+}
+
+
+//for payment maker transaction
+function getTransactionPostUrl() {
+    var loc = window.location.href.split('/');
+    var uri = "/" + loc[loc.length - 4] + "/" + loc[loc.length - 3] + "/" + loc[loc.length - 2] + "/" + loc[loc.length - 1];
+    return uri;
+}
+
+//
+
+//confirming secondary pin 
+function confirmSecondaryPin(successCallBack) {
+    if (!$('.ajax-post.no-secondary-password').length) {
+        hideFullPageLoader();
+        swal({
+            title: "Do you want to proceed",
+            text: "Please enter your Transaction Password:",
+            type: "input",
+            inputType: "password",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            inputPlaceholder: "Transaction Password"
+        }, function (inputValue) {
+            if (inputValue === false) return false;
+            if (inputValue === "") {
+                swal.showInputError("You need to write something!");
+                return false
+            }
+            var token = getCSRFToken();
+            var data = {
+                _token: token,
+                transactionpassword: inputValue
+            }
+            performAjaxCall('/confirm-transaction-password', 'POST', data, function (response) {
+                if (response == true) {
+                    swal.close();
+                    setTimeout(function () {
+                        successCallBack();
+                        hideFullPageLoader();
+                    }, 300);
+
+                } else {
+                    swal.showInputError("Wrong Transaction Password!");
+
+                    //swal.close();
+                    // setTimeout(function(){
+                    // showPopupMessage('Worng Transaction Password','Error',true);
+                    // },300);
+                }
+            });
+        });
+    } else {
+        successCallBack();
+    }
+
+}
+
+
+//are you sure confirmation
+function areYouSure(successCallBack) {
+    var areYouSureMessage = $('#are-you-sure-message').html();
+    if (areYouSureMessage === undefined)
+        areYouSureMessage = '';
+    // console.log(areYouSureMessage);
+    swal({
+        title: "Do you want to proceed?",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        // type: 'info',
+        text: areYouSureMessage,
+    }, function () {
+        swal.close();
+        setTimeout(function () {
+            successCallBack();
+        }, 300);
+    });
+}
+
+function areYouSureGrantRetain(successCallBack, msg) {
+
+    swal({
+        title: "Do you want to proceed?",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        // type: 'info',
+        text: msg,
+    }, function () {
+        swal.close();
+        setTimeout(function () {
+            successCallBack();
+        }, 300);
+    });
+}
+
+//confirming secondary pin
+function confirmSecondaryPinMerchant(successCallBack) {
+    if (!$('.ajax-post-merchant.no-secondary-password').length) {
+        hideFullPageLoader();
+        swal({
+            title: "Do you want to proceed",
+            text: "Please enter your Transaction Password:",
+            type: "input",
+            inputType: "password",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            inputPlaceholder: "Transaction Password"
+        }, function (inputValue) {
+            if (inputValue === false) return false;
+            if (inputValue === "") {
+                swal.showInputError("You need to write something!");
+                return false
+            }
+            var token = getCSRFToken();
+            var data = {
+                _token: token,
+                transactionpassword: inputValue
+            }
+            performAjaxCall('/merchant/confirm-transaction-password', 'POST', data, function (response) {
+                if (response == true) {
+                    swal.close();
+                    setTimeout(function () {
+                        successCallBack();
+                        hideFullPageLoader();
+                    }, 300);
+
+                } else {
+                    swal.showInputError("Wrong Transaction Password!");
+
+                    //swal.close();
+                    // setTimeout(function(){
+                    // showPopupMessage('Worng Transaction Password','Error',true);
+                    // },300);
+                }
+            });
+        });
+    } else {
+        successCallBack();
+    }
+
+}
+
+function confirmSecondaryPinAdmin(successCallBack) {
+    if (!$('.ajax-post-merchant.no-secondary-password').length) {
+        hideFullPageLoader();
+        swal({
+            title: "Do you want to proceed",
+            text: "Please enter your Transaction Password:",
+            type: "input",
+            inputType: "password",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            inputPlaceholder: "Transaction Password"
+        }, function (inputValue) {
+            if (inputValue === false) return false;
+            if (inputValue === "") {
+                swal.showInputError("You need to write something!");
+                return false
+            }
+            var token = getCSRFToken();
+            var data = {
+                _token: token,
+                transactionpassword: inputValue
+            }
+            performAjaxCall('/admin/confirm-transaction-password', 'POST', data, function (response) {
+                if (response == true) {
+                    swal.close();
+                    setTimeout(function () {
+                        successCallBack();
+                        hideFullPageLoader();
+                    }, 300);
+
+                } else {
+                    swal.showInputError("Wrong Transaction Password!");
+
+                    //swal.close();
+                    // setTimeout(function(){
+                    // showPopupMessage('Worng Transaction Password','Error',true);
+                    // },300);
+                }
+            });
+        });
+    } else {
+        successCallBack();
+    }
+
+}
+
+
+
+

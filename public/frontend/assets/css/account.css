@@ -1,0 +1,56 @@
+.account-dropdown {
+    /*position: absolute;*/
+    cursor: pointer;
+    line-height: 34px;
+}
+
+.account-dropdown-menu {
+    display: none;
+    position: absolute;
+    width: 200px;
+    background: white;
+    /*padding: 6px;*/
+    border: 1px solid #f7f7f7;
+    box-shadow: -4px 4px #f5f1f136;
+    margin-left: -18px;
+    /*margin-top: -1px;*/
+    z-index: 20;
+}
+
+/*.account-dropdown-menu {*/
+/*display: none;*/
+/*position: absolute;*/
+/*width:200px;*/
+/*background: white;*/
+/*padding:10px;*/
+/*z-index:20;*/
+
+/*}*/
+
+.account-dropdown:hover > .account-dropdown-menu {
+    display: block;
+}
+
+/*> .dropdown-toggle:active {*/
+/*Without this, clicking will make it sticky*/
+/*pointer-events: none;*/
+/*}*/
+
+.business-list {
+    display: none;
+    background: #fff;
+    line-height: 31px;
+    min-width: 217px;
+    max-width: fit-content;
+    z-index: 10000004 !important;
+    border: 1px solid #f9f7f7;
+    border-top: 0;
+    box-shadow: 7px 6px #b8b3b314;
+    position: absolute;
+    margin-left: -1px;
+    height: 314px;
+}
+
+.business-item:hover{
+    text-decoration:none;
+}

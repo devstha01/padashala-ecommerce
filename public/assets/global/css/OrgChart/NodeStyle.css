@@ -1,0 +1,153 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #333333;
+}
+
+#chart-container {
+    position: relative;
+    display: inline-block;
+    top: 10px;
+    left: 10px;
+    height: 420px;
+    width: calc(100% - 24px);
+    border: 2px dashed #aaa;
+    border-radius: 5px;
+    overflow: auto;
+    text-align: center;
+}
+
+.tree-container #binaryTreeContainer {
+    text-align: center;
+}
+
+/*----------------------------------------- ORG CHART CSS ------------------------------------------------*/
+.orgchart a.avatar {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.orgchart a.avatar2 {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.orgchart a.avatar:hover {
+    cursor: pointer;
+}
+
+.orgchart a.avatar2:hover {
+    cursor: pointer;
+}
+
+.orgchart a.avatar img {
+    width: 60px;
+    height: 60px;;
+}
+
+.orgchart a.avatar2 img {
+    width: 60px;
+    height: 60px;;
+}
+
+.tooltip_templates, #templates {
+    display: none;
+}
+
+.orgchart a.add {
+    text-decoration: none;
+    border: 1px solid #000000;
+    color: #000000;
+    background: #fff;
+    font-size: 18px;
+    padding: 0 5px;
+}
+
+.orgchart .node .title.high {
+    background-color: #ef5036;
+}
+
+.orgchart .node .title.medium {
+    background-color: #efb936;
+}
+
+.orgchart .node .title.low {
+    background-color: #2da83c;
+}
+
+.orgchart .node .content.high {
+    border-color: #ef5036;
+}
+
+.orgchart .node .content.medium {
+    border-color: #efb936;
+}
+
+.orgchart .node .content.low {
+    border-color: #2da83c;
+}
+
+.orgchart .lines .topLine {
+    border-color: #000000;
+}
+
+.orgchart .lines .downLine {
+    background-color: #000000;
+}
+
+.orgchart .lines .leftLine {
+    border-left-color: #000000;
+}
+
+.orgchart .lines .rightLine {
+    border-right-color: #000000;
+}
+
+.orgchart .node .title.Silver {
+    background-color: #888888;
+}
+
+.orgchart .node .title.Gold {
+    background-color: #B48610;
+}
+
+.orgchart .node .title.Diamond {
+    background-color: #217C81;
+}
+
+/* TREE CHANGES*/
+/*.orgchart a.avatar img {*/
+    /*width: auto;*/
+    /*height: 45px;*/
+/*}*/
+
+/*.orgchart a.avatar {*/
+    /*height: 45px;*/
+/*}*/
+
+/*.orgchart .node {*/
+    /*width: 60px;*/
+/*}*/
+
+/*.orgchart .node .title {*/
+    /*width: 60px;*/
+/*}*/
+
+#binaryTreeContainer .edge.verticalEdge.topEdge.fa,
+#binaryTreeContainer .edge.horizontalEdge.rightEdge.fa,
+#binaryTreeContainer .edge.horizontalEdge.leftEdge.fa,
+#binaryTreeContainer .edge.verticalEdge.bottomEdge.fa {
+    display: none !important;
+}
