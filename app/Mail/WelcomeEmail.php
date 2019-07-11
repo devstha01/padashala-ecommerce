@@ -32,8 +32,8 @@ class WelcomeEmail extends Mailable
     {
 //        $address = 'Goldengate (hk) ' . env('MAIL_FROM_ADDRESS') ?? 'noreply@goldengatehk.com';
         $address = 'noreply@goldengatehk.com';
-        $name = "Golden Gate (hk)";
-        $subject = 'Golden Gate (hk)| Welcome';
+        $name = env('APP_NAME');
+        $subject = env('APP_NAME') . ' | Welcome';
 
         switch (strtolower($this->type)) {
             case 'member':

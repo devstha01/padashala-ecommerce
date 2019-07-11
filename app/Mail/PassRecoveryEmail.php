@@ -23,8 +23,8 @@ class PassRecoveryEmail extends Mailable
     {
         $message = $this->url . '/' . base64_encode('u=' . $this->data->user_name . '&t=' . (Carbon::now()->addDays(7)->toDateString()));
         $address = 'noreply@goldengatehk.com';
-        $name = "Golden Gate (hk)";
-        $subject = 'Golden Gate (hk)| Password Recovery ';
+        $name = env('APP_NAME');
+        $subject = env('APP_NAME') . ' | Password Recovery ';
         return $this->view('emails.pass-recovery')
             ->from($address, $name)
 //            ->cc($address, $name)

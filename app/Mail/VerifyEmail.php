@@ -32,8 +32,8 @@ class VerifyEmail extends Mailable
     {
         $message = $this->url . '/' . base64_encode('e=' . $this->data->email . '&i=' . $this->data->id);
         $address = 'noreply@goldengatehk.com';
-        $name = "Golden Gate (hk)";
-        $subject = 'Golden Gate (hk)| Email Verification ';
+        $name = env('APP_NAME');
+        $subject = env('APP_NAME').' | Email Verification ';
         return $this->view('emails.email-verification')
             ->from($address, $name)
             ->bcc($address, $name)
