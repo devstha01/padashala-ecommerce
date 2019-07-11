@@ -38,12 +38,15 @@ class ShoppingBonus
 //        $monthly_bonus = ($rate['bonus_rate']->value / 100) * $admin;
 //        $this->monthlyBonus($orderItem->id, $monthly_bonus);
 
-        $bonus = ($rate['customer_bonus']->value / 100) * $remain;
-        $asset = MemberAsset::where('member_id', $customer_id)->first();
-        if ($asset) {
-            $asset->update(['ecash_wallet' => $asset->ecash_wallet + $bonus]);
-            $this->createWalletReport($customer_id, $bonus, 'Customer Shopping Bonus', 'ecash', 'IN');
-        }
+//        BONUS ZERO ON PURHCASE
+//
+//        $bonus = ($rate['customer_bonus']->value / 100) * $remain;
+//        $asset = MemberAsset::where('member_id', $customer_id)->first();
+//        if ($asset) {
+//            $asset->update(['ecash_wallet' => $asset->ecash_wallet + $bonus]);
+//            $this->createWalletReport($customer_id, $bonus, 'Customer Shopping Bonus', 'ecash', 'IN');
+//        }
+        $bonus = 0;
         return [
             'customer_bonus' => $bonus
         ];
