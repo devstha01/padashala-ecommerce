@@ -172,8 +172,8 @@ class LoginController extends Controller
 //            'marital_status' => 'required',
             'new_password' => 'required|same:retype_password|min:6',
             'retype_password' => 'required|min:6',
-            'transaction_password' => 'required|same:retype_transaction_password|min:6',
-            'retype_transaction_password' => 'required|min:6',
+//            'transaction_password' => 'required|same:retype_transaction_password|min:6',
+//            'retype_transaction_password' => 'required|min:6',
 //            'identification_type' => 'required',
 //            'identification_number' => 'required',
         ]);
@@ -191,7 +191,6 @@ class LoginController extends Controller
             'dob' => Carbon::parse($request->dob_date)->format('Y-m-d'),
 //            'marital_status' => $request->marital_status,
             'password' => bcrypt($request->new_password),
-            'transaction_password' => bcrypt($request->transaction_password),
 //            'identification_type' => $request->identification_type,
 //            'identification_number' => $request->identification_number,
             'joining_date' => Carbon::now()->format('Y-m-d'),
@@ -214,8 +213,6 @@ class LoginController extends Controller
             $user->update(['qr_image' => $qr_name]);
             MemberAsset::create([
                 'member_id' => $user->id,
-                'chip' => 0,
-                'package_id' => 0,
             ]);
             $url = url('verify-email');
             Mail::to($request->email)->send(new VerifyEmail($user, $url));

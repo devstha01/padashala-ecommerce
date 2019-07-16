@@ -17,11 +17,11 @@ class CreateMemberAssetsTable extends Migration
             $table->increments('id');
             $table->integer('member_id')->unsigned();
             $table->decimal('ecash_wallet', 16, 4)->default(0);
-            $table->decimal('evoucher_wallet', 16, 4)->default(0);
-            $table->decimal('r_point', 16, 4)->default(0);
-            $table->integer('chip')->unsigned();
-            $table->decimal('capital_amount', 16, 4)->default(0);
-            $table->decimal('dividend', 16, 4)->default(0);
+//            $table->decimal('evoucher_wallet', 16, 4)->default(0);
+//            $table->decimal('r_point', 16, 4)->default(0);
+//            $table->integer('chip')->unsigned();
+//            $table->decimal('capital_amount', 16, 4)->default(0);
+//            $table->decimal('dividend', 16, 4)->default(0);
             $table->timestamps();
         });
     }

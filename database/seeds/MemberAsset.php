@@ -14,10 +14,10 @@ class MemberAsset extends Seeder
         $asset = [
             'member_id' => '1',
             'ecash_wallet' => 10000,
-            'evoucher_wallet' => 10000,
-            'r_point' => 10000,
-            'chip' => 10000,
-            'package_id' => 1,
+//            'evoucher_wallet' => 10000,
+//            'r_point' => 10000,
+//            'chip' => 10000,
+//            'package_id' => 1,
 
         ];
         \App\Models\Members\MemberAsset::create($asset);
@@ -25,10 +25,10 @@ class MemberAsset extends Seeder
         $asset1 = [
             'member_id' => '2',
             'ecash_wallet' => 1000,
-            'evoucher_wallet' => 0,
-            'r_point' => 0,
-            'chip' => 0,
-            'package_id' => 1,
+//            'evoucher_wallet' => 0,
+//            'r_point' => 0,
+//            'chip' => 0,
+//            'package_id' => 1,
         ];
         \App\Models\Members\MemberAsset::create($asset1);
 

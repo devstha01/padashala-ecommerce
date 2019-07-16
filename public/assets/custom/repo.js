@@ -211,48 +211,48 @@ function getTransactionPostUrl() {
 
 //confirming secondary pin 
 function confirmSecondaryPin(successCallBack) {
-    if (!$('.ajax-post.no-secondary-password').length) {
-        hideFullPageLoader();
-        swal({
-            title: "Do you want to proceed",
-            text: "Please enter your Transaction Password:",
-            type: "input",
-            inputType: "password",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            inputPlaceholder: "Transaction Password"
-        }, function (inputValue) {
-            if (inputValue === false) return false;
-            if (inputValue === "") {
-                swal.showInputError("You need to write something!");
-                return false
-            }
-            var token = getCSRFToken();
-            var data = {
-                _token: token,
-                transactionpassword: inputValue
-            }
-            performAjaxCall('/member/confirm-transaction-password', 'POST', data, function (response) {
-                if (response == true) {
-                    swal.close();
-                    setTimeout(function () {
-                        successCallBack();
-                        hideFullPageLoader();
-                    }, 300);
-
-                } else {
-                    swal.showInputError("Wrong Transaction Password!");
-
-                    //swal.close();
-                    // setTimeout(function(){
-                    // showPopupMessage('Worng Transaction Password','Error',true);
-                    // },300);
-                }
-            });
-        });
-    } else {
+    // if (!$('.ajax-post.no-secondary-password').length) {
+    //     hideFullPageLoader();
+    //     swal({
+    //         title: "Do you want to proceed",
+    //         text: "Please enter your Transaction Password:",
+    //         type: "input",
+    //         inputType: "password",
+    //         showCancelButton: true,
+    //         closeOnConfirm: false,
+    //         inputPlaceholder: "Transaction Password"
+    //     }, function (inputValue) {
+    //         if (inputValue === false) return false;
+    //         if (inputValue === "") {
+    //             swal.showInputError("You need to write something!");
+    //             return false
+    //         }
+    //         var token = getCSRFToken();
+    //         var data = {
+    //             _token: token,
+    //             transactionpassword: inputValue
+    //         }
+    //         performAjaxCall('/member/confirm-transaction-password', 'POST', data, function (response) {
+    //             if (response == true) {
+    //                 swal.close();
+    //                 setTimeout(function () {
+    //                     successCallBack();
+    //                     hideFullPageLoader();
+    //                 }, 300);
+    //
+    //             } else {
+    //                 swal.showInputError("Wrong Transaction Password!");
+    //
+    //                 //swal.close();
+    //                 // setTimeout(function(){
+    //                 // showPopupMessage('Worng Transaction Password','Error',true);
+    //                 // },300);
+    //             }
+    //         });
+    //     });
+    // } else {
         successCallBack();
-    }
+    // }
 
 }
 
@@ -294,94 +294,94 @@ function areYouSureGrantRetain(successCallBack,msg) {
 
 //confirming secondary pin
 function confirmSecondaryPinMerchant(successCallBack) {
-    if (!$('.ajax-post-merchant.no-secondary-password').length) {
-        hideFullPageLoader();
-        swal({
-            title: "Do you want to proceed",
-            text: "Please enter your Transaction Password:",
-            type: "input",
-            inputType: "password",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            inputPlaceholder: "Transaction Password"
-        }, function (inputValue) {
-            if (inputValue === false) return false;
-            if (inputValue === "") {
-                swal.showInputError("You need to write something!");
-                return false
-            }
-            var token = getCSRFToken();
-            var data = {
-                _token: token,
-                transactionpassword: inputValue
-            }
-            performAjaxCall('/merchant/confirm-transaction-password', 'POST', data, function (response) {
-                if (response == true) {
-                    swal.close();
-                    setTimeout(function () {
-                        successCallBack();
-                        hideFullPageLoader();
-                    }, 300);
-
-                } else {
-                    swal.showInputError("Wrong Transaction Password!");
-
-                    //swal.close();
-                    // setTimeout(function(){
-                    // showPopupMessage('Worng Transaction Password','Error',true);
-                    // },300);
-                }
-            });
-        });
-    } else {
+    // if (!$('.ajax-post-merchant.no-secondary-password').length) {
+    //     hideFullPageLoader();
+    //     swal({
+    //         title: "Do you want to proceed",
+    //         text: "Please enter your Transaction Password:",
+    //         type: "input",
+    //         inputType: "password",
+    //         showCancelButton: true,
+    //         closeOnConfirm: false,
+    //         inputPlaceholder: "Transaction Password"
+    //     }, function (inputValue) {
+    //         if (inputValue === false) return false;
+    //         if (inputValue === "") {
+    //             swal.showInputError("You need to write something!");
+    //             return false
+    //         }
+    //         var token = getCSRFToken();
+    //         var data = {
+    //             _token: token,
+    //             transactionpassword: inputValue
+    //         }
+    //         performAjaxCall('/merchant/confirm-transaction-password', 'POST', data, function (response) {
+    //             if (response == true) {
+    //                 swal.close();
+    //                 setTimeout(function () {
+    //                     successCallBack();
+    //                     hideFullPageLoader();
+    //                 }, 300);
+    //
+    //             } else {
+    //                 swal.showInputError("Wrong Transaction Password!");
+    //
+    //                 //swal.close();
+    //                 // setTimeout(function(){
+    //                 // showPopupMessage('Worng Transaction Password','Error',true);
+    //                 // },300);
+    //             }
+    //         });
+    //     });
+    // } else {
         successCallBack();
-    }
+    // }
 
 }
 
 function confirmSecondaryPinAdmin(successCallBack) {
-    if (!$('.ajax-post-merchant.no-secondary-password').length) {
-        hideFullPageLoader();
-        swal({
-            title: "Do you want to proceed",
-            text: "Please enter your Transaction Password:",
-            type: "input",
-            inputType: "password",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            inputPlaceholder: "Transaction Password"
-        }, function (inputValue) {
-            if (inputValue === false) return false;
-            if (inputValue === "") {
-                swal.showInputError("You need to write something!");
-                return false
-            }
-            var token = getCSRFToken();
-            var data = {
-                _token: token,
-                transactionpassword: inputValue
-            }
-            performAjaxCall('/admin/confirm-transaction-password', 'POST', data, function (response) {
-                if (response == true) {
-                    swal.close();
-                    setTimeout(function () {
-                        successCallBack();
-                        hideFullPageLoader();
-                    }, 300);
-
-                } else {
-                    swal.showInputError("Wrong Transaction Password!");
-
-                    //swal.close();
-                    // setTimeout(function(){
-                    // showPopupMessage('Worng Transaction Password','Error',true);
-                    // },300);
-                }
-            });
-        });
-    } else {
+    // if (!$('.ajax-post-merchant.no-secondary-password').length) {
+    //     hideFullPageLoader();
+    //     swal({
+    //         title: "Do you want to proceed",
+    //         text: "Please enter your Transaction Password:",
+    //         type: "input",
+    //         inputType: "password",
+    //         showCancelButton: true,
+    //         closeOnConfirm: false,
+    //         inputPlaceholder: "Transaction Password"
+    //     }, function (inputValue) {
+    //         if (inputValue === false) return false;
+    //         if (inputValue === "") {
+    //             swal.showInputError("You need to write something!");
+    //             return false
+    //         }
+    //         var token = getCSRFToken();
+    //         var data = {
+    //             _token: token,
+    //             transactionpassword: inputValue
+    //         }
+    //         performAjaxCall('/admin/confirm-transaction-password', 'POST', data, function (response) {
+    //             if (response == true) {
+    //                 swal.close();
+    //                 setTimeout(function () {
+    //                     successCallBack();
+    //                     hideFullPageLoader();
+    //                 }, 300);
+    //
+    //             } else {
+    //                 swal.showInputError("Wrong Transaction Password!");
+    //
+    //                 //swal.close();
+    //                 // setTimeout(function(){
+    //                 // showPopupMessage('Worng Transaction Password','Error',true);
+    //                 // },300);
+    //             }
+    //         });
+    //     });
+    // } else {
         successCallBack();
-    }
+    // }
 
 }
 

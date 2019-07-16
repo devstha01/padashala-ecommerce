@@ -222,8 +222,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <hr>
-
                                                                         <div class="row">
                                                                             <div class="col-sm-6">
                                                                                 <div class="form-group">
@@ -273,7 +271,6 @@
                                                                               method="post">
                                                                             {{csrf_field()}}
                                                                             <div class="col-md-6">
-                                                                                <h5>{{__('dashboard.Primary Password')}}</h5>
 
 
                                                                                 <div class="form-group">
@@ -300,38 +297,6 @@
                                                                                 </button>
                                                                             </div>
                                                                             </form>
-                                                                        <form action="{{route('submit-staff-transaction-pass',$admin->id)}}"
-                                                                              method="post">
-                                                                            {{csrf_field()}}
-                                                                            <div class="col-md-6">
-                                                                                <h5>{{__('dashboard.Transaction Password')}}</h5>
-
-
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">{{__('dashboard.New Transaction Password')}}
-                                                                                    </label>
-                                                                                    <input type="password"
-                                                                                           class="form-control"
-                                                                                           name="new_transaction_password">
-                                                                                    <span style="color: red">{{$errors->first('new_transaction_password')??''}}</span>
-                                                                                    <span style="color: red">{{session('new_transaction_password')??''}}</span>
-                                                                                </div>
-
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">{{__('dashboard.Retype Transaction Password')}}
-                                                                                    </label>
-                                                                                    <input type="password"
-                                                                                           class="form-control"
-                                                                                           name="retype_transaction_password">
-                                                                                    <span style="color: red">{{$errors->first('retype_transaction_password')??''}}</span>
-                                                                                </div>
-
-                                                                                <button type="submit"
-                                                                                        class="btn btn-success">{{__('dashboard.Submit')}}
-                                                                                </button>
-
-                                                                            </div>
-                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>

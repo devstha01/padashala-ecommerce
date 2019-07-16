@@ -147,110 +147,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <h3>{{__('dashboard.Business')}}</h3>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Business Name')}}
-                                                        </label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               name="business_name"
-                                                               placeholder="" value="{{old('business_name')??''}}">
-                                                        <span style="color: red">{{$errors->first('business_name')??''}}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Registration No.')}}
-                                                        </label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               name="registration_number"
-                                                               placeholder=""
-                                                               value="{{old('registration_number')??''}}">
-                                                        <span style="color: red">{{$errors->first('registration_number')??''}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <h3>{{__('dashboard.Profit Sharing')}}</h3>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Merchant Share')}}
-                                                        </label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               name="merchant_share"
-                                                               placeholder="" value="{{old('merchant_share')??''}}">
-                                                        <span style="color: red">{{$errors->first('merchant_share')??''}}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Admin Share')}}
-                                                        </label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               name="admin_share"
-                                                               placeholder=""
-                                                               value="{{old('admin_share')??''}}">
-                                                        <span style="color: red">{{$errors->first('admin_share')??''}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <h3>{{__('dashboard.Password')}}</h3>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Login Password')}}
-                                                        </label>
-                                                        <input type="password"
-                                                               class="form-control"
-                                                               name="new_password"
-                                                               placeholder="" value="{{old('new_password')??''}}">
-                                                        <span style="color: red">{{$errors->first('new_password')??''}}</span>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Retype Login Password')}}
-                                                        </label>
-                                                        <input type="password"
-                                                               class="form-control"
-                                                               name="retype_password"
-                                                               placeholder="" value="{{old('retype_password')??''}}">
-                                                        <span style="color: red">{{$errors->first('retype_password')??''}}</span>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Transaction Password')}}
-                                                        </label>
-                                                        <input type="password"
-                                                               class="form-control"
-                                                               name="transaction_password"
-                                                               placeholder=""
-                                                               value="{{old('transaction_password')??''}}">
-                                                        <span style="color: red">{{$errors->first('transaction_password')??''}}</span>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Retype Transaction Password')}}
-                                                        </label>
-                                                        <input type="password"
-                                                               class="form-control"
-                                                               name="retype_transaction_password"
-                                                               placeholder=""
-                                                               value="{{old('retype_transaction_password')??''}}">
-                                                        <span style="color: red">{{$errors->first('retype_transaction_password')??''}}</span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <hr>
 
                                             <div class="row">
                                                 <div class="col-sm-6">
@@ -283,6 +179,88 @@
                                                 </div>
                                             </div>
 
+
+                                            <hr>
+                                            <h3>{{__('dashboard.Business')}}</h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{__('dashboard.Business Name')}}
+                                                        </label>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="business_name"
+                                                               placeholder="" value="{{old('business_name')??''}}">
+                                                        <span style="color: red">{{$errors->first('business_name')??''}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{__('dashboard.Registration No.')}}
+                                                        </label>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="registration_number"
+                                                               placeholder=""
+                                                               value="{{old('registration_number')??''}}">
+                                                        <span style="color: red">{{$errors->first('registration_number')??''}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{--<h3>{{__('dashboard.Profit Sharing')}}</h3>--}}
+                                            {{--<div class="row">--}}
+                                                {{--<div class="col-md-6">--}}
+                                                    {{--<div class="form-group">--}}
+                                                        {{--<label class="control-label">{{__('dashboard.Merchant Share')}}--}}
+                                                        {{--</label>--}}
+                                                        {{--<input type="text"--}}
+                                                               {{--class="form-control"--}}
+                                                               {{--name="merchant_share"--}}
+                                                               {{--placeholder="" value="{{old('merchant_share')??''}}">--}}
+                                                        {{--<span style="color: red">{{$errors->first('merchant_share')??''}}</span>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="col-md-6">--}}
+                                                    {{--<div class="form-group">--}}
+                                                        {{--<label class="control-label">{{__('dashboard.Admin Share')}}--}}
+                                                        {{--</label>--}}
+                                                        {{--<input type="text"--}}
+                                                               {{--class="form-control"--}}
+                                                               {{--name="admin_share"--}}
+                                                               {{--placeholder=""--}}
+                                                               {{--value="{{old('admin_share')??''}}">--}}
+                                                        {{--<span style="color: red">{{$errors->first('admin_share')??''}}</span>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<hr>--}}
+                                            <h3>{{__('dashboard.Password')}}</h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{__('dashboard.Login Password')}}
+                                                        </label>
+                                                        <input type="password"
+                                                               class="form-control"
+                                                               name="new_password"
+                                                               placeholder="" value="{{old('new_password')??''}}">
+                                                        <span style="color: red">{{$errors->first('new_password')??''}}</span>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{__('dashboard.Retype Login Password')}}
+                                                        </label>
+                                                        <input type="password"
+                                                               class="form-control"
+                                                               name="retype_password"
+                                                               placeholder="" value="{{old('retype_password')??''}}">
+                                                        <span style="color: red">{{$errors->first('retype_password')??''}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <button type="submit"
                                                     class="btn btn-success">{{__('dashboard.Submit')}}</button>
                                         </div>
@@ -315,20 +293,20 @@
             }
         });
 
-        $('input[name="merchant_share"]').on('keyup', function () {
-            var mer_share = $(this).val();
-            if ($.isNumeric(mer_share) && mer_share < 100) {
-                var sum100 = 100 - mer_share;
-                $('input[name="admin_share"]').val(sum100);
-            }
-        });
-
-        $('input[name="admin_share"]').on('keyup', function () {
-            var adm_share = $(this).val();
-            if ($.isNumeric(adm_share) && adm_share < 100) {
-                var sum100 = 100 - adm_share;
-                $('input[name="merchant_share"]').val(sum100);
-            }
-        })
+        // $('input[name="merchant_share"]').on('keyup', function () {
+        //     var mer_share = $(this).val();
+        //     if ($.isNumeric(mer_share) && mer_share < 100) {
+        //         var sum100 = 100 - mer_share;
+        //         $('input[name="admin_share"]').val(sum100);
+        //     }
+        // });
+        //
+        // $('input[name="admin_share"]').on('keyup', function () {
+        //     var adm_share = $(this).val();
+        //     if ($.isNumeric(adm_share) && adm_share < 100) {
+        //         var sum100 = 100 - adm_share;
+        //         $('input[name="merchant_share"]').val(sum100);
+        //     }
+        // })
     </script>
 @stop

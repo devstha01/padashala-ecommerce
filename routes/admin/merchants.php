@@ -67,7 +67,7 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
     });
     Route::group(['middleware' => 'staff_permission:2.Merchant Master.Password'], function () {
         Route::post('submit-merchant-pass/{id}', 'MerchantRegisterController@submitPasswordEdit')->name('submit-merchant-pass');
-        Route::post('submit-merchant-transaction-pass/{id}', 'MerchantRegisterController@submitTrannsactionPasswordEdit')->name('submit-merchant-transaction-pass');
+//        Route::post('submit-merchant-transaction-pass/{id}', 'MerchantRegisterController@submitTrannsactionPasswordEdit')->name('submit-merchant-transaction-pass');
     });
 
 //    Route::get('get-search-merchant', 'MerchantRegisterController@searchMerchant');

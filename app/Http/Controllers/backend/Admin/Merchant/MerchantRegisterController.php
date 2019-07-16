@@ -4,7 +4,6 @@ namespace App\Http\Controllers\backend\Admin\Merchant;
 
 use App\Mail\VerifyEmail;
 use App\Mail\WelcomeEmail;
-use App\Models\Commisions\ShoppingMerchant;
 use App\Models\Country;
 use App\Models\Merchant;
 use App\Models\MerchantAsset;
@@ -59,14 +58,14 @@ class MerchantRegisterController extends Controller
             'marital_status' => 'required',
             'new_password' => 'required|same:retype_password|min:6',
             'retype_password' => 'required|min:6',
-            'transaction_password' => 'required|same:retype_transaction_password|min:6',
-            'retype_transaction_password' => 'required|min:6',
+//            'transaction_password' => 'required|same:retype_transaction_password|min:6',
+//            'retype_transaction_password' => 'required|min:6',
             'identification_type' => 'required',
             'identification_number' => 'required',
 //            'joining_date' => 'required',
             'business_name' => 'required',
-            'merchant_share' => 'required|numeric|min:0|max:98',
-            'admin_share' => 'required|numeric|min:2|max:100',
+//            'merchant_share' => 'required|numeric|min:0|max:98',
+//            'admin_share' => 'required|numeric|min:2|max:100',
 //            'registration_number' => 'required'
         ]);
 
@@ -83,7 +82,7 @@ class MerchantRegisterController extends Controller
             'dob' => Carbon::parse($request->dob_date)->format('Y-m-d'),
             'marital_status' => $request->marital_status,
             'password' => bcrypt($request->new_password),
-            'transaction_password' => bcrypt($request->transaction_password),
+//            'transaction_password' => bcrypt($request->transaction_password),
             'identification_type' => $request->identification_type,
             'identification_number' => $request->identification_number,
             'joining_date' => Carbon::now()->format('Y-m-d'),
@@ -131,7 +130,7 @@ class MerchantRegisterController extends Controller
 
             $merchant_create = Merchant::find($id);
             $merchant_create->update(['qr_image' => $qr_name]);
-            ShoppingMerchant::create(['merchant_id' => $id, 'merchant_rate' => $request->merchant_share, 'admin_rate' => $request->admin_share]);
+//            ShoppingMerchant::create(['merchant_id' => $id, 'merchant_rate' => $request->merchant_share, 'admin_rate' => $request->admin_share]);
 
             $url = url('verify-email/merchant');
             Mail::to($request->email)->send(new VerifyEmail($merchant_create, $url));
@@ -192,8 +191,8 @@ class MerchantRegisterController extends Controller
             'identification_number' => 'required',
 //            'joining_date' => 'required',
             'business_name' => 'required',
-            'merchant_share' => 'required|numeric|min:0|max:98',
-            'admin_share' => 'required|numeric|min:2|max:100',
+//            'merchant_share' => 'required|numeric|min:0|max:98',
+//            'admin_share' => 'required|numeric|min:2|max:100',
         ]);
 
         $input = [
@@ -244,8 +243,8 @@ class MerchantRegisterController extends Controller
                 'registration_number' => $request->registration_number ?? null
             ];
             MerchantBusiness::create($business_input);
-            $shopping = ShoppingMerchant::where('merchant_id', $id)->first();
-            $shopping->update(['merchant_rate' => $request->merchant_share, 'admin_rate' => $request->admin_share]);
+//            $shopping = ShoppingMerchant::where('merchant_id', $id)->first();
+//            $shopping->update(['merchant_rate' => $request->merchant_share, 'admin_rate' => $request->admin_share]);
             return redirect()->back()->with('success', __('message.Merchant profile updated successfully'));
 
         } else {
@@ -260,8 +259,8 @@ class MerchantRegisterController extends Controller
                 ];
                 $merchant_business->update($business_input);
 
-                $shopping = ShoppingMerchant::where('merchant_id', $id)->first();
-                $shopping->update(['merchant_rate' => $request->merchant_share, 'admin_rate' => $request->admin_share]);
+//                $shopping = ShoppingMerchant::where('merchant_id', $id)->first();
+//                $shopping->update(['merchant_rate' => $request->merchant_share, 'admin_rate' => $request->admin_share]);
                 return redirect()->back()->with('success', __('message.Merchant profile updated successfully'));
             }
         }

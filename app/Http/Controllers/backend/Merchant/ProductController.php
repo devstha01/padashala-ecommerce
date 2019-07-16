@@ -47,14 +47,14 @@ class ProductController extends Controller
         $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
 
         if (!$business_id) return redirect()->back();
-        if (empty($request->term)) {
-            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('status', 1)->simplePaginate(25);
-            $this->_data['term'] = null;
-        } else {
+//        if (empty($request->term)) {
+            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('status', 1)->get();
+//            $this->_data['term'] = null;
+//        } else {
 
-            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('name', 'like', '%' . $request->term . '%')->where('status', 1)->get();
-            $this->_data['term'] = $request->term;
-        }
+//            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('name', 'like', '%' . $request->term . '%')->where('status', 1)->get();
+//            $this->_data['term'] = $request->term;
+//        }
         return view($this->_path . 'view-product', $this->_data);
     }
 

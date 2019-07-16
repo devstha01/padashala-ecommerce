@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-12">
 
-                    @include('frontend.reports.report-nav')
+{{--                    @include('frontend.reports.report-nav')--}}
                     <br>
                     <h3>{{__('front.Product Purchase Report')}} </h3>
 

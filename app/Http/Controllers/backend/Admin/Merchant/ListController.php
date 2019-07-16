@@ -51,7 +51,8 @@ class ListController extends Controller
     {
         $this->_data['merchant'] = Merchant::find($id);
 //        $prodArray = Product::where('merchant_business_id', $this->_data['merchant']->getBusiness->id)->pluck('id')->toArray() ?? [];
-        $this->_data['shoppings'] = ShoppingLog::where('merchant_id', $this->_data['merchant']->id)->get();
+        $this->_data['shoppings'] = [];
+//ShoppingLog::where('merchant_id', $this->_data['merchant']->id)->get();
 
         $merchant_business_id = MerchantBusiness::where('merchant_id', $id)->first()->id;
         $orders = OrderItem::orderBy('id', 'DESC')->get();

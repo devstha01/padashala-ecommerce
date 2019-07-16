@@ -124,16 +124,16 @@
                             <div class="col-sm-4">
 
                                 {{--<div class="form-group">--}}
-                                    {{--<label class="control-label">{{__('front.Marital Status')}}</label>--}}
-                                    {{--<select name="marital_status" class="form-control">--}}
-                                        {{--<option value="no" {{old('marital_status') === 'no'?'selected':''}}>--}}
-                                            {{--{{__('dashboard.Single')}}--}}
-                                        {{--</option>--}}
-                                        {{--<option value="yes" {{old('marital_status') ==='yes'?'selected':''}}>--}}
-                                            {{--{{__('dashboard.Married')}}--}}
-                                        {{--</option>--}}
-                                    {{--</select>--}}
-                                    {{--<span style="color: red">{{$errors->first('marital_status')??''}}</span>--}}
+                                {{--<label class="control-label">{{__('front.Marital Status')}}</label>--}}
+                                {{--<select name="marital_status" class="form-control">--}}
+                                {{--<option value="no" {{old('marital_status') === 'no'?'selected':''}}>--}}
+                                {{--{{__('dashboard.Single')}}--}}
+                                {{--</option>--}}
+                                {{--<option value="yes" {{old('marital_status') ==='yes'?'selected':''}}>--}}
+                                {{--{{__('dashboard.Married')}}--}}
+                                {{--</option>--}}
+                                {{--</select>--}}
+                                {{--<span style="color: red">{{$errors->first('marital_status')??''}}</span>--}}
 
                                 {{--</div>--}}
                             </div>
@@ -163,7 +163,6 @@
                         <h3>{{__('front.Password')}}</h3>
                         <div class="row">
                             <div class="col-md-6">
-                                <h5>{{__('front.Login Password')}}</h5>
                                 <div class="form-group">
                                     <label class="control-label">{{__('front.Login Password')}}
                                     </label>
@@ -174,6 +173,8 @@
                                     <span style="color: red">{{$errors->first('new_password')??''}}</span>
                                 </div>
 
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">{{__('dashboard.Retype Login Password')}}
                                     </label>
@@ -183,71 +184,15 @@
                                            placeholder="" value="{{old('retype_password')??''}}">
                                     <span style="color: red">{{$errors->first('retype_password')??''}}</span>
                                 </div>
-
-                            </div>
-                            <div class="col-md-6">
-                                <h5>{{__('front.Transaction Password')}}</h5>
-                                <div class="form-group">
-                                    <label class="control-label">{{__('front.Transaction Password')}}
-                                    </label>
-                                    <input type="password"
-                                           class="form-control"
-                                           name="transaction_password"
-                                           placeholder=""
-                                           value="{{old('transaction_password')??''}}">
-                                    <span style="color: red">{{$errors->first('transaction_password')??''}}</span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label">{{__('dashboard.Retype Transaction Password')}}
-                                    </label>
-                                    <input type="password"
-                                           class="form-control"
-                                           name="retype_transaction_password"
-                                           placeholder=""
-                                           value="{{old('retype_transaction_password')??''}}">
-                                    <span style="color: red">{{$errors->first('retype_transaction_password')??''}}</span>
-                                </div>
-
                             </div>
                         </div>
 
-                        {{--<hr>--}}
-
-                        {{--<div class="row">--}}
-                            {{--<div class="col-sm-6">--}}
-                                {{--<div class="form-group">--}}
-                                    {{--<label class="control-label">{{__('front.Identification Type')}}</label>--}}
-                                    {{--<select name="identification_type" class="form-control">--}}
-                                        {{--<option value="citizenship" {{old('identification_type')==='citizenship' ?'selected':''}}>--}}
-                                            {{--{{__('front.citizenship')}}--}}
-                                        {{--</option>--}}
-                                        {{--<option value="passport" {{old('identification_type')==='passport' ?'selected':''}}>--}}
-                                            {{--{{__('front.passport')}}--}}
-                                        {{--</option>--}}
-                                    {{--</select>--}}
-                                    {{--<span style="color: red">{{$errors->first('identification_type')??''}}</span>--}}
-                                {{--</div>--}}
-
-                            {{--</div>--}}
-                            {{--<div class="col-sm-6">--}}
-                                {{--<div class="form-group">--}}
-                                    {{--<label class="control-label">{{__('front.Identification Number')}}--}}
-                                    {{--</label>--}}
-                                    {{--<input type="text"--}}
-                                           {{--class="form-control"--}}
-                                           {{--name="identification_number"--}}
-                                           {{--placeholder=""--}}
-                                           {{--value="{{old('identification_number')??''}}">--}}
-                                    {{--<span style="color: red">{{$errors->first('identification_number')??''}}</span>--}}
-                                {{--</div>--}}
-
-                            {{--</div>--}}
-                        {{--</div>--}}
                         <br>
                         <b>{{__('front.By submitting your information, you agree to the Golden Gate (HK)')}}
-                            <a href="{{route('home-terms-of-use')}}" class="text-primary">{{__('front.Terms & conditions')}}</a> and
-                            <a href="{{route('home-privacy-policy')}}" class="text-primary">{{__('front.Privacy Policy')}}</a></b>
+                            <a href="{{route('home-terms-of-use')}}"
+                               class="text-primary">{{__('front.Terms & conditions')}}</a> and
+                            <a href="{{route('home-privacy-policy')}}"
+                               class="text-primary">{{__('front.Privacy Policy')}}</a></b>
                         <br>
 
                         <div class="form-footer">

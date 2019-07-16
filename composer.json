@@ -15,6 +15,7 @@
         "intervention/image": "^2.4",
         "khanamiryan/qrcode-detector-decoder": "^1.0",
         "laravel/framework": "5.7.*",
+        "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "maddhatter/laravel-fullcalendar": "^1.3",

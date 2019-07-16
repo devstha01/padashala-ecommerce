@@ -212,7 +212,7 @@ class HomeController extends Controller
         $data = $data->pluck('id')->toArray();
         $products = Product::whereIn('id', $data)->where('status', 1)->get();
         if (count($products) === 0)
-            $products = Product::orderBy('id', 'DESC')->get();
+            $products = Product::orderBy('id', 'DESC')->where('status',1)->get();
         return $this->validProductWithOption($products)->take(12);
     }
 

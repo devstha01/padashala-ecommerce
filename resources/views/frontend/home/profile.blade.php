@@ -16,13 +16,13 @@
                                 <h3>{{$user->name}} {{ $user->surname }}</h3>
                             </div>
                             <div class="col-sm-6">
-                                @if(Auth::user()->is_member ===1)
-                                    <h3>
-                                        <i class="fa mb-1 package-{{$user->getAsset->getPackage->name}}">{{__('front.Package')}}
-                                            : {{$user->getAsset->getPackage->name}}</i>
+                                {{--@if(Auth::user()->is_member ===1)--}}
+                                    {{--<h3>--}}
+                                        {{--<i class="fa mb-1 package-{{$user->getAsset->getPackage->name}}">{{__('front.Package')}}--}}
+                                            {{--: {{$user->getAsset->getPackage->name}}</i>--}}
 
-                                    </h3>
-                                @endif
+                                    {{--</h3>--}}
+                                {{--@endif--}}
                             </div>
                         </div>
                         <div style="min-width: 100%;border-top:1px solid grey"></div>
@@ -101,8 +101,8 @@
                         <a class="btn btn-info m-3" href="{{url('change/password')}}"><i
                                     class="fa fa-key"></i> {{__('front.Change Password')}}</a>
 
-                        <a class="btn btn-info m-3" href="{{route('make-payment')}}"><i
-                                    class="fa fa-money"></i> {{__('front.Make Payment')}}</a>
+                        {{--<a class="btn btn-info m-3" href="{{route('make-payment')}}"><i--}}
+                                    {{--class="fa fa-money"></i> {{__('front.Make Payment')}}</a>--}}
 
                         @if(!$user->is_member)
                             <a class="btn btn-info m-3" href="{{route('my-wallet')}}"> {{__('dashboard.My Wallet')}}</a>

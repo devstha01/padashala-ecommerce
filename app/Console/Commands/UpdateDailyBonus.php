@@ -37,9 +37,9 @@ class UpdateDailyBonus extends Command
      */
     public function handle()
     {
-        \Log::warning('Daily Bonus start');
-        app('App\Http\Controllers\backend\Member\MemberController')->updateDailyBonus();
-
-        \Log::warning('Daily Bonus end');
+//        \Log::warning('Daily Bonus start');
+//        app('App\Http\Controllers\backend\Member\MemberController')->updateDailyBonus();
+//
+//        \Log::warning('Daily Bonus end');
     }
 }

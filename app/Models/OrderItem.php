@@ -32,15 +32,4 @@ class OrderItem extends Model
         return $this->hasOne(OrderStatus::class, 'key', 'order_status_id');
     }
 
-    function getShoppingLog()
-    {
-        return $this->hasOne('App\Models\Commisions\ShoppingLog', 'order_item_id', 'id');
-    }
-
-    function getShoppingBonus()
-    {
-        return $this->hasOne('App\Models\Commisions\ShoppingBonusDistribution', 'item_id', 'id');
-    }
-
-
 }

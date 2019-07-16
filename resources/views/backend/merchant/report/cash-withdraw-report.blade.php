@@ -23,8 +23,7 @@
 
                     <div class="portlet light">
                         <div class="portlet-body">
-                            <table class="table table-striped table-bordered table-hover dataTable dtr-inline"
-                                   id="sample_1">
+                            <table class="table table-striped table-bordered table-hover dataTable dtr-inline" id="sample_1">
                                 <thead>
                                 <tr>
                                     <th>{{__('dashboard.SN')}}</th>

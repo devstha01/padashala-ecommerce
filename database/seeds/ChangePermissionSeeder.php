@@ -40,8 +40,8 @@ class ChangePermissionSeeder extends Seeder
         \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Merchant Cash Withdrawal Request', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Member Wallet Convert Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Member Wallet Transfer Report', 'guard_name' => 'admin']);
-        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Merchant Wallet Transfer Report', 'guard_name' => 'admin']);
-        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Merchant Payment Report', 'guard_name' => 'admin']);
+//        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Merchant Wallet Transfer Report', 'guard_name' => 'admin']);
+//        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Merchant Payment Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Monthly Bonus Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Shopping Point Transform Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Dividend Transform Report', 'guard_name' => 'admin']);
@@ -87,8 +87,8 @@ class ChangePermissionSeeder extends Seeder
         \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Merchant Cash Withdrawal Request', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Member Wallet Convert Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Member Wallet Transfer Report', 'guard_name' => 'admin']);
-        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Merchant Wallet Transfer Report', 'guard_name' => 'admin']);
-        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Merchant Payment Report', 'guard_name' => 'admin']);
+//        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Merchant Wallet Transfer Report', 'guard_name' => 'admin']);
+//        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Merchant Payment Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Monthly Bonus Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Shopping Point Transform Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Dividend Transform Report', 'guard_name' => 'admin']);

@@ -216,8 +216,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <hr>
-
                                                                         <div class="row">
                                                                             <div class="col-sm-6">
                                                                                 <div class="form-group">
@@ -284,34 +282,6 @@
                                                                                     <span style="color: red">{{$errors->first('registration_number')??''}}</span>
                                                                                 </div>
 
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <h3>{{__('dashboard.Profit Sharing')}}</h3>
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">{{__('dashboard.Merchant Share')}}
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           name="merchant_share"
-                                                                                           placeholder=""
-                                                                                           value="{{$merchant->getShoppingRate->merchant_rate??0}}">
-                                                                                    <span style="color: red">{{$errors->first('merchant_share')??''}}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">{{__('dashboard.Admin Share')}}
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           name="admin_share"
-                                                                                           placeholder=""
-                                                                                           value="{{$merchant->getShoppingRate->admin_rate??0}}">
-                                                                                    <span style="color: red">{{$errors->first('admin_share')??''}}</span>
-                                                                                </div>
                                                                             </div>
                                                                         </div>
 
@@ -418,44 +388,7 @@
                                                                                         class="btn btn-success">{{__('dashboard.Submit')}}</button>
                                                                             </div>
                                                                         </form>
-                                                                        <form action="{{route('submit-merchant-transaction-pass',$merchant->id)}}"
-                                                                              method="post">
-                                                                            {{csrf_field()}}
-                                                                            <div class="col-md-6">
-                                                                                <h5>{{__('dashboard.Transaction Password')}}</h5>
 
-                                                                                {{--<div class="form-group">--}}
-                                                                                {{--<label class="control-label">{{__('dashboard.Transaction Password')}}--}}
-                                                                                {{--</label>--}}
-                                                                                {{--<input type="password"--}}
-                                                                                {{--class="form-control"--}}
-                                                                                {{--name="old_transaction_password">--}}
-                                                                                {{--<span style="color: red">{{$errors->first('old_transaction_password')??''}}</span>--}}
-                                                                                {{--<span style="color: red">{{session('old_transaction_password')??''}}</span>--}}
-                                                                                {{--</div>--}}
-
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">{{__('dashboard.New Transaction Password')}}</label>
-                                                                                    <input type="password"
-                                                                                           class="form-control"
-                                                                                           name="new_transaction_password">
-                                                                                    <span style="color: red">{{$errors->first('new_transaction_password')??''}}</span>
-                                                                                    <span style="color: red">{{session('new_transaction_password')??''}}</span>
-                                                                                </div>
-
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">{{__('dashboard.Retype Transaction Password')}}</label>
-                                                                                    <input type="password"
-                                                                                           class="form-control"
-                                                                                           name="retype_transaction_password">
-                                                                                    <span style="color: red">{{$errors->first('retype_transaction_password')??''}}</span>
-                                                                                </div>
-
-                                                                                <button type="submit"
-                                                                                        class="btn btn-success">{{__('dashboard.Submit')}}</button>
-
-                                                                            </div>
-                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -34,12 +34,12 @@ class SubCategory extends Model
             case 'en':
                 return $value;
                 break;
-            case 'ch':
-                return $this->ch_name ?? $value;
-                break;
-            case 'tr-ch':
-                return $this->trch_name ?? $value;
-                break;
+//            case 'ch':
+//                return $this->ch_name ?? $value;
+//                break;
+//            case 'tr-ch':
+//                return $this->trch_name ?? $value;
+//                break;
             default:
                 return $value;
                 break;

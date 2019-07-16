@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
             'email' => 'admin@mlm.com',
             'role' => 'admin',
             'password' => bcrypt('password'),
-            'transaction_password' => bcrypt('password')
+//            'transaction_password' => bcrypt('password')
         ];
         $id = \App\Models\Admin::create($admin);
 

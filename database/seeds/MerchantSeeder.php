@@ -20,7 +20,7 @@ class MerchantSeeder extends Seeder
                 'user_name' => 'merchant',
                 'email' => 'merchant@mlm.com',
                 'password' => bcrypt('password'),
-                'transaction_password' => bcrypt('password'),
+//                'transaction_password' => bcrypt('password'),
                 'contact_number' => '9849898311',
                 'dob' => '1994-04-01',
                 'country_id' => 9,

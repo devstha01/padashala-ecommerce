@@ -23,11 +23,14 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->text('detail')->nullable();
             $table->string('featured_image')->nullable();
-            $table->decimal('marked_price', 16, 2)->nullable();
-            $table->decimal('sell_price', 16, 2)->nullable();
-            $table->decimal('discount', 16, 2)->nullable();
-            $table->string('quantity')->nullable();
-            $table->boolean('status')->default(1);
+            $table->decimal('marked_price', 16, 2)->default(0);
+            $table->decimal('sell_price', 16, 2)->default(0);
+            $table->decimal('discount', 16, 2)->default(0);
+            $table->string('quantity')->default(0);
+
+//            admin controlled
+            $table->boolean('admin_flag')->default(0);
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

@@ -161,43 +161,6 @@
                 </div>
                 {{--@endif--}}
 
-                <li class="account-dropdown business-dropdown" style="list-style: none">
-                    <a class="fa header-fa fa-clipboard-list business-manage"
-                       href="#">{{__('front.Business Opportunity')}}
-                    </a>
-                    @if(Auth::check() && Auth::user()->is_member!==0)
-                        <div class="account-dropdown-menu business-list" style="max-height: 34px">
-                            <ul>
-                                <li>
-                                    <a href="{{route('home-sell-on')}}"
-                                       class="business-item">{{__('front.Sell on Golden Gate')}} (hk)</a>
-                                </li>
-                            </ul>
-                        </div>
-                    @else
-                        <div class="account-dropdown-menu business-list" style="max-height: 34px">
-                            <ul>
-                                <li>
-                                    <a href="{{route('home-sell-on')}}"
-                                       class="business-item">{{__('front.Sell on ')}}{{env('APP_NAME')}}</a>
-                                </li>
-
-                                {{--<li>--}}
-                                    {{--<a href="{{route('home-become-affiliate')}}"--}}
-                                       {{--class="business-item">--}}
-
-                                        {{--@if(!Auth::check())--}}
-                                            {{--{{__('front.Become an Affiliate')}}--}}
-                                        {{--@else--}}
-                                            {{--{{__('front.Upgrade Membership')}}--}}
-                                        {{--@endif--}}
-                                    {{--</a>--}}
-                                {{--</li>--}}
-                            </ul>
-                        </div>
-                    @endif
-                </li>
-
             </div><!-- End .header-left -->
 
             <div class="header-center">
@@ -235,20 +198,6 @@
                                 <li><a href="{{route('checkout-login')}}">{{__('front.Log In')}}</a></li>
                                 <li><a href="{{route('customer-register')}}">{{__('front.Register Free')}}</a></li>
                             @endif
-                            <li class="account-dropdown">
-                                @if(Lang::locale() =='ch')
-                                    简体中文
-                                @elseif(Lang::locale() =='tr-ch')
-                                    繁體中文
-                                @else
-                                    English
-                                @endif
-                                <div class="account-dropdown-menu" style="color: black">
-                                    <a class="lang-select m-3" style="cursor:pointer" data-lang="en">English</a>
-                                    <a class="lang-select m-3" style="cursor:pointer" data-lang="ch">简体中文</a>
-                                    <a class="lang-select m-3" style="cursor:pointer" data-lang="tr-ch">繁體中文</a>
-                                </div>
-                            </li>
                             <!-- End .header-dropown -->
 
                         </ul>

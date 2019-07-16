@@ -20,7 +20,7 @@ class CreateMerchantsTable extends Migration
             $table->string('user_name');
             $table->string('email');
             $table->string('password');
-            $table->string('transaction_password');
+//            $table->string('transaction_password');
             $table->rememberToken();
             $table->enum('identification_type',['citizenship','passport']);
             $table->string('identification_number');

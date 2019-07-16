@@ -65,24 +65,24 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                <div class="form-group">
-                                                <label class="control-label">{{__('dashboard.Initialize Permission')}}</label>
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{__('dashboard.Initialize Permission')}}</label>
 
-                                                <select name="permission" class="form-control"
-                                                style="border: 1px solid grey">
-                                                <option value="none">
-                                                {{__('dashboard.No Permission')}}
-                                                </option>
-                                                <option value="view">
-                                                {{__('dashboard.View Only Permissions')}}
-                                                </option>
-                                                <option value="all">
-                                                {{__('dashboard.All Permissions')}}
-                                                </option>
+                                                        <select name="permission" class="form-control"
+                                                                style="border: 1px solid grey">
+                                                            <option value="none">
+                                                                {{__('dashboard.No Permission')}}
+                                                            </option>
+                                                            <option value="view">
+                                                                {{__('dashboard.View Only Permissions')}}
+                                                            </option>
+                                                            <option value="all">
+                                                                {{__('dashboard.All Permissions')}}
+                                                            </option>
 
-                                                </select>
-                                                <span style="color: red">{{$errors->first('role')??''}}</span>
-                                                </div>
+                                                        </select>
+                                                        <span style="color: red">{{$errors->first('role')??''}}</span>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -169,59 +169,6 @@
                                                 </div>
                                             </div>
 
-                                            <hr>
-                                            <h3>{{__('dashboard.Password')}}</h3>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    {{--                                                    <h5>{{__('dashboard.Primary Password')}}</h5>--}}
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Login Password')}}
-                                                        </label>
-                                                        <input type="password"
-                                                               class="form-control"
-                                                               name="new_password"
-                                                               placeholder="" value="{{old('new_password')??''}}">
-                                                        <span style="color: red">{{$errors->first('new_password')??''}}</span>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Retype Login Password')}}
-                                                        </label>
-                                                        <input type="password"
-                                                               class="form-control"
-                                                               name="retype_password"
-                                                               placeholder="" value="{{old('retype_password')??''}}">
-                                                        <span style="color: red">{{$errors->first('retype_password')??''}}</span>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    {{--                                                    <h5>{{__('dashboard.Transaction Password')}}</h5>--}}
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Transaction Password')}}
-                                                        </label>
-                                                        <input type="password"
-                                                               class="form-control"
-                                                               name="transaction_password"
-                                                               placeholder=""
-                                                               value="{{old('transaction_password')??''}}">
-                                                        <span style="color: red">{{$errors->first('transaction_password')??''}}</span>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label">{{__('dashboard.Retype Transaction Password')}}
-                                                        </label>
-                                                        <input type="password"
-                                                               class="form-control"
-                                                               name="retype_transaction_password"
-                                                               placeholder=""
-                                                               value="{{old('retype_transaction_password')??''}}">
-                                                        <span style="color: red">{{$errors->first('retype_transaction_password')??''}}</span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <hr>
 
                                             <div class="row">
                                                 <div class="col-sm-6">
@@ -252,7 +199,37 @@
                                                     </div>
 
                                                 </div>
+                                            </div>    <hr>
+                                            <h3>{{__('dashboard.Password')}}</h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{--                                                    <h5>{{__('dashboard.Primary Password')}}</h5>--}}
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{__('dashboard.Login Password')}}
+                                                        </label>
+                                                        <input type="password"
+                                                               class="form-control"
+                                                               name="new_password"
+                                                               placeholder="" value="{{old('new_password')??''}}">
+                                                        <span style="color: red">{{$errors->first('new_password')??''}}</span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{__('dashboard.Retype Login Password')}}
+                                                        </label>
+                                                        <input type="password"
+                                                               class="form-control"
+                                                               name="retype_password"
+                                                               placeholder="" value="{{old('retype_password')??''}}">
+                                                        <span style="color: red">{{$errors->first('retype_password')??''}}</span>
+                                                    </div>
+
+                                                </div>
                                             </div>
+
                                             <button type="submit"
                                                     class="btn btn-success">{{__('dashboard.Submit')}}</button>
                                         </div>

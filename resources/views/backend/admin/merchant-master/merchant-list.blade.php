@@ -30,8 +30,6 @@
                                             </th>
                                             <th style="width: 15%">{{__('dashboard.Business Name')}}
                                             </th>
-                                            <th style="width: 10%">{{__('dashboard.Profit Sharing')}}
-                                            </th>
 
                                             <th style="width: 10%">{{__('dashboard.Joined Date')}}
                                             </th>
@@ -47,13 +45,6 @@
                                                     <br>{{$merchant->identification_number}}</td>
                                                 <td>{{$merchant->user_name}}</td>
                                                 <td>{{$merchant->getBusiness->name??''}}</td>
-                                                <td>
-                                                    {{__('dashboard.Merchant')}}
-                                                    - {{$merchant->getShoppingRate->merchant_rate??''}}%
-                                                    <br>
-                                                    {{$merchant->getShoppingRate->admin_rate??''}}%
-                                                    - {{__('dashboard.Admin')}}
-                                                </td>
                                                 <td>{{$merchant->joining_date}}</td>
                                                 <td>
                                                     <a title="detail"

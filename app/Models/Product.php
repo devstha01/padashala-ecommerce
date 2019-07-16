@@ -60,12 +60,12 @@ class Product extends Model
             case 'en':
                 return $value;
                 break;
-            case 'ch':
-                return $this->hasOne(CHProduct::class, 'product_id', 'id')->first()->name ?? $value;
-                break;
-            case 'tr-ch':
-                return $this->hasOne(TRCHProduct::class, 'product_id', 'id')->first()->name ?? $value;
-                break;
+//            case 'ch':
+//                return $this->hasOne(CHProduct::class, 'product_id', 'id')->first()->name ?? $value;
+//                break;
+//            case 'tr-ch':
+//                return $this->hasOne(TRCHProduct::class, 'product_id', 'id')->first()->name ?? $value;
+//                break;
             default:
                 return $value;
                 break;
@@ -79,12 +79,12 @@ class Product extends Model
             case 'en':
                 return $value;
                 break;
-            case 'ch':
-                return $this->hasOne(CHProduct::class, 'product_id', 'id')->first()->detail ?? $value;
-                break;
-            case 'tr-ch':
-                return $this->hasOne(TRCHProduct::class, 'product_id', 'id')->first()->detail ?? $value;
-                break;
+//            case 'ch':
+//                return $this->hasOne(CHProduct::class, 'product_id', 'id')->first()->detail ?? $value;
+//                break;
+//            case 'tr-ch':
+//                return $this->hasOne(TRCHProduct::class, 'product_id', 'id')->first()->detail ?? $value;
+//                break;
             default:
                 return $value;
                 break;
@@ -98,12 +98,12 @@ class Product extends Model
             case 'en':
                 return $value;
                 break;
-            case 'ch':
-                return $this->hasOne(CHProduct::class, 'product_id', 'id')->first()->description ?? $value;
-                break;
-            case 'tr-ch':
-                return $this->hasOne(TRCHProduct::class, 'product_id', 'id')->first()->description ?? $value;
-                break;
+//            case 'ch':
+//                return $this->hasOne(CHProduct::class, 'product_id', 'id')->first()->description ?? $value;
+//                break;
+//            case 'tr-ch':
+//                return $this->hasOne(TRCHProduct::class, 'product_id', 'id')->first()->description ?? $value;
+//                break;
             default:
                 return $value;
                 break;

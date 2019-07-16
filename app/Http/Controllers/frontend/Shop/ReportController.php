@@ -37,24 +37,24 @@ class ReportController extends Controller
         if (Auth::user() === null) return redirect()->to(route('checkout-login'));
         $this->_data['user'] = Auth::user();
         $this->_data['active_nav'] = '';
-        switch ($report_type) {
-            case 'purchase':
+//        switch ($report_type) {
+//            case 'purchase':
                 $this->_data['active_nav'] = 'purchase';
                 $orders = Order::where('user_id', Auth::id())->pluck('id')->toArray()??[];
                 $this->_data['reports'] = OrderItem::whereIn('order_id', $orders)->where('order_status_id','deliver')->latest()->get();
                 return view($this->_path . '.purchase', $this->_data)->with('title', __('message.Golden Gate'));
-                break;
-            case 'transfer':
-                $this->_data['active_nav'] = 'transfer';
-                $this->_data['reports'] = CustomerWalletTransfer::where('from_id', Auth::id())->orWhere('to_id', Auth::id())
-                    ->where('status', 1)->where('flag', 1)->latest()->get();
-                return view($this->_path . '.transfer', $this->_data)->with('title', __('message.Golden Gate'));
-                break;
-            default:
-                $this->_data['active_nav'] = 'payment';
-                $this->_data['reports'] = UserPayment::where('from_member_id', Auth::id())->latest()->get();
-                return view($this->_path . '.payment', $this->_data)->with('title', __('message.Golden Gate'));
-                break;
-        }
+//                break;
+//            case 'transfer':
+//                $this->_data['active_nav'] = 'transfer';
+//                $this->_data['reports'] = CustomerWalletTransfer::where('from_id', Auth::id())->orWhere('to_id', Auth::id())
+//                    ->where('status', 1)->where('flag', 1)->latest()->get();
+//                return view($this->_path . '.transfer', $this->_data)->with('title', __('message.Golden Gate'));
+//                break;
+//            default:
+//                $this->_data['active_nav'] = 'payment';
+//                $this->_data['reports'] = UserPayment::where('from_member_id', Auth::id())->latest()->get();
+//                return view($this->_path . '.payment', $this->_data)->with('title', __('message.Golden Gate'));
+//                break;
+//        }
     }
 }

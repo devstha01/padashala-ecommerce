@@ -387,7 +387,7 @@ class TransferController extends Controller
         if (Auth::user() === null) return redirect()->to(route('checkout-login'));
         $this->_data['user'] = Auth::user();
 //        $this->_data['request'] = UserPayment::where('from_member_id', Auth::user()->id)->where('status', 1)->where('flag', 0)->get();
-        $this->_data['reports'] = CustomerWalletTransfer::where('from_id', Auth::id())->latest()->get();
+//        $this->_data['reports'] = CustomerWalletTransfer::where('from_id', Auth::id())->latest()->get();
         return view($this->_path . '.my-wallet', $this->_data)->with('title', __('message.Golden Gate'));
     }
 }

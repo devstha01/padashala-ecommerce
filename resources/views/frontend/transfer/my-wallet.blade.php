@@ -13,12 +13,6 @@
                                 <td><b> <i class="fa fa-money"></i> {{__('front.E cash Wallet')}} :</b></td>
                                 <td>${{$user->getWallet->ecash_wallet??'0.00'}}</td>
                             </tr>
-                            @if(Auth::user()->is_member === 1)
-                                <tr>
-                                    <td><b> <i class="fa fa-money"></i> {{__('front.E voucher Wallet')}} :</b></td>
-                                    <td>${{$user->getWallet->evoucher_wallet??'0.00'}}</td>
-                                </tr>
-                            @endif
                         </table>
                     </div>
                 </div>
@@ -36,8 +30,8 @@
                         </div>
 
                         <a class="btn btn-info m-3" href="{{$user->qr_image}}"> {{__('front.Top Up')}}</a>
-                        <a class="btn btn-info m-3" href="{{route('make-transfer')}}"><i
-                                    class="fa fa-money"></i> {{__('front.Wallet Transfer')}}</a>
+{{--                        <a class="btn btn-info m-3" href="{{route('make-transfer')}}"><i--}}
+{{--                                    class="fa fa-money"></i> {{__('front.Wallet Transfer')}}</a>--}}
                         <a class="btn btn-info m-3" href="{{route('my-reports')}}"> {{__('dashboard.Reports')}}</a>
 
                     </div>

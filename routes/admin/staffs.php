@@ -14,5 +14,5 @@ Route::group(['namespace' => 'Staff', 'prefix' => 'staff', 'middleware' => 'role
 
     Route::post('submit-staff-profile-edit/{id}', 'StaffController@submitProfileEdit')->name('submit-staff-profile-edit');
     Route::post('submit-staff-pass/{id}', 'StaffController@submitPasswordEdit')->name('submit-staff-pass');
-    Route::post('submit-staff-transaction-pass/{id}', 'StaffController@submitTrannsactionPasswordEdit')->name('submit-staff-transaction-pass');
+//    Route::post('submit-staff-transaction-pass/{id}', 'StaffController@submitTrannsactionPasswordEdit')->name('submit-staff-transaction-pass');
 });

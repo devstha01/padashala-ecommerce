@@ -13,10 +13,10 @@ class WalletSeeder extends Seeder
     {
         $wallets = [
             ['ecash_wallet', 'Cash Wallet'],
-            ['evoucher_wallet', 'Voucher Wallet'],
-            ['r_point', 'R Wallet'],
-            ['bid_coin', 'Bid Coin'],
-            ['chip', 'Chip']
+//            ['evoucher_wallet', 'Voucher Wallet'],
+//            ['r_point', 'R Wallet'],
+//            ['bid_coin', 'Bid Coin'],
+//            ['chip', 'Chip']
         ];
 
         foreach ($wallets as $wallet) {

@@ -47,9 +47,4 @@ class Merchant extends Authenticatable implements JWTSubject
     {
         return url('image/qr_image/merchant') . '/' . $value;
     }
-
-    function getShoppingRate()
-    {
-        return $this->hasOne(ShoppingMerchant::class, 'merchant_id', 'id');
-    }
 }

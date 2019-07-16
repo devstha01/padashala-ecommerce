@@ -152,10 +152,6 @@
                                                                         <a href="#tab_1_1_3"
                                                                            data-toggle="tab">{{__('dashboard.Completed Orders')}}</a>
                                                                     </li>
-                                                                    <li class="">
-                                                                        <a href="#tab_1_3"
-                                                                           data-toggle="tab">{{__('dashboard.Commisions')}}</a>
-                                                                    </li>
                                                                 </ul>
 
                                                                 <div class="tab-content">
@@ -313,52 +309,6 @@
                                                                             <tbody>
                                                                             @foreach($d_orders as $k=>$order)
                                                                                 @include('backend.admin.merchant-master.table-order-loop')
-                                                                            @endforeach
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                    <div class="tab-pane" id="tab_1_3">
-                                                                        <table class="table table-striped table-bordered table-hover dataTable dtr-inline"
-                                                                               id="sample_5">
-                                                                            <thead>
-                                                                            <tr>
-                                                                                <th colspan="2" class="text-center">
-                                                                                    {{__('dashboard.Product')}}
-                                                                                </th>
-                                                                                <th colspan="5" class="text-center">
-                                                                                    {{__('dashboard.Bonus')}}
-                                                                                </th>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th> {{__('dashboard.Product')}}
-                                                                                </th>
-                                                                                <th> {{__('dashboard.Deliver Date')}}
-                                                                                </th>
-                                                                                <th> {{__('dashboard.Total')}}
-                                                                                </th>
-                                                                                <th> {{__('dashboard.Merchant')}}
-                                                                                </th>
-                                                                                <th> {{__('dashboard.Shopping')}}
-                                                                                </th>
-                                                                                <th> {{__('dashboard.Monthly')}}
-                                                                                </th>
-
-                                                                            </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                            @foreach($shoppings as $key=>$shopping)
-                                                                                <tr>
-                                                                                    <td>{{$shopping->getOrderItem->getProduct->name}}</td>
-                                                                                    @if($shopping->getOrderItem->order_status_id === 'deliver')
-                                                                                        <td>{{$shopping->getOrderItem->getOrderStatus->name}} - {{$shopping->getOrderItem->deliver_date}}</td>
-                                                                                    @else
-                                                                                        <td>{{$shopping->getOrderItem->getOrderStatus->name}}</td>
-                                                                                    @endif
-                                                                                    <td>{{$shopping->total}}</td>
-                                                                                    <td>{{$shopping->merchant}}</td>
-                                                                                    <td>{{$shopping->shopping_bonus}}</td>
-                                                                                    <td>{{$shopping->bonus}}</td>
-                                                                                </tr>
                                                                             @endforeach
                                                                             </tbody>
                                                                         </table>

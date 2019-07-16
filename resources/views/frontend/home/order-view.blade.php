@@ -154,67 +154,6 @@
                 </div>
 
                 <div class="col-lg-4">
-                    {{--<h3>{{__('front.Shopping Bonus')}}</h3>--}}
-                    {{--<hr>--}}
-
-                    {{--@if(Auth::user()->is_member ===0)--}}
-                        {{--<table class="table table-striped border">--}}
-                            {{--<tr>--}}
-                                {{--<th>{{__('front.Shopping Bonus')}}</th>--}}
-                                {{--<th class="text-right">{{__('front.E cash Wallet')}}</th>--}}
-                            {{--</tr>--}}
-                            {{--@if($bonus['customer_bonus'])--}}
-                                {{--<tr>--}}
-                                    {{--<td colspan="2" class="text-right ">${{$bonus['customer_bonus']}}</td>--}}
-                                {{--</tr>--}}
-                            {{--@else--}}
-                                {{--<tr>--}}
-                                    {{--<td colspan="2">--}}
-                                        {{--{{__('front.Your shopping bonus will be distributed after delivery')}}!--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                            {{--@endif--}}
-                        {{--</table>--}}
-                    {{--@else--}}
-                        {{--<div style="max-height: 700px;overflow-y:scroll">--}}
-
-                            {{--<table class="table border">--}}
-                                {{--<tr>--}}
-                                    {{--<th colspan="2" class="text-right ">{{__('front.Amount(Shopping Point)')}}</th>--}}
-                                {{--</tr>--}}
-
-                                {{--@if($bonus['standard'])--}}
-                                    {{--<tr>--}}
-                                        {{--<td>{{__('front.Standard Bonus')}}</td>--}}
-                                        {{--<td class="text-right ">{{$bonus['standard']}}</td>--}}
-                                    {{--</tr>--}}
-                                {{--@endif--}}
-
-                                {{--@if($bonus['auto'])--}}
-                                    {{--<tr>--}}
-                                        {{--<td>{{__('front.Auto Bonus')}}</td>--}}
-                                        {{--<td class="text-right ">{{$bonus['auto']}}</td>--}}
-                                    {{--</tr>--}}
-                                {{--@endif--}}
-
-                                {{--@if($bonus['special'])--}}
-                                    {{--<tr>--}}
-                                        {{--<td>{{__('front.Special Bonus')}}</td>--}}
-                                        {{--<td class="text-right ">{{$bonus['special']}}</td>--}}
-                                    {{--</tr>--}}
-                                {{--@endif--}}
-
-                                {{--@if(!$bonus['standard'] && !$bonus['auto'] &&!$bonus['special'])--}}
-                                    {{--<tr>--}}
-                                        {{--<td colspan="2">--}}
-                                            {{--{{__('front.Your shopping bonus will be distributed after delivery')}}!--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                {{--@endif--}}
-
-                            {{--</table>--}}
-                        {{--</div>--}}
-                    {{--@endif--}}
                 </div>
             </div><!-- End .col-lg-8 -->
         </div><!-- End .container -->

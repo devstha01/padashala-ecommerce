@@ -25,29 +25,19 @@ class ProductVariant extends Model
         return $this->getOriginal('name');
     }
 
-    public function getChineseName()
-    {
-        return $this->hasOne(CHProductVariant::class, 'product_variant_id', 'id');
-    }
-
-    public function getTrChineseName()
-    {
-        return $this->hasOne(TRCHProductVariant::class, 'product_variant_id', 'id');
-    }
-
     function getNameAttribute($value)
     {
         $locale = App::getLocale() ?? 'en';
-        switch ($locale) {
-            case 'en':
-                break;
-            case 'ch':
-                $value = $this->hasOne(CHProductVariant::class, 'product_variant_id', 'id')->first()->name ?? $value;
-                break;
-            case 'tr-ch':
-                $value = $this->hasOne(TRCHProductVariant::class, 'product_variant_id', 'id')->first()->name ?? $value;
-                break;
-        }
+//        switch ($locale) {
+//            case 'en':
+//                break;
+//            case 'ch':
+//                $value = $this->hasOne(CHProductVariant::class, 'product_variant_id', 'id')->first()->name ?? $value;
+//                break;
+//            case 'tr-ch':
+//                $value = $this->hasOne(TRCHProductVariant::class, 'product_variant_id', 'id')->first()->name ?? $value;
+//                break;
+//        }
 //        return str_limit($value, 12, '');
         return $value;
     }

@@ -1,5 +1,32 @@
 @extends('frontend.layouts.app')
 @section('content')
+    <div id="login-facebook"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: 'login-facebook',
+                cookie: true,
+                xfbml: true,
+                version: '3.3'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    {{--<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=2286193824790008&autoLogAppEvents=1"></script>--}}
+
     <main class="main">
         {{--<nav aria-label="breadcrumb" class="breadcrumb-nav">--}}
         {{--<div class="container">--}}
@@ -53,6 +80,14 @@
                                class="forget-pass">{{__('front.Forgot password?')}}</a>
                         </div><!-- End .form-footer -->
                     </form>
+                    <hr>
+
+                    {{--<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>--}}
+                    {{--<a href="#" id="login-facebook"><i class="fa fa-facebook-square"></i> Login with Facebook</a>--}}
+                    <a href="{{ url('login/facebook') }}" class="btn btn-lg btn-primary btn-block">
+                        <strong>Login With Facebook</strong>
+                    </a>
+
                 </div>
 
             </div><!-- End .row -->

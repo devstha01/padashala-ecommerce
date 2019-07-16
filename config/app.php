@@ -169,7 +169,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -237,6 +237,7 @@ return [
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
-    ],
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
+    ],
 ];
