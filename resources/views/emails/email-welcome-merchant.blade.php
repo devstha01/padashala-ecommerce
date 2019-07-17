@@ -8,7 +8,7 @@
     <b> Hi {{$full_name}},</b>
     <br>
     <br>
-    Thank you for creating an account in {{env('APP_NAME')}}.
+    Thank you for creating an account in {{Config::get('app.name')}}.
     <br>
     <br>
     Millions of customers are waiting to explore your products.
@@ -25,7 +25,7 @@
     <br><br>
     Regards,
     <br>
-    {{env('APP_NAME')}} Team
+    {{Config::get('app.name')}} Team
 
 </p>
 

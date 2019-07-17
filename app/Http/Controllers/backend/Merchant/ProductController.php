@@ -42,20 +42,19 @@ class ProductController extends Controller
         });
     }
 
-    function viewProduct(Request $request)
+    function viewProduct()
     {
         $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
-
         if (!$business_id) return redirect()->back();
-//        if (empty($request->term)) {
-            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('status', 1)->get();
-//            $this->_data['term'] = null;
-//        } else {
-
-//            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('name', 'like', '%' . $request->term . '%')->where('status', 1)->get();
-//            $this->_data['term'] = $request->term;
-//        }
+            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('admin_flag',1)->where('status', 1)->get();
         return view($this->_path . 'view-product', $this->_data);
+    }
+    function viewProductRequest()
+    {
+        $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
+        if (!$business_id) return redirect()->back();
+            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('admin_flag',0)->get();
+        return view($this->_path . 'request-product', $this->_data);
     }
 
     function createProduct()

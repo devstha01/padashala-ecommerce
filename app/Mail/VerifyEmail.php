@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Config;
 
 class VerifyEmail extends Mailable
 {
@@ -30,10 +31,14 @@ class VerifyEmail extends Mailable
      */
     public function build()
     {
-        $message = $this->url . '/' . base64_encode('e=' . $this->data->email . '&i=' . $this->data->id);
-        $address = 'noreply@goldengatehk.com';
-        $name = env('APP_NAME');
-        $subject = env('APP_NAME').' | Email Verification ';
+        $message = [
+            'url' => $this->url . '/' . base64_encode('e=' . $this->data->email . '&i=' . $this->data->id),
+            'name' => $this->data->name
+        ];
+
+        $address = 'noreply@padashala.com';
+        $name = Config::get('app.name');
+        $subject = Config::get('app.name') . ' | Email Verification ';
         return $this->view('emails.email-verification')
             ->from($address, $name)
             ->bcc($address, $name)

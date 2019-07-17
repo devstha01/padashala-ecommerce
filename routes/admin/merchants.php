@@ -12,6 +12,9 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         // merchant list
         Route::get('list', 'ListController@listMerchant')->name('merchant-list-admin');
 
+        Route::get('order-list', 'ListController@listOrder')->name('order-list-admin');
+
+        Route::get('product-list', 'ListController@productApprovalList')->name('product-approval-admin');
     });
     Route::group(['middleware' => 'staff_permission:2.Merchant Master.List'], function () {
 
@@ -50,6 +53,10 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::get('delete-product-image/{id}', 'ListController@deleteProductImage')->name('admin-delete-product-image-merchant');
 
         Route::post('delete-product/{id}', 'ListController@deleteProduct')->name('admin-change-product-status');
+
+
+        Route::post('admin-approve-status/{id}', 'ListController@approveProduct')->name('admin-approve-status');
+        Route::post('admin-delete/{id}/product', 'ListController@deleteProductBefore')->name('admin-delete-product-status');
 
 
         Route::post('item/status/{id}', 'ListController@itemStatusChange')->name('admin-item-status-change');

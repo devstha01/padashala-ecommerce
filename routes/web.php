@@ -123,6 +123,7 @@ Route::group(['namespace' => 'backend\Merchant', 'prefix' => 'merchant'], functi
     Route::group(['prefix' => 'product'], function () {
         //product
         Route::get('view', 'ProductController@viewProduct')->name('view-product-merchant');
+        Route::get('request', 'ProductController@viewProductRequest')->name('view-product-request-merchant');
         Route::get('create', 'ProductController@createProduct')->name('create-product-merchant');
         Route::get('edit/{slug}', 'ProductController@editProduct')->name('edit-product-merchant');
         Route::post('create-product-first', 'ProductController@createProductFirst')->name('create-product-first');

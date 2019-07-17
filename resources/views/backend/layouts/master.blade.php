@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>{{env('APP_NAME')}}</title>
+    <title>{{Config::get('app.name')}}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta content="" name="description"/>
+    <meta content="{{Config::get('app.name')}}" name="description"/>
     <meta content="" name="author"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{--<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>--}}

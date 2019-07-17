@@ -1,7 +1,6 @@
 @extends('backend.layouts.master')
 
 @section('content')
-    <body class="page-container-bg-solid">
     <div class="page-wrapper-row full-height">
         <div class="page-wrapper-middle">
             <!-- BEGIN CONTAINER -->
@@ -55,8 +54,10 @@
                                                 <br>
                                                 <br>
 
-                                                <a href="{{route('admin-merchant-retain',$merchant->id)}}" class="btn blue" style="margin-left: 5px">Retain Wallet</a>
-                                                <a href="{{route('admin-merchant-grant',$merchant->id)}}" class="btn blue">Grant Wallet</a>
+                                                <a href="{{route('admin-merchant-retain',$merchant->id)}}"
+                                                   class="btn blue" style="margin-left: 5px">Retain Wallet</a>
+                                                <a href="{{route('admin-merchant-grant',$merchant->id)}}"
+                                                   class="btn blue">Grant Wallet</a>
                                             </div>
                                         </div>
 
@@ -178,6 +179,7 @@
                                                                                 </th>
                                                                                 <th>{{__('dashboard.Feature')}}</th>
                                                                                 <th>{{__('dashboard.Status')}}</th>
+                                                                                <th>{{__('dashboard.Approval')}}</th>
                                                                             </tr>
                                                                             </thead>
                                                                             <tbody>
@@ -232,6 +234,9 @@
 
                                                                                             @endif
                                                                                         </form>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        {{$product->admin_flag?__('dashboard.Approved'):__('dashboard.Pending')}}
                                                                                     </td>
                                                                                 </tr>
                                                                             @endforeach

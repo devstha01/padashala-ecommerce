@@ -591,5 +591,9 @@ return [
     'Stop' => ' Stop',
     'Merchant Wallet Transfer' => ' Merchant Wallet Transfer',
     'User' => ' User',
+    'Product Approval List' => ' Product Approval List',
+    'Approval' => ' Approval',
+    'Approved' => ' Approved',
+    'Product Requests' => ' Product Requests',
 
     ];

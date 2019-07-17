@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Config;
 
 class PassRecoveryEmail extends Mailable
 {
@@ -21,10 +22,13 @@ class PassRecoveryEmail extends Mailable
 
     public function build()
     {
-        $message = $this->url . '/' . base64_encode('u=' . $this->data->user_name . '&t=' . (Carbon::now()->addDays(7)->toDateString()));
-        $address = 'noreply@goldengatehk.com';
-        $name = env('APP_NAME');
-        $subject = env('APP_NAME') . ' | Password Recovery ';
+        $message = [
+            'url' => $this->url . '/' . base64_encode('u=' . $this->data->user_name . '&t=' . (Carbon::now()->addDays(7)->toDateString())),
+            'name' => $this->data->name
+        ];
+        $address = 'noreply@padashala.com';
+        $name = Config::get('app.name');
+        $subject = Config::get('app.name') . ' | Password Recovery ';
         return $this->view('emails.pass-recovery')
             ->from($address, $name)
 //            ->cc($address, $name)

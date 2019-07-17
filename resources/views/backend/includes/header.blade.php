@@ -334,6 +334,14 @@
                                                     <a href="{{route('merchant-list-admin')}}"
                                                        class="nav-link">{{ __('dashboard.Merchants List')}}</a>
                                                 </li>
+                                                <li>
+                                                    <a href="{{route('product-approval-admin')}}"
+                                                       class="nav-link">{{ __('dashboard.Product Approval List')}}</a>
+                                                </li>
+                                               <li>
+                                                    <a href="{{route('order-list-admin')}}"
+                                                       class="nav-link">{{ __('dashboard.Order List')}}</a>
+                                                </li>
                                             @endif
                                         </ul>
                                     </li>
@@ -517,6 +525,10 @@
                                             <li aria-haspopup="true" class=" "><a
                                                         href="{{route('view-product-merchant')}}"
                                                         class="nav-link  ">{{__('dashboard.Products List')}}</a>
+                                            </li>
+                                        <li aria-haspopup="true" class=" "><a
+                                                        href="{{route('view-product-request-merchant')}}"
+                                                        class="nav-link  ">{{__('dashboard.Product Requests')}}</a>
                                             </li>
                                         </ul>
                                     </li>

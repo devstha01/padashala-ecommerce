@@ -16,7 +16,7 @@ class CreateMerchantAssetsTable extends Migration
         Schema::create('merchant_assets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('merchant_id')->unsigned();
-            $table->decimal('ecash_wallet', 16, 4)->default(0);
+            $table->decimal('ecash_wallet', 16, 5)->default(0);
             $table->timestamps();
         });
     }

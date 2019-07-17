@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Config;
 
 class WelcomeEmail extends Mailable
 {
@@ -31,9 +32,9 @@ class WelcomeEmail extends Mailable
     public function build()
     {
 //        $address = 'Goldengate (hk) ' . env('MAIL_FROM_ADDRESS') ?? 'noreply@goldengatehk.com';
-        $address = 'noreply@goldengatehk.com';
-        $name = env('APP_NAME');
-        $subject = env('APP_NAME') . ' | Welcome';
+        $address = 'noreply@padashala.com';
+        $name = Config::get('app.name');
+        $subject = Config::get('app.name') . ' | Welcome';
 
         switch (strtolower($this->type)) {
             case 'member':

@@ -15,18 +15,6 @@
                 </div>
                 <div class="col-md-4">
                     <h3 class="light-title">
-                        <strong>
-                            Golden Gate (HK)
-                        </strong>
-                        <br>
-                        <br>
-                        Flat – D, 29/ F, Block 3,
-                        <br>
-                        Kingswood Villas, Lywood Court,
-                        <br>
-                        Tin Shui Wai – N.T.
-                        <br>
-                        Hong Kong
                     </h3>
                 </div><!-- End .col-md-4 -->
             </div><!-- End .row -->

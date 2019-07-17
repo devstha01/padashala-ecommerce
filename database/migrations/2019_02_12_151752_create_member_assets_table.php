@@ -16,7 +16,7 @@ class CreateMemberAssetsTable extends Migration
         Schema::create('member_assets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('member_id')->unsigned();
-            $table->decimal('ecash_wallet', 16, 4)->default(0);
+            $table->decimal('ecash_wallet', 16, 5)->default(0);
 //            $table->decimal('evoucher_wallet', 16, 4)->default(0);
 //            $table->decimal('r_point', 16, 4)->default(0);
 //            $table->integer('chip')->unsigned();

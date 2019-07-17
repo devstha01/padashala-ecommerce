@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>{{env('APP_NAME')}}</title>
+    <title>{{Config::get('app.name')}}</title>
 
     <meta name="keywords" content="HTML5 Template"/>
-    <meta name="description" content="Golden Gate - Bootstrap eCommerce Template">
+    <meta name="description" content="{{Config::get('app.name')}}">
     <meta name="author" content="SW-THEMES">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <!-- Favicon -->

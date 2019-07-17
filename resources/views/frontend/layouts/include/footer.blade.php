@@ -64,7 +64,7 @@
 
             <div class="container">
                 <div class="footer-bottom">
-                    <p class="footer-copyright">{{env('APP_NAME')}} &copy; {{Carbon\Carbon::now()->format('Y')}}
+                    <p class="footer-copyright">{{Config::get('app.name')}} &copy; {{Carbon\Carbon::now()->format('Y')}}
                         . {{__('front.All Rights Reserved')}}</p>
 
                     {{--                    <img src="{{ URL::asset('frontend/assets/images/payments.png')}}" alt="payment methods" class="footer-payments">--}}

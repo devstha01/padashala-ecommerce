@@ -25,7 +25,7 @@ use function Sodium\add;
 
 class OrderController extends Controller
 {
-    use WalletsHistoryTrait, NotificationTrait, OrderDeliverTrait;
+    use  NotificationTrait, OrderDeliverTrait;
     private $_path = 'frontend.home';
     private $_data = [];
 
@@ -260,12 +260,12 @@ class OrderController extends Controller
                         break;
                     case'ecash_wallet':
                         $asset->update(['ecash_wallet' => ($asset->ecash_wallet - $value)]);
-                        $this->createWalletReport(Auth::id(), $value, 'Product Order on ' . $order->order_date, 'ecash', 'OUT');
+//                        $this->createWalletReport(Auth::id(), $value, 'Product Order on ' . $order->order_date, 'ecash', 'OUT');
                         break;
 
                     case'evoucher_wallet':
                         $asset->update(['evoucher_wallet' => ($asset->evoucher_wallet - $value)]);
-                        $this->createWalletReport(Auth::id(), $value, 'Product Order on ' . $order->order_date, 'evoucher', 'OUT');
+//                        $this->createWalletReport(Auth::id(), $value, 'Product Order on ' . $order->order_date, 'evoucher', 'OUT');
                         break;
                 }
             }

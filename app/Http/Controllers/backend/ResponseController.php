@@ -55,7 +55,6 @@ class ResponseController extends Controller
                 return redirect()->back();
                 break;
             case'merchant':
-
                 break;
             case'admin':
                 break;

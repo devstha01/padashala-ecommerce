@@ -50,9 +50,6 @@ class ListController extends Controller
     function merchantProduct($id)
     {
         $this->_data['merchant'] = Merchant::find($id);
-//        $prodArray = Product::where('merchant_business_id', $this->_data['merchant']->getBusiness->id)->pluck('id')->toArray() ?? [];
-        $this->_data['shoppings'] = [];
-//ShoppingLog::where('merchant_id', $this->_data['merchant']->id)->get();
 
         $merchant_business_id = MerchantBusiness::where('merchant_id', $id)->first()->id;
         $orders = OrderItem::orderBy('id', 'DESC')->get();
@@ -80,6 +77,26 @@ class ListController extends Controller
         $this->_data['merchants'] = Merchant::all();
         $this->_data['countries'] = Country::all();
         return view($this->_path . 'merchant-list', $this->_data);
+    }
+
+    function listOrder()
+    {
+        $orders = OrderItem::orderBy('id', 'DESC')->get();
+        $items = [];
+        $p_items = [];
+        $d_items = [];
+        foreach ($orders as $order) {
+            $items[] = $order;
+            if ($order->order_status_id == 'deliver')
+                $d_items[] = $order;
+            else
+                $p_items[] = $order;
+        }
+        $this->_data['orders'] = collect($items)->groupBy('invoice');
+        $this->_data['p_orders'] = collect($p_items)->groupBy('invoice');
+        $this->_data['d_orders'] = collect($d_items)->groupBy('invoice');
+
+        return view($this->_path . 'order-list', $this->_data);
     }
 
     function addProduct($id)
@@ -429,9 +446,12 @@ class ListController extends Controller
         return redirect()->back()->with('fail', __('message.Something went wrong'));
     }
 
+//    change status
     function deleteProduct($id)
     {
         $prod = Product::find($id);
+        if (!$prod->admin_flag)
+            $prod->update(['admin_flag' => 1]);
         if ($prod->update(['quantity' => 0, 'status' => (($prod->status == 1) ? 0 : 1)]))
             return redirect()->back()->with('success', __('message.Product status updated successfully'));
         return redirect()->back()->with('fail', __('message.Something went wrong'));
@@ -615,5 +635,25 @@ class ListController extends Controller
             'feature_till' => Carbon::now()->addDays(5)->toDateString(),
         ]);
         return redirect()->back()->with('success', __('message.Feature request sent'));
+    }
+
+    function productApprovalList()
+    {
+        $this->_data['products'] = Product::where('admin_flag', 0)->get();
+        return view($this->_path . 'approval-list', $this->_data);
+    }
+
+    function approveProduct($id)
+    {
+        if (Product::find($id)->update(['admin_flag' => 1, 'status' => 1]))
+            return redirect()->back()->with('success', 'Product approved successfully');
+        return redirect()->back()->with('fail', 'Something went wrong');
+    }
+
+    function deleteProductBefore($id)
+    {
+        if (Product::find($id)->update(['admin_flag' => 1, 'status' => 0]))
+            return redirect()->back()->with('success', 'Product declined successfully');
+        return redirect()->back()->with('fail', 'Something went wrong');
     }
 }

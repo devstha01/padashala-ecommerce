@@ -28,7 +28,7 @@
                                         <th>{{__('dashboard.Qty')}}</th>
                                         <th>{{__('dashboard.Net Price')}}</th>
                                         <th>{{__('dashboard.Status')}}</th>
-                                        <th>{{__('dashboard.Action')}}</th>
+{{--                                        <th>{{__('dashboard.Action')}}</th>--}}
                                     </tr>
                                     @foreach($orderItem as $item)
                                         <tr>
@@ -53,27 +53,27 @@
                                                     <i class="badge badge-danger">{{$item->getOrderStatus->name}}</i>
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if($item->getOrderStatus->key !='deliver')
-                                                    <form action="{{route('item-status-change',$item->id)}}"
-                                                          method="post">
-                                                        {{csrf_field()}}
-                                                        <span style="color: red">{{$errors->first('action')??''}}</span>
-                                                        <select name="action" class="select-action form-control">
-                                                            <option value="">{{__('dashboard.-->Change Status<--')}}</option>
-                                                            <option value="dispatch">{{__('dashboard.Dispatched')}}</option>
+                                            {{--<td>--}}
+                                                {{--@if($item->getOrderStatus->key !='deliver')--}}
+                                                    {{--<form action="{{route('item-status-change',$item->id)}}"--}}
+                                                          {{--method="post">--}}
+                                                        {{--{{csrf_field()}}--}}
+                                                        {{--<span style="color: red">{{$errors->first('action')??''}}</span>--}}
+                                                        {{--<select name="action" class="select-action form-control">--}}
+                                                            {{--<option value="">{{__('dashboard.-->Change Status<--')}}</option>--}}
+                                                            {{--<option value="dispatch">{{__('dashboard.Dispatched')}}</option>--}}
                                                             {{--<option value="hold">{{__('dashboard.On hold')}}</option>--}}
                                                             {{--                                                            <option value="stock">{{__('dashboard.Out of Stock')}}</option>--}}
-                                                            <option value="deliver">{{__('dashboard.Delivered')}}</option>
-                                                        </select>
-                                                        <input type="submit" hidden>
-                                                    </form>
-                                                @else
-                                                    <button class="btn blue" disabled><i class="fa fa-check-circle"></i>
-                                                        {{__('dashboard.Delivered')}}
-                                                    </button>
-                                                @endif
-                                            </td>
+                                                            {{--<option value="deliver">{{__('dashboard.Delivered')}}</option>--}}
+                                                        {{--</select>--}}
+                                                        {{--<input type="submit" hidden>--}}
+                                                    {{--</form>--}}
+                                                {{--@else--}}
+                                                    {{--<button class="btn blue" disabled><i class="fa fa-check-circle"></i>--}}
+                                                        {{--{{__('dashboard.Delivered')}}--}}
+                                                    {{--</button>--}}
+                                                {{--@endif--}}
+                                            {{--</td>--}}
                                         </tr>
                                     @endforeach
                                     <tr>
