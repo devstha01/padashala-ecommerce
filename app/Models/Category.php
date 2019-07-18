@@ -10,7 +10,7 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = [
-        'name', 'slug', 'image', 'status', 'is_highlighted', 'ch_name', 'trch_name'
+        'name', 'slug', 'image', 'status', 'is_highlighted', 'ch_name', 'trch_name','share_percentage'
     ];
 
     protected $appends = ['eng_name'];
@@ -31,12 +31,12 @@ class Category extends Model
             case 'en':
                 return $value;
                 break;
-            case 'ch':
-                return $this->ch_name ?? $value;
-                break;
-            case 'tr-ch':
-                return $this->trch_name ?? $value;
-                break;
+//            case 'ch':
+//                return $this->ch_name ?? $value;
+//                break;
+//            case 'tr-ch':
+//                return $this->trch_name ?? $value;
+//                break;
             default:
                 return $value;
                 break;

@@ -20,6 +20,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
 use function Sodium\add;
 
@@ -328,7 +329,7 @@ class OrderController extends Controller
             if ($prev != $item->merchant_id) {
                 $prev = $item->merchant_id;
                 $serial = substr(str_pad(OrderItem::orderBy('id', 'DESC')->first()->id ?? 0, 6, '0', STR_PAD_LEFT), -6);
-                $invoice = 'GGT' . Carbon::now()->format('myd') . '-' . strtoupper(substr($item->merchant_slug, 0, 3)) . $serial;
+                $invoice = strtoupper(substr(Config::get('app.name'), 0, 3)) . Carbon::now()->format('myd') . '-' . strtoupper(substr($item->merchant_slug, 0, 3)) . $serial;
             }
             $orderItem = OrderItem::create([
                 'product_id' => $item->product_id,
@@ -339,6 +340,8 @@ class OrderController extends Controller
                 'sell_price' => $sell_price,
                 'discount' => $discount,
                 'invoice' => $invoice,
+                'category_share' => $item->getProduct->getCategory->share_percentage ?? 0,
+                'product_share' => $item->getProduct->share_percentage ?? 0,
             ]);
 
             $this->shoppingLog($orderItem);

@@ -522,7 +522,7 @@ class ListController extends Controller
             if ($request->action == 'deliver') {
                 $orderItem->update(['order_status_id' => $request->action, 'deliver_date' => Carbon::now()]);
                 $this->shoppingLogAfterDeliver($orderItem);
-                $this->bonusOnCashDelivery($orderItem);
+//                $this->bonusOnCashDelivery($orderItem);
 //                $bonus = new ShoppingBonus();
 //                $bonus->assignCashBonus($id);
             } else {
@@ -550,40 +550,6 @@ class ListController extends Controller
         }
 
         return redirect()->back();
-    }
-
-    protected
-    function bonusOnCashDelivery($orderItem)
-    {
-        $pays = unserialize($orderItem->getOrder->payment_method);
-        $user_id = $orderItem->getOrder->user_id;
-
-        $memberA = MemberAsset::where('member_id', $user_id)->first();
-        $total = $orderItem->sell_price * $orderItem->quantity;
-        foreach ($pays as $met => $pay) {
-            if ($met == 'cash') {
-
-                $customerRep = new ShoppingBonus();
-                $customerBonus = $customerRep->customerBonus($orderItem, $user_id);
-                $bonus_list = serialize($customerBonus);
-
-                $shopLog = $orderItem->getShoppingLog;
-                CashDeliveryBonusRecord::create([
-                    'order_item_id' => $orderItem->id,
-                    'total' => $shopLog->total,
-                    'admin' => $shopLog->total - $shopLog->merchant,
-                    'merchant_id' => $orderItem->getProduct->getBusiness->getMerchant->id,
-                ]);
-
-                ShoppingBonusDistribution::create([
-                    'buyer_id' => $user_id,
-                    'item_id' => $orderItem->id,
-                    'bonus_list' => $bonus_list,
-                ]);
-                $memberA->update(['ecash_wallet' => ($customerBonus['customer_bonus']) + $memberA->ecash_wallet]);
-                $this->createWalletReport($user_id, $customerBonus['customer_bonus'], 'Customer Bonus on Cash Delivery', 'ecash', 'IN');
-            }
-        }
     }
 
     function itemShipping($id, Request $request)

@@ -39,8 +39,8 @@ class CategoryController extends Controller
 
         if ($request->type === 'category') {
             $input['name'] = $request->name;
-            $input['ch_name'] = $request->ch_name;
-            $input['trch_name'] = $request->trch_name;
+//            $input['ch_name'] = $request->ch_name;
+//            $input['trch_name'] = $request->trch_name;
 
             $uniq_slug = false;
             $i = 1;
@@ -75,8 +75,8 @@ class CategoryController extends Controller
         } elseif ($request->type === 'sub-category') {
             $input['category_id'] = $request->id;
             $input['name'] = $request->name;
-            $input['ch_name'] = $request->ch_name;
-            $input['trch_name'] = $request->trch_name;
+//            $input['ch_name'] = $request->ch_name;
+//            $input['trch_name'] = $request->trch_name;
 
             $uniq_slug = false;
             $i = 1;
@@ -112,8 +112,8 @@ class CategoryController extends Controller
         } elseif ($request->type === 'sub-child-category') {
             $input['sub_category_id'] = $request->id;
             $input['name'] = $request->name;
-            $input['ch_name'] = $request->ch_name;
-            $input['trch_name'] = $request->trch_name;
+//            $input['ch_name'] = $request->ch_name;
+//            $input['trch_name'] = $request->trch_name;
 
             $uniq_slug = false;
             $i = 1;
@@ -160,8 +160,8 @@ class CategoryController extends Controller
         if ($request->type === 'category') {
             $cat = Category::find($request->id);
             $input['name'] = $request->name;
-            $input['ch_name'] = $request->ch_name;
-            $input['trch_name'] = $request->trch_name;
+//            $input['ch_name'] = $request->ch_name;
+//            $input['trch_name'] = $request->trch_name;
 
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
@@ -186,8 +186,8 @@ class CategoryController extends Controller
         } elseif ($request->type === 'sub-category') {
             $sub = SubCategory::find($request->id);
             $input['name'] = $request->name;
-            $input['ch_name'] = $request->ch_name;
-            $input['trch_name'] = $request->trch_name;
+//            $input['ch_name'] = $request->ch_name;
+//            $input['trch_name'] = $request->trch_name;
 
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
@@ -215,8 +215,8 @@ class CategoryController extends Controller
         } elseif ($request->type === 'sub-child-category') {
             $subC = SubChildCategory::find($request->id);
             $input['name'] = $request->name;
-            $input['ch_name'] = $request->ch_name;
-            $input['trch_name'] = $request->trch_name;
+//            $input['ch_name'] = $request->ch_name;
+//            $input['trch_name'] = $request->trch_name;
 
             if ($request->hasFile('image')) {
                 $image = $request->file('image');

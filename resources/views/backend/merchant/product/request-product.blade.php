@@ -69,7 +69,7 @@
                                                         class="fa fa-edit btn blue"> {{__('dashboard.Edit')}}</i></a>
                                         </td>
                                         <td>
-                                            <span class="badge badge-info">Pending Approval</span>
+                                            <span class="badge badge-info">Pending Admin Approval</span>
                                         </td>
                                         {{--<td>--}}
                                         {{--<form action="{{route('delete-product-merchant',$product->id)}}"--}}

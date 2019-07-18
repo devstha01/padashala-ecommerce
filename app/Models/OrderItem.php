@@ -9,7 +9,8 @@ class OrderItem extends Model
 {
     protected $fillable = [
         'product_id', 'order_id', 'product_variant_id', 'quantity', 'deliver_date',
-        'marked_price', 'sell_price', 'discount', 'status', 'order_status_id', 'invoice'
+        'marked_price', 'sell_price', 'discount', 'status', 'order_status_id', 'invoice',
+        'category_share','product_share'
     ];
 
     function getProduct()
