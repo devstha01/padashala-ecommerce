@@ -38,14 +38,14 @@
                                     </div>
                                     {{--<div class="col-md-4">--}}
 
-                                        {{--<div class="form-group">--}}
-                                            {{--<label class="control-label">{{__('dashboard.Your Business Name')}}</label>--}}
-                                            {{--<input type="hidden" name="merchant_business_id"--}}
-                                                   {{--value="{{$merchant->getBusiness->id}}">--}}
-                                            {{--<input type="text" value="{{$merchant->getBusiness->name}}"--}}
-                                                   {{--class="form-control input-sm" disabled>--}}
-                                            {{--<span style="color: red">{{$errors->first('merchant_business_id')??''}}</span>--}}
-                                        {{--</div>--}}
+                                    {{--<div class="form-group">--}}
+                                    {{--<label class="control-label">{{__('dashboard.Your Business Name')}}</label>--}}
+                                    {{--<input type="hidden" name="merchant_business_id"--}}
+                                    {{--value="{{$merchant->getBusiness->id}}">--}}
+                                    {{--<input type="text" value="{{$merchant->getBusiness->name}}"--}}
+                                    {{--class="form-control input-sm" disabled>--}}
+                                    {{--<span style="color: red">{{$errors->first('merchant_business_id')??''}}</span>--}}
+                                    {{--</div>--}}
 
                                     {{--</div>--}}
                                 </div>
@@ -65,22 +65,38 @@
                                     <textarea class="form-control" name="description"
                                               style="resize: none">{{old('description')??''}}</textarea>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
 
-                                <div class="form-group">
-                                    <label>
-                                        {{__('dashboard.Category')}} <span class="m-l-5 text-danger">*</span>
-                                    </label>
-                                    <br>
-                                    <span style="color: red">{{$errors->first('category_id')??''}}</span>
-                                    <select id="product_category" name="category_id"
-                                            class="form-control input-sm" required>
-                                        <option value="">{{__('dashboard. -- select category --')}}</option>
-                                        @forelse($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @empty
-                                            <option value="">{{__('dashboard.No category available')}}</option>
-                                        @endforelse
-                                    </select>
+                                        <div class="form-group">
+                                            <label>
+                                                {{__('dashboard.Category')}} <span class="m-l-5 text-danger">*</span>
+                                            </label>
+                                            <br>
+                                            <span style="color: red">{{$errors->first('category_id')??''}}</span>
+                                            <select id="product_category" name="category_id"
+                                                    class="form-control input-sm" required>
+                                                <option value="">{{__('dashboard. -- select category --')}}</option>
+                                                @forelse($categories as $category)
+                                                    <option value="{{$category->id}}"
+                                                            data-share="{{$category->share_percentage??0}}">{{$category->name}}
+                                                    </option>
+                                                @empty
+                                                    <option value="">{{__('dashboard.No category available')}}</option>
+                                                @endforelse
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>
+                                                {{__('dashboard.Category Share')}}
+                                            </label>
+                                            <br>
+                                            <input type="text" class="form-control input-sm text-right"
+                                                   readonly="readonly" value="0" id="category_share">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -107,6 +123,32 @@
                                     </select>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>
+                                                {{__('dashboard.Product Share')}} <span
+                                                        class="m-l-5 text-danger">*</span>
+                                            </label>
+                                            <input type="text" name="product_share" id="product_share"
+                                                   class="form-control input-sm"
+                                                   value="{{old('product_share')??''}}" required>
+                                            <span style="color: red">{{$errors->first('product_share')??''}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>
+                                                {{__('dashboard.Net Share Percentage')}}
+                                            </label>
+                                            <br>
+                                            <input type="text" class="form-control input-sm text-right"
+                                                   readonly="readonly" value="0" id="net_share">
+                                        </div>
+
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="exampleInputFile1">{{__('dashboard.Featured image')}} <span
                                                 class="m-l-5 text-danger">*</span></label>
@@ -118,7 +160,8 @@
                                 <hr>
                                 {{__('dashboard.Options Manage')}}
 
-                                <table class="table table-borderless" style="border: 1px solid lightgrey;padding:5px;border-bottom:none">
+                                <table class="table table-borderless"
+                                       style="border: 1px solid lightgrey;padding:5px;border-bottom:none">
                                     <thead>
                                     <tr>
                                         <th style="width: 15%">{{__('dashboard.Color Family')}}</th>
@@ -133,15 +176,21 @@
                                     <tbody class="options-table-body">
                                     <tr class="option-0">
                                         <td>
-                                            <select name="color[]" class="form-control color-options-0" required></select>
+                                            <select name="color[]" class="form-control color-options-0"
+                                                    required></select>
                                         </td>
                                         <td><input type="text" name="size[]" class="form-control"></td>
-                                        <td><input type="number" min="0" name="marked_price[]" class="form-control" required></td>
-                                        <td><input type="number" min="0" name="sell_price[]" class="form-control" required></td>
-                                        <td><input type="number" min="0" max="99" name="discount_price[]" class="form-control" required></td>
-                                        <td><input type="number" min="0" name="quantity[]" class="form-control" required></td>
+                                        <td><input type="text" min="0" name="marked_price[]"
+                                                   class="form-control marked-price" required></td>
+                                        <td><input type="text" min="0" name="sell_price[]"
+                                                   class="form-control sell-price" required></td>
+                                        <td><input type="text" min="0" max="99" name="discount_price[]"
+                                                   class="form-control discount" required></td>
+                                        <td><input type="number" min="0" name="quantity[]" class="form-control"
+                                                   required></td>
                                         <td>
-                                            <a class="btn red remove-option" data-option="0"><i class="fa fa-trash"></i></a>
+                                            <a class="btn red remove-option" data-option="0"><i
+                                                        class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     </tbody>

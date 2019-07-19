@@ -82,9 +82,8 @@
                 <div class="product-desc" style="max-height: 90px">
                     {{str_limit($product->detail,90)}}
                 </div><!-- End .product-desc -->
-                <a href="{{route('merchant-info',$product->getBusiness->slug)}}" style="font-size: 16px">
-                    <i class="fa fa-industry text-primary"></i> <b>{{$product->getBusiness->name}}</b>
-                </a>
+                <br>
+                <br>
                 <div class="product-filters-container">
                     {{--<div class="product-single-filter">--}}
 
@@ -96,7 +95,7 @@
                         {{$loop->index==0?'color-highlight':''}}"
                                data-color_id="{{$color->id}}">
                                 {{--{{$color->name}}--}}
-                                <img style="height: 38px;display:inline-block;margin-top:-25px;"
+                                <img style="height: 35px;display:inline-block;margin-top:-5px;"
                                      src="{{asset('image/products/color/'.$prod_color_image->image)}}" alt=" ">
                             </a>
                         @else
@@ -104,8 +103,11 @@
                         {{$loop->index==0?'color-highlight':''}}"
                                data-color_id="{{$color->id}}">
                                 {{--{{$color->name}}--}}
-                                <i class="fa fa-square fa-3x"
-                                   style="color: {{$color->color_code}};background:whitesmoke"></i>
+
+                                <img style="height: 35px;display:inline-block;margin-top:-5px;background:{{$color->color_code}}"
+                                     src="{{asset('frontend/box.png')}}" alt=" ">
+                                {{--<i class="fa fa-square fa-3x"--}}
+                                {{--style="color: {{$color->color_code}};background:whitesmoke"></i>--}}
                             </a>
                         @endif
                     @endforeach
@@ -113,7 +115,7 @@
                     <label class="custom-lead-1 mr-3">{{__('dashboard.Size')}}:</label>
                     @forelse($options as $key=>$variant)
                         <label class="mr-3  color-options color-option-{{$variant->color_id}}
-                        {{$variant->color_id ===$colors->first()->id?'':'hide-size'}}
+                        {{$variant->color_id ===($colors->first()->id??0)?'':'hide-size'}}
                         {{$loop->index==0?'highlight-checked':''}}">
                             {{$variant->size}}
                             <input type="radio" name="variant" class="variant"
@@ -164,6 +166,15 @@
     </div><!-- End .row -->
 
     <div class="product-desc">
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="{{route('merchant-info',$product->getBusiness->slug)}}"
+                   style="font-size: 20px;text-decoration:none">
+                    <i class="fa fa-shopping-bag text-primary"></i> <b>{{$product->getBusiness->name}}</b>
+                </a>
+            </div>
+        </div>
+
         <p>{{$product->detail}}</p>
 
         @if(!empty($product->description))

@@ -595,5 +595,9 @@ return [
     'Approval' => ' Approval',
     'Approved' => ' Approved',
     'Product Requests' => ' Product Requests',
+    'Category Share' => ' Category Share',
+    'Product Share' => ' Product Share',
+    'Net Share Percentage' => ' Net Share Percentage',
+    'Share' => ' Share',
 
     ];

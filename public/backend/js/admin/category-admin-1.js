@@ -31,6 +31,11 @@ $(function () {
     $('.add-modal').on('click', function () {
         var type = $(this).data('type');
         var obj = $(this).data('obj');
+        if (type !== 'category')
+            $('.category-share').hide();
+        else
+            $('.category-share').show();
+
         $('#modal-id').val(obj.id);
         $('#modal-type').html(type);
         $('#modal-type-1').val(type);
@@ -40,13 +45,17 @@ $(function () {
     $('.edit-modal').on('click', function () {
         var type = $(this).data('type');
         var obj = $(this).data('obj');
-        // console.log(obj);
+        if (type !== 'category')
+            $('.category-share').hide();
+        else{
+            $('.category-share').show();
+            $('#edit-modal-category_share').val(obj.share_percentage);
+        }
+
         $('#edit-modal-id').val(obj.id);
         $('#edit-modal-type').html(type);
         $('#edit-modal-type-1').val(type);
         $('#edit-modal-name').val(obj.eng_name);
-        $('#edit-modal-ch-name').val(obj.ch_name);
-        $('#edit-modal-trch-name').val(obj.trch_name);
         $('#edit-modal-image').empty();
         if (obj.image !== null) {
             var image = "<span>previous image :</span><br><img src='" + window.location.origin + "/image/admin/category/" + obj.image + "' alt='image' height='150px'>";

@@ -39,6 +39,7 @@ class CategoryController extends Controller
 
         if ($request->type === 'category') {
             $input['name'] = $request->name;
+            $input['share_percentage'] = $request->category_share;
 //            $input['ch_name'] = $request->ch_name;
 //            $input['trch_name'] = $request->trch_name;
 
@@ -160,6 +161,7 @@ class CategoryController extends Controller
         if ($request->type === 'category') {
             $cat = Category::find($request->id);
             $input['name'] = $request->name;
+            $input['share_percentage'] = $request->category_share;
 //            $input['ch_name'] = $request->ch_name;
 //            $input['trch_name'] = $request->trch_name;
 

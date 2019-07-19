@@ -1,7 +1,25 @@
 $(function () {
+
+    function categoryShare() {
+        var share_percentage = $('#product_category').find('option:checked').data('share');
+        $('#category_share').val(share_percentage);
+    }
+    function netShare() {
+        var net_share = parseFloat($('#category_share').val()||0) + parseFloat($('#product_share').val()||0);
+        $('#net_share').val(net_share);
+    }
+
+    categoryShare();
+    netShare();
+    $('#product_share').on('change', function () {
+        netShare()
+    });
+
     var base_url = serverCustom.base_url;
     $('#product_category').on('change', function () {
         var category_id = $(this).val();
+        categoryShare();
+        netShare();
         $.ajax({
             // type: "POST",
             url: base_url + '/merchant/product/get-sub-category',
@@ -115,9 +133,9 @@ $(function () {
             "                                            <td><select name=\"color[]\" class=\"form-control color-options-" + optionCount + "\" required></select>\n" +
             "                                        </td>\n" +
             "                                        <td><input type=\"text\" name=\"size[]\" class=\"form-control\"></td>\n" +
-            "                                        <td><input type=\"number\" min='0' name=\"marked_price[]\" class=\"form-control\" required></td>\n" +
-            "                                        <td><input type=\"number\" min='0' name=\"sell_price[]\" class=\"form-control\" required></td>\n" +
-            "                                        <td><input type=\"number\" min='0' max=\"99\" name=\"discount_price[]\" class=\"form-control\" required></td>\n" +
+            "                                        <td><input type=\"text\" min='0' name=\"marked_price[]\" class=\"form-control marked-price\" required></td>\n" +
+            "                                        <td><input type=\"text\" min='0' name=\"sell_price[]\" class=\"form-control sell-price\" required></td>\n" +
+            "                                        <td><input type=\"text\" min='0' max=\"99\" name=\"discount_price[]\" class=\"form-control discount\" required></td>\n" +
             "                                        <td><input type=\"number\" min='0' name=\"quantity[]\" class=\"form-control\" required></td>\n" +
             "                                        <td>\n" +
             "                                            <a class=\"btn red remove-option \" data-option='" + optionCount + "'><i class=\"fa fa-trash\"></i></a>\n" +
@@ -126,6 +144,7 @@ $(function () {
             "                                    ";
         $('.options-table-body').append(appendHtml);
         fillColor(optionCount);
+        optionMpDiscountSell();
         removeOption();
         return false;
     });
@@ -169,4 +188,106 @@ $(function () {
             }, 3000);
         });
     });
+
+
+    optionMpDiscountSell();
+
+    function optionMpDiscountSell() {
+
+
+        $('.marked-price').on('keyup', function () {
+            var parentClass = $(this).parent().parent();
+
+            var marked_price = parentClass.find('.marked-price');
+            var sell_price = parentClass.find('.sell-price');
+            var discount = parentClass.find('.discount');
+
+            if (checkNumber(marked_price.val(), sell_price.val())) {
+                var caulatedPrice = calculatePricing(marked_price.val(), sell_price.val(), 0);
+                discount.val(caulatedPrice.ds);
+            }
+        });
+        $('.discount').on('keyup', function () {
+            var parentClass = $(this).parent().parent();
+
+            var marked_price = parentClass.find('.marked-price');
+            var sell_price = parentClass.find('.sell-price');
+            var discount = parentClass.find('.discount');
+
+            if (checkNumber(discount.val(), sell_price.val())) {
+                var caulatedPrice = calculatePricing(0, sell_price.val(), discount.val());
+                marked_price.val(caulatedPrice.mp);
+            }
+        });
+
+        $('.sell-price').on('keyup', function () {
+            var parentClass = $(this).parent().parent();
+
+            var marked_price = parentClass.find('.marked-price');
+            var sell_price = parentClass.find('.sell-price');
+            var discount = parentClass.find('.discount');
+
+            if (marked_price.val() === '') {
+                if (checkNumber(discount.val(), sell_price.val())) {
+                    var caulatedPrice = calculatePricing(0, sell_price.val(), discount.val());
+                    marked_price.val(caulatedPrice.mp);
+                }
+            } else if (discount.val() === '') {
+                if (checkNumber(marked_price.val(), sell_price.val())) {
+                    var caulatedPrice1 = calculatePricing(marked_price.val(), sell_price.val(), 0);
+                    discount.val(caulatedPrice1.ds);
+                }
+            } else {
+                if (checkNumber(marked_price.val(), sell_price.val())) {
+                    var caulatedPrice2 = calculatePricing(marked_price.val(), sell_price.val(), 0);
+                    discount.val(caulatedPrice2.ds);
+                }
+            }
+
+        });
+
+        function checkNumber(first, second) {
+            if (first === '') return false;
+            if (second === '') return false;
+            if (!$.isNumeric(first)) return false;
+            if (!$.isNumeric(second)) return false;
+
+            return true;
+        }
+
+        function calculatePricing(marked_price, sell_price, discount) {
+            var mp = marked_price;
+            var sp = sell_price;
+            var ds = discount;
+            var calculate = 'ds';
+            if (mp === 0)
+                calculate = 'mp';
+            else if (sp === 0)
+                calculate = 'sp';
+            else
+                calculate = 'ds';
+
+            switch (calculate) {
+                case'mp':
+                    mp = sell_price / (1 - (discount / 100));
+                    break;
+
+                case'sp':
+                    sp = marked_price - ((discount / 100) * marked_price)
+                    break;
+
+                case 'ds':
+                    if (marked_price !== 0)
+                        ds = (marked_price - sell_price) * (100 / marked_price);
+                    if (ds < 0 || ds > 100)
+                        ds = '';
+                    break;
+            }
+            return {
+                'mp': mp,
+                'sp': sp,
+                'ds': ds
+            };
+        }
+    }
 });

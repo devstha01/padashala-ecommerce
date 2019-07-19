@@ -82,22 +82,39 @@
 
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>
-                                            {{__('dashboard.Category')}} <span
-                                                    class="m-l-5 text-danger">*</span>
-                                        </label>
-                                        <br>
-                                        <span style="color: red">{{$errors->first('category_id')??''}}</span>
-                                        <select id="product_category" name="category_id"
-                                                class="form-control input-sm" required>
-                                            <option value="">{{__('dashboard. -- select category --')}}</option>
-                                            @forelse($categories as $category)
-                                                <option value="{{$category->id}}" {{($product->category_id ===$category->id)?'selected':''}}>{{$category->name}}</option>
-                                            @empty
-                                                <option value="">{{__('dashboard.No category available')}}</option>
-                                            @endforelse
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+
+                                            <div class="form-group">
+                                                <label>
+                                                    {{__('dashboard.Category')}} <span
+                                                            class="m-l-5 text-danger">*</span>
+                                                </label>
+                                                <br>
+                                                <span style="color: red">{{$errors->first('category_id')??''}}</span>
+                                                <select id="product_category" name="category_id"
+                                                        class="form-control input-sm" required>
+                                                    <option value="">{{__('dashboard. -- select category --')}}</option>
+                                                    @forelse($categories as $category)
+                                                        <option value="{{$category->id}}"
+                                                                {{($product->category_id ===$category->id)?'selected':''}}
+                                                                data-share="{{$category->share_percentage??0}}">{{$category->name}}</option>
+                                                    @empty
+                                                        <option value="">{{__('dashboard.No category available')}}</option>
+                                                    @endforelse
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    {{__('dashboard.Category Share')}}
+                                                </label>
+                                                <br>
+                                                <input type="text" class="form-control input-sm text-right"
+                                                       readonly="readonly" value="0" id="category_share">
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -240,15 +257,16 @@
                                                     <input type="hidden" name="option_id" value="{{$item->id}}">
                                                     <input type="text" name="size" class="form-control"
                                                            value="{{$item->size}}"></td>
-                                                <td><input type="number" min="0" name="marked_price"
-                                                           class="form-control"
+                                                <td><input type="text" min="0" name="marked_price"
+                                                           class="form-control marked-price"
                                                            value="{{$item->marked_price}}"
                                                            required></td>
-                                                <td><input type="number" min="0" name="sell_price" class="form-control"
+                                                <td><input type="text" min="0" name="sell_price"
+                                                           class="form-control sell-price"
                                                            value="{{$item->sell_price}}"
                                                            required></td>
-                                                <td><input type="number" min="0" max="99" name="discount_price"
-                                                           class="form-control"
+                                                <td><input type="text" min="0" max="99" name="discount_price"
+                                                           class="form-control discount"
                                                            value="{{$item->discount}}"
                                                            required>
                                                 </td>

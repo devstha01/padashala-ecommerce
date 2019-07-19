@@ -46,14 +46,15 @@ class ProductController extends Controller
     {
         $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
         if (!$business_id) return redirect()->back();
-            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('admin_flag',1)->where('status', 1)->get();
+        $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('admin_flag', 1)->where('status', 1)->get();
         return view($this->_path . 'view-product', $this->_data);
     }
+
     function viewProductRequest()
     {
         $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
         if (!$business_id) return redirect()->back();
-            $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('admin_flag',0)->get();
+        $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('admin_flag', 0)->get();
         return view($this->_path . 'request-product', $this->_data);
     }
 
@@ -110,6 +111,7 @@ class ProductController extends Controller
 //            'sub_child_category_id' => 'required|not_in:0',
 //            'merchant_business_id' => 'required|not_in:0',
             'featured_image' => 'required',
+            'product_share' => 'required|numeric|min:0|max:100',
 //            'marked_price' => 'required|numeric|min:0',
 //            'sell_price' => 'required|numeric|min:0',
 //            'discount_price' => 'required|numeric|min:0|max:99'
@@ -136,6 +138,7 @@ class ProductController extends Controller
         $validated['discount'] = 0;
         $validated['quantity'] = 0;
         $validated['merchant_business_id'] = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id;
+        $validated['share_percentage'] = $request->product_share;
 
         if ($request->hasFile('featured_image')) {
             $image = $request->file('featured_image');

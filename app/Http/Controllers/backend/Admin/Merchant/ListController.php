@@ -128,6 +128,7 @@ class ListController extends Controller
 //            'sub_child_category_id' => 'required|not_in:0',
 //            'merchant_business_id' => 'required|not_in:0',
             'featured_image' => 'required',
+            'product_share' => 'required|numeric|min:0:|max:100',
 //            'marked_price' => 'required|numeric|min:0',
 //            'sell_price' => 'required|numeric|min:0',
 //            'discount_price' => 'required|numeric|min:0|max:99'
@@ -154,6 +155,9 @@ class ListController extends Controller
         $validated['discount'] = 0;
         $validated['quantity'] = 0;
         $validated['merchant_business_id'] = MerchantBusiness::where('merchant_id', $id)->first()->id;
+
+//        admin share
+        $validated['share_percentage'] = $request->product_share;
 
         if ($request->hasFile('featured_image')) {
             $image = $request->file('featured_image');
@@ -224,13 +228,13 @@ class ListController extends Controller
 
     function editProductPost($id, Request $request)
     {
-
         $validated = $request->validate([
             'name' => 'required',
             'category_id' => 'required|not_in:0',
 //            'sub_category_id' => 'required|not_in:0',
 //            'sub_child_category_id' => 'required|not_in:0',
 //            'merchant_business_id' => 'required|not_in:0',
+            'product_share' => 'required|numeric|min:0|max:100',
 //            'marked_price' => 'required|numeric|min:0',
 //            'sell_price' => 'required|numeric|min:0',
 //            'discount_price' => 'required|numeric|min:0|max:99'
@@ -244,6 +248,9 @@ class ListController extends Controller
 //        $validated['sell_price'] = number_format($request->sell_price ?? 0, 2, '.', '');
 //        $validated['discount'] = number_format($request->discount_price ?? 0, 2, '.', '');
 //        $validated['quantity'] = $request->quantity;
+
+        //        admin share
+        $validated['share_percentage'] = $request->product_share;
 
         $prod = Product::find($id);
 

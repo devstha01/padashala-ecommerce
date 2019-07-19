@@ -23,7 +23,7 @@
                                     <table class="table table-hover">
                                         <tr>
                                             <th></th>
-                                            <th>{{__('dashboard.Category')}}</th>
+                                            <th>{{__('dashboard.Category')}} [{{__('dashboard.Share')}}%]</th>
                                             <th>{{__('dashboard.Sub-Category')}}</th>
                                             <th>{{__('dashboard.Sub-Child-Category')}}</th>
                                             <th>{{__('dashboard.Image')}}</th>
@@ -37,7 +37,7 @@
                                                            data-subclass="category-{{$category->id}}"></i>
                                                     @endif
                                                 </td>
-                                                <td colspan="3">{{$category->name}}</td>
+                                                <td colspan="3">{{$category->name}} [{{floatval($category->share_percentage)}}%]</td>
                                                 <td>
                                                     @if($category->image!==null)
                                                         <img src="{{asset('image/admin/category/'.$category->image)}}"
@@ -46,13 +46,15 @@
                                                 </td>
                                                 <td>
                                                     @if($category->status === 1)
-                                                        <a class="action-button" onclick="return confirm('Disable this category?')"
+                                                        <a class="action-button"
+                                                           onclick="return confirm('Disable this category?')"
                                                            href="{{route('status-category-admin',['type'=>'category','id'=>$category->id])}}"
                                                            title="click to disable"><i
                                                                     class="fa fa-certificate text-success"> <i
                                                                         class="fa fa-check"></i></i></a>
                                                     @else
-                                                        <a class="action-button" onclick="return confirm('Enable this category?')"
+                                                        <a class="action-button"
+                                                           onclick="return confirm('Enable this category?')"
                                                            href="{{route('status-category-admin',['type'=>'category','id'=>$category->id])}}"
                                                            title="click to enable"><i
                                                                     class="fa fa-certificate text-danger"> <i
@@ -89,13 +91,15 @@
                                                     </td>
                                                     <td>
                                                         @if($subCategory->status === 1)
-                                                            <a class="action-button" onclick="return confirm('Disable this sub categroy?')"
+                                                            <a class="action-button"
+                                                               onclick="return confirm('Disable this sub categroy?')"
                                                                href="{{route('status-category-admin',['type'=>'sub-category','id'=>$subCategory->id])}}"
                                                                title="click to disable"><i
                                                                         class="fa fa-certificate text-success"> <i
                                                                             class="fa fa-check"></i></i></a>
                                                         @else
-                                                            <a class="action-button" onclick="return confirm('Enable this sub category?')"
+                                                            <a class="action-button"
+                                                               onclick="return confirm('Enable this sub category?')"
                                                                href="{{route('status-category-admin',['type'=>'sub-category','id'=>$subCategory->id])}}"
                                                                title="click to enable"><i
                                                                         class="fa fa-certificate text-danger"> <i
@@ -134,13 +138,15 @@
                                                         </td>
                                                         <td>
                                                             @if($subChildCategory->status === 1)
-                                                                <a class="action-button" onclick="return confirm('Disable this sub child category?')"
+                                                                <a class="action-button"
+                                                                   onclick="return confirm('Disable this sub child category?')"
                                                                    href="{{route('status-category-admin',['type'=>'sub-child-category','id'=>$subChildCategory->id])}}"
                                                                    title="click to disable"><i
                                                                             class="fa fa-certificate text-success"> <i
                                                                                 class="fa fa-check"></i></i></a>
                                                             @else
-                                                                <a class="action-button" onclick="return confirm('Enable this sub child category')"
+                                                                <a class="action-button"
+                                                                   onclick="return confirm('Enable this sub child category')"
                                                                    href="{{route('status-category-admin',['type'=>'sub-child-category','id'=>$subChildCategory->id])}}"
                                                                    title="click to enable"><i
                                                                             class="fa fa-certificate text-danger"> <i
@@ -182,7 +188,8 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">{{__('dashboard.Add')}} <span id="modal-type"></span> {{__('dashboard.to')}} <b
+                                                    <h4 class="modal-title">{{__('dashboard.Add')}} <span
+                                                                id="modal-type"></span> {{__('dashboard.to')}} <b
                                                                 id="modal-name"></b></h4>
                                                     <button type="button" class="close"
                                                             data-dismiss="modal" aria-label="Close">
@@ -199,27 +206,26 @@
                                                         <input type="text" id="modal-type-1" name="type"
                                                                style="display: none">
                                                         <label>
-                                                            {{__('dashboard.Name')}} <span class="m-l-5 text-danger">*</span>
+                                                            {{__('dashboard.Name')}} <span
+                                                                    class="m-l-5 text-danger">*</span>
                                                         </label>
                                                         <input type="text" name="name" class="form-control input-sm">
                                                         <br>
-                                                        <label>
-                                                            {{__('dashboard.Chinese Name')}}
-                                                        </label>
-                                                        <input type="text" name="ch_name" class="form-control input-sm">
-                                                        <br>
-                                                        <label>
-                                                            {{__('dashboard.Traditional Chinese Name')}}
-                                                        </label>
-                                                        <input type="text" name="trch_name"
-                                                               class="form-control input-sm">
-                                                        <br>
+                                                        <div class="category-share">
+                                                            <label>
+                                                                {{__('dashboard.Category Share')}}
+                                                            </label>
+                                                            <input type="text" name="category_share"
+                                                                   class="form-control input-sm">
+                                                            <br>
+                                                        </div>
                                                         <label>
                                                             {{__('dashboard.Image')}}
                                                         </label>
                                                         <input type="file" name="image">
                                                         <br>
-                                                        <button type="submit" class="btn btn-success">{{__('dashboard.Submit')}}</button>
+                                                        <button type="submit"
+                                                                class="btn btn-success">{{__('dashboard.Submit')}}</button>
                                                     </form>
                                                 </div>
                                                 <br>
@@ -240,7 +246,8 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">{{__('dashboard.Edit')}} <span id="edit-modal-type"></span></h4>
+                                                    <h4 class="modal-title">{{__('dashboard.Edit')}} <span
+                                                                id="edit-modal-type"></span></h4>
                                                     <button type="button" class="close"
                                                             data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -256,23 +263,20 @@
                                                         <input type="text" id="edit-modal-type-1" name="type"
                                                                style="display: none">
                                                         <label>
-                                                            {{__('dashboard.Name')}} <span class="m-l-5 text-danger">*</span>
+                                                            {{__('dashboard.Name')}} <span
+                                                                    class="m-l-5 text-danger">*</span>
                                                         </label>
                                                         <input type="text" name="name" id="edit-modal-name"
                                                                class="form-control input-sm">
                                                         <br>
-                                                        <label>
-                                                            {{__('dashboard.Chinese Name')}}
-                                                        </label>
-                                                        <input type="text" name="ch_name" id="edit-modal-ch-name"
-                                                               class="form-control input-sm">
-                                                        <br>
-                                                        <label>
-                                                            {{__('dashboard.Traditional Chinese Name')}}
-                                                        </label>
-                                                        <input type="text" name="trch_name" id="edit-modal-trch-name"
-                                                               class="form-control input-sm">
-                                                        <br>
+                                                        <div class="category-share">
+                                                            <label>
+                                                                {{__('dashboard.Category Share')}}
+                                                            </label>
+                                                            <input type="text" name="category_share" id="edit-modal-category_share"
+                                                                   class="form-control input-sm">
+                                                            <br>
+                                                        </div>
                                                         <label>
                                                             {{__('dashboard.Image')}}
                                                         </label>
@@ -281,7 +285,8 @@
                                                         <div id="edit-modal-image">
                                                         </div>
                                                         <br>
-                                                        <button type="submit" class="btn btn-success">{{__('dashboard.Submit')}}</button>
+                                                        <button type="submit"
+                                                                class="btn btn-success">{{__('dashboard.Submit')}}</button>
                                                     </form>
                                                 </div>
                                                 <br>
