@@ -33,7 +33,9 @@ class ProductSeeder extends Seeder
                 'sell_price' => rand(99, 999),
                 'discount' => rand(0, 99),
                 'quantity' => rand(5, 15),
-                'is_featured' => rand(0, 1)
+                'is_featured' => rand(0, 1),
+                'status' => 1,
+                'admin_flag' => 1,
             ]);
             if ($i < 3) {
                 \App\Models\HomeBanner::create([
