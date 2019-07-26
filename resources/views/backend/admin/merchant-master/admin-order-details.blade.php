@@ -152,6 +152,14 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+{{--                                <a href="{{route('admin-order-invoice',['id'=>$order->id,'m_id'=>$merchant->id])}}"--}}
+                                <a href="#inProcess"
+                                   style="background:dodgerblue;padding:10px 70px;color:white;text-decoration:none;">
+                                    Generate Invoice</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {{--@endforeach--}}

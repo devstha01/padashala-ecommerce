@@ -23,13 +23,15 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::get('view-merchant/{id}', 'ListController@merchantProduct')->name('merchant-product-id');
         Route::get('detail/{id}/{m_id}', 'ListController@orderdetails')->name('admin-order-details');
 
+        Route::get('invoice/{id}/{m_id}', 'ListController@orderInvoice')->name('admin-order-invoice');
+
     });
     Route::group(['middleware' => 'staff_permission:2.Merchant Master.Profile'], function () {
 
-        Route::get('grant-wallet/{id}', 'MerchantController@showGrantWallet')->name('admin-merchant-grant');
-        Route::post('grant-wallet', 'MerchantController@postGrantWallet')->name('admin-merchant-grant-post');
-        Route::get('retain-wallet/{id}', 'MerchantController@showRetainWallet')->name('admin-merchant-retain');
-        Route::post('retain-wallet', 'MerchantController@postRetainWallet')->name('admin-merchant-retain-post');
+//        Route::get('grant-wallet/{id}', 'MerchantController@showGrantWallet')->name('admin-merchant-grant');
+//        Route::post('grant-wallet', 'MerchantController@postGrantWallet')->name('admin-merchant-grant-post');
+//        Route::get('retain-wallet/{id}', 'MerchantController@showRetainWallet')->name('admin-merchant-retain');
+//        Route::post('retain-wallet', 'MerchantController@postRetainWallet')->name('admin-merchant-retain-post');
 
         Route::get('edit-merchant/{id}', 'MerchantRegisterController@editMerchant')->name('edit-merchant-id');
         Route::get('change-status-merchant/{id}', 'MerchantRegisterController@changeStatus')->name('change-status-merchant-admin');

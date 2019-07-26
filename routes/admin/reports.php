@@ -13,8 +13,8 @@ Route::group(['namespace' => 'Report', 'prefix' => 'report'], function () {
 //    Route::get('merchant-payment-report', 'ReportController@merchantPaymentReport')->name('admin-merchant-payment-report')
 //        ->middleware('staff_permission:1.Reports.Merchant Payment Report');
 
-    Route::get('grant-retain-report', 'ReportController@grantRetainReport')->name('grant-retain-report')
-        ->middleware('staff_permission:1.Reports.Grant Wallet/ Retain Wallet Report');
+//    Route::get('grant-retain-report', 'ReportController@grantRetainReport')->name('grant-retain-report')
+//        ->middleware('staff_permission:1.Reports.Grant Wallet/ Retain Wallet Report');
     Route::get('purchase-report', 'ReportController@purchaseReport')->name('admin-purchase-report')
         ->middleware('staff_permission:1.Reports.Product Purchase Report');
 

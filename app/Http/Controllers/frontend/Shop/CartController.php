@@ -208,13 +208,14 @@ class CartController extends Controller
             $DBcarts = \App\Models\Cart::where('user_id', Auth::user()->id)->get() ?? [];
             foreach ($DBcarts as $DBcart) {
                 $product = Product::find($DBcart->product_id);
-
-                if ($DBcart->variant_id === null) {
-                    $recent_price = $product->sell_price;
-                    Cart::add($product->id, $product->name, $DBcart->quantity, $recent_price, ['slug' => $product->slug, 'image' => $product->featured_image, 'variant_name' => null, 'variant_id' => null, 'status' => $DBcart->status])->associate('App\Models\Product');
-                } else {
-                    $variant = ProductVariant::find($DBcart->variant_id);
-                    Cart::add($product->id, $product->name, $DBcart->quantity, $variant->sell_price, ['slug' => $product->slug, 'image' => $product->featured_image, 'variant_name' => $variant->name, 'variant_id' => $variant->id, 'status' => $DBcart->status])->associate('App\Models\Product');
+                if ($product->status) {
+                    if ($DBcart->variant_id === null) {
+                        $recent_price = $product->sell_price;
+                        Cart::add($product->id, $product->name, $DBcart->quantity, $recent_price, ['slug' => $product->slug, 'image' => $product->featured_image, 'variant_name' => null, 'variant_id' => null, 'status' => $DBcart->status])->associate('App\Models\Product');
+                    } else {
+                        $variant = ProductVariant::find($DBcart->variant_id);
+                        Cart::add($product->id, $product->name, $DBcart->quantity, $variant->sell_price, ['slug' => $product->slug, 'image' => $product->featured_image, 'variant_name' => $variant->name, 'variant_id' => $variant->id, 'status' => $DBcart->status])->associate('App\Models\Product');
+                    }
                 }
             }
         }

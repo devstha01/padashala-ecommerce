@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Commisions\ShoppingLog;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
@@ -10,7 +9,7 @@ class OrderItem extends Model
     protected $fillable = [
         'product_id', 'order_id', 'product_variant_id', 'quantity', 'deliver_date',
         'marked_price', 'sell_price', 'discount', 'status', 'order_status_id', 'invoice',
-        'category_share','product_share'
+        'category_share', 'product_share'
     ];
 
     function getProduct()
@@ -33,4 +32,8 @@ class OrderItem extends Model
         return $this->hasOne(OrderStatus::class, 'key', 'order_status_id');
     }
 
+    function getShoppingLog()
+    {
+        return $this->hasOne(ShoppingLog::class, 'order_item_id', 'id');
+    }
 }

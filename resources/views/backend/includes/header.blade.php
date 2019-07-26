@@ -430,12 +430,12 @@
                                                     </a>
                                                 </li>
                                             @endif
-                                            @if($staffHeader->staffHasPermission('1.Reports.Grant Wallet/ Retain Wallet Report'))
-                                                <li aria-haspopup="true" class=" ">
-                                                    <a href="{{route('grant-retain-report')}}"
-                                                       class="nav-link  ">Grant / Retain Wallet Report</a>
-                                                </li>
-                                            @endif
+                                            {{--@if($staffHeader->staffHasPermission('1.Reports.Grant Wallet/ Retain Wallet Report'))--}}
+                                                {{--<li aria-haspopup="true" class=" ">--}}
+                                                    {{--<a href="{{route('grant-retain-report')}}"--}}
+                                                       {{--class="nav-link  ">Grant / Retain Wallet Report</a>--}}
+                                                {{--</li>--}}
+                                            {{--@endif--}}
                                         </ul>
                                     </li>
 

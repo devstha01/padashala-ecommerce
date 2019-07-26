@@ -46,7 +46,7 @@ class ChangePermissionSeeder extends Seeder
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Shopping Point Transform Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Dividend Transform Report', 'guard_name' => 'admin']);
         \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Product Purchase Report', 'guard_name' => 'admin']);
-        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Grant Wallet/ Retain Wallet Report', 'guard_name' => 'admin']);
+//        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Grant Wallet/ Retain Wallet Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Asia Bonus', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.HK Bonus', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '1.Reports.Top Shopper', 'guard_name' => 'admin']);
@@ -93,7 +93,7 @@ class ChangePermissionSeeder extends Seeder
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Shopping Point Transform Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Dividend Transform Report', 'guard_name' => 'admin']);
         \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Product Purchase Report', 'guard_name' => 'admin']);
-        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Grant Wallet/ Retain Wallet Report', 'guard_name' => 'admin']);
+//        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Grant Wallet/ Retain Wallet Report', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Asia Bonus', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.HK Bonus', 'guard_name' => 'admin']);
 //        \Spatie\Permission\Models\Permission::create(['name' => '2.Reports.Top Shopper', 'guard_name' => 'admin']);

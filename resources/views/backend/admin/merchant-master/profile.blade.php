@@ -52,12 +52,12 @@
                                                 <div class="profile-usertitle-job"> {{$merchant->user_name}} </div>
                                                 <div class="fa fa-envelope text-info "> {{$merchant->email}} </div>
                                                 <br>
-                                                <br>
+                                                {{--<br>--}}
 
-                                                <a href="{{route('admin-merchant-retain',$merchant->id)}}"
-                                                   class="btn blue" style="margin-left: 5px">Retain Wallet</a>
-                                                <a href="{{route('admin-merchant-grant',$merchant->id)}}"
-                                                   class="btn blue">Grant Wallet</a>
+                                                {{--<a href="{{route('admin-merchant-retain',$merchant->id)}}"--}}
+                                                   {{--class="btn blue" style="margin-left: 5px">Retain Wallet</a>--}}
+                                                {{--<a href="{{route('admin-merchant-grant',$merchant->id)}}"--}}
+                                                   {{--class="btn blue">Grant Wallet</a>--}}
                                             </div>
                                         </div>
 

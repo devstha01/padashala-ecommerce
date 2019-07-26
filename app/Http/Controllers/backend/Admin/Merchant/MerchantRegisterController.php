@@ -162,6 +162,9 @@ class MerchantRegisterController extends Controller
 
         if ($mer->status === 1) {
             if ($mer->update(['status' => 0])) {
+                foreach ($mer->getBusiness->getProducts as $item) {
+                    $item->update(['status' => 0]);
+                }
                 return redirect()->back()->with('success', __('message.Status of :user disabled', ['user' => $mer->user_name]));
             }
         } else {

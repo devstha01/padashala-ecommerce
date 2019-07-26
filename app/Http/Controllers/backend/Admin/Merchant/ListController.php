@@ -514,6 +514,47 @@ class ListController extends Controller
         return view($this->_path . 'admin-order-details', $this->_data);
     }
 
+    function orderInvoice($id, $m_id)
+    {
+        $order = Order::find($id);
+        $this->_data['merchant'] = Merchant::find($m_id);
+        if (!$order)
+            return redirect()->back();
+        if ($order->getUser->is_member === 0) {
+            if (str_contains($order->payment_method, 'ecash_wallet'))
+                $this->_data['method'] = __('message.Cash Wallet');
+            else
+                $this->_data['method'] = __('message.Cash on Delivery');
+        } else
+            $this->_data['method'] = __('message.Cash/Voucher Wallet');
+
+        $orderItem = [];
+        $total = 0;
+        foreach ($order->getOrderItem as $item) {
+            $merchant_id = $item->getProduct->getBusiness->getMerchant->id;
+            if ($m_id == $merchant_id) {
+                $item['net_price'] = number_format($item->quantity * $item->sell_price, 2, '.', '');
+                $orderItem[] = $item;
+                $total += $item['net_price'];
+            }
+        }
+
+        $invoice = collect($orderItem)->first();
+        if ($invoice) {
+            $this->_data['shipping'] = ShippingOrderItem::where('invoice', $invoice->invoice)->first();
+        }
+        $this->_data['order'] = $order;
+        $this->_data['orderItem'] = collect($orderItem);
+        $count = count($orderItem);
+        $this->_data['delivery'] = number_format($count * (env('DELIVERY_COST') ?? 0), 2, '.', '');
+        $this->_data['tax'] = number_format($total * (env('TAX_PERCENT') ?? 0) / 100, 2, '.', '');
+        $this->_data['net_total'] = number_format($total + ($total * (env('TAX_PERCENT') ?? 0) / 100) + ($count * (env('DELIVERY_COST') ?? 0)), 2, '.', '');
+
+        $this->_data['total'] = number_format($total, 2, '.', '');
+        return view($this->_path . 'admin-order-details', $this->_data);
+    }
+
+
     function itemStatusChange($id, Request $request)
     {
         $request->validate([

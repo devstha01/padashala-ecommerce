@@ -40,9 +40,10 @@
                     </form>
                 </div><!-- End .header-search -->
 
-                <a href="{{url('bid-win')}}" style="margin: 0 20px">
-                    <img class="bid-image" src="{{asset('image/bid.png')}}" alt="Bid n Win">
-                </a>
+                <span style="width: 100px"></span>
+                {{--<a href="{{url('bid-win')}}" style="margin: 0 20px">--}}
+                {{--<img class="bid-image" src="{{asset('image/bid.png')}}" alt="Bid n Win">--}}
+                {{--</a>--}}
                 <a href="{{route('cart-view')}}" id="my-cart-a">
                     <i class="fa fa-shopping-cart text" style="color: #1f4e79"></i>
                     <span class="cart-count">0</span>
@@ -197,8 +198,8 @@
                             @else
                                 <li><a href="{{route('checkout-login')}}">{{__('front.Log In')}}</a></li>
                                 <li><a href="{{route('customer-register')}}">{{__('front.Register Free')}}</a></li>
-                            @endif
-                            <!-- End .header-dropown -->
+                        @endif
+                        <!-- End .header-dropown -->
 
                         </ul>
                     </div><!-- End .header-menu -->
