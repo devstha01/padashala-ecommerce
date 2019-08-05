@@ -44,6 +44,7 @@ class CountriesSeeder extends Seeder
             "Mexico",
             "Netherlands",
             "New Zealand",
+            "Nepal",
             "Norway",
             "Peru",
             "Philippines",

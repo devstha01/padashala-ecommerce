@@ -212,7 +212,7 @@ class HomeController extends Controller
         $data = $data->pluck('id')->toArray();
         $products = Product::whereIn('id', $data)->where('status', 1)->get();
         if (count($products) === 0)
-            $products = Product::orderBy('id', 'DESC')->where('status',1)->get();
+            $products = Product::orderBy('id', 'DESC')->where('status', 1)->get();
         return $this->validProductWithOption($products)->take(12);
     }
 
@@ -288,11 +288,15 @@ class HomeController extends Controller
 
             $products = Product::where('status', 1)->where('name', 'LIKE', '%' . $term . '%');
 
-            if (count($checkbox_categories) !== 0)
-                $products = $products->whereIn('category_id', $checkbox_categories);
-            else
-                $products = $products->orWhereIn('category_id', $search_related_categories)->where('status', 1);
 
+            if ($type !== 'product')
+                $products->where('category_id', $type);
+            else {
+                if (count($checkbox_categories) !== 0)
+                    $products = $products->whereIn('category_id', $checkbox_categories);
+                else
+                    $products = $products->orWhereIn('category_id', $search_related_categories)->where('status', 1);
+            }
             $products = $products->get();
             $products = $this->validProductWithOption($products);
             $filtered = [];

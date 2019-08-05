@@ -3,7 +3,7 @@
         <div class="container">
             <div class="header-left header-dropdowns">
                 <a href="{{url('/')}}">
-                    <img src="{{asset('image/gghl-logo.png')}}" alt="Logo" style="margin-left:10px;height: 50px">
+                    <img src="{{asset('image/gghl-logo.png')}}" alt="Logo" style="margin-left:10px;height: 60px">
                 </a>
             </div><!-- End .header-left -->
             <div class="header-center">
@@ -24,10 +24,16 @@
                                     {{--<option style="display:none" value="product" {{($type === 'none') ?'selected':''}}>--}}
                                     {{--{{__('front.Product/Merchant')}}--}}
                                     {{--</option>--}}
-                                    <option value="product"
-                                            style="display: {{($type === 'product') ?'none':'block'}}" {{($type === 'product') ?'selected':''}}>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('front.Products')}}
+                                    {{--<option value="product"--}}
+                                    {{--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{__('front.Products')}}--}}
+                                    {{--style="display: {{($type === 'product') ?'none':'block'}}" --}}
+                                    {{--{{($type === 'product') ?'selected':''}}>--}}
+                                    {{--</option>--}}
+                                    <option value="product" {{($type == 'product') ?'selected':''}}>All categories
                                     </option>
+                                    @foreach($home_categories as $h_category)
+                                        <option value="{{$h_category->id}}" {{($type == $h_category->id) ?'selected':''}}>{{$h_category->name}}</option>
+                                    @endforeach
                                     {{--<option value="merchant"--}}
                                     {{--style="display: {{($type === 'merchant') ?'none':'block'}}" {{($type === 'merchant') ?'selected':''}}>{{__('front.Merchants')}}--}}
                                     {{--</option>--}}

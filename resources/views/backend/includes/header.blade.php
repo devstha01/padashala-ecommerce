@@ -20,7 +20,7 @@
                             </a>
                         @else
                             <a href="{{ url('/') }}">
-                                <img src="{{asset('image/gghl-logo.png')}}" alt="Logo" style="margin:10px;height: 50px">
+                                <img src="{{asset('image/gghl-logo.png')}}" alt="Logo" style="margin:10px;height: 60px">
                             </a>
                         @endif
                     </div>
