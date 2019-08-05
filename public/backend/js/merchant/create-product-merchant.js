@@ -4,8 +4,9 @@ $(function () {
         var share_percentage = $('#product_category').find('option:checked').data('share');
         $('#category_share').val(share_percentage);
     }
+
     function netShare() {
-        var net_share = parseFloat($('#category_share').val()||0) + parseFloat($('#product_share').val()||0);
+        var net_share = parseFloat($('#category_share').val() || 0) + parseFloat($('#product_share').val() || 0);
         $('#net_share').val(net_share);
     }
 
@@ -65,39 +66,50 @@ $(function () {
         });
     });
 
-    $('.edit-modal-btn').on('click', function () {
-        var data = $(this).data('variant');
-        $('#edit-modal-id').val(data.id);
-        $('#edit-modal-name').val(data.eng_name);
-        $('#edit-modal-marked_price').val(data.marked_price);
-        $('#edit-modal-sell_price').val(data.sell_price);
-        $('#edit-modal-discount').val(data.discount);
-        $('#edit-modal-quantity').val(data.quantity);
-    });
+    // $('.edit-modal-btn').on('click', function () {
+    //     var data = $(this).data('variant');
+    //     $('#edit-modal-id').val(data.id);
+    //     $('#edit-modal-name').val(data.eng_name);
+    //     $('#edit-modal-marked_price').val(data.marked_price);
+    //     $('#edit-modal-sell_price').val(data.sell_price);
+    //     $('#edit-modal-discount').val(data.discount);
+    //     $('#edit-modal-quantity').val(data.quantity);
+    // });
+    //
+    //
+    // $('#search-product').on('keyup', function () {
+    //     var input = $(this).val();
+    //
+    //     if (input.length < 2) {
+    //         $('#search-product-list').empty().css({'height': 0});
+    //         $("#search-product-form").bind('submit', function (e) {
+    //             e.preventDefault();
+    //         });
+    //     } else {
+    //         $('#search-product-list').css({'height': '100px'});
+    //         $('#search-product-form').unbind('submit');
+    //         $.ajax({
+    //             url: base_url + '/merchant/product/get-search-list',
+    //             data: {'term': input},
+    //             success: function (data) {
+    //                 $('#search-product-list').empty();
+    //                 $.each(data.products, function (index, value) {
+    //                     var appendData = "<a href='" + base_url + "/merchant/product/edit/" + value.slug + "'>" + value.name + "</a><br>";
+    //                     $('#search-product-list').append(appendData);
+    //                 });
+    //             }
+    //         });
+    //     }
+    // });
 
-
-    $('#search-product').on('keyup', function () {
-        var input = $(this).val();
-
-        if (input.length < 2) {
-            $('#search-product-list').empty().css({'height': 0});
-            $("#search-product-form").bind('submit', function (e) {
-                e.preventDefault();
-            });
+    $('.checkbox-stock').on('change', function () {
+        var stock_checkbox_value = $(this).is(':checked');
+        if (stock_checkbox_value === true) {
+            $(this).val('true');
+            $(this).parent().parent().parent().find('.quantity').html('Total quantity');
         } else {
-            $('#search-product-list').css({'height': '100px'});
-            $('#search-product-form').unbind('submit');
-            $.ajax({
-                url: base_url + '/merchant/product/get-search-list',
-                data: {'term': input},
-                success: function (data) {
-                    $('#search-product-list').empty();
-                    $.each(data.products, function (index, value) {
-                        var appendData = "<a href='" + base_url + "/merchant/product/edit/" + value.slug + "'>" + value.name + "</a><br>";
-                        $('#search-product-list').append(appendData);
-                    });
-                }
-            });
+            $(this).parent().parent().parent().find('.quantity').html('Max Purchase Limit');
+            $(this).val('false');
         }
     });
 
@@ -115,11 +127,21 @@ $(function () {
         performAjaxCall('/colors', 'GET', '', function (response) {
             var options_list = "";
             $.each(response, function (index, value) {
-                options_list += "<option value='" + value.id + "'>" + value.name + "</option>>";
+                options_list += "<option style='background: " + value.color_code + "' value='" + value.id + "'>" + value.name + "</option>>";
             });
             $('.color-options-' + optionCount).append(options_list);
-
         })
+        $('.stock-option-input-' + optionCount).on('change', function () {
+
+            var stock_option_value = $(this).is(':checked');
+            if (stock_option_value === true) {
+                $(this).parent().parent().parent().find('.quantity').html('Total quantity');
+                $(this).parent().parent().find('.stock-option-value').val('true');
+            } else {
+                $(this).parent().parent().parent().find('.quantity').html('Max Purchase Limit');
+                $(this).parent().parent().find('.stock-option-value').val('false');
+            }
+        });
     }
 
     var optionCount = 0;
@@ -133,10 +155,12 @@ $(function () {
             "                                            <td><select name=\"color[]\" class=\"form-control color-options-" + optionCount + "\" required></select>\n" +
             "                                        </td>\n" +
             "                                        <td><input type=\"text\" name=\"size[]\" class=\"form-control\"></td>\n" +
-            "                                        <td><input type=\"text\" min='0' name=\"marked_price[]\" class=\"form-control marked-price\" required></td>\n" +
+            "                                        <td><input type=\"text\" min='0' name=\"marked_price[]\" class=\"form-control marked-price\" ></td>\n" +
             "                                        <td><input type=\"text\" min='0' name=\"sell_price[]\" class=\"form-control sell-price\" required></td>\n" +
-            "                                        <td><input type=\"text\" min='0' max=\"99\" name=\"discount_price[]\" class=\"form-control discount\" required></td>\n" +
-            "                                        <td><input type=\"number\" min='0' name=\"quantity[]\" class=\"form-control\" required></td>\n" +
+            "                                        <td><input type=\"text\" min='0' max=\"99\" name=\"discount_price[]\" class=\"form-control discount\" ></td>\n" +
+            "                                        <td class='check-delivery-option'><label>ManageStock<input type=\"checkbox\" class=\"stock-option-input-" + optionCount + "\" checked></label>" +
+            "                                            <input type=\"hidden\" class=\"stock-option-value\" name=\"stock_option[]\" value=\"true\">\n</td>\n" +
+            "                                        <td class='check-delivery-option'><span class=\"quantity\">Total quantity</span><input type=\"number\" min='0' name=\"quantity[]\" class=\"form-control\"></td>\n" +
             "                                        <td>\n" +
             "                                            <a class=\"btn red remove-option \" data-option='" + optionCount + "'><i class=\"fa fa-trash\"></i></a>\n" +
             "                                        </td>\n" +
@@ -144,8 +168,9 @@ $(function () {
             "                                    ";
         $('.options-table-body').append(appendHtml);
         fillColor(optionCount);
-        optionMpDiscountSell();
         removeOption();
+        optionMpDiscountSell();
+        purchaseOptionQuantityManage();
         return false;
     });
 
@@ -189,7 +214,6 @@ $(function () {
         });
     });
 
-
     optionMpDiscountSell();
 
     function optionMpDiscountSell() {
@@ -213,10 +237,11 @@ $(function () {
             var marked_price = parentClass.find('.marked-price');
             var sell_price = parentClass.find('.sell-price');
             var discount = parentClass.find('.discount');
-
-            if (checkNumber(discount.val(), sell_price.val())) {
-                var caulatedPrice = calculatePricing(0, sell_price.val(), discount.val());
-                marked_price.val(caulatedPrice.mp);
+            if (discount.val() >= 0 && discount.val() < 99.999) {
+                if (checkNumber(discount.val(), sell_price.val())) {
+                    var caulatedPrice = calculatePricing(0, sell_price.val(), discount.val());
+                    marked_price.val(caulatedPrice.mp);
+                }
             }
         });
 
@@ -269,11 +294,11 @@ $(function () {
 
             switch (calculate) {
                 case'mp':
-                    mp = sell_price / (1 - (discount / 100));
+                    mp = sell_price /(1 - (discount / 100));
                     break;
 
                 case'sp':
-                    sp = marked_price - ((discount / 100) * marked_price)
+                    sp = marked_price - ((discount / 100) * marked_price);
                     break;
 
                 case 'ds':
@@ -290,4 +315,13 @@ $(function () {
             };
         }
     }
+
+    // purchaseOptionQuantityManage();
+    //
+    // function purchaseOptionQuantityManage() {
+    //     var purchase_option = $('#merchant-delivery-option').val();
+    //     if (purchase_option != '1') {
+    //         $('.check-delivery-option').css({display: 'none'});
+    //     }
+    // }
 });

@@ -6627,7 +6627,7 @@ a:focus {
     -ms-flex-pack: start;
     justify-content: flex-start;
     margin-bottom: 3.1rem;
-    margin-top:-50px;
+    margin-top: -50px;
 }
 
 .product-single-details .sticky-header {
@@ -11230,6 +11230,7 @@ ul li h4 {
     position: relative;
     display: inline !important;
     cursor: crosshair;
+    padding: 1px;
 }
 
 #demo-container {
@@ -11238,8 +11239,8 @@ ul li h4 {
 
     z-index: 200003;
     margin-left: 0 !important;
-    width: 200px !important;
-    height: 200px !important;
+    width: 50px !important;
+    height: 50px !important;
 }
 
 .category-img {

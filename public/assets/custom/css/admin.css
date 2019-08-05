@@ -461,3 +461,17 @@ li.jstree-closed > a .jstree-icon, li.jstree-open > a .jstree-icon {
     border-bottom: 1px solid whitesmoke;
     border-left: 1px solid whitesmoke;
 }
+
+#previewimage {
+    width: 800px;
+    margin: 20px;
+    /*border-left: 35px double grey;*/
+    /*border-right: 35px double grey;*/
+    /*border-top: 15px double grey;*/
+    /*border-bottom: 15px double grey;*/
+    border: 15px outset #1f4e79;
+}
+
+.imgareaselect-handle {
+    padding: 4px
+}

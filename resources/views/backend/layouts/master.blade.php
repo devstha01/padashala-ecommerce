@@ -96,6 +96,18 @@
     var serverCustom = {
         base_url: "{{url('/')}}",
     };
+
+    //currency symbol
+    function cuSymbol() {
+        return "$"
+    }
+
+    //currency convert
+    function cuConvert(amount) {
+        var multiplier = 1;
+        return (amount * multiplier).toFixed(2);
+    }
+
 </script>
 
 <script src="{{ URL::asset('assets/common.js') }}"></script>

@@ -163,18 +163,7 @@ class ListController extends Controller
                 File::makeDirectory($destinationPath, 0777, true, true);
             }
             $img = Image::make($image->getRealPath());
-
-            if ($img->height() > $img->width()) {
-                $img = $img->resize(null, 800, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            } else {
-                $img = $img->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
-            $saveimage->save($destinationPath . '/' . $validated['featured_image']);
+            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(800, 800)->save($destinationPath . '/' . $validated['featured_image']);
         }
 
         $count = count($request->color ?? []);
@@ -184,10 +173,11 @@ class ListController extends Controller
                     'name' => 'Color:' . Color::find($request->color[$i])->name . ' | Size: ' . $request->size[$i],
                     'color_id' => $request->color[$i],
                     'size' => $request->size[$i],
-                    'marked_price' => $request->marked_price[$i],
+                    'marked_price' => ($request->marked_price[$i] ?? $request->sell_price[$i]),
                     'sell_price' => $request->sell_price[$i],
-                    'discount' => $request->discount_price[$i],
+                    'discount' => $request->discount_price[$i] ?? 0,
                     'quantity' => $request->quantity[$i],
+                    'stock_option' => ($request->stock_option[$i] == 'true') ? 1 : 0,
                     'product_id' => $prod->id,
                 ];
                 ProductVariant::create($options);
@@ -196,6 +186,24 @@ class ListController extends Controller
         }
         return redirect()->back()->with('fail', __('message.Failed to create Product'));
     }
+
+    function editProductGeneralTab($slug)
+    {
+        return $this->edit($slug);
+    }
+
+    function editProductImageTab($slug)
+    {
+        session()->flash('active', 'image');
+        return $this->edit($slug);
+    }
+
+    function editProductVariantTab($slug)
+    {
+        session()->flash('active', 'variant');
+        return $this->edit($slug);
+    }
+
 
     function edit($slug)
     {
@@ -214,9 +222,23 @@ class ListController extends Controller
 //        }
 //        $this->_data['categories'] = collect($data);
         if ($this->_data['product'] = Product::where('slug', $slug)->first()) {
+            $this->_data['merchant'] = $this->_data['product']->getBusiness->getMerchant;
             $this->_data['options'] = ProductVariant::where('product_id', $this->_data['product']->id)->where('status', 1)->get()->groupBy('color_id');
             $this->_data['colors'] = ProductVariant::where('product_id', $this->_data['product']->id)->where('status', 1)->pluck('color_id')->toArray();
-            return view($this->_path . '.edit-product', $this->_data);
+
+            switch (session('active')) {
+                case 'image':
+                    return view($this->_path . '.tab-content.edit-product-image', $this->_data);
+                    break;
+                case 'variant':
+                    return view($this->_path . '.tab-content.edit-product-variant', $this->_data);
+                    break;
+                default:
+                    return view($this->_path . '.tab-content.edit-product', $this->_data);
+                    break;
+            }
+
+//            return view($this->_path . '.edit-product', $this->_data);
         }
         return redirect()->to(route('merchant-list-admin'));
     }
@@ -261,18 +283,7 @@ class ListController extends Controller
             }
 
             $img = Image::make($image->getRealPath());
-
-            if ($img->height() > $img->width()) {
-                $img = $img->resize(null, 800, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            } else {
-                $img = $img->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
-            $saveimage->save($destinationPath . '/' . $validated['featured_image']);
+            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(800, 800)->save($destinationPath . '/' . $validated['featured_image']);
 
             $old_img = public_path('image/products/' . $prod->featured_image);
             if (File::exists($old_img)) {
@@ -300,18 +311,7 @@ class ListController extends Controller
                 $input['image'] = md5(time() . $image->getClientOriginalName()) . '.png';
 
                 $img = Image::make($image->getRealPath());
-
-                if ($img->height() > $img->width()) {
-                    $img = $img->resize(null, 800, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                } else {
-                    $img = $img->resize(800, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                }
-                $saveimage = Image::canvas(800, 800)->insert($img, 'center');
-                $saveimage->save($destinationPath . '/' . $input['image']);
+                $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(800, 800)->save($destinationPath . '/' . $input['image']);
 
                 ProductImage::create($input);
             }
@@ -330,10 +330,11 @@ class ListController extends Controller
                 'name' => 'Color:' . Color::find($request->color[$i])->name . ' | Size: ' . $request->size[$i],
                 'color_id' => $request->color[$i],
                 'size' => $request->size[$i],
-                'marked_price' => $request->marked_price[$i],
+                'marked_price' => ($request->marked_price[$i] ?? $request->sell_price[$i]),
                 'sell_price' => $request->sell_price[$i],
-                'discount' => $request->discount_price[$i],
+                'discount' => $request->discount_price[$i] ?? 0,
                 'quantity' => $request->quantity[$i],
+                'stock_option' => ($request->stock_option[$i] == 'true') ? 1 : 0,
                 'product_id' => $id,
             ];
             ProductVariant::create($options);
@@ -345,9 +346,9 @@ class ListController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'option_id' => 'required',
-            'marked_price' => 'required|numeric|min:0',
+//            'marked_price' => 'required|numeric|min:0',
             'sell_price' => 'required|numeric|min:0',
-            'discount_price' => 'required|numeric|min:0|max:99',
+//            'discount_price' => 'required|numeric|min:0|max:99',
             'quantity' => 'required|numeric|min:0',
         ]);
         if ($valid->fails()) return response()->json(['status' => false, 'message' => $valid->errors()->first()]);
@@ -357,9 +358,10 @@ class ListController extends Controller
             'name' => 'Color:' . Color::find($variant->color_id)->name . ' | Size: ' . $request->size,
             'size' => $request->size,
             'quantity' => $request->quantity,
-            'marked_price' => $request->marked_price,
+            'marked_price' => ($request->marked_price ?? $request->sell_price),
             'sell_price' => $request->sell_price,
-            'discount' => $request->discount_price,
+            'stock_option' => ($request->stock_option == 'true') ? 1 : 0,
+            'discount' => $request->discount_price ?? 0,
         ]);
         if ($variant) return response()->json(['status' => true, 'message' => 'Option updated!']);
     }
@@ -372,18 +374,19 @@ class ListController extends Controller
 
         $validate = Validator::make($request->all(), [
             'name' => 'required',
-            'marked_price' => 'required|numeric|min:0',
+//            'marked_price' => 'required|numeric|min:0',
             'sell_price' => 'required|numeric|min:0',
-            'discount_price' => 'required|numeric|min:0|max:99'
+//            'discount_price' => 'required|numeric|min:0|max:99'
         ]);
 
         if ($validate->fails()) return redirect()->back()->with('fail', $validate->errors()->first());
 
         $input = [
             'name' => $request->name,
-            'marked_price' => $request->marked_price,
+            'marked_price' => ($request->marked_price ?? $request->sell_price),
             'sell_price' => $request->sell_price,
-            'discount' => $request->discount_price,
+            'discount' => $request->discount_price ?? 0,
+            'stock_option' => ($request->stock_option == 'true') ? 1 : 0,
             'quantity' => $request->quantity,
         ];
         $var = ProductVariant::find($request->id);
@@ -411,19 +414,9 @@ class ListController extends Controller
             if (!File::exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0777, true, true);
             }
-            $img = Image::make($image->getRealPath());
 
-            if ($img->height() > $img->width()) {
-                $img = $img->resize(null, 800, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            } else {
-                $img = $img->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
-            $saveimage->save($destinationPath . '/' . $validated['image']);
+            $img = Image::make($image->getRealPath());
+            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(800, 800)->save($destinationPath . '/' . $validated['image']);
 
             $update = ColorImage::where('product_id', $request->product_id)->where('color_id', $request->color_id)->first();
             if (!$update)

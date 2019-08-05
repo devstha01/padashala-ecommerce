@@ -59,6 +59,17 @@
         base_url: "{{url('/')}}",
         current_uri: "{{Request::path()}}",
     };
+    //currency symbol
+    function cuSymbol() {
+        return "$"
+    }
+
+    //currency convert
+    function cuConvert(amount) {
+        var multiplier = 1;
+        return (amount * multiplier).toFixed(2);
+    }
+
 </script>
 <!-- Plugins JS File -->
 <script src="{{ URL::asset('assets/common.js') }}"></script>

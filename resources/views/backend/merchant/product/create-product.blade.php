@@ -54,7 +54,7 @@
                                     <label>
                                         {{__('dashboard.Brief description')}}
                                     </label>
-                                    <textarea class="form-control" name="detail"
+                                    <textarea class="form-control" name="detail" maxlength="100"
                                               style="resize: none">{{old('detail')??''}}</textarea>
                                 </div>
 
@@ -148,14 +148,38 @@
 
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="exampleInputFile1">{{__('dashboard.Featured image')}} <span
                                                 class="m-l-5 text-danger">*</span></label>
-                                    <input type="file" id="exampleInputFile1" name="featured_image" required>
+                                    <input type="file" class="image" id="exampleInputFile1" name="featured_image"
+                                           required>
                                     <span style="color: red">{{$errors->first('featured_image')??''}}</span>
-                                </div>
 
+                                </div>
+                                <div>
+
+                                    <input type="hidden" name="x1" value=""/>
+                                    <input type="hidden" name="y1" value=""/>
+                                    <input type="hidden" name="h1" value=""/>
+                                    <input type="hidden" name="w1" value=""/>
+                                    <div class="row mt-5">
+                                        <p><img id="previewimage" style="display:none;"/></p>
+                                        @if(session('path'))
+                                            <img src="{{ session('path') }}"/>
+                                        @endif
+                                    </div>
+                                </div>
+                                {{--<div class="form-group" style="font-size: 16px  ">--}}
+                                {{--<label>{{__('dashboard.Purchase Option')}}</label>--}}
+                                {{--<br>--}}
+                                {{--<input type="radio" name="delivery_option" value="true" id="true_delivery" checked>--}}
+                                {{--<label style="padding-right:20px"--}}
+                                {{--for="true_delivery"><b>{{__('dashboard.Deliver')}}</b></label>--}}
+                                {{--<input type="radio" name="delivery_option" value="false"--}}
+                                {{--id="false_delivery">--}}
+                                {{--<label style="padding-right:20px"--}}
+                                {{--for="false_delivery"><b>{{__('dashboard.View only')}}</b></label>--}}
+                                {{--</div>--}}
 
                                 <hr>
                                 {{__('dashboard.Options Manage')}}
@@ -169,7 +193,8 @@
                                         <th>{{__('dashboard.Marked price')}}</th>
                                         <th>{{__('dashboard.Sell price')}}</th>
                                         <th>{{__('dashboard.Discount')}}</th>
-                                        <th>{{__('dashboard.Quantity')}}</th>
+                                        <th class="check-delivery-option" colspan="2">{{__('dashboard.Stock')}}
+                                            /{{__('dashboard.Quantity')}}</th>
                                         <th>{{__('dashboard.Action')}}</th>
                                     </tr>
                                     </thead>
@@ -181,16 +206,23 @@
                                         </td>
                                         <td><input type="text" name="size[]" class="form-control"></td>
                                         <td><input type="text" min="0" name="marked_price[]"
-                                                   class="form-control marked-price" required></td>
+                                                   class="form-control marked-price"></td>
                                         <td><input type="text" min="0" name="sell_price[]"
                                                    class="form-control sell-price" required></td>
                                         <td><input type="text" min="0" max="99" name="discount_price[]"
-                                                   class="form-control discount" required></td>
-                                        <td><input type="number" min="0" name="quantity[]" class="form-control"
-                                                   required></td>
+                                                   class="form-control discount"></td>
+                                        <td class="check-delivery-option"><label>ManageStock
+                                                <input type="checkbox" class="stock-option-input-0" checked>
+                                            </label>
+                                            <input type="hidden" class="stock-option-value" name="stock_option[]"
+                                                   value="true">
+                                        </td>
+                                        <td class="check-delivery-option">
+                                            <span class="quantity">Total quantity</span>
+                                            <input type="number" min="0" name="quantity[]" class="form-control">
+                                        </td>
                                         <td>
-                                            <a class="btn red remove-option" data-option="0"><i
-                                                        class="fa fa-trash"></i></a>
+                                            <a class="btn red remove-option" data-option="0"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -222,4 +254,11 @@
 @section('scripts')
     <script src="{{URL::asset('backend/js/merchant/create-product-merchant.js')}}"
             type="text/javascript"></script>
+
+    <script src="{{ asset('backend/plugin/scripts/jquery.imgareaselect.min.js') }}"></script>
+    <script src="{{ asset('backend/js/merchant/imageselect-config.js') }}"></script>
 @stop
+
+@section('stylesheets')
+    <link rel="stylesheet" href="{{ asset('backend/plugin/css/imgareaselect-default.css') }}">
+@endsection
