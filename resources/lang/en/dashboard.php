@@ -198,7 +198,7 @@ return [
 
     "Edit Content" => "Edit Content",
     "Banner Image" => "Banner Image",
-    "Upload image with min-dimension : 825 x 412 pixels" => "Upload image with min-dimension : 825 x 412 pixels",
+    "Upload image with min-dimension : 825 x 512 pixels" => "Upload image with min-dimension : 825 x 512 pixels",
     "Banner Type" => "Banner Type",
     "Link" => "Link",
     "Product" => "Product",

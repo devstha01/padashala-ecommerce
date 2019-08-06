@@ -3,71 +3,72 @@
     <main class="main">
         <div class="home-top-container">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div id="homedemo" class="carousel slide" data-ride="carousel">
-                            <!-- Indicators -->
-                            <ul class="carousel-indicators">
-                                @foreach($homebanners as $k1=>$homebanner)
-                                    <li data-target="#homedemo" data-slide-to="{{$k1}}"
-                                        class="{{($k1==0)?'active':''}}"></li>
-                                @endforeach
-                            </ul>
+                <div class="whiteBox">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <div id="market">
+                                <div class="side-custom-menu">
+                                    <h2><span id="mainMarket"><i class="fa fa-list"></i></span>My Categories
+                                        <a href="{{route('all-categories')}}">see all
+                                            <i class="fa fa-arrow-circle-right"></i></a></h2>
 
-                            <!-- The slideshow -->
-                            <div class="carousel-inner">
-                                @foreach($homebanners as $k1=>$homebanner)
-                                    <div class="carousel-item {{($k1==0)?'active':''}}">
-                                        <a href="{{$homebanner->url}}">
-                                            <img src="{{asset('image/homebanner/'.$homebanner->image)}}" alt="_">
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <!-- Left and right controls -->
-                            <a class="carousel-control-prev" href="#homedemo" data-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                            </a>
-                            <a class="carousel-control-next" href="#homedemo" data-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </a>
-
-                        </div><!-- End .col-lg-9 -->
-                    </div><!-- End .home-slider -->
-                    <div class="col-lg-4">
-                        <div id="allDeals">
-                            <div id="fixedBox">
-                                {{__('dashboard.Latest Products')}}
-                            </div>
-                            <div id="dealsBox">
-                                @foreach($latest_products as $key=>$latest_prod)
-                                    <div id="stealDeal">
-                                        <a href="{{url('product/'.$latest_prod->slug)}}">
-                                            <div id="stealDealImageDiv">
-                                                <span class="helper"></span>
-                                                <img alt=" "
-                                                     src='{{asset('image/products/'.$latest_prod->featured_image)}}'/>
-                                            </div>
-                                            <div id="stealDealDes">
-                                                <p id="stitle">{{ $latest_prod->name }}</p>
-                                                @if(count($latest_prod->getProductVariant->where('status',1)) === 0)
-                                                    {{($latest_prod->discount ==0)?'$'.$latest_prod->sell_price:intval($latest_prod->discount).'% Off'}}
-                                                @else
-                                                    <?php
-                                                    $item = $latest_prod->getProductVariant->where('status', 1)->first()?>
-                                                    {{($item->discount ==0)?'$'.$item->sell_price:intval($item->discount).'% Off'}}
+                                    <div class="side-menu-body">
+                                        <ul>
+                                            @foreach($home_categories as $category)
+                                                @if($loop->index <8)
+                                                    <li>
+                                                        <a href="{{route('product-by-category',['type'=>'category','slug'=>$category->slug])}}">
+                                                            {{$category->name}}</a>
+                                                    </li>
                                                 @endif
-                                                {{--30% off--}}
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div><!-- End .row -->
-                        </div><!-- End .container -->
-                    </div><!-- End .home-top-container -->
+                                            @endforeach
+                                        </ul>
+                                    </div><!-- End .side-menu-body -->
+                                </div><!-- End .side-custom-menu -->
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div id="homedemo" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ul class="carousel-indicators">
+                                    @foreach($homebanners as $k1=>$homebanner)
+                                        <li data-target="#homedemo" data-slide-to="{{$k1}}"
+                                            class="{{($k1==0)?'active':''}}"></li>
+                                    @endforeach
+                                </ul>
+
+                                <!-- The slideshow -->
+                                <div class="carousel-inner">
+                                    @foreach($homebanners as $k1=>$homebanner)
+                                        <div class="carousel-item {{($k1==0)?'active':''}}">
+                                            <a href="{{$homebanner->url}}">
+                                                <img src="{{asset('image/homebanner/'.$homebanner->image)}}" alt="_">
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="carousel-control-prev" href="#homedemo" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#homedemo" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </a>
+
+                            </div><!-- End .col-lg-9 -->
+                        </div>
+
+                        <div class="col-md-3 col-sm-12">
+                            <div id="rightImg">
+                                <img src="/frontend/mobile.jpg" alt=" ">
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <br>
+
                 <div class="info-boxes-container">
                     <div class="container">
                         <div class="info-box">
@@ -338,6 +339,7 @@
             font-weight: 600;
         }
     </style>
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/padashala.css')}}">
 @endsection
 
 @section('scripts')

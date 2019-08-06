@@ -126,17 +126,14 @@
                         <label class="custom-lead-1 mr-3 option-size-title">{{__('dashboard.Size')}}:</label>
 
                         @forelse($options as $key=>$variant)
-                            @if(count($options) === 1 && empty($variant->size) && $variant->color_id ===1)
-                            @else
-                                <label class="mr-3  color-options color-option-{{$variant->color_id}}
-                                {{$variant->color_id ===($colors->first()->id??0)?'':'hide-size'}}
-                                {{$loop->index==0?'highlight-checked':''}}">
-                                    {{$variant->size?? ' - '}}
-                                    <input type="radio" name="variant" class="variant"
-                                           data-obj="{{$variant}}" {{$loop->index==0?'checked':''}}>
-                                    <span class="checkmark"></span>
-                                </label>
-                            @endif
+                            <label class="mr-3  color-options color-option-{{$variant->color_id}}
+                            {{$variant->color_id ===($colors->first()->id??0)?'':'hide-size'}}
+                            {{$loop->index==0?'highlight-checked':''}}">
+                                {{$variant->size?? ' - '}}
+                                <input type="radio" name="variant" class="variant"
+                                       data-obj="{{$variant}}" {{$loop->index==0?'checked':''}}>
+                                <span class="checkmark"></span>
+                            </label>
                         @empty
                         @endforelse
                     </div>
@@ -148,26 +145,26 @@
                     @endif
                 </div><!-- End .product-filters-container -->
 
-                    <div class="product-action product-all-icons">
-                        <div class="product-single-qty">
-                            <input class="horizontal-quantity form-control number-min-max" id="count" type="number"
-                                   name="qty">
-                            <input type="hidden" class="max-value" value="{{$product->quantity}}">
+                <div class="product-action product-all-icons">
+                    <div class="product-single-qty">
+                        <input class="horizontal-quantity form-control number-min-max" id="count" type="number"
+                               name="qty">
+                        <input type="hidden" class="max-value" value="{{$product->quantity}}">
 
-                        </div><!-- End .product-single-qty -->
-                        <form action="{{ route('cart.store', $product) }}" method="POST" id="addCart"
-                              style="margin-top: 50px">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <button type="submit"
-                                    class="btn btn-product cart-btn paction add-cart">{{__('front.Add to cart')}}</button>
-                            <div>
+                    </div><!-- End .product-single-qty -->
+                    <form action="{{ route('cart.store', $product) }}" method="POST" id="addCart"
+                          style="margin-top: 50px">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <button type="submit"
+                                class="btn btn-product cart-btn paction add-cart">{{__('front.Add to cart')}}</button>
+                        <div>
                         <span class="alert alert-info fa fa-shopping-cart" style="position: absolute;display:none"
                               id="cart-message"></span>
-                            </div>
-                        </form>
-                        <br>
-                    </div>
+                        </div>
+                    </form>
+                    <br>
+                </div>
             </div><!-- End .product-single-details -->
         </div><!-- End .col-lg-5 -->
     </div><!-- End .row -->

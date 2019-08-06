@@ -69,6 +69,7 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::post('item/status/{id}', 'ListController@itemStatusChange')->name('admin-item-status-change');
         Route::post('item/shipping/{id}', 'ListController@itemShipping')->name('admin-item-shipping');
 
+
         Route::get('featured-product-request/{id}', 'ListController@featuredProductRequest')->name('admin-featured-product-request');
 
 

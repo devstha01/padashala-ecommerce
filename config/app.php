@@ -182,6 +182,7 @@ return [
 
         Spatie\Permission\PermissionServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -238,6 +239,7 @@ return [
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'DomPDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 ];

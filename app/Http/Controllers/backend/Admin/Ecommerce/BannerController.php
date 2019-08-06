@@ -65,7 +65,7 @@ class BannerController extends Controller
                 File::makeDirectory($destinationPath, 0777, true, true);
             }
             $img = Image::make($image->getRealPath());
-            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(825, 412)->save($destinationPath . '/' . $validated['image']);
+            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(825, 512)->save($destinationPath . '/' . $validated['image']);
         }
 
         if (HomeBanner::create($validated))
@@ -106,7 +106,7 @@ class BannerController extends Controller
                 File::makeDirectory($destinationPath, 0777, true, true);
             }
             $img = Image::make($image->getRealPath());
-            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(825, 412)->save($destinationPath . '/' . $validated['image']);
+            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(825, 512)->save($destinationPath . '/' . $validated['image']);
             $old_img = public_path('image/homebanner/' . $homebanner->image);
             if (File::exists($old_img)) {
                 File::delete($old_img);
