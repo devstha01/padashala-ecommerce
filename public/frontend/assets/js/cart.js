@@ -50,6 +50,14 @@ $(document).on('click', '#addCart', function (e) {
     });
 });
 
+var countcolorLabel = $('.option-color-list').find('a.color-select').length;
+if (countcolorLabel === 0)
+    $('.option-color-title').fadeOut();
+
+var countLabel = $('.option-size-list').find('label.color-options').length;
+if (countLabel === 0)
+    $('.option-size-title').fadeOut();
+
 function highlightChecked() {
     $('input.variant').parent().removeClass('highlight-checked');
     $('input.variant:checked').parent().addClass('highlight-checked');
@@ -72,27 +80,53 @@ $('.color-select').on('click', function () {
 //Variant price changes
 var obj = $('.variant:checked').data('obj');
 if (obj !== undefined) {
-    $('.old-price-cart').html('$ ' + obj.marked_price);
-    $('.product-price-cart').html('$ ' + obj.sell_price);
-    $('.max-value').val(obj.quantity);
-    if (obj.quantity == 0)
-        $('#low-stock-warning').html('Out of stock!');
-    else if (obj.quantity < 10)
-        $('#low-stock-warning').html('Only ' + obj.quantity + ' available in stock. Order soon!');
+    if (obj.marked_price != obj.sell_price)
+        $('.old-price-cart').html(cuSymbol() + ' ' + cuConvert(obj.marked_price));
     else
-        $('#low-stock-warning').html('');
+        $('.old-price-cart').html('');
+
+    $('.product-price-cart').html(cuSymbol()+' ' + cuConvert(obj.sell_price));
+    $('.max-value').val(obj.quantity);
+    if (obj.stock_option == 0) {
+        if (obj.quantity == 0)
+            $('#low-stock-warning').html('Out of stock!');
+        else if (obj.quantity < 50)
+            $('#low-stock-warning').html('Purchase limit: ' + obj.quantity);
+        else
+            $('#low-stock-warning').html('');
+    } else {
+        if (obj.quantity == 0)
+            $('#low-stock-warning').html('Out of stock!');
+        else if (obj.quantity < 10)
+            $('#low-stock-warning').html('Only ' + obj.quantity + ' available in stock. Order soon!');
+        else
+            $('#low-stock-warning').html('');
+    }
 }
 $('.variant').on('change', function () {
     var obj = $(this).data('obj');
-    $('.old-price-cart').html('$ ' + obj.marked_price);
-    $('.product-price-cart').html('$ ' + obj.sell_price);
-    $('.max-value').val(obj.quantity);
-    if (obj.quantity == 0)
-        $('#low-stock-warning').html('Out of stock!');
-    else if (obj.quantity < 10)
-        $('#low-stock-warning').html('Only ' + obj.quantity + ' available in stock. Order soon!');
+    if (obj.marked_price !== obj.sell_price)
+        $('.old-price-cart').html(cuSymbol()+' ' + cuConvert(obj.marked_price));
     else
-        $('#low-stock-warning').html('');
+        $('.old-price-cart').html('');
+
+    $('.product-price-cart').html(cuSymbol()+' ' + cuConvert(obj.sell_price));
+    $('.max-value').val(obj.quantity);
+    if (obj.stock_option == 0) {
+        if (obj.quantity == 0)
+            $('#low-stock-warning').html('Out of stock!');
+        else if (obj.quantity < 50)
+            $('#low-stock-warning').html('Purchase limit: ' + obj.quantity);
+        else
+            $('#low-stock-warning').html('');
+    } else {
+        if (obj.quantity == 0)
+            $('#low-stock-warning').html('Out of stock!');
+        else if (obj.quantity < 10)
+            $('#low-stock-warning').html('Only ' + obj.quantity + ' available in stock. Order soon!');
+        else
+            $('#low-stock-warning').html('');
+    }
     highlightChecked();
 });
 
@@ -102,7 +136,7 @@ function cartDropdownCount() {
     $.get(serverCustom.base_url + '/api/get-cart-session', function (data) {
         // console.log(data);
         $('.cart-count').html(data.count);
-        $('.cart-total-price').html('$ ' + data.total);
+        $('.cart-total-price').html(cuSymbol()+' ' + cuConvert(data.total));
         var listAppend = '';
         $.each(data.list, function (index, value) {
             var out_of_stock = '';
@@ -118,7 +152,7 @@ function cartDropdownCount() {
                 '                    <div class="product-details">\n' +
                 '                        <h4 class="product-title"><a href="' + serverCustom.base_url + '/product/' + value.options.slug + '">' + value.name + variant_name + '</a></h4>\n' +
                 '                        <span class="cart-product-info">\n' +
-                '                            <span class="cart-product-qty">' + value.qty + '</span>x $' + value.price + '\n' +
+                '                            <span class="cart-product-qty">' + value.qty + '</span>x '+ cuSymbol()+' ' + cuConvert(value.price) + '\n' +
                 '                        </span><br>' + out_of_stock +
                 '                    </div>\n' +
                 '                    <figure class="product-image-container">\n' +

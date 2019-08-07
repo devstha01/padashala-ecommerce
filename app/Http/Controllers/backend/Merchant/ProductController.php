@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend\Merchant;
 
+use App\ConvertCurrencyFacade;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\ColorImage;
@@ -41,6 +42,18 @@ class ProductController extends Controller
             return $next($request);
         });
     }
+//
+//    function purchaseOption(Request $request)
+//    {
+//        $option = ($request->delivery_option == 'true') ? 1 : 0;
+//        $merchant = Merchant::find($this->_merchant_id);
+//        $merchant->update(['purchase_option' => $option]);
+//        $products = $merchant->getBusiness->getProducts;
+//        foreach ($products as $item)
+//            $item->update(['delivery_option' => $option]);
+//        return redirect()->back()->with('info', 'Purchase option updated');
+//    }
+
 
     function viewProduct()
     {
@@ -50,6 +63,8 @@ class ProductController extends Controller
         return view($this->_path . 'view-product', $this->_data);
     }
 
+
+
     function viewProductRequest()
     {
         $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
@@ -57,6 +72,7 @@ class ProductController extends Controller
         $this->_data['products'] = Product::where('merchant_business_id', $business_id)->where('admin_flag', 0)->get();
         return view($this->_path . 'request-product', $this->_data);
     }
+
 
     function createProduct()
     {
@@ -75,6 +91,23 @@ class ProductController extends Controller
 //        }
 //        $this->_data['categories'] = collect($data);
         return view($this->_path . 'create-product', $this->_data);
+    }
+
+    function editProductGeneralTab($slug)
+    {
+        return $this->editProduct($slug);
+    }
+
+    function editProductImageTab($slug)
+    {
+        session()->flash('active', 'image');
+        return $this->editProduct($slug);
+    }
+
+    function editProductVariantTab($slug)
+    {
+        session()->flash('active', 'variant');
+        return $this->editProduct($slug);
     }
 
     function editProduct($slug)
@@ -96,7 +129,18 @@ class ProductController extends Controller
         if ($this->_data['product'] = Product::where('slug', $slug)->first()) {
             $this->_data['options'] = ProductVariant::where('product_id', $this->_data['product']->id)->where('status', 1)->get()->groupBy('color_id');
             $this->_data['colors'] = ProductVariant::where('product_id', $this->_data['product']->id)->where('status', 1)->pluck('color_id')->toArray();
-            return view($this->_path . 'edit-product', $this->_data);
+
+            switch (session('active')) {
+                case 'image':
+                    return view($this->_path . 'tab-content.edit-product-image', $this->_data);
+                    break;
+                case 'variant':
+                    return view($this->_path . 'tab-content.edit-product-variant', $this->_data);
+                    break;
+                default:
+                    return view($this->_path . 'tab-content.edit-product', $this->_data);
+                    break;
+            }
         }
         return redirect()->to(route('create-product-merchant'));
     }
@@ -107,11 +151,14 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'category_id' => 'required|not_in:0',
+            'detail' => 'max:100',
 //            'sub_category_id' => 'required|not_in:0',
 //            'sub_child_category_id' => 'required|not_in:0',
 //            'merchant_business_id' => 'required|not_in:0',
             'featured_image' => 'required',
             'product_share' => 'required|numeric|min:0|max:100',
+
+//            'delivery_option' => 'required',
 //            'marked_price' => 'required|numeric|min:0',
 //            'sell_price' => 'required|numeric|min:0',
 //            'discount_price' => 'required|numeric|min:0|max:99'
@@ -138,6 +185,8 @@ class ProductController extends Controller
         $validated['discount'] = 0;
         $validated['quantity'] = 0;
         $validated['merchant_business_id'] = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id;
+
+        $validated['delivery_option'] = Merchant::find($this->_merchant_id)->purchase_option ?? 1;
         $validated['share_percentage'] = $request->product_share;
 
         if ($request->hasFile('featured_image')) {
@@ -149,18 +198,20 @@ class ProductController extends Controller
                 File::makeDirectory($destinationPath, 0777, true, true);
             }
             $img = Image::make($image->getRealPath());
+            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(800, 800)->save($destinationPath . '/' . $validated['featured_image']);
 
-            if ($img->height() > $img->width()) {
-                $img = $img->resize(null, 800, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            } else {
-                $img = $img->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
-            $saveimage->save($destinationPath . '/' . $validated['featured_image']);
+            //
+//            if ($img->height() > $img->width()) {
+//                $img = $img->resize(null, 800, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            } else {
+//                $img = $img->resize(800, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            }
+//            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
+//            $saveimage->save($destinationPath . '/' . $validated['featured_image']);
         }
 
         $count = count($request->color ?? []);
@@ -170,10 +221,11 @@ class ProductController extends Controller
                     'name' => 'Color:' . Color::find($request->color[$i])->name . ' | Size: ' . $request->size[$i],
                     'color_id' => $request->color[$i],
                     'size' => $request->size[$i],
-                    'marked_price' => $request->marked_price[$i],
-                    'sell_price' => $request->sell_price[$i],
-                    'discount' => $request->discount_price[$i],
-                    'quantity' => $request->quantity[$i],
+                    'marked_price' => ($request->marked_price[$i] ?? $request->sell_price[$i]),
+                    'sell_price' => ($request->sell_price[$i]),
+                    'discount' => $request->discount_price[$i] ?? 0,
+                    'quantity' => $request->quantity[$i] ?? 0,
+                    'stock_option' => ($request->stock_option[$i] == 'true') ? 1 : 0,
                     'product_id' => $prod->id,
                 ];
                 ProductVariant::create($options);
@@ -187,7 +239,9 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
+//            'delivery_option' => 'required',
             'category_id' => 'required|not_in:0',
+            'detail' => 'max:100',
 //            'sub_category_id' => 'required|not_in:0',
 //            'sub_child_category_id' => 'required|not_in:0',
 //            'merchant_business_id' => 'required|not_in:0',
@@ -204,6 +258,7 @@ class ProductController extends Controller
 //        $validated['sell_price'] = number_format($request->sell_price ?? 0, 2, '.', '');
 //        $validated['discount'] = number_format($request->discount_price ?? 0, 2, '.', '');
 //        $validated['quantity'] = $request->quantity;
+//        $validated['delivery_option'] = Merchant::find($this->_merchant_id)->purchase_option ?? 1;
 
         $prod = Product::find($id);
 
@@ -219,18 +274,23 @@ class ProductController extends Controller
             }
 
             $img = Image::make($image->getRealPath());
-
-            if ($img->height() > $img->width()) {
-                $img = $img->resize(null, 800, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            } else {
-                $img = $img->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
-            $saveimage->save($destinationPath . '/' . $validated['featured_image']);
+            $img
+                ->crop($request->w1, $request->h1, $request->x1, $request->y1)
+                ->resize(800, 800)
+                ->save($destinationPath . '/' . $validated['featured_image']);
+//            $img = Image::make($image->getRealPath());
+//
+//            if ($img->height() > $img->width()) {
+//                $img = $img->resize(null, 800, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            } else {
+//                $img = $img->resize(800, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            }
+//            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
+//            $saveimage->save($destinationPath . '/' . $validated['featured_image']);
 
             $old_img = public_path('image/products/' . $prod->featured_image);
             if (File::exists($old_img)) {
@@ -251,29 +311,34 @@ class ProductController extends Controller
             return redirect()->back();
         $input['product_id'] = $request->id;
         if ($request->hasFile('image')) {
-            foreach ($request->image as $image) {
-                $destinationPath = public_path('image/products');
-                if (!File::exists($destinationPath)) {
-                    File::makeDirectory($destinationPath, 0777, true, true);
-                }
-                $input['image'] = md5(time() . $image->getClientOriginalName()) . '.png';
-//                . $image->getClientOriginalExtension();
-                $img = Image::make($image->getRealPath());
-
-                if ($img->height() > $img->width()) {
-                    $img = $img->resize(null, 800, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                } else {
-                    $img = $img->resize(800, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                }
-                $saveimage = Image::canvas(800, 800)->insert($img, 'center');
-                $saveimage->save($destinationPath . '/' . $input['image']);
-
-                ProductImage::create($input);
+            $image = $request->image;
+//            foreach ($request->image as $image) {
+            $destinationPath = public_path('image/products');
+            if (!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0777, true, true);
             }
+            $input['image'] = md5(time() . $image->getClientOriginalName()) . '.png';
+//                . $image->getClientOriginalExtension();
+
+            $img = Image::make($image->getRealPath());
+            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(800, 800)->save($destinationPath . '/' . $input['image']);
+
+//            $img = Image::make($image->getRealPath());
+//
+//            if ($img->height() > $img->width()) {
+//                $img = $img->resize(null, 800, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            } else {
+//                $img = $img->resize(800, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            }
+//            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
+//            $saveimage->save($destinationPath . '/' . $input['image']);
+
+            ProductImage::create($input);
+//            }
             return redirect()->back()->with('success', __('message.Images added successfully'));
         }
         return redirect()->back()->with('fail', __('message.Image field is required'));
@@ -288,10 +353,11 @@ class ProductController extends Controller
                 'name' => 'Color:' . Color::find($request->color[$i])->name . ' | Size: ' . $request->size[$i],
                 'color_id' => $request->color[$i],
                 'size' => $request->size[$i],
-                'marked_price' => $request->marked_price[$i],
-                'sell_price' => $request->sell_price[$i],
-                'discount' => $request->discount_price[$i],
-                'quantity' => $request->quantity[$i],
+                'marked_price' => ($request->marked_price[$i] ?? $request->sell_price[$i]),
+                'sell_price' => ($request->sell_price[$i]),
+                'discount' => $request->discount_price[$i] ?? 0,
+                'quantity' => $request->quantity[$i] ?? 0,
+                'stock_option' => ($request->stock_option[$i] == 'true') ? 1 : 0,
                 'product_id' => $id,
             ];
             ProductVariant::create($options);
@@ -303,22 +369,26 @@ class ProductController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'option_id' => 'required',
-            'marked_price' => 'required|numeric|min:0',
+//            'marked_price' => 'required|numeric|min:0',
             'sell_price' => 'required|numeric|min:0',
-            'discount_price' => 'required|numeric|min:0|max:99',
-            'quantity' => 'required|numeric|min:0',
+//            'discount_price' => 'required|numeric|min:0|max:99',
+            'quantity' => 'sometimes|numeric|min:0',
         ]);
         if ($valid->fails()) return response()->json(['status' => false, 'message' => $valid->errors()->first()]);
         $variant = ProductVariant::find($request->option_id);
         if (!$variant) return response()->json(['status' => false, 'message' => 'Invalid option!']);
+
+
         $variant->update([
             'name' => 'Color:' . Color::find($variant->color_id)->name . ' | Size: ' . $request->size,
             'size' => $request->size,
-            'quantity' => $request->quantity,
-            'marked_price' => $request->marked_price,
-            'sell_price' => $request->sell_price,
-            'discount' => $request->discount_price,
+            'quantity' => $request->quantity ?? 0,
+            'marked_price' => ($request->marked_price ?? $request->sell_price),
+            'sell_price' => ($request->sell_price),
+            'discount' => $request->discount_price ?? 0,
+            'stock_option' => ($request->stock_option == 'true') ? 1 : 0,
         ]);
+
         if ($variant) return response()->json(['status' => true, 'message' => 'Option updated!']);
     }
 
@@ -340,19 +410,23 @@ class ProductController extends Controller
             if (!File::exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0777, true, true);
             }
-            $img = Image::make($image->getRealPath());
 
-            if ($img->height() > $img->width()) {
-                $img = $img->resize(null, 800, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            } else {
-                $img = $img->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
-            $saveimage->save($destinationPath . '/' . $validated['image']);
+            $img = Image::make($image->getRealPath());
+            $img->crop($request->w1, $request->h1, $request->x1, $request->y1)->resize(800, 800)->save($destinationPath . '/' . $validated['image']);
+
+//            $img = Image::make($image->getRealPath());
+//
+//            if ($img->height() > $img->width()) {
+//                $img = $img->resize(null, 800, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            } else {
+//                $img = $img->resize(800, null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//            }
+//            $saveimage = Image::canvas(800, 800)->insert($img, 'center');
+//            $saveimage->save($destinationPath . '/' . $validated['image']);
 
             $update = ColorImage::where('product_id', $request->product_id)->where('color_id', $request->color_id)->first();
             if (!$update)
@@ -368,34 +442,34 @@ class ProductController extends Controller
         }
         return redirect()->back()->with('fail', 'Something went wrong');
     }
-
-    function editProductVariant(Request $request)
-    {
-        session()->flash('active', 'variant');
-        if (!isset($request->id))
-            return redirect()->back();
-
-        $validate = Validator::make($request->all(), [
-            'name' => 'required',
-            'marked_price' => 'required|numeric|min:0',
-            'sell_price' => 'required|numeric|min:0',
-            'discount_price' => 'required|numeric|min:0|max:99'
-        ]);
-
-        if ($validate->fails()) return redirect()->back()->with('fail', $validate->errors()->first());
-
-        $input = [
-            'name' => $request->name,
-            'marked_price' => number_format($request->marked_price ?? 0, 2, '.', ''),
-            'sell_price' => number_format($request->sell_price ?? 0, 2, '.', ''),
-            'discount' => number_format($request->discount_price ?? 0, 2, '.', ''),
-            'quantity' => $request->quantity ?? 0,
-        ];
-        $var = ProductVariant::find($request->id);
-        if ($var->update($input))
-            return redirect()->back()->with('success', __('message.Product variant updated successfully'));
-        return redirect()->back()->with('fail', __('message.Something went wrong'));
-    }
+//
+//    function editProductVariant(Request $request)
+//    {
+//        session()->flash('active', 'variant');
+//        if (!isset($request->id))
+//            return redirect()->back();
+//
+//        $validate = Validator::make($request->all(), [
+//            'name' => 'required',
+////            'marked_price' => 'required|numeric|min:0',
+//            'sell_price' => 'required|numeric|min:0',
+////            'discount_price' => 'required|numeric|min:0|max:99'
+//        ]);
+//
+//        if ($validate->fails()) return redirect()->back()->with('fail', $validate->errors()->first());
+//
+//        $input = [
+//            'name' => $request->name,
+//            'marked_price' => number_format($request->marked_price ?? $request->sell_price, 2, '.', ''),
+//            'sell_price' => number_format($request->sell_price ?? 0, 2, '.', ''),
+//            'discount' => number_format($request->discount_price ?? 0, 2, '.', ''),
+//            'quantity' => $request->quantity ?? 0,
+//        ];
+//        $var = ProductVariant::find($request->id);
+//        if ($var->update($input))
+//            return redirect()->back()->with('success', __('message.Product variant updated successfully'));
+//        return redirect()->back()->with('fail', __('message.Something went wrong'));
+//    }
 
     function deleteProductVariant($id)
     {
@@ -452,107 +526,4 @@ class ProductController extends Controller
             ]);
         return redirect()->back()->with('success', __('message.Feature request sent'));
     }
-
-
-    function getSearchList(Request $request)
-    {
-        $data['products'] = Product::where('name', 'like', '%' . $request->term . '%')->get() ?? [];
-        return response()->json($data);
-    }
-
-    //CH PRODUCT
-
-    function editCHProduct($slug)
-    {
-        $product = Product::where('slug', $slug)->first();
-        if (!$product)
-            return redirect()->back();
-        $this->_data['product'] = $product;
-        $this->_data['ch_product'] = CHProduct::where('product_id', $product->id)->first();
-        return view($this->_path . 'edit-ch-product', $this->_data);
-    }
-
-    function editCHProductPost($id, Request $request)
-    {
-        $chprod = CHProduct::where('product_id', $id)->first();
-        if (!$chprod) {
-            CHProduct::create([
-                'product_id' => $id,
-                'name' => $request->name,
-                'detail' => $request->detail,
-                'description' => $request->description]);
-        } else {
-            $chprod->update([
-                'name' => $request->name,
-                'detail' => $request->detail,
-                'description' => $request->description]);
-        }
-        return redirect()->back()->with('success', __('message.Product updated successfully'));
-    }
-
-
-    function editCHProductVariant(Request $request)
-    {
-        session()->flash('active', 'variant');
-        if (!isset($request->id))
-            return redirect()->back();
-        $var = CHProductVariant::where('product_variant_id', $request->id)->first();
-        if (!$var) {
-            CHProductVariant::create([
-                'product_variant_id' => $request->id,
-                'name' => $request->name]);
-        } else {
-            $var->update(['name' => $request->name]);
-        }
-        return redirect()->back()->with('success', __('message.Product variant updated successfully'));
-    }
-
-//TRCH PRODUCT
-
-
-    function editTRCHProduct($slug)
-    {
-        $product = Product::where('slug', $slug)->first();
-        if (!$product)
-            return redirect()->back();
-        $this->_data['product'] = $product;
-        $this->_data['trch_product'] = TRCHProduct::where('product_id', $product->id)->first();
-        return view($this->_path . 'edit-trch-product', $this->_data);
-    }
-
-    function editTRCHProductPost($id, Request $request)
-    {
-        $chprod = TRCHProduct::where('product_id', $id)->first();
-        if (!$chprod) {
-            TRCHProduct::create([
-                'product_id' => $id,
-                'name' => $request->name,
-                'detail' => $request->detail,
-                'description' => $request->description]);
-        } else {
-            $chprod->update([
-                'name' => $request->name,
-                'detail' => $request->detail,
-                'description' => $request->description]);
-        }
-        return redirect()->back()->with('success', __('message.Product updated successfully'));
-    }
-
-
-    function editTRCHProductVariant(Request $request)
-    {
-        session()->flash('active', 'variant');
-        if (!isset($request->id))
-            return redirect()->back();
-        $var = TRCHProductVariant::where('product_variant_id', $request->id)->first();
-        if (!$var) {
-            TRCHProductVariant::create([
-                'product_variant_id' => $request->id,
-                'name' => $request->name]);
-        } else {
-            $var->update(['name' => $request->name]);
-        }
-        return redirect()->back()->with('success', __('message.Product variant updated successfully'));
-    }
-
 }

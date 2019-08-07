@@ -106,8 +106,8 @@ return [
     "Bank info updated successfully" => "Bank info updated successfully",
 
 
-    "Successfully paid $:amount in :wallet" => "Successfully paid $:amount in :wallet",
-    "Successfully transferred $:amount in :wallet" => "Successfully transferred $:amount in :wallet",
+    "Successfully paid $:amount in :wallet" => "Successfully paid :amount in :wallet",
+    "Successfully transferred $:amount in :wallet" => "Successfully transferred :amount in :wallet",
     "Status of :user disabled" => "Status of :user disabled",
     "Status of :user enabled" => "Status of :user enabled",
     ":type status changed for :name" => ":type status changed for :name",
@@ -257,4 +257,8 @@ return [
     'Product options added successfully' => ' Product options added successfully ',
     'Product Image added successfully' => ' Product Image added successfully ',
     'Cash Wallet' => ' Cash Wallet ',
+    'Email verification required!' => ' Email verification required! ',
+    'Not available for delivery' => ' Not available for delivery ',
+    'Invalid option for product' => ' Invalid option for product ',
+    'Purchase option changed successfully' => ' Purchase option changed successfully ',
 ];

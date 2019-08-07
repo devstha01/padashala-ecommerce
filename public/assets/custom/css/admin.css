@@ -182,13 +182,9 @@ li.jstree-closed > a .jstree-icon, li.jstree-open > a .jstree-icon {
 }
 
 .page-header-top {
-    /*background: linear-gradient(to right,dodgerblue,transparent,dodgerblue,transparent,dodgerblue,transparent);*/
-    /*background: linear-gradient(to top, #272723, lightcyan);*/
-
-    /*border-top: 1px solid dimgrey;*/
-    /*background: #272730;*/
-    /*background: linear-gradient(45deg, #fff, #fffefd, #fcf9f4, #feca84, #f1bf7b, #d9a96c, #b78b55, #a27d4f) !important;*/
-    background: linear-gradient(45deg, #214f7a, #2f5d87, #36638d, #517ca4, #608bb2, #81a9ce, #aacbe9, #bfd8ef, #dceaf6, #ebf3fa, #f9fbfd, #fff) !important;
+    background: linear-gradient(225deg, #d2606c,
+    /*#2f5d87, #36638d, #517ca4, #608bb2, #81a9ce, #aacbe9, #bfd8ef, #dceaf6, #ebf3fa, #f9fbfd, */
+    #fff) !important;
 }
 
 .page-header .page-header-top .top-menu .navbar-nav > li.dropdown-user > .dropdown-toggle > .username {
@@ -204,7 +200,8 @@ li.jstree-closed > a .jstree-icon, li.jstree-open > a .jstree-icon {
 }
 
 .page-header .page-header-menu {
-    background: #1f4e79;
+    /*background: #1f4e79;*/
+    background: #bf1d2e;
     height: 34px;
 }
 
@@ -460,4 +457,18 @@ li.jstree-closed > a .jstree-icon, li.jstree-open > a .jstree-icon {
     font-size: 16px;
     border-bottom: 1px solid whitesmoke;
     border-left: 1px solid whitesmoke;
+}
+
+#previewimage {
+    width: 800px;
+    margin: 20px;
+    /*border-left: 35px double grey;*/
+    /*border-right: 35px double grey;*/
+    /*border-top: 15px double grey;*/
+    /*border-bottom: 15px double grey;*/
+    border: 15px outset #1f4e79;
+}
+
+.imgareaselect-handle {
+    padding: 4px
 }

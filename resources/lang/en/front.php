@@ -284,7 +284,11 @@ return [
     "Purchase Report" => "Purchase Report",
     "Product Purchase Report" => "Product Purchase Report",
     "Transfer Report" => "Transfer Report",
-    "Sell on " => "Sell on ",
+    "all stores" => "all stores",
+    "Customer Login" => "Customer Login",
+    "Merchant Login" => "Merchant Login",
+    "Request Date" => "Request Date",
+    "Wallet available for payment" => "Wallet available for payment",
 
 ];
 ?>

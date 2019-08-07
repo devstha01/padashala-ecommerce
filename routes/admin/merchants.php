@@ -41,7 +41,12 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::get('add-product/{id}', 'ListController@addProduct')->name('admin-add-product');
         Route::post('add-product/{id}', 'ListController@addProductPost')->name('admin-add-product-post');
 
-        Route::get('edit/{id}', 'ListController@edit')->name('admin-edit-product');
+//        Route::get('edit/{id}', 'ListController@edit')->name('admin-edit-product');
+
+        Route::get('edit/{slug}', 'ListController@editProductGeneralTab')->name('admin-edit-product');
+        Route::get('i-edit/{slug}', 'ListController@editProductImageTab')->name('image-edit-product-admin');
+        Route::get('v-edit/{slug}', 'ListController@editProductVariantTab')->name('variant-edit-product-admin');
+
         Route::post('edit/{id}', 'ListController@editProductPost')->name('admin-edit-product-post');
         Route::post('add-product-images/{id}', 'ListController@addProductImages')->name('admin-add-product-images');
         Route::post('add-product-variant/{id}', 'ListController@addProductVariant')->name('admin-add-product-variant');
@@ -63,6 +68,7 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
 
         Route::post('item/status/{id}', 'ListController@itemStatusChange')->name('admin-item-status-change');
         Route::post('item/shipping/{id}', 'ListController@itemShipping')->name('admin-item-shipping');
+
 
         Route::get('featured-product-request/{id}', 'ListController@featuredProductRequest')->name('admin-featured-product-request');
 

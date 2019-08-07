@@ -1,0 +1,49 @@
+body{
+    background: #e9e9e9;
+}
+
+#market .side-custom-menu h2 {
+    border: 0;
+    background: transparent;
+}
+#market h2 #mainMarket{
+    background: #323232;
+    padding: 3px 6px;
+    border-radius: 50%;
+    margin-right: 3px;
+}
+#market h2 #mainMarket i{
+    color: #fff;
+}
+#market h2 a{
+    font-size: 10px;
+    font-weight: normal;
+    text-transform: capitalize;
+    color: #828282;
+    float: right;
+}
+#market h2 a i{
+    color: #828282;
+}
+#market .side-menu-body{
+    border: 0;
+}
+#market .side-custom-menu ul li a {
+    color: #828282;
+    line-height: 22px;
+}
+
+#rightImg{
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+}
+#rightImg img{
+    height: 360px;
+}
+.whiteBox{
+    background: #fff;
+    margin-top: 25px;
+    border: 1px solid #323232;
+    padding: 1%;
+}

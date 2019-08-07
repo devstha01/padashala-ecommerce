@@ -39,7 +39,7 @@ class ProductSeeder extends Seeder
             ]);
             if ($i < 3) {
                 \App\Models\HomeBanner::create([
-                    'image' => $faker->image(public_path('image/homebanner/'), 825, 412, null, false),
+                    'image' => $faker->image(public_path('image/homebanner/'), 550, 341, null, false),
                     'url' => env('APP_URL') . '/product/' . str_slug($str),
                     'type' => 'product',
                     'slug' => str_slug($str),

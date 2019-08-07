@@ -127,6 +127,11 @@ Route::group(['namespace' => 'backend\Merchant', 'prefix' => 'merchant'], functi
         Route::get('create', 'ProductController@createProduct')->name('create-product-merchant');
         Route::get('edit/{slug}', 'ProductController@editProduct')->name('edit-product-merchant');
         Route::post('create-product-first', 'ProductController@createProductFirst')->name('create-product-first');
+
+        Route::get('edit/{slug}', 'ProductController@editProductGeneralTab')->name('edit-product-merchant');
+        Route::get('i-edit/{slug}', 'ProductController@editProductImageTab')->name('image-edit-product-merchant');
+        Route::get('v-edit/{slug}', 'ProductController@editProductVariantTab')->name('variant-edit-product-merchant');
+
         Route::post('edit/{id}', 'ProductController@editProductPost')->name('edit-product-merchant-post');
 
         Route::post('add-product-images/{id}', 'ProductController@addProductImages')->name('add-product-images-merchant');

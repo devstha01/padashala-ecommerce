@@ -1,0 +1,35 @@
+body {
+    position: relative;
+    min-height: 95vh;
+    margin: 10px 25px;
+    border: 1px solid black;
+    padding: 1px;
+    font-size: 12px;
+}
+
+table {
+    width: 100%;
+    /*margin: 20px auto;*/
+    table-layout: fixed;
+}
+
+.b {
+    font-weight: bold;
+}
+
+.top-left-image {
+    height: 50px;
+}
+
+.bg-grey {
+    background: lightgrey;
+}
+
+.bg-dark-grey {
+    background: darkgrey;
+}
+
+td {
+
+    padding: 2px !important;
+}

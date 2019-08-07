@@ -10,7 +10,7 @@ class ProductVariant extends Model
     protected $table = 'product_variants';
 
     protected $fillable = [
-        'name', 'product_id', 'marked_price', 'sell_price', 'discount', 'quantity', 'status', 'color_id', 'size'
+        'name', 'product_id', 'marked_price', 'sell_price', 'discount', 'quantity', 'status', 'color_id', 'size', 'stock_option'
     ];
 
     protected $appends = ['detail', 'eng_name', 'color_data'];

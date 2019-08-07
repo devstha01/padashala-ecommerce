@@ -37,7 +37,7 @@
                                                         <label for="exampleInputFile1">{{__('dashboard.Banner Image')}}</label>
                                                         <input type="file" id="exampleInputFile1" name="image"
                                                                class="image">
-                                                        <span class="text-info">{{__('dashboard.Upload image with min-dimension : 825 x 412 pixels')}}</span>
+                                                        <span class="text-info">{{__('dashboard.Upload image with min-dimension : 825 x 512 pixels')}}</span>
                                                         <span style="color: red">{{$errors->first('image')??''}}</span>
                                                     </div>
                                                 </div>
@@ -125,18 +125,21 @@
                 // fadeSpeed : 1,
                 show: true,
                 handles: true,
-                minHeight: 412,
-                minWidth: 825,
-                aspectRatio: '825:412',
+                minHeight: 256,
+                minWidth: 412.5,
+                aspectRatio: '825:512',
                 onSelectEnd: function (img, selection) {
-                    console.log(selection);
-                    $('input[name="x1"]').val(selection.x1);
-                    $('input[name="y1"]').val(selection.y1);
-                    $('input[name="h1"]').val(selection.height);
-                    $('input[name="w1"]').val(selection.width);
+                    // console.log(selection);
+                    $('input[name="x1"]').val(maintainRationOnResize(selection.x1, img.naturalWidth));
+                    $('input[name="y1"]').val(maintainRationOnResize(selection.y1, img.naturalWidth));
+                    $('input[name="h1"]').val(maintainRationOnResize(selection.height, img.naturalWidth));
+                    $('input[name="w1"]').val(maintainRationOnResize(selection.width, img.naturalWidth));
                 }
             });
-        });
+
+            function maintainRationOnResize(correction, standard) {
+                return parseInt((correction * standard) / 800);
+            }});
     </script>
 @stop
 
