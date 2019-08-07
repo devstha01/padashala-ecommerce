@@ -12,8 +12,11 @@ trait OrderDeliverTrait
         $category_share = $orderItem->category_share;
         $product_share = $orderItem->product_share;
 
-        $total_percentage = ($category_share + $product_share) / 100;
-
+        if ($product_share > 0) {
+            $total_percentage = ($product_share) / 100;
+        } else {
+            $total_percentage = ($category_share) / 100;
+        }
         $user_id = $orderItem->getOrder->user_id;
         $merchant_id = $orderItem->getProduct->getBusiness->merchant_id;
 

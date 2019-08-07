@@ -83,6 +83,19 @@
 
                                     </div>
 
+
+
+                                    <div class="form-group">
+                                        <label>
+                                            {{__('dashboard.Product Share')}} <span
+                                                    class="m-l-5 text-danger">*</span>
+                                        </label>
+                                        <input type="text" name="product_share" id="product_share"
+                                               class="form-control input-sm"
+                                               value="{{$product->share_percentage??0}}" required>
+                                        <span style="color: red">{{$errors->first('product_share')??''}}</span>
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-sm-8">
 

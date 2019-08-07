@@ -8,7 +8,9 @@
                         <div class="col-md-3 col-sm-12">
                             <div id="market">
                                 <div class="side-custom-menu">
-                                    <h2><span id="mainMarket"><i class="fa fa-list"></i></span>My Categories
+                                    <h2>
+                                        {{--<span id="mainMarket"><i class="fa fa-list"></i></span> --}}
+                                        Categories
                                         <a href="{{route('all-categories')}}">see all
                                             <i class="fa fa-arrow-circle-right"></i></a></h2>
 

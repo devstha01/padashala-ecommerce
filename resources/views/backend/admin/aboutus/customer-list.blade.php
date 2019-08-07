@@ -32,6 +32,7 @@
                                         <th>{{__('dashboard.Name')}}</th>
                                         <th>{{__('dashboard.Address')}}</th>
                                         <th>{{__('dashboard.Created At')}}</th>
+                                        <th>{{__('dashboard.Status')}}</th>
                                         <th>{{__('dashboard.Action')}}</th>
                                     </tr>
                                     </thead>
@@ -44,6 +45,17 @@
                                             <td>{{$user->name}} {{$user->surname}}</td>
                                             <td>{{$user->address}}</td>
                                             <td>{{$user->created_at}}</td>
+                                            <td>
+                                                @if($user->status)
+                                                    <a href="{{route('change-status-customer',$user->id)}}"
+                                                       class="btn "><i class="fa fa-check-circle text-success"></i>
+                                                        Disable</a>
+                                                @else
+                                                    <a href="{{route('change-status-customer',$user->id)}}"
+                                                       class="btn "><i class="fa fa-times-circle text-danger"></i>
+                                                        Enable</a>
+                                                @endif
+                                            </td>
                                             <td><a href="{{route('customer-detail',$user->id)}}"
                                                    class="btn blue">Detail</a></td>
                                         </tr>

@@ -32,7 +32,26 @@ Route::group(['namespace' => 'Aboutus', 'prefix' => 'aboutus'], function () {
 
     Route::group(['middleware' => 'staff_permission:1.Customer.List'], function () {
         Route::get('customer-list', 'AboutController@customerList')->name('customer-list');
+    });
+    Route::group(['middleware' => 'staff_permission:2.Customer.List'], function () {
+        Route::get('customer/{id}/status', 'AboutController@customerChangeStatus')->name('change-status-customer');
+    });
+
+    Route::group(['middleware' => 'staff_permission:1.Customer.Profile'], function () {
         Route::get('customer-detail/{id}', 'AboutController@customerDetail')->name('customer-detail');
+
+    });
+
+    Route::group(['middleware' => 'staff_permission:2.Customer.Profile'], function () {
+        Route::get('customer/{id}/edit', 'AboutController@editCustomer')->name('admin-customer-edit');
+        Route::post('customer/{id}/edit', 'AboutController@updateProfileCustomer')->name('admin-customer-update');
+    });
+
+    Route::group(['middleware' => 'staff_permission:2.Customer.Password'], function () {
+        Route::get('edit-customer/{id}/password', 'AboutController@editMemberPassword')->name('admin-customer-edit-password')->middleware('admin');
+        Route::post('edit-customer/{id}/password', 'AboutController@updateMemberPassword')->name('admin-customer-update-password')->middleware('admin');
+        Route::post('edit-customer/{id}/transaction', 'AboutController@updateMemberTransaction')->name('admin-customer-update-transaction')->middleware('admin');
+
     });
 
 

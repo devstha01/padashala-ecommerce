@@ -1,20 +1,20 @@
 $(function () {
 
-    function categoryShare() {
-        var share_percentage = $('#product_category').find('option:checked').data('share');
-        $('#category_share').val(share_percentage);
-    }
-
-    function netShare() {
-        var net_share = parseFloat($('#category_share').val() || 0) + parseFloat($('#product_share').val() || 0);
-        $('#net_share').val(net_share);
-    }
-
-    categoryShare();
-    netShare();
-    $('#product_share').on('change', function () {
-        netShare()
-    });
+    // function categoryShare() {
+    //     var share_percentage = $('#product_category').find('option:checked').data('share');
+    //     $('#category_share').val(share_percentage);
+    // }
+    //
+    // function netShare() {
+    //     var net_share = parseFloat($('#category_share').val() || 0) + parseFloat($('#product_share').val() || 0);
+    //     $('#net_share').val(net_share);
+    // }
+    //
+    // categoryShare();
+    // netShare();
+    // $('#product_share').on('change', function () {
+    //     netShare()
+    // });
 
     var base_url = serverCustom.base_url;
     $('#product_category').on('change', function () {

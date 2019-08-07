@@ -66,6 +66,16 @@
                                               style="resize: none">{{old('description')??''}}</textarea>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>
+                                        {{__('dashboard.Product Share')}} <span
+                                                class="m-l-5 text-danger">*</span>
+                                    </label>
+                                    <input type="text" name="product_share" id="product_share" class="form-control input-sm"
+                                           value="{{old('product_share')??0}}" required>
+                                    <span style="color: red">{{$errors->first('product_share')??''}}</span>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-8">
 
@@ -124,30 +134,6 @@
                                     </select>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <div class="form-group">
-                                            <label>
-                                                {{__('dashboard.Product Share')}} <span
-                                                        class="m-l-5 text-danger">*</span>
-                                            </label>
-                                            <input type="text" name="product_share" id="product_share" class="form-control input-sm"
-                                                   value="{{old('product_share')??''}}" required>
-                                            <span style="color: red">{{$errors->first('product_share')??''}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>
-                                                {{__('dashboard.Net Share Percentage')}}
-                                            </label>
-                                            <br>
-                                            <input type="text" class="form-control input-sm text-right"
-                                                   readonly="readonly" value="0" id="net_share">
-                                        </div>
-
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputFile1">{{__('dashboard.Featured image')}} <span
