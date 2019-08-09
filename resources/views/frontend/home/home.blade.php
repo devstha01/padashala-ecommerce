@@ -2,7 +2,7 @@
 @section('content')
     <main class="main">
         <div class="home-top-container">
-            <div class="container">
+            <div class="container ">
                 <div class="whiteBox">
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
@@ -63,106 +63,136 @@
                         </div>
 
                         <div class="col-md-3 col-sm-12">
-                            <div id="rightImg">
-                                <img src="/frontend/mobile.jpg" alt=" ">
+                            <div id="allDeals">
+                                <div id="fixedBox">
+                                    {{__('dashboard.Latest Products')}}
+                                </div>
+                                <div id="dealsBox">
+                                    @foreach($latest_products as $key=>$latest_prod)
+                                        <div id="stealDeal">
+                                            <a href="{{url('product/'.$latest_prod->slug)}}">
+                                                <div id="stealDealImageDiv">
+                                                    <span class="helper"></span>
+                                                    <img alt=" "
+                                                         src='{{asset('image/products/'.$latest_prod->featured_image)}}'/>
+                                                </div>
+                                                <div id="stealDealDes">
+                                                    <p id="stitle">{{ $latest_prod->name }}</p>
+                                                    @if(count($latest_prod->getProductVariant->where('status',1)) === 0)
+                                                        {{--                                                    {{($latest_prod->discount ==0)?'$'.$latest_prod->sell_price:intval($latest_prod->discount).'% Off'}}--}}
+                                                    @else
+                                                        <?php
+                                                        $item = $latest_prod->getProductVariant->where('status', 1)->first()?>
+                                                        {{($item->discount ==0)?('$'. ($item->sell_price)):intval($item->discount).'% Off'}}
+                                                    @endif
+                                                    {{--30% off--}}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-
+                        {{--<div id="rightImg">--}}
+                        {{--<img src="/frontend/mobile.jpg" alt=" ">--}}
+                        {{--</div>--}}
                     </div>
-                </div>
 
-                <div class="info-boxes-container">
-                    <div class="container">
-                        <div class="info-box">
-                            <i class="icon-shipping"></i>
-
-                            <div class="info-box-content">
-                                <h4>{{__('front.Shipping Title')}}</h4>
-                                <p>{{__('front.Shipping Detail')}}</p>
-                            </div><!-- End .info-box-content -->
-                        </div><!-- End .info-box -->
-
-                        <div class="info-box">
-                            <i class="icon-us-dollar"></i>
-
-                            <div class="info-box-content">
-                                <h4>{{__('front.Money Title')}}</h4>
-                                <p>{{__('front.Money Detail')}}</p>
-                            </div><!-- End .info-box-content -->
-                        </div><!-- End .info-box -->
-
-                        <div class="info-box">
-                            <i class="icon-support"></i>
-
-                            <div class="info-box-content">
-                                <h4>{{__('front.Support Title')}}</h4>
-                                <p>{{__('front.Support Detail')}}</p>
-                            </div><!-- End .info-box-content -->
-                        </div><!-- End .info-box -->
-                    </div><!-- End .container -->
-                </div><!-- End .info-boxes-container -->
-
-
-            {{--<div class="mb-2"></div><!-- margin -->--}}
-
-            @include('frontend.home.include.featured')
-
-
-            @include('frontend.home.include.flash-sales')
-
-
-
-            <!---------------------------------------Featured Products-------------------------->
-                <div class="featured-section">
-                    <div class="container">
-                        <h2 class="carousel-title">{{__('front.Products')}}</h2>
-
-                        <div class="owl-theme">
-                            <div class="row">
-                                @foreach($latest_products as $key=>$latest_prod)
-                                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                                        <div class="product"> <!--product1--------------->
-                                            <figure class="product-image-container">
-                                                <a href="{{url('product/'.$latest_prod->slug)}}"
-                                                   class="product-image">
-                                                    <img
-                                                            src="{{asset('image/products/'.$latest_prod->featured_image)}}"
-                                                            alt="product">
-                                                </a>
-                                            </figure>
-                                            <div class="product-details">
-
-                                                <h2 class="product-title">
-                                                    <a href="{{url('product/'.$latest_prod->slug)}}">{{$latest_prod->name}}</a>
-                                                </h2>
-                                                <div class="price-box">
-                                                    @if(count($latest_prod->getProductVariant->where('status',1)) === 0)
-                                                        <span
-                                                                class="product-price">${{$latest_prod->sell_price}}</span>
-                                                    @else
-                                                        <span
-                                                                class="product-price">${{$latest_prod->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
-                                                    @endif
-                                                </div><!-- End .price-box -->
-
-
-                                            </div><!-- End .product-details -->
-                                        </div><!-- End .product -->
-                                    </div> <!--end of col-->
-                                @endforeach
-
-                            </div> <!--------end of row-->
-                            <hr>
-
-                            <a href="{{route('search-product',['type'=>'product'])}}" class="btn btn-primary "
-                               style="margin-top: -136px;margin-left:40%;padding:10px 50px"><i
-                                        class="fa fa-shopping-basket fa-2x text-white mr-3"></i> {{__('front.All Products')}}
-                            </a>
-
-                        </div>
-                    </div><!-- End .container -->
                 </div>
             </div>
+
+            <div class="info-boxes-container">
+                <div class="container">
+                    <div class="info-box">
+                        <i class="icon-shipping"></i>
+
+                        <div class="info-box-content">
+                            <h4>{{__('front.Shipping Title')}}</h4>
+                            <p>{{__('front.Shipping Detail')}}</p>
+                        </div><!-- End .info-box-content -->
+                    </div><!-- End .info-box -->
+
+                    <div class="info-box">
+                        <i class="icon-us-dollar"></i>
+
+                        <div class="info-box-content">
+                            <h4>{{__('front.Money Title')}}</h4>
+                            <p>{{__('front.Money Detail')}}</p>
+                        </div><!-- End .info-box-content -->
+                    </div><!-- End .info-box -->
+
+                    <div class="info-box">
+                        <i class="icon-support"></i>
+
+                        <div class="info-box-content">
+                            <h4>{{__('front.Support Title')}}</h4>
+                            <p>{{__('front.Support Detail')}}</p>
+                        </div><!-- End .info-box-content -->
+                    </div><!-- End .info-box -->
+                </div><!-- End .container -->
+            </div><!-- End .info-boxes-container -->
+
+
+        {{--<div class="mb-2"></div><!-- margin -->--}}
+
+        @include('frontend.home.include.featured')
+
+
+        @include('frontend.home.include.flash-sales')
+
+
+
+        <!---------------------------------------Featured Products-------------------------->
+            <div class="featured-section">
+                <div class="container">
+                    <h2 class="carousel-title">{{__('front.Products')}}</h2>
+
+                    <div class="owl-theme">
+                        <div class="row">
+                            @foreach($latest_products as $key=>$latest_prod)
+                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="product"> <!--product1--------------->
+                                        <figure class="product-image-container">
+                                            <a href="{{url('product/'.$latest_prod->slug)}}"
+                                               class="product-image">
+                                                <img
+                                                        src="{{asset('image/products/'.$latest_prod->featured_image)}}"
+                                                        alt="product">
+                                            </a>
+                                        </figure>
+                                        <div class="product-details">
+
+                                            <h2 class="product-title">
+                                                <a href="{{url('product/'.$latest_prod->slug)}}">{{$latest_prod->name}}</a>
+                                            </h2>
+                                            <div class="price-box">
+                                                @if(count($latest_prod->getProductVariant->where('status',1)) === 0)
+                                                    <span
+                                                            class="product-price">${{$latest_prod->sell_price}}</span>
+                                                @else
+                                                    <span
+                                                            class="product-price">${{$latest_prod->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
+                                                @endif
+                                            </div><!-- End .price-box -->
+
+
+                                        </div><!-- End .product-details -->
+                                    </div><!-- End .product -->
+                                </div> <!--end of col-->
+                            @endforeach
+
+                        </div> <!--------end of row-->
+                        <hr>
+
+                        <a href="{{route('search-product',['type'=>'product'])}}" class="btn btn-primary "
+                           style="margin-top: -136px;margin-left:40%;padding:10px 50px"><i
+                                    class="fa fa-shopping-basket fa-2x text-white mr-3"></i> {{__('front.All Products')}}
+                        </a>
+
+                    </div>
+                </div><!-- End .container -->
+            </div>
+        </div>
         </div>
     </main>
 @endsection
@@ -250,7 +280,7 @@
             position: relative;
             overflow-y: scroll;
             overflow-x: hidden;
-            height: 337px;
+            height: 300px;
             background: #f9f9f9;
             border: 2px solid;
             border-color: #f4f4f4 #cbd3d5 #f4f4f4 #f4f4f4;

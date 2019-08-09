@@ -43,18 +43,18 @@
 
                             <b class="lead">{{__('front.Filter By')}}</b>
                             <br>
-                            <b>{{__('front.Categories')}}</b>
-                            <br>
-                            @forelse($all_categories as $category)
-                                <input class="trigger-submit-filter" type="checkbox" name="categories[]"
-                                       value="{{$category->id}}"
-                                       id="category-checkbox-{{$category->id}}"
-                                        {{(in_array($category->id,$checkbox_categories))?'checked':''}}>
-                                <label for="category-checkbox-{{$category->id}}">{{$category->name}}</label>
-                                <br>
-                            @empty
-                            @endforelse
-                            <br>
+                            {{--<b>{{__('front.Categories')}}</b>--}}
+                            {{--<br>--}}
+                            {{--@forelse($all_categories as $category)--}}
+                                {{--<input class="trigger-submit-filter" type="checkbox" name="categories[]"--}}
+                                       {{--value="{{$category->id}}"--}}
+                                       {{--id="category-checkbox-{{$category->id}}"--}}
+                                        {{--{{(in_array($category->id,$checkbox_categories))?'checked':''}}>--}}
+                                {{--<label for="category-checkbox-{{$category->id}}">{{$category->name}}</label>--}}
+                                {{--<br>--}}
+                            {{--@empty--}}
+                            {{--@endforelse--}}
+                            {{--<br>--}}
                             <b>{{__('front.Sell Price')}}</b>
                             <br>
 

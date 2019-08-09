@@ -14,7 +14,7 @@
                             <div class="col-md-6">
                                 <b class="lead">{{$user->name}} {{ $user->surname }}</b>
                                 <hr>
-                                <br><i class="fa fa-user mb-1"><i class="fa fa-key ml-1"></i> {{$user->user_name}}</i>
+                                <br><i class="fa fa-key ml-1"> {{$user->user_name}}</i>
                                 <br><i class="fa fa-envelope mb-1"> {{$user->email}}</i>
                                 <br><i class="fa fa-phone mb-1"> {{$user->contact_number??' -'}}</i>
                                 <br><i class="fa fa-birthday-cake mb-1"> {{$user->dob??' -'}}</i>
