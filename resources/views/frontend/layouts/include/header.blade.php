@@ -66,106 +66,107 @@
             <div class="header-left">
             {{--                @if(Request::path() != '/')--}}
             <!--------------------------------------------CATEGORIES DROPDOWN------------------------>
-                <div id="category">
-                    <h3 id="categories">
-                        <i class="cat-icon fa fa-bars"></i> {{__('front.Categories')}}
-                    </h3>
-                    <div id="dropdown">
-                        <ul>
+                @include('frontend.layouts.include.header-category')
+                {{--<div id="category">--}}
+                    {{--<h3 id="categories">--}}
+                        {{--<i class="cat-icon fa fa-bars"></i> {{__('front.Categories')}}--}}
+                    {{--</h3>--}}
+                    {{--<div id="dropdown">--}}
+                        {{--<ul>--}}
 
-                            @forelse($home_categories as $category)
-                                @if(count($category->getSubCategory->where('status',1)) !== 0)
-                                    <li class="liWithDropdown">
-                                        <a href="{{route('product-by-category',['type'=>'category','slug'=>$category->slug])}}">
-                                                <span class="">
-                                                {{$category->name}}</span></a>
+                            {{--@forelse($home_categories as $category)--}}
+                                {{--@if(count($category->getSubCategory->where('status',1)) !== 0)--}}
+                                    {{--<li class="liWithDropdown">--}}
+                                        {{--<a href="{{route('product-by-category',['type'=>'category','slug'=>$category->slug])}}">--}}
+                                                {{--<span class="">--}}
+                                                {{--{{$category->name}}</span></a>--}}
 
-                                        <ul class="level1">
-                                            @forelse($category->getSubCategory->where('status',1) as $subCategory)
+                                        {{--<ul class="level1">--}}
+                                            {{--@forelse($category->getSubCategory->where('status',1) as $subCategory)--}}
 
-                                                @if(count($subCategory->getSubChildCategory->where('status',1))===0)
-                                                    <li>
-                                                        <a href="{{route('product-by-category',['type'=>'sub-category','slug'=>$subCategory->slug])}}">
-                                                            {{$subCategory->name}}</a>
-                                                    </li>
+                                                {{--@if(count($subCategory->getSubChildCategory->where('status',1))===0)--}}
+                                                    {{--<li>--}}
+                                                        {{--<a href="{{route('product-by-category',['type'=>'sub-category','slug'=>$subCategory->slug])}}">--}}
+                                                            {{--{{$subCategory->name}}</a>--}}
+                                                    {{--</li>--}}
 
-                                                @elseif(count($subCategory->getSubChildCategory->where('status',1))>9)
+                                                {{--@elseif(count($subCategory->getSubChildCategory->where('status',1))>9)--}}
 
-                                                    <li class="liWithDropdown1">
-                                                        <a href="{{route('product-by-category',['type'=>'sub-category','slug'=>$subCategory->slug])}}">
-                                                            <span class="">{{$subCategory->name}}</span></a>
-                                                        <!----------------------->
-                                                        <div class="level2">
-                                                            <div class="row">
-                                                                <div class="col-xs-6 cols colss">
-                                                                    <ul>
-                                                                        @forelse($subCategory->getSubChildCategory->where('status',1) as $key=>$subChildCategory)
-                                                                            @if($key%2 ===0)
-                                                                                <li>
-                                                                                    <a href="{{route('product-by-category',['type'=>'sub-child-category','slug'=>$subChildCategory->slug])}}">
-                                                                                        {{$subChildCategory->name}}</a>
-                                                                                </li>
-                                                                            @endif
-                                                                        @empty
-                                                                        @endforelse
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-xs-6 cols">
-                                                                    <ul>
-                                                                        @forelse($subCategory->getSubChildCategory->where('status',1) as $key=>$subChildCategory)
-                                                                            @if($key%2 !==0)
-                                                                                <li>
-                                                                                    <a href="{{route('product-by-category',['type'=>'sub-child-category','slug'=>$subChildCategory->slug])}}">{{$subChildCategory->name}}</a>
-                                                                                </li>
-                                                                            @endif
-                                                                        @empty
-                                                                        @endforelse
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-
-                                                @else
-                                                    <li class="liWithDropdown1">
-                                                        <a href="{{route('product-by-category',['type'=>'sub-category','slug'=>$subCategory->slug])}}">
-                                                            <span class="">{{$subCategory->name}}</span></a>
-                                                        <!----------------------->
-                                                        <div class="level2">
+                                                    {{--<li class="liWithDropdown1">--}}
+                                                        {{--<a href="{{route('product-by-category',['type'=>'sub-category','slug'=>$subCategory->slug])}}">--}}
+                                                            {{--<span class="">{{$subCategory->name}}</span></a>--}}
+                                                        {{--<!----------------------->--}}
+                                                        {{--<div class="level2">--}}
                                                             {{--<div class="row">--}}
-                                                            <ul>
-
-                                                                @forelse($subCategory->getSubChildCategory->where('status',1) as $subChildCategory)
-                                                                    <li>
-                                                                        <a href="{{route('product-by-category',['type'=>'sub-child-category','slug'=>$subChildCategory->slug])}}">{{$subChildCategory->name}}</a>
-                                                                    </li>
-                                                                @empty
-                                                                @endforelse
-                                                            </ul>
+                                                                {{--<div class="col-xs-6 cols colss">--}}
+                                                                    {{--<ul>--}}
+                                                                        {{--@forelse($subCategory->getSubChildCategory->where('status',1) as $key=>$subChildCategory)--}}
+                                                                            {{--@if($key%2 ===0)--}}
+                                                                                {{--<li>--}}
+                                                                                    {{--<a href="{{route('product-by-category',['type'=>'sub-child-category','slug'=>$subChildCategory->slug])}}">--}}
+                                                                                        {{--{{$subChildCategory->name}}</a>--}}
+                                                                                {{--</li>--}}
+                                                                            {{--@endif--}}
+                                                                        {{--@empty--}}
+                                                                        {{--@endforelse--}}
+                                                                    {{--</ul>--}}
+                                                                {{--</div>--}}
+                                                                {{--<div class="col-xs-6 cols">--}}
+                                                                    {{--<ul>--}}
+                                                                        {{--@forelse($subCategory->getSubChildCategory->where('status',1) as $key=>$subChildCategory)--}}
+                                                                            {{--@if($key%2 !==0)--}}
+                                                                                {{--<li>--}}
+                                                                                    {{--<a href="{{route('product-by-category',['type'=>'sub-child-category','slug'=>$subChildCategory->slug])}}">{{$subChildCategory->name}}</a>--}}
+                                                                                {{--</li>--}}
+                                                                            {{--@endif--}}
+                                                                        {{--@empty--}}
+                                                                        {{--@endforelse--}}
+                                                                    {{--</ul>--}}
+                                                                {{--</div>--}}
                                                             {{--</div>--}}
-                                                        </div>
-                                                    </li>
-                                                @endif
-                                            @empty
-                                            @endforelse
-                                        </ul>
-                                    </li>
-                                @else
-                                    <li>
-                                        <a href="{{route('product-by-category',['type'=>'category','slug'=>$category->slug])}}">
-                                            {{$category->name}}</a>
-                                    </li>
-                                @endif
-                            @empty
-                            @endforelse
-                            <li>
-                                <a href="{{route('all-categories')}}"
-                                   class="text-primary">{{__('front.All Categories')}} </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                                                        {{--</div>--}}
+                                                    {{--</li>--}}
+
+
+                                                {{--@else--}}
+                                                    {{--<li class="liWithDropdown1">--}}
+                                                        {{--<a href="{{route('product-by-category',['type'=>'sub-category','slug'=>$subCategory->slug])}}">--}}
+                                                            {{--<span class="">{{$subCategory->name}}</span></a>--}}
+                                                        {{--<!----------------------->--}}
+                                                        {{--<div class="level2">--}}
+                                                            {{--<div class="row">--}}
+                                                            {{--<ul>--}}
+
+                                                                {{--@forelse($subCategory->getSubChildCategory->where('status',1) as $subChildCategory)--}}
+                                                                    {{--<li>--}}
+                                                                        {{--<a href="{{route('product-by-category',['type'=>'sub-child-category','slug'=>$subChildCategory->slug])}}">{{$subChildCategory->name}}</a>--}}
+                                                                    {{--</li>--}}
+                                                                {{--@empty--}}
+                                                                {{--@endforelse--}}
+                                                            {{--</ul>--}}
+                                                            {{--</div>--}}
+                                                        {{--</div>--}}
+                                                    {{--</li>--}}
+                                                {{--@endif--}}
+                                            {{--@empty--}}
+                                            {{--@endforelse--}}
+                                        {{--</ul>--}}
+                                    {{--</li>--}}
+                                {{--@else--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{route('product-by-category',['type'=>'category','slug'=>$category->slug])}}">--}}
+                                            {{--{{$category->name}}</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                            {{--@empty--}}
+                            {{--@endforelse--}}
+                            {{--<li>--}}
+                                {{--<a href="{{route('all-categories')}}"--}}
+                                   {{--class="text-primary">{{__('front.All Categories')}} </a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 {{--@endif--}}
 
             </div><!-- End .header-left -->
@@ -199,11 +200,11 @@
                                     <li><a href="{{url('member/dashboard')}}" class="">
                                             &nbsp;{{ __('front.Dashboard') }}</a></li>
                                 @endif
-                                <li><a href="{{route('order-list')}}"
+                                <li class="account-no-dropdown"><a href="{{route('order-list')}}"
                                        class="">&nbsp;{{__('front.My Orders')}}</a></li>
                             @else
-                                <li><a href="{{route('checkout-login')}}">{{__('front.Log In')}}</a></li>
-                                <li><a href="{{route('customer-register')}}">{{__('front.Register Free')}}</a></li>
+                                <li class="account-no-dropdown"><a href="{{route('checkout-login')}}">{{__('front.Log In')}}</a></li>
+                                <li class="account-no-dropdown"><a href="{{route('customer-register')}}">{{__('front.Register Free')}}</a></li>
                         @endif
                         <!-- End .header-dropown -->
 

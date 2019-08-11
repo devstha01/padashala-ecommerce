@@ -18,8 +18,8 @@
                             </div>
                             <div class="col-sm-6">
                                 {{--<h3>--}}
-                                    {{--<i class="fa mb-1 package-{{$user->getAsset->getPackage->name}}">{{__('front.Package')}}--}}
-                                        {{--: {{$user->getAsset->getPackage->name}}</i>--}}
+                                {{--<i class="fa mb-1 package-{{$user->getAsset->getPackage->name}}">{{__('front.Package')}}--}}
+                                {{--: {{$user->getAsset->getPackage->name}}</i>--}}
 
                                 {{--</h3>--}}
                             </div>
@@ -75,16 +75,20 @@
                                 </div>
                             </a>
                         </div>
-                        {{--<a class="custom-btn btn btn-info m-3" href="{{url('admin/edit-member',$user->id)}}"--}}
-                           {{--style="width:90%"><i--}}
-                                    {{--class="fa fa-edit"></i> Update Profile</a>--}}
+                        <a class="custom-btn btn btn-info m-3" href="{{route('admin-customer-edit',$user->id)}}"
+                           style="width:90%"><i
+                                    class="fa fa-edit"></i> Update Profile</a>
 
                         {{--<a class="custom-btn btn btn-info m-3" href="{{url('admin/grant-member-wallet',$user->id)}}"--}}
-                           {{--style="width:90%"><i--}}
-                                    {{--class="fa fa-money"></i> Grant Wallet</a>--}}
+                        {{--style="width:90%"><i--}}
+                        {{--class="fa fa-money"></i> Grant Wallet</a>--}}
                         {{--<a class="custom-btn btn btn-info m-3" href="{{url('admin/retain-member-wallet',$user->id)}}"--}}
-                           {{--style="width:90%"><i--}}
-                                    {{--class="fa fa-money"></i> Retain Wallet</a>--}}
+                        {{--style="width:90%"><i--}}
+                        {{--class="fa fa-money"></i> Retain Wallet</a>--}}
+                        <a class="custom-btn btn btn-info m-3" href="{{route('admin-customer-edit-password',$user->id)}}"
+                           style="width:90%"><i
+                                    class="fa fa-money"></i> Change Password</a>
+
                     </div>
                 </div>
             </div>

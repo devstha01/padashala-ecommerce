@@ -44,6 +44,8 @@ Route::group(['namespace' => 'Ecommerce', 'prefix' => 'category'], function () {
 
     Route::group(['middleware' => 'staff_permission:2.E-Commerce.Category'], function () {
 
+        Route::post('highlight/{id}/category', 'CategoryController@highlightCategory')->name('highlight-category-e-commerce-admin');
+
         Route::post('add-category', 'CategoryController@addCategory')->name('add-category-e-commerce-admin');
         Route::post('add-sub-category', 'CategoryController@addSubCategory')->name('add-sub-category-e-commerce-admin');
         Route::post('edit-category', 'CategoryController@editCategory')->name('edit-category-e-commerce-admin');

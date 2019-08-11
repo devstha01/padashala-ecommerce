@@ -259,6 +259,7 @@ class ProductController extends Controller
 //        $validated['discount'] = number_format($request->discount_price ?? 0, 2, '.', '');
 //        $validated['quantity'] = $request->quantity;
 //        $validated['delivery_option'] = Merchant::find($this->_merchant_id)->purchase_option ?? 1;
+        $validated['share_percentage'] = $request->product_share;
 
         $prod = Product::find($id);
 

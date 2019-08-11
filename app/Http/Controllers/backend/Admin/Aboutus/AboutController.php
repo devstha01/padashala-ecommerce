@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend\Admin\Aboutus;
 
+use App\Models\Country;
 use App\Models\Subscriber;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -158,4 +159,78 @@ class AboutController extends Controller
         $this->_data['user'] = User::find($id);
         return view('backend.admin.aboutus.profile', $this->_data);
     }
+
+    function editCustomer($id)
+    {
+        $this->_data['user'] = User::find($id);
+        $this->_data['countries'] = Country::all()->pluck('name', 'id');
+        $this->_data['identificationType'] = array(
+            'citizenship' => 'Citizenship',
+            'passport' => 'Passport',
+        );
+
+        return view('backend.admin.aboutus.edit-profile', $this->_data);
+
+    }
+
+    function updateProfileCustomer($id, Request $request)
+    {
+        $valid = $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+//            'user_name' => 'required|unique:users,user_name',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'country' => 'required',
+            'gender' => 'required',
+            'address' => 'required',
+            'contact_number' => 'required|numeric',
+        ]);
+        $valid['country_id'] = $request->country;
+        $valid['dob_date'] = $request->dob;
+        if (User::find($id)->update($valid))
+            return redirect()->back()->with('success', 'Profile updated!');
+        return redirect()->back()->with('fail', 'Profile updated!');
+    }
+
+    function editMemberPassword($id)
+    {
+        $data['user'] = User::find($id);
+        if (!$data['user'])
+            return redirect()->back();
+        return view('backend.admin.aboutus.password', $data);
+    }
+
+    function updateMemberPassword($id, Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:6|same:password_confirmation',
+            'password_confirmation' => 'required'
+        ]);
+
+        $user = User::find($id);
+        if ($user->update(['password' => bcrypt($request->password)]))
+            return redirect()->back()->with('success', 'Password updated');
+        return redirect()->back()->with('fail', 'Something went wrong');
+    }
+//
+//    function updateMemberTransaction($id, Request $request)
+//    {
+//        $request->validate([
+//            'transaction_password' => 'required|min:6|same:transaction_password_confirmation',
+//            'transaction_password_confirmation' => 'required'
+//        ]);
+//
+//        $user = User::find($id);
+//        if ($user->update(['transaction_password' => bcrypt($request->transaction_password)]))
+//            return redirect()->back()->with('success', 'Transaction Password updated');
+//        return redirect()->back()->with('fail', 'Something went wrong');
+//    }
+
+    function customerChangeStatus($id)
+    {
+        $user = User::find($id);
+        if ($user->update(['status' => $user->status ? 0 : 1]))
+            return redirect()->back()->with('success', 'Status changed successfully');
+    }
+
 }

@@ -323,13 +323,13 @@
                                             <span class="arrow"></span>
                                         </a>
                                         <ul class="dropdown-menu pull-left">
-                                            @if($staffHeader->staffHasPermission('1.Merchant.Add New Merchant'))
+                                            @if($staffHeader->staffHasPermission('1.Merchant Master.Add New Merchant'))
                                                 <li aria-haspopup="true" class=" ">
                                                     <a href="{{route('admin-merchant-register')}}"
                                                        class="nav-link">{{ __('dashboard.Add New Merchant') }}</a>
                                                 </li>
                                             @endif
-                                            @if($staffHeader->staffHasPermission('1.Merchant.List'))
+                                            @if($staffHeader->staffHasPermission('1.Merchant Master.List'))
                                                 <li>
                                                     <a href="{{route('merchant-list-admin')}}"
                                                        class="nav-link">{{ __('dashboard.Merchants List')}}</a>

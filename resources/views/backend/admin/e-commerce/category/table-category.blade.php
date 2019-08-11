@@ -28,6 +28,8 @@
                                             <th>{{__('dashboard.Sub-Child-Category')}}</th>
                                             <th>{{__('dashboard.Image')}}</th>
                                             <th>{{__('dashboard.Action')}}</th>
+                                            <th>Highlight</th>
+                                            <th>Status</th>
                                         </tr>
                                         @forelse($categories as $category)
                                             <tr>
@@ -37,11 +39,39 @@
                                                            data-subclass="category-{{$category->id}}"></i>
                                                     @endif
                                                 </td>
-                                                <td colspan="3">{{$category->name}} [{{floatval($category->share_percentage)}}%]</td>
+                                                <td colspan="3">{{$category->name}}
+                                                    [{{floatval($category->share_percentage)}}%]
+                                                </td>
                                                 <td>
                                                     @if($category->image!==null)
                                                         <img src="{{asset('image/admin/category/'.$category->image)}}"
                                                              alt="image" height="30px">
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a class="action-button edit-modal" data-toggle="modal"
+                                                       data-target="#editModal"
+                                                       data-type="category" data-obj="{{$category}}"><i
+                                                                class="fa fa-edit text-info"> {{__('dashboard.Edit')}}</i></a>
+                                                    <a class="action-button add-modal" title="add sub-category"
+                                                       data-toggle="modal" data-target="#addModal"
+                                                       data-type="sub-category" data-obj="{{$category}}"><i
+                                                                class=" fa fa-plus"> {{__('dashboard.sub category')}}</i></a>
+                                                </td>
+                                                <td>
+                                                    @if($category->is_highlighted)
+                                                        <form action="{{route('highlight-category-e-commerce-admin',$category->id)}}"
+                                                              method="post">
+                                                            {{csrf_field()}}
+                                                            <button type="submit" class="badge badge-success" style="border: none"><i class="fa fa-check"></i> Change</button>
+                                                        </form>
+
+                                                    @else
+                                                        <form action="{{route('highlight-category-e-commerce-admin',$category->id)}}"
+                                                              method="post">
+                                                            {{csrf_field()}}
+                                                            <button type="submit" class="badge badge-warning" style="border: none"><i class="fa fa-times"></i> Change</button>
+                                                        </form>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -60,14 +90,7 @@
                                                                     class="fa fa-certificate text-danger"> <i
                                                                         class="fa fa-times"></i></i></a>
                                                     @endif
-                                                    <a class="action-button edit-modal" data-toggle="modal"
-                                                       data-target="#editModal"
-                                                       data-type="category" data-obj="{{$category}}"><i
-                                                                class="fa fa-edit text-info"> {{__('dashboard.Edit')}}</i></a>
-                                                    <a class="action-button add-modal" title="add sub-category"
-                                                       data-toggle="modal" data-target="#addModal"
-                                                       data-type="sub-category" data-obj="{{$category}}"><i
-                                                                class=" fa fa-plus"> {{__('dashboard.sub category')}}</i></a>
+
                                                 </td>
                                             </tr>
 
@@ -90,7 +113,22 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if($subCategory->status === 1)
+                                                        <a class="action-button edit-modal"
+                                                           data-toggle="modal"
+                                                           data-target="#editModal"
+                                                           data-type="sub-category"
+                                                           data-obj="{{$subCategory}}"><i
+                                                                    class="fa fa-edit text-info"> {{__('dashboard.Edit')}}</i></a>
+                                                        <a class="action-button add-modal"
+                                                           title="add sub-child-category"
+                                                           data-toggle="modal"
+                                                           data-target="#addModal"
+                                                           data-type="sub-child-category"
+                                                           data-obj="{{$subCategory}}"><i
+                                                                    class="fa fa-plus"> {{__('dashboard.sub child category')}}</i></a>
+                                                    </td>
+                                                    <td></td>
+                                                    <td>  @if($subCategory->status === 1)
                                                             <a class="action-button"
                                                                onclick="return confirm('Disable this sub categroy?')"
                                                                href="{{route('status-category-admin',['type'=>'sub-category','id'=>$subCategory->id])}}"
@@ -105,20 +143,6 @@
                                                                         class="fa fa-certificate text-danger"> <i
                                                                             class="fa fa-times"></i></i></a>
                                                         @endif
-
-                                                        <a class="action-button edit-modal"
-                                                           data-toggle="modal"
-                                                           data-target="#editModal"
-                                                           data-type="sub-category"
-                                                           data-obj="{{$subCategory}}"><i
-                                                                    class="fa fa-edit text-info"> {{__('dashboard.Edit')}}</i></a>
-                                                        <a class="action-button add-modal"
-                                                           title="add sub-child-category"
-                                                           data-toggle="modal"
-                                                           data-target="#addModal"
-                                                           data-type="sub-child-category"
-                                                           data-obj="{{$subCategory}}"><i
-                                                                    class="fa fa-plus"> {{__('dashboard.sub child category')}}</i></a>
                                                     </td>
                                                 </tr>
 
@@ -137,7 +161,17 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            @if($subChildCategory->status === 1)
+
+                                                            <a class="action-button edit-modal"
+                                                               data-toggle="modal"
+                                                               data-target="#editModal"
+                                                               data-type="sub-child-category"
+                                                               data-obj="{{$subChildCategory}}"><i
+                                                                        class="fa fa-edit text-info"> {{__('dashboard.Edit')}}</i></a>
+
+                                                        </td>
+                                                        <td></td>
+                                                        <td>  @if($subChildCategory->status === 1)
                                                                 <a class="action-button"
                                                                    onclick="return confirm('Disable this sub child category?')"
                                                                    href="{{route('status-category-admin',['type'=>'sub-child-category','id'=>$subChildCategory->id])}}"
@@ -152,14 +186,6 @@
                                                                             class="fa fa-certificate text-danger"> <i
                                                                                 class="fa fa-times"></i></i></a>
                                                             @endif
-
-                                                            <a class="action-button edit-modal"
-                                                               data-toggle="modal"
-                                                               data-target="#editModal"
-                                                               data-type="sub-child-category"
-                                                               data-obj="{{$subChildCategory}}"><i
-                                                                        class="fa fa-edit text-info"> {{__('dashboard.Edit')}}</i></a>
-
                                                         </td>
                                                     </tr>
                                                 @empty
@@ -273,7 +299,8 @@
                                                             <label>
                                                                 {{__('dashboard.Category Share')}}
                                                             </label>
-                                                            <input type="text" name="category_share" id="edit-modal-category_share"
+                                                            <input type="text" name="category_share"
+                                                                   id="edit-modal-category_share"
                                                                    class="form-control input-sm">
                                                             <br>
                                                         </div>

@@ -434,9 +434,7 @@ a:focus {
     padding-bottom: .4rem;
     /*background: linear-gradient(45deg, #fff, #fffefd, #fcf9f4, #feca84, #f1bf7b, #d9a96c, #b78b55, #a27d4f) !important;*/
     /*background: linear-gradient(45deg, #214f7a, #2f5d87, #36638d, #517ca4, #608bb2, #81a9ce, #aacbe9, #bfd8ef, #dceaf6, #ebf3fa, #f9fbfd, #fff) !important;*/
-    background: linear-gradient(225deg, #d2606c,
-    /*#2f5d87, #36638d, #517ca4, #608bb2, #81a9ce, #aacbe9, #bfd8ef, #dceaf6, #ebf3fa, #f9fbfd, */
-    #fff) !important;
+    /*background: linear-gradient(225deg, #d2606c,#fff) !important;*/
     color: #19134c;
     font-size: 1.1rem;
     letter-spacing: .025rem;
@@ -485,7 +483,8 @@ a:focus {
 
 .header-middle {
     /*background: #1f4e79;*/
-    background: #bf1d2e;
+    background: #f4f4f4;
+    /*background: #bf1d2e;*/
     height: 34px;
     color: #fff;
     font-size: 12px
@@ -505,6 +504,7 @@ a:focus {
     position: relative;
     text-transform: uppercase;
 }
+
 
 .header-dropdown > a {
     display: -ms-inline-flexbox;
@@ -2007,8 +2007,8 @@ a:focus {
 
 .footer {
     flex: 0 0 auto;
-    /*background: #1f4e79;*/
-    background: #bf1d2e;
+    background: #1f4e79;
+    /*background: #bf1d2e;*/
     /*background: linear-gradient(45deg, #cc9d63, #c6985f, #b78b55, #b08653, #ac8452, #a68050, #a78050, #a37e50);*/
     /*background-color: #272723;*/
     color: #fff;

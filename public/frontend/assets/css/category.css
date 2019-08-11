@@ -509,6 +509,7 @@
     display: inline-block;
     border-radius: 25px;
     background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%);
+    background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%);
     /*background-image: linear-gradient(to right, #7474BF 0%, #348AC7 51%, #7474BF 100%)*/
 }
 
@@ -622,6 +623,11 @@
 }
 
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span,
-.owl-theme .owl-dots .owl-dot span{
+.owl-theme .owl-dots .owl-dot span {
     display: none
+}
+
+.account-dropdown,.account-no-dropdown {
+    color:#1f4e79;
+    font-weight:bold;
 }

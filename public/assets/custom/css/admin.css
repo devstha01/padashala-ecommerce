@@ -182,9 +182,7 @@ li.jstree-closed > a .jstree-icon, li.jstree-open > a .jstree-icon {
 }
 
 .page-header-top {
-    background: linear-gradient(225deg, #d2606c,
-    /*#2f5d87, #36638d, #517ca4, #608bb2, #81a9ce, #aacbe9, #bfd8ef, #dceaf6, #ebf3fa, #f9fbfd, */
-    #fff) !important;
+    /*background: linear-gradient(225deg, #d2606c, #fff) !important;*/
 }
 
 .page-header .page-header-top .top-menu .navbar-nav > li.dropdown-user > .dropdown-toggle > .username {
@@ -200,8 +198,8 @@ li.jstree-closed > a .jstree-icon, li.jstree-open > a .jstree-icon {
 }
 
 .page-header .page-header-menu {
-    /*background: #1f4e79;*/
-    background: #bf1d2e;
+    background: #1f4e79;
+    /*background: #bf1d2e;*/
     height: 34px;
 }
 

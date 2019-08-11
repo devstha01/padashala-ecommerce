@@ -303,4 +303,11 @@ class CategoryController extends Controller
         }
         return redirect()->back()->with('success', __('message.:type status changed for :name', ['type' => $type, 'name' => $db->name]));
     }
+
+    function highlightCategory($id)
+    {
+        $db = Category::find($id);
+        $db->update(['is_highlighted' => $db->is_highlighted ? 0 : 1]);
+        return redirect()->back()->with('info', 'Category highlight updated');
+    }
 }
