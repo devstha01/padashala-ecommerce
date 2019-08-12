@@ -16,7 +16,7 @@
         <div id="categoryPage">
             {{--<div class="container"><h2 class="carousel-title">{{__('front.Categories')}}</h2></div>--}}
             <div id="stickyBoxWrap">
-                <div id="stikyBoxes">
+                <div id="stikyBoxes" style="margin-left: 0!important;">
                     <div class="row">
                         @forelse($all_categories as $coun => $category)
 

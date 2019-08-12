@@ -246,7 +246,7 @@
 
 @media screen and (min-width: 992px) {
     .header-search form {
-        width: 568px;
+        width: 610px;
     }
 }
 
@@ -484,6 +484,7 @@
 
     #my-cart-a {
         font-size: 14px;
+        color: black;
     }
 
     .cart-count {
@@ -627,7 +628,26 @@
     display: none
 }
 
-.account-dropdown,.account-no-dropdown {
-    color:#1f4e79;
-    font-weight:bold;
+.account-dropdown, .account-no-dropdown {
+    color: #1f4e79;
+    font-weight: bold;
+}
+
+.login-register {
+    margin: 0 50px;
+}
+
+.login-register .header-menu ul li a, .login-register .header-menu ul li {
+    color: #000;
+    text-transform: capitalize;
+    font: normal 400 1.4rem / 1.8 "Open Sans", sans-serif;
+}
+
+
+#my-cart-a{
+    position: absolute;
+    right: 1%;
+}
+.cart-count{
+    margin-top:-20px;
 }
