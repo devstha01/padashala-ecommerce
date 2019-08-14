@@ -68,7 +68,7 @@
 
                                 <div class="form-group">
                                     <label>
-                                        {{__('dashboard.Product Share')}} <span
+                                        {{__('dashboard.Product Commission')}} <span
                                                 class="m-l-5 text-danger">*</span>
                                     </label>
                                     <input type="text" name="product_share" id="product_share"
@@ -102,7 +102,7 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>
-                                                {{__('dashboard.Category Share')}}
+                                                {{__('dashboard.Category Commission')}}
                                             </label>
                                             <br>
                                             <input type="text" class="form-control input-sm text-right"

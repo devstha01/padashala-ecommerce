@@ -22,7 +22,8 @@
                             @if($type == 'category')
                                 <b class=" border-bottom">
                                     &nbsp;
-                                    <a class="text-primary" href="{{route('product-by-category',['type'=>'category','slug'=>$category->slug])}}">{{$category->name}}</a></b>
+                                    <a class="text-primary"
+                                       href="{{route('product-by-category',['type'=>'category','slug'=>$category->slug])}}">{{$category->name}}</a></b>
                                 @foreach($more_category->getSubCategory->where('status',1) as $more_sub)
                                     <br>
                                     <a class="fa pl-3"
@@ -40,7 +41,8 @@
                                 <br>
                                 <b class=" border-bottom">
                                     &nbsp;
-                                    <a class="text-primary" href="{{route('product-by-category',['type'=>'sub-category','slug'=>$subCat->slug])}}">{{$subCat->name}}</a></b>
+                                    <a class="text-primary"
+                                       href="{{route('product-by-category',['type'=>'sub-category','slug'=>$subCat->slug])}}">{{$subCat->name}}</a></b>
                                 @foreach($more_category->getSubChildCategory->where('status',1) as $more_sub)
                                     <br>
                                     <a class="fa  pl-3"
@@ -124,11 +126,10 @@
                         </h2>
 
                         <div class="owl-theme">
-                            <div class="row" style="margin: 0">
-                                @forelse($products as $key=>$featured_product)
+                            @forelse($products as $key=>$featured_product)
+                                <div class="row" style="border-bottom: 1px solid #f3f3f3;margin:0 0 10px 0">
 
-
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="col-sm-3">
                                         <div class="product"> <!--product1--------------->
                                             <figure class="product-image-container">
                                                 <a href="{{url('product/'.$featured_product->slug)}}"
@@ -137,11 +138,14 @@
                                                          alt="product">
                                                 </a>
                                             </figure>
-                                            <div class="product-details">
+                                        </div><!-- End .product -->
+                                    </div>
+                                    <div class="col-sm-9">
 
-                                                <h2 class="product-title">
-                                                    <a href="{{url('product/'.$featured_product->slug)}}">{{$featured_product->name}}</a>
-                                                </h2>
+                                        <h2 class="product-title">
+                                            <a href="{{url('product/'.$featured_product->slug)}}"
+                                               style="text-decoration: none">
+                                                <p style="font-size: 20px">{{$featured_product->name}}</p>
                                                 <div class="price-box">
                                                     @if(count($featured_product->getProductVariant->where('status',1)) === 0)
                                                         <span class="product-price">${{$featured_product->sell_price}}</span>
@@ -149,18 +153,19 @@
                                                         <span class="product-price">${{$featured_product->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
                                                     @endif
                                                 </div><!-- End .price-box -->
+                                                <b>{{$featured_product->getBusiness->name}}</b>
+                                                <p>{{$featured_product->detail}}</p>
 
-
-                                            </div><!-- End .product-details -->
-                                        </div><!-- End .product -->
-                                    </div> <!--end of col-->
-                                @empty
-                                    <div class="col-xs-12">
-                                        <h3 style="color:lightgrey">{{__('front.No related products for the category')}}
-                                            .</h3>
+                                            </a>
+                                        </h2>
                                     </div>
-                                @endforelse
-                            </div> <!--------end of row-->
+                                </div>
+                            @empty
+                                <div class="col-xs-12">
+                                    <h3 style="color:lightgrey">{{__('front.No related products for the category')}}
+                                        .</h3>
+                                </div>
+                            @endforelse
                         </div>
 
 

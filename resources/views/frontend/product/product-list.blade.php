@@ -46,12 +46,12 @@
                             {{--<b>{{__('front.Categories')}}</b>--}}
                             {{--<br>--}}
                             {{--@forelse($all_categories as $category)--}}
-                                {{--<input class="trigger-submit-filter" type="checkbox" name="categories[]"--}}
-                                       {{--value="{{$category->id}}"--}}
-                                       {{--id="category-checkbox-{{$category->id}}"--}}
-                                        {{--{{(in_array($category->id,$checkbox_categories))?'checked':''}}>--}}
-                                {{--<label for="category-checkbox-{{$category->id}}">{{$category->name}}</label>--}}
-                                {{--<br>--}}
+                            {{--<input class="trigger-submit-filter" type="checkbox" name="categories[]"--}}
+                            {{--value="{{$category->id}}"--}}
+                            {{--id="category-checkbox-{{$category->id}}"--}}
+                            {{--{{(in_array($category->id,$checkbox_categories))?'checked':''}}>--}}
+                            {{--<label for="category-checkbox-{{$category->id}}">{{$category->name}}</label>--}}
+                            {{--<br>--}}
                             {{--@empty--}}
                             {{--@endforelse--}}
                             {{--<br>--}}
@@ -71,7 +71,9 @@
                             <input type="hidden" id="filter_max" value="{{$filter_max??1000}}">
 
                             <div class="filter-price-action">
-                                <button type="submit" style="visibility: hidden;" class="btn btn-primary" id="submit-filter">Filter</button>
+                                <button type="submit" style="visibility: hidden;" class="btn btn-primary"
+                                        id="submit-filter">Filter
+                                </button>
                             </div><!-- End .filter-price-action -->
                         </div>
 
@@ -80,10 +82,10 @@
 
                 <div class="col-md-9">
                     <div class="owl-theme">
-                        <div class="row">
-                            @forelse($products as $key=>$prod)
+                        @forelse($products as $key=>$prod)
+                            <div class="row" style="border-bottom: 1px solid #f3f3f3;margin:0 0 10px 0">
 
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-sm-3">
                                     <div class="product"> <!--product1--------------->
                                         <figure class="product-image-container">
                                             <a href="{{url('product/'.$prod->slug)}}" class="product-image">
@@ -91,11 +93,13 @@
                                                      alt="product">
                                             </a>
                                         </figure>
-                                        <div class="product-details">
+                                    </div><!-- End .product -->
+                                </div>
+                                <div class="col-sm-9">
 
-                                            <h2 class="product-title">
-                                                <a href="{{url('product/'.$prod->slug)}}">{{$prod->name}}</a>
-                                            </h2>
+                                    <h2 class="product-title">
+                                        <a href="{{url('product/'.$prod->slug)}}" style="text-decoration: none">
+                                            <p style="font-size: 20px">{{$prod->name}}</p>
                                             <div class="price-box">
                                                 @if(count($prod->getProductVariant->where('status',1)) === 0)
                                                     <span class="product-price">${{$prod->sell_price}}</span>
@@ -103,16 +107,19 @@
                                                     <span class="product-price">${{$prod->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
                                                 @endif
                                             </div><!-- End .price-box -->
+                                            <b>{{$prod->getBusiness->name}}</b>
+                                            <p>{{$prod->detail}}</p>
 
+                                        </a>
+                                    </h2>
+                                </div>
 
-                                        </div><!-- End .product-details -->
-                                    </div><!-- End .product -->
-                                </div> <!--end of col-->
-                            @empty
-                                <h3 style="color:lightgrey">{{__('front.No related products for the search term')}}
-                                    .</h3>
-                            @endforelse
-                        </div> <!--------end of row-->
+                            </div>
+                        @empty
+                            <h3 style="color:lightgrey">{{__('front.No related products for the search term')}}
+                                .</h3>
+                        @endforelse
+                        {{--</div> <!--------end of row-->--}}
                     </div><!-- End .featured-proucts -->
 
                     <nav class="toolbox toolbox-pagination">

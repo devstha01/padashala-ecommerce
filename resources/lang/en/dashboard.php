@@ -635,8 +635,10 @@ return [
     'Product Requests' => ' Product Requests',
     'Approval' => ' Approval',
     'Approved' => ' Approved',
-    'Category Share' => ' Category Share',
-    'Product Share' => ' Product Share',
+    'Category Share' => ' Category Commission',
+    'Category Commission' => ' Category Commission',
+    'Product Share' => ' Product Commission',
+    'Product Commission' => ' Product Commission',
     'Net Share Percentage' => ' Net Share Percentage',
     'Share' => ' Share',
 
