@@ -113,7 +113,7 @@
 
                         </form>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-7">
 
                         <h2 class="carousel-title">
                             @if($type == 'category')
@@ -167,6 +167,7 @@
                                 </div>
                             @endforelse
                         </div>
+                        <div class="col-md-2"></div>
 
 
                         <nav class="toolbox toolbox-pagination">

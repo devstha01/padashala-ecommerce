@@ -55,7 +55,7 @@
                                         {{__('dashboard.Brief description')}}
                                     </label>
                                     <textarea class="form-control" name="detail" maxlength="100"
-                                              style="resize: none">{{old('detail')??''}}</textarea>
+                                              id="ckeditor-replace"     style="resize: none">{{old('detail')??''}}</textarea>
                                 </div>
 
                                 <div class="form-group">

@@ -80,7 +80,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-md-7">
                     <div class="owl-theme">
                         @forelse($products as $key=>$prod)
                             <div class="row" style="border-bottom: 1px solid #f3f3f3;margin:0 0 10px 0">
@@ -121,7 +121,7 @@
                         @endforelse
                         {{--</div> <!--------end of row-->--}}
                     </div><!-- End .featured-proucts -->
-
+<div class="col-md-2"></div>
                     <nav class="toolbox toolbox-pagination">
                         <div class="toolbox-item toolbox-show">
                             <label>{{__('front.Showing')}}

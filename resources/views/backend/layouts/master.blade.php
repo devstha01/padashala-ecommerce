@@ -159,6 +159,11 @@
     $('.date-picker').datepicker();
 
 </script>
+<script src="{{asset('backend/plugin/ckeditor/ckeditor.js')}}"></script>
+<script>
+    CKEDITOR.replace('ckeditor-replace');
+</script>
+
 @yield('scripts')
 </body>
 
