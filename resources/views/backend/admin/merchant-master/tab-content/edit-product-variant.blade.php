@@ -129,7 +129,7 @@
                                         </tr>
                                     @endforeach
                                 </table>
-                                <form action="{{route('add-product-variant-merchant',$product->id)}}"
+                                <form action="{{route('admin-add-product-variant',$product->id)}}"
                                       method="post">
                                     {{csrf_field()}}
                                     <table class="table">

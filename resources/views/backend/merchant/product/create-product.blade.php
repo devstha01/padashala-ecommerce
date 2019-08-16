@@ -55,7 +55,7 @@
                                         {{__('dashboard.Brief description')}}
                                     </label>
                                     <textarea class="form-control" name="detail" maxlength="100"
-                                              style="resize: none">{{old('detail')??''}}</textarea>
+                                              id="ckeditor-replace"     style="resize: none">{{old('detail')??''}}</textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -68,7 +68,7 @@
 
                                 <div class="form-group">
                                     <label>
-                                        {{__('dashboard.Product Share')}} <span
+                                        {{__('dashboard.Product Commission')}} <span
                                                 class="m-l-5 text-danger">*</span>
                                     </label>
                                     <input type="text" name="product_share" id="product_share"
@@ -102,7 +102,7 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>
-                                                {{__('dashboard.Category Share')}}
+                                                {{__('dashboard.Category Commission')}}
                                             </label>
                                             <br>
                                             <input type="text" class="form-control input-sm text-right"
