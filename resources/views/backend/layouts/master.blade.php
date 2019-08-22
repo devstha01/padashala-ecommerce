@@ -161,7 +161,9 @@
 </script>
 <script src="{{asset('backend/plugin/ckeditor/ckeditor.js')}}"></script>
 <script>
-    CKEDITOR.replace('ckeditor-replace');
+    var getck_textarea = $('textarea#ckeditor-replace').val();
+    if (getck_textarea !== undefined)
+        CKEDITOR.replace('ckeditor-replace');
 </script>
 
 @yield('scripts')

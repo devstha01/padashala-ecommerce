@@ -1,4 +1,3 @@
-
 <?php $staffHeader = new \App\Library\StaffPermission(); ?>
 <div class="page-wrapper-row">
     <div class="page-wrapper-top">
@@ -233,50 +232,50 @@
                                         </a>
                                     </li>
                                     {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown hide-if-li-0">--}}
-                                        {{--<a href="javascript:;"> <i--}}
-                                                    {{--class="fa header-fa fa-user"></i> {{ __('dashboard.Member Master') }}--}}
-                                            {{--<span class="arrow"></span>--}}
-                                        {{--</a>--}}
-                                        {{--<ul class="dropdown-menu pull-left">--}}
-                                            {{--@if($staffHeader->staffHasPermission('1.Member Master.Add New Member'))--}}
-                                                {{--<li>--}}
-                                                    {{--<a href="{{ url('/admin/add-new-member') }}"--}}
-                                                       {{--class="nav-link"> {{ __('dashboard.Add New Member') }}--}}
-                                                    {{--</a>--}}
-                                                {{--</li>--}}
-                                            {{--@endif--}}
-                                            {{--@if($staffHeader->staffHasPermission('1.Member Master.List'))--}}
-                                                {{--<li>--}}
-                                                    {{--<a href="{{ url('/admin/memberLists') }}"--}}
-                                                       {{--class="nav-link">{{ __('dashboard.Member Lists') }}--}}
-                                                    {{--</a>--}}
-                                                {{--</li>--}}
-                                            {{--@endif--}}
-                                            {{--@if($staffHeader->staffHasPermission('1.Member Master.Placement Tree'))--}}
-                                                {{--<li>--}}
-                                                    {{--<a href="{{ url('/admin/standard-placement-tree') }}">--}}
-                                                        {{--{{ __('dashboard.Standard Placement Tree') }}--}}
-                                                    {{--</a>--}}
-                                                {{--</li>--}}
-                                                {{--<li>--}}
-                                                    {{--<a href="{{ url('/admin/auto-placement-tree') }}">--}}
-                                                        {{--{{ __('dashboard.Auto Placement Tree') }}--}}
-                                                    {{--</a>--}}
-                                                {{--</li>--}}
-                                                {{--<li>--}}
-                                                    {{--<a href="{{ url('/admin/special-placement-tree') }}">--}}
-                                                        {{--{{ __('dashboard.Special Placement Tree') }}--}}
-                                                    {{--</a>--}}
-                                                {{--</li>--}}
-                                            {{--@endif--}}
-                                            {{--@if($staffHeader->staffHasPermission('1.Member Master.Upgrade Membership'))--}}
-                                                {{--<li>--}}
-                                                    {{--<a href="{{ url('/admin/upgrade-customer') }}">--}}
-                                                        {{--{{ __('dashboard.Upgrade Membership') }}--}}
-                                                    {{--</a>--}}
-                                                {{--</li>--}}
-                                            {{--@endif--}}
-                                        {{--</ul>--}}
+                                    {{--<a href="javascript:;"> <i--}}
+                                    {{--class="fa header-fa fa-user"></i> {{ __('dashboard.Member Master') }}--}}
+                                    {{--<span class="arrow"></span>--}}
+                                    {{--</a>--}}
+                                    {{--<ul class="dropdown-menu pull-left">--}}
+                                    {{--@if($staffHeader->staffHasPermission('1.Member Master.Add New Member'))--}}
+                                    {{--<li>--}}
+                                    {{--<a href="{{ url('/admin/add-new-member') }}"--}}
+                                    {{--class="nav-link"> {{ __('dashboard.Add New Member') }}--}}
+                                    {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--@endif--}}
+                                    {{--@if($staffHeader->staffHasPermission('1.Member Master.List'))--}}
+                                    {{--<li>--}}
+                                    {{--<a href="{{ url('/admin/memberLists') }}"--}}
+                                    {{--class="nav-link">{{ __('dashboard.Member Lists') }}--}}
+                                    {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--@endif--}}
+                                    {{--@if($staffHeader->staffHasPermission('1.Member Master.Placement Tree'))--}}
+                                    {{--<li>--}}
+                                    {{--<a href="{{ url('/admin/standard-placement-tree') }}">--}}
+                                    {{--{{ __('dashboard.Standard Placement Tree') }}--}}
+                                    {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--<li>--}}
+                                    {{--<a href="{{ url('/admin/auto-placement-tree') }}">--}}
+                                    {{--{{ __('dashboard.Auto Placement Tree') }}--}}
+                                    {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--<li>--}}
+                                    {{--<a href="{{ url('/admin/special-placement-tree') }}">--}}
+                                    {{--{{ __('dashboard.Special Placement Tree') }}--}}
+                                    {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--@endif--}}
+                                    {{--@if($staffHeader->staffHasPermission('1.Member Master.Upgrade Membership'))--}}
+                                    {{--<li>--}}
+                                    {{--<a href="{{ url('/admin/upgrade-customer') }}">--}}
+                                    {{--{{ __('dashboard.Upgrade Membership') }}--}}
+                                    {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--@endif--}}
+                                    {{--</ul>--}}
                                     {{--</li>--}}
 
                                     <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown hide-if-li-0">
@@ -293,11 +292,11 @@
                                                 </li>
                                             @endif
                                             {{--@if($staffHeader->staffHasPermission('1.E-Commerce.Member Cash Withdrawal Request'))--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
+                                            {{--<li aria-haspopup="true" class=" ">--}}
 
-                                                    {{--<a href="{{route('admin-member-cash-withdraw-request')}}"--}}
-                                                       {{--class="nav-link  ">{{ __('dashboard.Member Cash Withdrawal Request') }}</a>--}}
-                                                {{--</li>--}}
+                                            {{--<a href="{{route('admin-member-cash-withdraw-request')}}"--}}
+                                            {{--class="nav-link  ">{{ __('dashboard.Member Cash Withdrawal Request') }}</a>--}}
+                                            {{--</li>--}}
                                             {{--@endif--}}
                                             @if($staffHeader->staffHasPermission('1.E-Commerce.Merchant Cash Withdrawal Request'))
                                                 <li aria-haspopup="true" class=" ">
@@ -338,7 +337,7 @@
                                                     <a href="{{route('product-approval-admin')}}"
                                                        class="nav-link">{{ __('dashboard.Product Approval List')}}</a>
                                                 </li>
-                                               <li>
+                                                <li>
                                                     <a href="{{route('order-list-admin')}}"
                                                        class="nav-link">{{ __('dashboard.Order List')}}</a>
                                                 </li>
@@ -373,10 +372,10 @@
                                         </a>
                                         <ul class="dropdown-menu pull-left">
                                             {{--@if($staffHeader->staffHasPermission('1.Reports.Member Cash Withdrawal Request'))--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{route('admin-member-cash-withdraw-report')}}"--}}
-                                                       {{--class="nav-link  ">{{ __('dashboard.Member Cash Withdrawal Report')}}</a>--}}
-                                                {{--</li>--}}
+                                            {{--<li aria-haspopup="true" class=" ">--}}
+                                            {{--<a href="{{route('admin-member-cash-withdraw-report')}}"--}}
+                                            {{--class="nav-link  ">{{ __('dashboard.Member Cash Withdrawal Report')}}</a>--}}
+                                            {{--</li>--}}
                                             {{--@endif--}}
                                             @if($staffHeader->staffHasPermission('1.Reports.Merchant Cash Withdrawal Request'))
                                                 <li aria-haspopup="true" class=" ">
@@ -385,43 +384,43 @@
                                                 </li>
                                             @endif
                                             {{--@if($staffHeader->staffHasPermission('1.Reports.Member Wallet Convert Report'))--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{route('admin-member-wallet-convert-report')}}"--}}
-                                                       {{--class="nav-link  ">{{ __('dashboard.Member Wallet Converts Report')}}</a>--}}
-                                                {{--</li>--}}
+                                            {{--<li aria-haspopup="true" class=" ">--}}
+                                            {{--<a href="{{route('admin-member-wallet-convert-report')}}"--}}
+                                            {{--class="nav-link  ">{{ __('dashboard.Member Wallet Converts Report')}}</a>--}}
+                                            {{--</li>--}}
                                             {{--@endif--}}
                                             {{--@if($staffHeader->staffHasPermission('1.Reports.Member Wallet Transfer Report'))--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{route('admin-member-wallet-transfer-report')}}"--}}
-                                                       {{--class="nav-link  ">{{ __('dashboard.Member Wallet Transfers Report')}}</a>--}}
-                                                {{--</li>--}}
+                                            {{--<li aria-haspopup="true" class=" ">--}}
+                                            {{--<a href="{{route('admin-member-wallet-transfer-report')}}"--}}
+                                            {{--class="nav-link  ">{{ __('dashboard.Member Wallet Transfers Report')}}</a>--}}
+                                            {{--</li>--}}
                                             {{--@endif--}}
                                             {{--@if($staffHeader->staffHasPermission('1.Reports.Merchant Wallet Transfer Report'))--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{route('admin-merchant-wallet-transfer-report')}}"--}}
-                                                       {{--class="nav-link  ">{{ __('dashboard.Merchant Wallet Transfers Report')}}</a>--}}
-                                                {{--</li>--}}
+                                            {{--<li aria-haspopup="true" class=" ">--}}
+                                            {{--<a href="{{route('admin-merchant-wallet-transfer-report')}}"--}}
+                                            {{--class="nav-link  ">{{ __('dashboard.Merchant Wallet Transfers Report')}}</a>--}}
+                                            {{--</li>--}}
 
                                             {{--@endif--}}
                                             {{--@if($staffHeader->staffHasPermission('1.Reports.Merchant Payment Report'))--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{route('admin-merchant-payment-report')}}"--}}
-                                                       {{--class="nav-link  ">{{ __('dashboard.Merchant Payment Report')}}</a>--}}
-                                                {{--</li>--}}
+                                            {{--<li aria-haspopup="true" class=" ">--}}
+                                            {{--<a href="{{route('admin-merchant-payment-report')}}"--}}
+                                            {{--class="nav-link  ">{{ __('dashboard.Merchant Payment Report')}}</a>--}}
+                                            {{--</li>--}}
                                             {{--@endif--}}
                                             {{--@if($staffHeader->staffHasPermission('1.Reports.Monthly Bonus Report'))--}}
 
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{route('monthly-bonus-report')}}"--}}
-                                                       {{--class="nav-link  ">{{ __('dashboard.Monthly Bonus Report')}}</a>--}}
-                                                {{--</li>--}}
+                                            {{--<li aria-haspopup="true" class=" ">--}}
+                                            {{--<a href="{{route('monthly-bonus-report')}}"--}}
+                                            {{--class="nav-link  ">{{ __('dashboard.Monthly Bonus Report')}}</a>--}}
+                                            {{--</li>--}}
                                             {{--@endif--}}
                                             {{--@if($staffHeader->staffHasPermission('1.Reports.Shopping Point Transform Report'))--}}
-                                                {{--<li>--}}
-                                                    {{--<a href="{{route('admin-shop-point-withdraw-report')}}"--}}
-                                                       {{--class="nav-link">{{__('dashboard.Shopping Point Transform Report')}}--}}
-                                                    {{--</a>--}}
-                                                {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a href="{{route('admin-shop-point-withdraw-report')}}"--}}
+                                            {{--class="nav-link">{{__('dashboard.Shopping Point Transform Report')}}--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
                                             {{--@endif--}}
                                             @if($staffHeader->staffHasPermission('1.Reports.Product Purchase Report'))
                                                 <li>
@@ -431,10 +430,10 @@
                                                 </li>
                                             @endif
                                             {{--@if($staffHeader->staffHasPermission('1.Reports.Grant Wallet/ Retain Wallet Report'))--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{route('grant-retain-report')}}"--}}
-                                                       {{--class="nav-link  ">Grant / Retain Wallet Report</a>--}}
-                                                {{--</li>--}}
+                                            {{--<li aria-haspopup="true" class=" ">--}}
+                                            {{--<a href="{{route('grant-retain-report')}}"--}}
+                                            {{--class="nav-link  ">Grant / Retain Wallet Report</a>--}}
+                                            {{--</li>--}}
                                             {{--@endif--}}
                                         </ul>
                                     </li>
@@ -475,20 +474,20 @@
                                             </a>
                                             <ul class="dropdown-menu pull-left">
                                                 {{--<li>--}}
-                                                    {{--<a href="{{route('packages')}}" class="nav-link">--}}
-                                                        {{--Packages </a>--}}
+                                                {{--<a href="{{route('packages')}}" class="nav-link">--}}
+                                                {{--Packages </a>--}}
                                                 {{--</li>--}}
                                                 {{--<li>--}}
-                                                    {{--<a href="{{route('refaral-bonus-list')}}" class="nav-link">--}}
-                                                        {{--{{ __('dashboard.Referral Bonus')}} </a>--}}
+                                                {{--<a href="{{route('refaral-bonus-list')}}" class="nav-link">--}}
+                                                {{--{{ __('dashboard.Referral Bonus')}} </a>--}}
                                                 {{--</li>--}}
                                                 {{--<li>--}}
-                                                    {{--<a href="{{route('holiday-dates')}}" class="nav-link">--}}
-                                                        {{--{{ __('dashboard.Holiday Date')}}</a>--}}
+                                                {{--<a href="{{route('holiday-dates')}}" class="nav-link">--}}
+                                                {{--{{ __('dashboard.Holiday Date')}}</a>--}}
                                                 {{--</li>--}}
                                                 {{--<li>--}}
-                                                    {{--<a href="{{route('admin-shopping-list')}}"--}}
-                                                       {{--class="nav-link">{{ __('dashboard.Shopping Bonus')}}</a>--}}
+                                                {{--<a href="{{route('admin-shopping-list')}}"--}}
+                                                {{--class="nav-link">{{ __('dashboard.Shopping Bonus')}}</a>--}}
                                                 {{--</li>--}}
                                                 <li>
                                                     <a href="{{route('admin-withdraw-config')}}"
@@ -526,7 +525,7 @@
                                                         href="{{route('view-product-merchant')}}"
                                                         class="nav-link  ">{{__('dashboard.Products List')}}</a>
                                             </li>
-                                        <li aria-haspopup="true" class=" "><a
+                                            <li aria-haspopup="true" class=" "><a
                                                         href="{{route('view-product-request-merchant')}}"
                                                         class="nav-link  ">{{__('dashboard.Product Requests')}}</a>
                                             </li>
@@ -560,19 +559,20 @@
                                         <ul class="dropdown-menu pull-left">
 
 
+                                            <li aria-haspopup="true" class=" ">
+                                                <a href="{{route('merchant-customer-wallet-transfer')}}"
+                                                   class="nav-link  ">
+                                                    Wallet Transfer </a>
+                                            </li>
+
                                             {{--<li aria-haspopup="true" class=" ">--}}
-                                                {{--<a href="{{route('merchant-merchant-wallet-transfer')}}" class="nav-link  ">--}}
-                                                    {{--{{__('dashboard.Merchant Wallet Transfer')}} </a>--}}
+                                            {{--<a href="{{route('manage-payment')}}" class="nav-link  ">--}}
+                                            {{--{{__('dashboard.Payment Request')}} </a>--}}
                                             {{--</li>--}}
 
                                             {{--<li aria-haspopup="true" class=" ">--}}
-                                                {{--<a href="{{route('manage-payment')}}" class="nav-link  ">--}}
-                                                    {{--{{__('dashboard.Payment Request')}} </a>--}}
-                                            {{--</li>--}}
-
-                                            {{--<li aria-haspopup="true" class=" ">--}}
-                                                {{--<a href="{{route('manage-payment-list')}}" class="nav-link  ">--}}
-                                                    {{--{{__('dashboard.Payment List')}} </a>--}}
+                                            {{--<a href="{{route('manage-payment-list')}}" class="nav-link  ">--}}
+                                            {{--{{__('dashboard.Payment List')}} </a>--}}
                                             {{--</li>--}}
                                             <li aria-haspopup="true" class=" ">
                                                 <a href="{{url('merchant/wallet-withdraw')}}" class="nav-link  ">
@@ -580,8 +580,8 @@
                                             </li>
 
                                             {{--<li aria-haspopup="true" class=" ">--}}
-                                                {{--<a href="{{route('bonus-request-cash')}}" class="nav-link  ">--}}
-                                                    {{--{{__('dashboard.Admin Bonus Request')}} </a>--}}
+                                            {{--<a href="{{route('bonus-request-cash')}}" class="nav-link  ">--}}
+                                            {{--{{__('dashboard.Admin Bonus Request')}} </a>--}}
                                             {{--</li>--}}
 
                                         </ul>
@@ -608,23 +608,23 @@
                                                     {{__('dashboard.Order Wallet Report')}} </a>
                                             </li>
                                             {{--<li aria-haspopup="true" class=" ">--}}
-                                                {{--<a href="{{route('payment-reportmerchant')}}" class="nav-link  ">--}}
-                                                    {{--{{__('dashboard.Payment Report')}} </a>--}}
+                                            {{--<a href="{{route('payment-reportmerchant')}}" class="nav-link  ">--}}
+                                            {{--{{__('dashboard.Payment Report')}} </a>--}}
                                             {{--</li>--}}
                                             <li aria-haspopup="true" class=" ">
                                                 <a href="{{route('purchase-reportmerchant')}}" class="nav-link  ">
                                                     {{__('front.Product Purchase Report')}} </a>
                                             </li>
 
-                                            {{--<li aria-haspopup="true" class=" ">--}}
-                                                {{--<a href="{{route('wallet-transfer-reportmerchant')}}"--}}
-                                                   {{--class="nav-link  ">--}}
-                                                    {{--{{__('dashboard.Wallet Transfer Report')}} </a>--}}
-                                            {{--</li>--}}
+                                            <li aria-haspopup="true" class=" ">
+                                                <a href="{{route('wallet-transfer-reportmerchant')}}"
+                                                   class="nav-link  ">
+                                                    {{__('dashboard.Wallet Transfer Report')}} </a>
+                                            </li>
                                             {{--<li aria-haspopup="true" class=" ">--}}
 
-                                                {{--<a href="{{route('merchant-grant-retain-report')}}"--}}
-                                                   {{--class="nav-link  ">Grant / Retain Wallet Report</a>--}}
+                                            {{--<a href="{{route('merchant-grant-retain-report')}}"--}}
+                                            {{--class="nav-link  ">Grant / Retain Wallet Report</a>--}}
                                             {{--</li>--}}
 
                                         </ul>
@@ -633,179 +633,179 @@
                                 @endif
                             @endif
                             {{--@if(Request::is('member/*'))--}}
-                                {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">--}}
-                                    {{--<a href="{{ url('member/dashboard') }}"><i class="fa header-fa fa-home"--}}
-                                        {{--></i>--}}
-                                        {{--{{__('dashboard.Home')}}--}}
-                                        {{--<span class="arrow"></span>--}}
-                                    {{--</a>--}}
-                                {{--</li>--}}
+                            {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">--}}
+                            {{--<a href="{{ url('member/dashboard') }}"><i class="fa header-fa fa-home"--}}
+                            {{--></i>--}}
+                            {{--{{__('dashboard.Home')}}--}}
+                            {{--<span class="arrow"></span>--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
 
-                                {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">--}}
+                            {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">--}}
 
-                                    {{--<a href="javascript:;"> <i--}}
-                                                {{--class="fa header-fa fa-user-tie"></i> {{__('dashboard.Member Master')}}--}}
-                                        {{--<span class="arrow"></span>--}}
-                                    {{--</a>--}}
-                                    {{--<ul class="dropdown-menu pull-left">--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{ url('/member/add-new-member') }}"--}}
-                                               {{--class="nav-link">{{__('dashboard.Add New Member')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{ url('/member/memberLists') }}"--}}
-                                            {{--class="nav-link">{{__('dashboard.Member Lists')}}--}}
-                                            {{--</a>--}}
-                                            {{--<a href="{{ url('/member/memberLists') }}"--}}
-                                               {{--class="nav-link">{{__('dashboard.Member Lists')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{ url('/member/standard-placement-tree') }}">--}}
-                                                {{--{{__('dashboard.Standard Placement Tree')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{ url('/member/auto-placement-tree') }}">--}}
-                                                {{--{{__('dashboard.Auto Placement Tree')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{ url('/member/special-placement-tree') }}">--}}
-                                                {{--{{__('dashboard.Special Placement Tree')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-
-                                    {{--</ul>--}}
-                                {{--</li>--}}
+                            {{--<a href="javascript:;"> <i--}}
+                            {{--class="fa header-fa fa-user-tie"></i> {{__('dashboard.Member Master')}}--}}
+                            {{--<span class="arrow"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="dropdown-menu pull-left">--}}
+                            {{--<li>--}}
+                            {{--<a href="{{ url('/member/add-new-member') }}"--}}
+                            {{--class="nav-link">{{__('dashboard.Add New Member')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{ url('/member/memberLists') }}"--}}
+                            {{--class="nav-link">{{__('dashboard.Member Lists')}}--}}
+                            {{--</a>--}}
+                            {{--<a href="{{ url('/member/memberLists') }}"--}}
+                            {{--class="nav-link">{{__('dashboard.Member Lists')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{ url('/member/standard-placement-tree') }}">--}}
+                            {{--{{__('dashboard.Standard Placement Tree')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{ url('/member/auto-placement-tree') }}">--}}
+                            {{--{{__('dashboard.Auto Placement Tree')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{ url('/member/special-placement-tree') }}">--}}
+                            {{--{{__('dashboard.Special Placement Tree')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
 
 
-                                {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">--}}
-                                    {{--<a href="javascript:;"> <i--}}
-                                                {{--class="fa header-fa fa-clipboard-list"></i> {{__('dashboard.Business Management')}}--}}
-                                        {{--<span class="arrow"></span>--}}
-                                    {{--</a>--}}
-                                    {{--<ul class="dropdown-menu pull-left" style="width:225px">--}}
+                            {{--</ul>--}}
+                            {{--</li>--}}
 
 
-                                        {{--<li aria-haspopup="true" class=" ">--}}
-                                            {{--<a href="{{ url('/member/wallet-convert') }}"--}}
-                                               {{--class="nav-link  "> {{__('dashboard.Wallet Convert')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-                                        {{--<li aria-haspopup="true" class=" ">--}}
-                                            {{--<a href="{{ url('/member/wallet-transfer') }}"--}}
-                                               {{--class="nav-link  "> {{__('dashboard.Wallet Transfer')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-                                        {{--<li aria-haspopup="true" class=" ">--}}
-                                        {{--<a href="{{ url('/member/wallet-transfer-request') }}"--}}
-                                        {{--class="nav-link  "> {{__('dashboard.Wallet Transfer Request')}}--}}
-                                        {{--</a>--}}
-                                        {{--</li>--}}
-
-                                        {{--<li aria-haspopup="true" class=" ">--}}
-                                            {{--<a href="{{url('/member/wallet-withdraw')}}"--}}
-                                               {{--class="nav-link  "> {{__('dashboard.Withdrawal Request')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-                                        {{--<li aria-haspopup="true" class=" ">--}}
-                                            {{--<a href="{{url('/member/shopping-withdraw')}}"--}}
-                                               {{--class="nav-link  "> {{__('dashboard.Shopping Point Transform')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-                                        {{--<li aria-haspopup="true" class=" ">--}}
-                                            {{--<a href="{{url('/member/dividend-withdraw')}}"--}}
-                                               {{--class="nav-link  "> {{__('dashboard.Dividend Transform')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-                                    {{--</ul>--}}
-                                {{--</li>--}}
-
-                                {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">--}}
-                                    {{--<a href="javascript:;"> <i--}}
-                                                {{--class="fa header-fa fa-chart-line"></i> {{__('dashboard.Report')}}--}}
-                                        {{--<span class="arrow"></span>--}}
-                                    {{--</a>--}}
-                                    {{--<ul class="dropdown-menu pull-left">--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{route('cash-withdraw-report')}}"--}}
-                                               {{--class="nav-link">{{__('dashboard.Cash Withdrawal Report')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{route('wallet-convert-report')}}"--}}
-                                               {{--class="nav-link">{{__('dashboard.Wallet Converts Report')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{route('wallet-transfer-report')}}"--}}
-                                               {{--class="nav-link">{{__('dashboard.Wallet Transfers Report')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-                                        {{--<li>--}}
-                                            {{--<a href="{{route('payment-report')}}"--}}
-                                               {{--class="nav-link">{{__('dashboard.Merchant Payment Report')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{route('purchase-report')}}"--}}
-                                               {{--class="nav-link">{{__('front.Product Purchase Report')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-                                        {{--<li>--}}
-                                            {{--<a href="{{route('shop-point-withdraw-report')}}"--}}
-                                               {{--class="nav-link">{{__('dashboard.Shopping Point Transform Report')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{route('bonus-report')}}"--}}
-                                               {{--class="nav-link">{{__('dashboard.Generation Bonus Report')}}--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{route('daily-bonus-report')}}"--}}
-                                               {{--class="nav-link">Dividend Report--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li aria-haspopup="true" class="dropdown-submenu">--}}
-                                            {{--<a href="javascript:;"--}}
-                                               {{--class="nav-link nav-toggle">Wallet--}}
-                                                {{--<span class="arrow"></span>--}}
-                                            {{--</a>--}}
-                                            {{--<ul class="dropdown-menu">--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{ url('/member/ecash-wallet-report') }}"--}}
-                                                       {{--class="nav-link">Cash Wallet</a>--}}
-                                                {{--</li>--}}
-
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{ url('/member/evoucher-wallet-report') }}"--}}
-                                                       {{--class="nav-link">Voucher Wallet</a>--}}
-                                                {{--</li>--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{ url('/member/rpoint-wallet-report') }}"--}}
-                                                       {{--class="nav-link">R Wallet</a>--}}
-                                                {{--</li>--}}
-                                                {{--<li aria-haspopup="true" class=" ">--}}
-                                                    {{--<a href="{{ url('/member/chip-wallet-report') }}"--}}
-                                                       {{--class="nav-link">Chips</a>--}}
-                                                {{--</li>--}}
+                            {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">--}}
+                            {{--<a href="javascript:;"> <i--}}
+                            {{--class="fa header-fa fa-clipboard-list"></i> {{__('dashboard.Business Management')}}--}}
+                            {{--<span class="arrow"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="dropdown-menu pull-left" style="width:225px">--}}
 
 
-                                            {{--</ul>--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                {{--</li>--}}
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{ url('/member/wallet-convert') }}"--}}
+                            {{--class="nav-link  "> {{__('dashboard.Wallet Convert')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{ url('/member/wallet-transfer') }}"--}}
+                            {{--class="nav-link  "> {{__('dashboard.Wallet Transfer')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{ url('/member/wallet-transfer-request') }}"--}}
+                            {{--class="nav-link  "> {{__('dashboard.Wallet Transfer Request')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{url('/member/wallet-withdraw')}}"--}}
+                            {{--class="nav-link  "> {{__('dashboard.Withdrawal Request')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{url('/member/shopping-withdraw')}}"--}}
+                            {{--class="nav-link  "> {{__('dashboard.Shopping Point Transform')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{url('/member/dividend-withdraw')}}"--}}
+                            {{--class="nav-link  "> {{__('dashboard.Dividend Transform')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+
+                            {{--</ul>--}}
+                            {{--</li>--}}
+
+                            {{--<li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">--}}
+                            {{--<a href="javascript:;"> <i--}}
+                            {{--class="fa header-fa fa-chart-line"></i> {{__('dashboard.Report')}}--}}
+                            {{--<span class="arrow"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="dropdown-menu pull-left">--}}
+                            {{--<li>--}}
+                            {{--<a href="{{route('cash-withdraw-report')}}"--}}
+                            {{--class="nav-link">{{__('dashboard.Cash Withdrawal Report')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{route('wallet-convert-report')}}"--}}
+                            {{--class="nav-link">{{__('dashboard.Wallet Converts Report')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{route('wallet-transfer-report')}}"--}}
+                            {{--class="nav-link">{{__('dashboard.Wallet Transfers Report')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li>--}}
+                            {{--<a href="{{route('payment-report')}}"--}}
+                            {{--class="nav-link">{{__('dashboard.Merchant Payment Report')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{route('purchase-report')}}"--}}
+                            {{--class="nav-link">{{__('front.Product Purchase Report')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li>--}}
+                            {{--<a href="{{route('shop-point-withdraw-report')}}"--}}
+                            {{--class="nav-link">{{__('dashboard.Shopping Point Transform Report')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{route('bonus-report')}}"--}}
+                            {{--class="nav-link">{{__('dashboard.Generation Bonus Report')}}--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<a href="{{route('daily-bonus-report')}}"--}}
+                            {{--class="nav-link">Dividend Report--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li aria-haspopup="true" class="dropdown-submenu">--}}
+                            {{--<a href="javascript:;"--}}
+                            {{--class="nav-link nav-toggle">Wallet--}}
+                            {{--<span class="arrow"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="dropdown-menu">--}}
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{ url('/member/ecash-wallet-report') }}"--}}
+                            {{--class="nav-link">Cash Wallet</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{ url('/member/evoucher-wallet-report') }}"--}}
+                            {{--class="nav-link">Voucher Wallet</a>--}}
+                            {{--</li>--}}
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{ url('/member/rpoint-wallet-report') }}"--}}
+                            {{--class="nav-link">R Wallet</a>--}}
+                            {{--</li>--}}
+                            {{--<li aria-haspopup="true" class=" ">--}}
+                            {{--<a href="{{ url('/member/chip-wallet-report') }}"--}}
+                            {{--class="nav-link">Chips</a>--}}
+                            {{--</li>--}}
+
+
+                            {{--</ul>--}}
+                            {{--</li>--}}
+                            {{--</ul>--}}
+                            {{--</li>--}}
 
                             {{--@endif--}}
                         </ul>

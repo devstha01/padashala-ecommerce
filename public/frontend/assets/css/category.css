@@ -643,11 +643,20 @@
     font: normal 400 1.4rem / 1.8 "Open Sans", sans-serif;
 }
 
-
-#my-cart-a{
+#my-cart-a {
     position: absolute;
     right: 1%;
 }
-.cart-count{
-    margin-top:-20px;
+
+.cart-count {
+    margin-top: -20px;
 }
+
+/*#search-ac-list {*/
+    /*width: inherit;*/
+    /*position: absolute;*/
+    /*z-index: 100;*/
+    /*color: red;*/
+    /*background: white;*/
+    /*height: 100px;*/
+/*}*/

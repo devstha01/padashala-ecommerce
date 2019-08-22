@@ -115,6 +115,13 @@
         .dataTables_wrapper .dataTables_filter {
             display: block !important;
         }
+        .dt-buttons {
+            display: block !important;
+        }
+        .buttons-print, .buttons-copy, .buttons-pdf {
+            display: none !important;
+        }
+
     </style>
 @stop
 

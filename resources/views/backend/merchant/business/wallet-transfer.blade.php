@@ -33,7 +33,7 @@
                         <div class="container">
                             <!-- BEGIN PAGE TITLE -->
                             <div class="page-title">
-                                <h1>{{ __('dashboard.Wallet Transfer - Member') }}
+                                <h1>Wallet Transfer
                                 </h1>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <span id="are-you-sure-message" style="display: none"></span>
 
                             <div class="col-md-6 portlet light">
-                                <h4> {{__('dashboard.Member')}} <br><i class="fa fa-qrcode"></i> {{__('dashboard.Qr code')}}</h4>
+                                <h4> Customer <br><i class="fa fa-qrcode"></i> {{__('dashboard.Qr code')}}</h4>
                                 <br>
                                 <script>
                                     var qr_scan_url = "{!! route('qr-check-customer') !!}";
@@ -63,7 +63,7 @@
                                     'class' => 'horizontal-form ajax-post-merchant-transfer',
                                     'method'=> 'POST'
                                     ])   }}
-                                    <h3 class="form-section">{{__('dashboard.Wallet Transfer - Member')}}</h3>
+                                    <h3 class="form-section">Wallet Transfer - Customer</h3>
                                     <h5 class="scroll-top-profile-page">{{__('dashboard.Required Fields')}}</h5>
 
                                     <div class="form-group">
