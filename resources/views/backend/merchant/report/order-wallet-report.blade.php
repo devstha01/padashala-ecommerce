@@ -86,7 +86,7 @@
                                                 @endif
                                             </td>
                                             <td class="text-right">
-                                                $ {{$report->sell_price * $report->quantity}}
+                                                $ {{($report->sell_price * $report->quantity)+$report->net_tax}}
                                             </td>
                                             <td class="text-right">
                                                 @if($report->getShoppingLog !==null)

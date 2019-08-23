@@ -21,7 +21,7 @@
                                 <th style="width:15%" class="price-col">{{__('front.Price')}}</th>
                                 <th style="width:10%" class="qty-col">{{__('front.Qty')}}</th>
                                 <th style="width:10%">{{__('front.Subtotal')}}</th>
-                                <th style="width:10%" ></th>
+                                <th style="width:10%"></th>
                             </tr>
                             </thead>
                         </table>
@@ -37,7 +37,8 @@
                             <tr>
                                 <td colspan="4" class="clearfix">
                                     <div class="float-right">
-                                        <a href="{{url('/')}}" class="btn btn-outline-secondary">{{__('front.Continue Shopping')}}</a>
+                                        <a href="{{url('/')}}"
+                                           class="btn btn-outline-secondary">{{__('front.Continue Shopping')}}</a>
                                     </div><!-- End .float-left -->
 
                                     {{--<div class="float-right">--}}
@@ -84,7 +85,7 @@
                             <tfoot>
                             <tr>
                                 <td colspan="4">{{__('front.Total')}}</td>
-                                <td id="checkout-net_total">$0.00</td>
+                                <td id="checkout_net_total">$0.00</td>
                             </tr>
                             </tfoot>
                         </table>

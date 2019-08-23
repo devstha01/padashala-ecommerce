@@ -653,10 +653,26 @@
 }
 
 /*#search-ac-list {*/
-    /*width: inherit;*/
-    /*position: absolute;*/
-    /*z-index: 100;*/
-    /*color: red;*/
-    /*background: white;*/
-    /*height: 100px;*/
+/*width: inherit;*/
+/*position: absolute;*/
+/*z-index: 100;*/
+/*color: red;*/
+/*background: white;*/
+/*height: 100px;*/
 /*}*/
+
+.product-highlight {
+    font-size: 10px;
+}
+
+.product-highlight b::before {
+    content: "\f14a";
+    font-family: FontAwesome;
+    margin-right: 10px;
+}
+
+.product-highlight b {
+    font-size: 11px;
+    color: lightgreen;
+    margin-right: 10px;
+}

@@ -144,9 +144,15 @@ class OrderController extends Controller
 
         $total = 0;
         $count = 0;
+        $net_tax = 0;
         foreach ($getTotals as $getTotal) {
             if ($getTotal->options->status) {
                 $total += $getTotal->price * $getTotal->qty;
+
+                $product = Product::find($getTotal->id);
+                $tax = ($product->tax + $product->vat + $product->excise) / 100;
+                $net_tax += ($getTotal->qty * $getTotal->price) * $tax;
+
                 $count++;
             }
         }
@@ -157,11 +163,8 @@ class OrderController extends Controller
                 'url' => url('order/address')
             ));
         }
-//        return redirect()->back()->with('fail', __('message.Empty Cart or Item out of stock'));
 
-        $tax = number_format(($total * ((env('TAX_PERCENT') ?? 0) / 100)), 2, '.', '');
-
-        $floatTotal = $total + $tax;
+        $floatTotal = $total + $net_tax;
         $delivery_price = number_format(((env('DELIVERY_COST') ?? 0) * $count), 2, '.', '');
 
         $checkAsset = $floatTotal + $delivery_price;
@@ -251,7 +254,7 @@ class OrderController extends Controller
 //            'invoice_number' => $invoice,
             'delivery_price' => $delivery_price,
             'sub_total' => $total,
-            'tax' => $tax,
+            'tax' => $net_tax,
         ]);
         if ($order) {
 
@@ -331,6 +334,10 @@ class OrderController extends Controller
                 $serial = substr(str_pad(OrderItem::orderBy('id', 'DESC')->first()->id ?? 0, 6, '0', STR_PAD_LEFT), -6);
                 $invoice = strtoupper(substr(Config::get('app.name'), 0, 3)) . Carbon::now()->format('myd') . '-' . strtoupper(substr($item->merchant_slug, 0, 3)) . $serial;
             }
+            $vat = ($item->getProduct->vat / 100) * ($sell_price * $item->quantity);
+            $tax = ($item->getProduct->tax / 100) * ($sell_price * $item->quantity);
+            $excise = ($item->getProduct->excise / 100) * ($sell_price * $item->quantity);
+
             $orderItem = OrderItem::create([
                 'product_id' => $item->product_id,
                 'order_id' => $order_id,
@@ -338,6 +345,10 @@ class OrderController extends Controller
                 'quantity' => $item->quantity,
                 'marked_price' => $marked_price,
                 'sell_price' => $sell_price,
+                'vat' => $vat,
+                'tax' => $tax,
+                'excise' => $excise,
+                'net_tax' => ($vat + $tax + $excise),
                 'discount' => $discount,
                 'invoice' => $invoice,
                 'category_share' => $item->getProduct->getCategory->share_percentage ?? 0,

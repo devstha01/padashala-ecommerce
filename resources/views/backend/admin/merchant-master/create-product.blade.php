@@ -36,26 +36,41 @@
                                             <span style="color: red">{{$errors->first('name')??''}}</span>
                                         </div>
                                     </div>
-                                    {{--<div class="col-md-4">--}}
-
-                                    {{--<div class="form-group">--}}
-                                    {{--<label class="control-label">{{__('dashboard.Your Business Name')}}</label>--}}
-                                    {{--<input type="hidden" name="merchant_business_id"--}}
-                                    {{--value="{{$merchant->getBusiness->id}}">--}}
-                                    {{--<input type="text" value="{{$merchant->getBusiness->name}}"--}}
-                                    {{--class="form-control input-sm" disabled>--}}
-                                    {{--<span style="color: red">{{$errors->first('merchant_business_id')??''}}</span>--}}
-                                    {{--</div>--}}
-
-                                    {{--</div>--}}
                                 </div>
 
                                 <div class="form-group">
-                                    <label>
-                                        {{__('dashboard.Brief description')}}
-                                    </label>
-                                    <textarea class="form-control" name="detail" maxlength="100"
-                                              style="resize: none">{{old('detail')??''}}</textarea>
+                                    <label>Highlights</label>
+                                    <button class="btn green" id="add-highlight">+ more highlights</button>
+                                    <br>
+                                    <table class="table table-borderless">
+                                        <tbody id="detail-highlights">
+                                        @forelse(old('detailName')??[] as $key=>$value)
+                                            <tr class="highlight">
+                                                <td style="width:30%"><input type="text" name="detailName[]"
+                                                                             class="form-control"
+                                                                             value="{{old('detailName')[$key]??''}}">
+                                                </td>
+                                                <td style="width:65%"><input type="text" name="detailValue[]"
+                                                                             class="form-control"
+                                                                             value="{{old('detailValue')[$key]??''}}">
+                                                </td>
+                                                <td style="width:5%">
+                                                    <button class="btn red remove-highlight">x</button>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr class="highlight">
+                                                <td style="width:30%"><input type="text" name="detailName[]"
+                                                                             class="form-control"></td>
+                                                <td style="width:65%"><input type="text" name="detailValue[]"
+                                                                             class="form-control"></td>
+                                                <td style="width:5%">
+                                                    <button class="btn red remove-highlight">x</button>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <div class="form-group">
@@ -63,21 +78,25 @@
                                         {{__('dashboard.Detail description')}}
                                     </label>
                                     <textarea class="form-control" name="description"
-                                              id="ckeditor-replace"        style="resize: none">{{old('description')??''}}</textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        {{__('dashboard.Product Commission')}} <span
-                                                class="m-l-5 text-danger">*</span>
-                                    </label>
-                                    <input type="text" name="product_share" id="product_share" class="form-control input-sm"
-                                           value="{{old('product_share')??0}}" required>
-                                    <span style="color: red">{{$errors->first('product_share')??''}}</span>
+                                              id="ckeditor-replace"
+                                              style="resize: none">{{old('description')??''}}</textarea>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-md-4">
+
+                                        <div class="form-group">
+                                            <label>
+                                                {{__('dashboard.Product Commission')}} <span
+                                                        class="m-l-5 text-danger">*</span>
+                                            </label>
+                                            <input type="text" name="product_share" id="product_share"
+                                                   class="form-control input-sm"
+                                                   value="{{old('product_share')??0}}" required>
+                                            <span style="color: red">{{$errors->first('product_share')??''}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
 
                                         <div class="form-group">
                                             <label>
@@ -98,8 +117,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
+                                    <div class="col-md-3">
+                                        <div class="form-group category_share">
                                             <label>
                                                 {{__('dashboard.Category Commission')}}
                                             </label>
@@ -132,6 +151,25 @@
                                             class="form-control input-sm">
                                         <option value="">{{__('dashboard.No sub-child-category available')}}</option>
                                     </select>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group"><label>VAT</label><input type="number" name="vat"
+                                                                                         class="form-control" value="{{old('vat')}}"> <span
+                                                    style="color: red">{{$errors->first('vat')??''}}</span></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"><label>TAX</label><input type="number" name="tax"
+                                                                                         class="form-control" value="{{old('tax')}}"> <span
+                                                    style="color: red">{{$errors->first('tax')??''}}</span></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"><label>Excise</label><input type="number" name="excise"
+                                                                                            class="form-control" value="{{old('excise')}}"> <span
+                                                    style="color: red">{{$errors->first('excise')??''}}</span></div>
+                                    </div>
                                 </div>
 
 

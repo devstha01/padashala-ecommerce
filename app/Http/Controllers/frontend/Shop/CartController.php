@@ -111,6 +111,7 @@ class CartController extends Controller
     {
 
         $carts = Cart::content();
+        $net_tax = 0;
 
         $user = Auth::user();
         foreach ($carts as $rowId => $cart) {
@@ -132,6 +133,11 @@ class CartController extends Controller
                 'variant_id' => $cart->options->variant_id ?? null,
                 'status' => $status
             ]]);
+            if ($status) {
+                $product = Product::find($cart->id);
+                $tax = ($product->tax + $product->vat + $product->excise) / 100;
+                $net_tax += ($cart->qty * $cart->price) * $tax;
+            }
 
             //db quantity status check
             if ($user !== null) {
@@ -141,14 +147,11 @@ class CartController extends Controller
                     $update->update(['status' => $status]);
             }
         }
-
         $this->StoreCartDB();
         $data = [
             'count' => Cart::count(),
             'list' => Cart::content(),
-            'total' => Cart::subtotal(),
-            'net_total' => Cart::total(),
-            'tax' => Cart::tax(),
+            'net_tax' => $net_tax
         ];
         return response()->json($data);
     }

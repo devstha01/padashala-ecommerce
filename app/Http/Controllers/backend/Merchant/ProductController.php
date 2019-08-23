@@ -64,7 +64,6 @@ class ProductController extends Controller
     }
 
 
-
     function viewProductRequest()
     {
         $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
@@ -114,21 +113,30 @@ class ProductController extends Controller
     {
         $this->_data['merchant'] = Merchant::find($this->_merchant_id);
         $this->_data['categories'] = Category::where('status', 1)->get() ?? [];
-//        $categories = Category::where('status', 1)->get() ?? [];
-//        $data = [];
-//        foreach ($categories as $category) {
-//            $catStatus = false;
-//            foreach ($category->getSubCategory as $subCat) {
-//                if (count($subCat->getSubChildCategory) !== 0)
-//                    $catStatus = true;
-//            }
-//            if ($catStatus)
-//                $data[] = $category;
-//        }
-//        $this->_data['categories'] = collect($data);
         if ($this->_data['product'] = Product::where('slug', $slug)->first()) {
             $this->_data['options'] = ProductVariant::where('product_id', $this->_data['product']->id)->where('status', 1)->get()->groupBy('color_id');
             $this->_data['colors'] = ProductVariant::where('product_id', $this->_data['product']->id)->where('status', 1)->pluck('color_id')->toArray();
+
+            $detail = $this->_data['product']->detail;
+            $detail = str_replace('<ul>', '', $detail);
+            $detail = str_replace('</ul>', '', $detail);
+            $detail = explode('</li>', $detail);
+            $this->_data['detailName'] = [];
+            $this->_data['detailValue'] = [];
+
+            foreach ($detail as $item) {
+                if ($item !== '')
+                    if (str_contains($item, '<b>')) {
+                        $item = str_replace('<li>', '', $item);
+                        $item = explode('</b>', $item);
+                        $this->_data['detailName'] [] = str_replace('<b>', '', $item[0] ?? '');
+                        $this->_data['detailValue'] [] = $item[1] ?? '';
+                    } else {
+                        $this->_data['detailName'] [] = '';
+                        $this->_data['detailValue'] [] = $item;
+                    }
+            }
+
 
             switch (session('active')) {
                 case 'image':
@@ -151,12 +159,12 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'category_id' => 'required|not_in:0',
-            'detail' => 'max:100',
+//            'detail' => 'max:100',
 //            'sub_category_id' => 'required|not_in:0',
 //            'sub_child_category_id' => 'required|not_in:0',
 //            'merchant_business_id' => 'required|not_in:0',
             'featured_image' => 'required',
-            'product_share' => 'required|numeric|min:0|max:100',
+            'product_share' => 'sometimes|numeric|min:0|max:100',
 
 //            'delivery_option' => 'required',
 //            'marked_price' => 'required|numeric|min:0',
@@ -176,14 +184,27 @@ class ProductController extends Controller
             $i++;
         } while ($uniq_slug !== true);
 
+        $detail = '<ul>';
+        foreach ($request->detailName as $key => $value) {
+            $detail .= "<li><b>"
+                . ($request->detailName[$key] ?? '') .
+                "</b>"
+                . ($request->detailValue[$key] ?? '') .
+                "</li>";
+        }
+        $detail .= "</ul>";
+
         $validated['sub_category_id'] = $request->sub_category_id;
         $validated['sub_child_category_id'] = $request->sub_child_category_id;
-        $validated['detail'] = $request->detail;
+        $validated['detail'] = $detail;
         $validated['description'] = $request->description;
         $validated['marked_price'] = 0;
         $validated['sell_price'] = 0;
         $validated['discount'] = 0;
         $validated['quantity'] = 0;
+        $validated['tax'] = $request->tax ?? 0;
+        $validated['vat'] = $request->vat ?? 0;
+        $validated['excise'] = $request->excise ?? 0;
         $validated['merchant_business_id'] = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id;
 
         $validated['delivery_option'] = Merchant::find($this->_merchant_id)->purchase_option ?? 1;
@@ -250,9 +271,19 @@ class ProductController extends Controller
 //            'discount_price' => 'required|numeric|min:0|max:99'
         ]);
 
+        $detail = '<ul>';
+        foreach ($request->detailName as $key => $value) {
+            $detail .= "<li><b>"
+                . ($request->detailName[$key] ?? '') .
+                "</b>"
+                . ($request->detailValue[$key] ?? '') .
+                "</li>";
+        }
+        $detail .= "</ul>";
+
         $validated['sub_category_id'] = $request->sub_category_id;
         $validated['sub_child_category_id'] = $request->sub_child_category_id;
-        $validated['detail'] = $request->detail;
+        $validated['detail'] = $detail;
         $validated['description'] = $request->description;
 //        $validated['marked_price'] = number_format($request->marked_price ?? 0, 2, '.', '');
 //        $validated['sell_price'] = number_format($request->sell_price ?? 0, 2, '.', '');
@@ -260,6 +291,9 @@ class ProductController extends Controller
 //        $validated['quantity'] = $request->quantity;
 //        $validated['delivery_option'] = Merchant::find($this->_merchant_id)->purchase_option ?? 1;
         $validated['share_percentage'] = $request->product_share;
+        $validated['tax'] = $request->tax ?? 0;
+        $validated['vat'] = $request->vat ?? 0;
+        $validated['excise'] = $request->excise ?? 0;
 
         $prod = Product::find($id);
 

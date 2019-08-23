@@ -124,7 +124,7 @@ class ListController extends Controller
 //            'sub_child_category_id' => 'required|not_in:0',
 //            'merchant_business_id' => 'required|not_in:0',
             'featured_image' => 'required',
-            'product_share' => 'required|numeric|min:0:|max:100',
+            'product_share' => 'sometimes|numeric|min:0:|max:100',
 //            'marked_price' => 'required|numeric|min:0',
 //            'sell_price' => 'required|numeric|min:0',
 //            'discount_price' => 'required|numeric|min:0|max:99'
@@ -142,14 +142,28 @@ class ListController extends Controller
             $i++;
         } while ($uniq_slug !== true);
 
+
+        $detail = '<ul>';
+        foreach ($request->detailName as $key => $value) {
+            $detail .= "<li><b>"
+                . ($request->detailName[$key] ?? '') .
+                "</b>"
+                . ($request->detailValue[$key] ?? '') .
+                "</li>";
+        }
+        $detail .= "</ul>";
+
         $validated['sub_category_id'] = $request->sub_category_id;
         $validated['sub_child_category_id'] = $request->sub_child_category_id;
-        $validated['detail'] = $request->detail;
+        $validated['detail'] = $detail;
         $validated['description'] = $request->description;
         $validated['marked_price'] = 0;
         $validated['sell_price'] = 0;
         $validated['discount'] = 0;
         $validated['quantity'] = 0;
+        $validated['tax'] = $request->tax ?? 0;
+        $validated['vat'] = $request->vat ?? 0;
+        $validated['excise'] = $request->excise ?? 0;
         $validated['merchant_business_id'] = MerchantBusiness::where('merchant_id', $id)->first()->id;
 
 //        admin share
@@ -227,6 +241,27 @@ class ListController extends Controller
             $this->_data['options'] = ProductVariant::where('product_id', $this->_data['product']->id)->where('status', 1)->get()->groupBy('color_id');
             $this->_data['colors'] = ProductVariant::where('product_id', $this->_data['product']->id)->where('status', 1)->pluck('color_id')->toArray();
 
+            $detail = $this->_data['product']->detail;
+            $detail = str_replace('<ul>', '', $detail);
+            $detail = str_replace('</ul>', '', $detail);
+            $detail = explode('</li>', $detail);
+            $this->_data['detailName'] = [];
+            $this->_data['detailValue'] = [];
+
+            foreach ($detail as $item) {
+                if ($item !== '')
+                    if (str_contains($item, '<b>')) {
+                        $item = str_replace('<li>', '', $item);
+                        $item = explode('</b>', $item);
+                        $this->_data['detailName'] [] = str_replace('<b>', '', $item[0] ?? '');
+                        $this->_data['detailValue'] [] = $item[1] ?? '';
+                    } else {
+                        $this->_data['detailName'] [] = '';
+                        $this->_data['detailValue'] [] = $item;
+                    }
+            }
+
+
             switch (session('active')) {
                 case 'image':
                     return view($this->_path . '.tab-content.edit-product-image', $this->_data);
@@ -252,15 +287,26 @@ class ListController extends Controller
 //            'sub_category_id' => 'required|not_in:0',
 //            'sub_child_category_id' => 'required|not_in:0',
 //            'merchant_business_id' => 'required|not_in:0',
-            'product_share' => 'required|numeric|min:0|max:100',
+            'product_share' => 'sometimes|numeric|min:0|max:100',
 //            'marked_price' => 'required|numeric|min:0',
 //            'sell_price' => 'required|numeric|min:0',
 //            'discount_price' => 'required|numeric|min:0|max:99'
         ]);
 
+        $detail = '<ul>';
+        foreach ($request->detailName as $key => $value) {
+            $detail .= "<li><b>"
+                . ($request->detailName[$key] ?? '') .
+                "</b>"
+                . ($request->detailValue[$key] ?? '') .
+                "</li>";
+        }
+        $detail .= "</ul>";
+
+
         $validated['sub_category_id'] = $request->sub_category_id;
         $validated['sub_child_category_id'] = $request->sub_child_category_id;
-        $validated['detail'] = $request->detail;
+        $validated['detail'] = $detail;
         $validated['description'] = $request->description;
 //        $validated['marked_price'] = number_format($request->marked_price ?? 0, 2, '.', '');
 //        $validated['sell_price'] = number_format($request->sell_price ?? 0, 2, '.', '');
@@ -269,6 +315,9 @@ class ListController extends Controller
 
         //        admin share
         $validated['share_percentage'] = $request->product_share;
+        $validated['tax'] = $request->tax ?? 0;
+        $validated['vat'] = $request->vat ?? 0;
+        $validated['excise'] = $request->excise ?? 0;
 
         $prod = Product::find($id);
 

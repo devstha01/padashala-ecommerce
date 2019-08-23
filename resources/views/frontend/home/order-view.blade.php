@@ -124,8 +124,8 @@
                             <td colspan="2">${{$orders->sub_total}}</td>
                         </tr>
                         <tr>
-                            <td colspan="4">{{__('front.Delivery')}}</td>
-                            <td colspan="2">${{env('DELIVERY_COST')??0 }}</td>
+                            <td colspan="4">Net Tax</td>
+                            <td colspan="2">${{$orders->tax}}</td>
                         </tr>
 
                         <tr>

@@ -11,7 +11,8 @@ class Product extends Model
 
     protected $fillable = [
         'category_id', 'sub_category_id', 'sub_child_category_id', 'merchant_business_id', 'name', 'detail', 'slug', 'featured_image',
-        'marked_price', 'sell_price', 'discount', 'quantity', 'status', 'is_featured', 'description', 'admin_flag', 'share_percentage'
+        'marked_price', 'sell_price', 'discount', 'quantity', 'status', 'is_featured', 'description', 'admin_flag', 'share_percentage',
+        'vat', 'tax', 'excise', 'standard_product',
     ];
 
     protected $appends = ['eng_name', 'eng_detail', 'eng_description'];

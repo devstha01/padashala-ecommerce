@@ -4,6 +4,8 @@ $(function () {
         $.get(serverCustom.base_url + '/api/get-cart-session', function (data) {
             // console.log(data.list);
             var net_total = 0;
+            var net_total_tax = data.net_tax;
+            var net_tax = data.net_tax;
             var checkoutAppend = '';
             var checkoutProducts = '';
             var checkoutProductsAddress = '';
@@ -21,7 +23,7 @@ $(function () {
                 } else {
                     checkoutProducts += '<tr><td>' + (++sn) + '</td><td>' + value.name + variant_name + '</td><td>  $' + value.price + '</td><td style="margin-left:7px">    X ' + value.qty + '</td><td>  $' + value.price * value.qty + '</td></tr>';
                     net_total += value.price * value.qty;
-
+                    net_total_tax += value.price * value.qty;
                     checkoutProductsAddress += '<tr><td>' + (++sn1) + '</td><td>' + value.name + variant_name + '</td><td>  $' + value.price + '</td><td style="margin-left:7px">  X ' + value.qty + '</td><td>  $' + value.price * value.qty + '</td></tr>';
 
                 }
@@ -74,7 +76,9 @@ $(function () {
             cartSummaryAddress.empty();
             cartSummaryAddress.append(checkoutProductsAddress);
 
-            $('#checkout-net_total').html('$' + net_total);
+            $('#checkout_net_tax').html('$' + net_tax);
+            $('#checkout_net_total').html('$' + net_total);
+            $('#checkout_net_total_tax').html('$' + net_total_tax);
 
             checkoutItemUpDown();
             removeCheckoutProduct();

@@ -55,8 +55,8 @@
                                     <th>{{__('dashboard.Product')}}</th>
                                     <th>{{__('dashboard.Quantity')}}</th>
                                     <th>{{__('dashboard.Sell Price')}}</th>
-                                    <th>{{__('dashboard.Marked price')}}</th>
-                                    <th>{{__('dashboard.Discount')}}</th>
+                                    <th>Net Tax</th>
+                                    <th>Net Amount</th>
                                     <th>{{__('dashboard.Order Date')}}</th>
                                     <th>{{__('dashboard.Delivery')}}</th>
                                     <th>{{__('dashboard.Status')}}</th>
@@ -72,8 +72,8 @@
                                         </td>
                                         <td class="text-right">{{$report->quantity}}</td>
                                         <td class="text-right">$ {{$report->sell_price}}</td>
-                                        <td class="text-right">$ {{$report->marked_price}}</td>
-                                        <td class="text-right">$ {{$report->discount}}</td>
+                                        <td class="text-right">$ {{$report->net_tax+0}}</td>
+                                        <td class="text-right">$ {{($report->sell_price *$report->quantity)+$report->net_tax}}</td>
                                         <td>
                                             {{$report->getOrder->order_date}}
                                         </td>

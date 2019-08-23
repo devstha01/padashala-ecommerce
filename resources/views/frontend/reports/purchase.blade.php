@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-12">
 
-{{--                    @include('frontend.reports.report-nav')--}}
+                    {{--                    @include('frontend.reports.report-nav')--}}
                     <br>
                     <h3>{{__('front.Product Purchase Report')}} </h3>
 
@@ -29,7 +29,7 @@
                                 <td>{{$report->deliver_date??' - '}}</td>
                                 <td>{{$report->getProduct->name}}</td>
                                 <td>{{$report->quantity}}</td>
-                                <td>{{$report->quantity * $report->sell_price}}</td>
+                                <td>{{($report->quantity * $report->sell_price)+$report->net_tax}}</td>
                             </tr>
                         @endforeach
                         </tbody>
