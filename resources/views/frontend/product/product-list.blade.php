@@ -108,7 +108,7 @@
                                                 @endif
                                             </div><!-- End .price-box -->
                                             <b>{{$prod->getBusiness->name}}</b>
-                                            <p>{{$prod->detail}}</p>
+                                            <div class="product-highlight"><?php echo htmlspecialchars_decode($prod->detail)?></div>
 
                                         </a>
                                     </h2>
@@ -121,7 +121,7 @@
                         @endforelse
                         {{--</div> <!--------end of row-->--}}
                     </div><!-- End .featured-proucts -->
-<div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
                     <nav class="toolbox toolbox-pagination">
                         <div class="toolbox-item toolbox-show">
                             <label>{{__('front.Showing')}}

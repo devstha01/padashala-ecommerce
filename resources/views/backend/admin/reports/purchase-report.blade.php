@@ -47,10 +47,10 @@
                                             <td>{{$report->deliver_date??' - '}}</td>
                                             <td>{{$report->getProduct->name}}</td>
                                             <td>{{$report->quantity}}</td>
-                                            <td>{{$report->quantity * $report->sell_price}}</td>
+                                            <td>${{($report->quantity * $report->sell_price)+$report->net_tax}}</td>
                                             <td>
                                                 @if($report->getShoppingLog !==null)
-                                                    {{$report->getShoppingLog->admin_amount}}
+                                                    ${{$report->getShoppingLog->admin_amount}}
                                                 @else
                                                     Delivery Pending
                                                 @endif

@@ -11,12 +11,12 @@
             <div class="header-right" style="margin: 0!important;">
 
                 <?php  if (!isset($type)) $type = 'product';?>
-                <div class="header-search" style="height: 34px">
+                <div class="header-search" style="height: 34px;">
                     <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
                     <form action="{{route('search-product')}}" method="GET">
                         <div class="header-search-wrapper">
                             <input type="search" name="term" class="form-control" placeholder="Search..."
-                                   value="{{$search??''}}">
+                                   value="{{$search??''}}" id="search-autocomplete">
                             <div class="select-custom">
 
                                 <select id="cat" name="type" style="font-size: 12px">
@@ -43,9 +43,15 @@
                             </div><!-- End .select-custom -->
                             <button class="btn" type="submit"><i style="color:white;font-weight:bold"
                                                                  class="icon-magnifier"></i></button>
-                        </div><!-- End .header-search-wrapper -->
+                        </div>
                     </form>
-                </div><!-- End .header-search -->
+                    {{--<div class="header-search-wrapper" style="position: relative">--}}
+                        {{--<div id="search-ac-list">--}}
+                            {{--<a href="">asd</a>--}}
+                            {{--<a href="">zxc</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                </div>
 
                 <div class="login-register">
                     <div class="header-dropdown dropdown-expanded">

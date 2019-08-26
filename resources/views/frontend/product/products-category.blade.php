@@ -154,7 +154,7 @@
                                                     @endif
                                                 </div><!-- End .price-box -->
                                                 <b>{{$featured_product->getBusiness->name}}</b>
-                                                <p>{{$featured_product->detail}}</p>
+                                                <div class="product-highlight"><?php echo htmlspecialchars_decode($featured_product->detail)?></div>
 
                                             </a>
                                         </h2>

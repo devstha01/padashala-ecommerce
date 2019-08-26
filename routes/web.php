@@ -178,8 +178,8 @@ Route::group(['namespace' => 'backend\Merchant', 'prefix' => 'merchant'], functi
     Route::group(['prefix' => 'payment'], function () {
 //        Route::get('', 'PaymentController@managePayment')->name('manage-payment');
 //        Route::get('list', 'PaymentController@managePaymentList')->name('manage-payment-list');
-//        Route::get('check-customer', 'PaymentController@checkCustomer');
-//        Route::post('qr-check-customer', 'PaymentController@qrCheckCustomer')->name('qr-check-customer');
+        Route::get('check-customer', 'PaymentController@checkCustomer');
+        Route::post('qr-check-customer', 'PaymentController@qrCheckCustomer')->name('qr-check-customer');
 //        Route::post('payment-request', 'PaymentController@paymentRequest')->name('merchant-payment-request');
 //        Route::post('cancel-request/{id}', 'PaymentController@cancelRequest');
 
@@ -187,8 +187,8 @@ Route::group(['namespace' => 'backend\Merchant', 'prefix' => 'merchant'], functi
 //        Route::get('bonus-request-cash', 'PaymentController@bonusRequestCash')->name('bonus-request-cash');
 //        Route::post('bonus-request-cash/{id}', 'PaymentController@submitAdminBonus');
 
-//        Route::get('wallet-transfer', 'PaymentController@walletTransfer')->name('merchant-member-wallet-transfer');
-//        Route::post('wallet-transfer', 'PaymentController@walletTransferPost');
+        Route::get('wallet-transfer', 'PaymentController@walletTransfer')->name('merchant-customer-wallet-transfer');
+        Route::post('wallet-transfer', 'PaymentController@walletTransferPost');
 
 //        Route::get('check-merchant', 'PaymentController@checkMerchant');
 //        Route::post('qr-check-merchant', 'PaymentController@qrCheckMerchant')->name('qr-check-merchant');
@@ -207,10 +207,11 @@ Route::group(['namespace' => 'backend\Merchant', 'prefix' => 'merchant'], functi
         Route::get('order-report', 'ReportController@orderReport')->name('order-reportmerchant');
         Route::get('wallet-report', 'ReportController@walletReport')->name('wallet-reportmerchant');
         Route::get('purchase-report', 'ReportController@purchaseReport')->name('purchase-reportmerchant');
-//        Route::get('wallet-transfer-report', 'ReportController@walletTransferReport')->name('wallet-transfer-reportmerchant');
+        Route::get('wallet-transfer-report', 'ReportController@walletTransferReport')->name('wallet-transfer-reportmerchant');
 
         Route::get('cash-withdraw-report', 'ReportController@cashWithdrawReport')->name('merchant-cash-withdraw-report');
 //        Route::get('merchant-grant-retain-report', 'ReportController@grantRetainReport')->name('merchant-grant-retain-report');
+
 
     });
 });

@@ -206,8 +206,12 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <td colspan="4">Net Tax</td>
+                                <td id="checkout_net_tax">$0.00</td>
+                            </tr>
+                            <tr>
                                 <td colspan="4">{{__('front.Total')}}</td>
-                                <td id="checkout-net_total">$0.00</td>
+                                <td id="checkout_net_total_tax">$0.00</td>
                             </tr>
                             </tfoot>
                         </table>

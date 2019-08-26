@@ -78,11 +78,31 @@ class ReportController extends Controller
         return view('backend.merchant.report.order-wallet-report', $this->_data);
     }
 
+    /*    function walletReportCSV(Request $request)
+        {
+            $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
+            if (!$business_id)
+                return response()->json(['status'=>false]);
+            $products = Product::where('merchant_business_id', $business_id)->pluck('id')->toArray() ?? [];
+
+            $this->_data['sd'] = $request->sd ?? Carbon::now()->subYear(1)->format('d-M-Y');
+            $this->_data['ed'] = $request->ed ?? Carbon::now()->format('d-M-Y');
+
+            $this->_data['reports'] = OrderItem::whereIn('product_id', $products)->orderBy('id', 'DESC');
+
+            $this->_data['reports'] = $this->_data['reports']->where('created_at', '>=', Carbon::parse($this->_data['sd'])->toDateTimeString());
+            $this->_data['reports'] = $this->_data['reports']->where('created_at', '<=', Carbon::parse($this->_data['ed'])->addDays(1)->toDateTimeString());
+            $this->_data['reports'] = $this->_data['reports']->get();
+
+
+            return view('backend.merchant.report.order-wallet-report', $this->_data);
+
+            return response()->json($request->all());
+        }*/
+
     function walletTransferReport()
     {
-//        $this->_data['reports'] = MerchantWalletTransfer::where('from_merchant_id', $this->_merchant_id)->get();
-        $this->_data['from_reports'] = MerchantWalletTransferMerchant::where('from_merchant_id', $this->_merchant_id)->get();
-        $this->_data['to_reports'] = MerchantWalletTransferMerchant::where('to_merchant_id', $this->_merchant_id)->get();
+        $this->_data['reports'] = MerchantWalletTransfer::where('from_merchant_id', $this->_merchant_id)->get();
         return view('backend.merchant.report.wallet-transfer-report', $this->_data);
     }
 
@@ -100,11 +120,11 @@ class ReportController extends Controller
 
     function purchaseReport()
     {
-        $business =MerchantBusiness::where('merchant_id',$this->_merchant_id)->first();
+        $business = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first();
         if (!$business)
             return redirect()->back();
         $products = Product::where('merchant_business_id', $business->id)->pluck('id')->toArray() ?? [];
-        $this->_data['reports'] = OrderItem::whereIn('product_id', $products)->where('order_status_id','deliver')->latest()->get();
+        $this->_data['reports'] = OrderItem::whereIn('product_id', $products)->where('order_status_id', 'deliver')->latest()->get();
         return view('backend.merchant.report.purchase-report', $this->_data);
     }
 }

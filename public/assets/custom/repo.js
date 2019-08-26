@@ -169,7 +169,7 @@ function getPageUrl() {
 }
 
 //show message in popupr
-function showPopupMessage(Message, headding = "Message", isError = false) {
+function showPopupMessage(Message, headding= "Message",isError = false) {
     if (!isError) {
         swal(headding, Message);
 

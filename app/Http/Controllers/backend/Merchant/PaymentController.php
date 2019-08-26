@@ -6,16 +6,13 @@ use App\Http\Traits\MinMaxConfig;
 use App\Http\Traits\NotificationTrait;
 use App\Http\Traits\WalletsHistoryTrait;
 use App\Http\Traits\WalletSuccess;
-use App\Models\Commisions\CashDeliveryBonusRecord;
 use App\Models\Members\MemberAsset;
 use App\Models\Merchant;
 use App\Models\MerchantAsset;
 use App\Models\MerchantBankInfo;
 use App\Models\MerchantCashWithdraw;
 use App\Models\MerchantWalletTransfer;
-use App\Models\MerchantWalletTransferMerchant;
 use App\Models\User;
-use App\Models\UserPayment;
 use App\Models\WithdrawConfig;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -100,124 +97,6 @@ class PaymentController extends Controller
         ]);
     }
 
-    function paymentRequest(Request $request)
-    {
-        if (!request()->ajax()) {
-            return back();
-        }
-
-        $validator = Validator::make($request->all(), [
-            'amount' => 'required|numeric|min:0',
-            'member_id' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(array(
-                'status' => 'fails',
-                'errors' => $validator->getMessageBag()->toArray()
-            ));
-        }
-
-        if ($validator->passes()) {
-
-            $memberId = User::where('user_name', $request->member_id)->first();
-
-            if ($memberId) {
-                UserPayment::create([
-                    'from_member_id' => $memberId->id,
-                    'to_merchant_id' => $this->_merchant_id,
-                    'amount' => $request->amount,
-                    'qr_token' => 'Payment Request from web',
-                    'wallet_id' => 1,
-                    'flag' => 0,
-                ]);
-
-                $this->flashSuccessPage(
-                    __('dashboard.Payment Request'),
-                    __('message.Payment request made successfully'),
-                    'Payment request amount $' . $request->amount . ' from ' . $request->member_id);
-                return response()->json(array(
-                    'status' => 'success',
-                    'url' => url('merchant/success')
-                ));
-            } else {
-                $validator->errors()->add('member_id',
-                    __('message.Username not found'));
-                return response()->json(array(
-                    'status' => 'fails',
-                    'errors' => $validator->getMessageBag()->toArray()
-                ));
-            }
-        }
-    }
-
-    function cancelRequest($id)
-    {
-        $transfer = UserPayment::where('id', $id)->where('flag', 0)->where('status', 1)->first();
-        if ($transfer) {
-            $transfer->update(['flag' => 1, 'status' => 0, 'remarks' => 'Cancelled request by merchant']);
-            session()->flash('message', __('message.Request cancelled successfully'));
-            return response()->json(array(
-                'status' => 'success',
-                'url' => url('merchant/payment')
-            ));
-
-        }
-        session()->flash('message', __('message.Something went wrong'));
-        return response()->json(array(
-            'status' => 'fails',
-            'url' => url('merchant/payment')
-        ));
-
-    }
-
-    function bonusRequestCash()
-    {
-        $this->_data['wallet'] = MerchantAsset::where('merchant_id', $this->_merchant_id)->first();
-
-        $this->_data['request'] = CashDeliveryBonusRecord::where('merchant_id', $this->_merchant_id)->where('paid_status', 0)->where('status', 1)->get();
-
-        return view('backend.merchant.business.bonus-request-cash', $this->_data);
-    }
-
-
-    function submitAdminBonus(Request $request)
-    {
-        if (!request()->ajax()) {
-            return back();
-        }
-
-        $record = CashDeliveryBonusRecord::where('id', $request->id)->where('paid_status', 0)->where('status', 1)->first();
-        if ($record) {
-            if ($record->status) {
-                $merchantAsset = MerchantAsset::where('merchant_id', $this->_merchant_id)->first();
-                if ($merchantAsset) {
-                    if ($merchantAsset->ecash_wallet < $record->admin) {
-                        session()->flash('fail', __('message.Insufficient Amount'));
-                        return response()->json(array(
-                            'status' => 'success',
-                            'url' => url('merchant/payment/bonus-request-cash')
-                        ));
-
-                    } else {
-                        $merchantAsset->update(['ecash_wallet' => $merchantAsset->ecash_wallet - $record->admin]);
-                        $record->update(['paid_status' => 1]);
-                        session()->flash('success', __('message.Bonus submitted successfully'));
-                        return response()->json(array(
-                            'status' => 'success',
-                            'url' => url('merchant/payment/bonus-request-cash')
-                        ));
-                    }
-                }
-            }
-        }
-
-        session()->flash('fail', __('message.Invalid request'));
-        return response()->json(array(
-            'status' => 'success',
-            'url' => url('merchant/payment/bonus-request-cash')
-        ));
-    }
 
     function walletTransfer()
     {
@@ -263,13 +142,12 @@ class PaymentController extends Controller
 
                     $memberAsset->update(['ecash_wallet' => $memberAsset->ecash_wallet + $request->amount]);
                     $merchantAsset->update(['ecash_wallet' => $merchantAsset->ecash_wallet - $request->amount]);
-                    $this->createWalletReport($memberId->id, $request->amount, 'Wallet Transfer by Merchant', 'ecash', 'IN');
 
                     MerchantWalletTransfer::create([
                         'from_merchant_id' => $this->_merchant_id,
                         'to_member_id' => $memberId->id,
                         'amount' => $request->amount,
-                        'qr_token' => 'Paid by merchant to Member',
+                        'qr_token' => 'Wallet transfer by merchant to Customer',
                         'wallet_id' => 1,
                     ]);
 

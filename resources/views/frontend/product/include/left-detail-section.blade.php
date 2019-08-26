@@ -80,7 +80,7 @@
                 </div><!-- End .price-box -->
 
                 <div class="product-desc" style="max-height: 120px">
-                    {{str_limit($product->detail,100)}}
+                    <div class="product-highlight"><?php echo htmlspecialchars_decode($product->detail)?></div>
                     <br>
                     <a href="{{route('merchant-info',$product->getBusiness->slug)}}"
                        style="font-size: 16px;text-decoration:none">
@@ -178,7 +178,8 @@
         {{--<p>{{$product->detail}}</p>--}}
 
         @if(!empty($product->description))
-            <p><b>{{__('front.Description')}} : </b><br>{{$product->description}}</p>
+            <p><b>{{__('front.Description')}} : </b><br>
+                <?php echo htmlspecialchars_decode($product->description)?></p>
         @endif
     </div><!-- End .product-desc -->
     <br>

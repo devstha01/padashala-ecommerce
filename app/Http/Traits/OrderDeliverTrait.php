@@ -22,8 +22,8 @@ trait OrderDeliverTrait
 
         $merchantAsset = MerchantAsset::where('merchant_id', $merchant_id)->first();
 
-        $total = $orderItem->quantity * $orderItem->sell_price;
-        $merchant_amount = $total * (100 - $total_percentage);
+        $total = ($orderItem->quantity * $orderItem->sell_price) + $orderItem->net_tax;
+        $merchant_amount = $total * (1 - $total_percentage);
         $admin_amount = $total * $total_percentage;
 
         $merchantAsset->update(['ecash_wallet' => $merchantAsset->ecash_wallet + $merchant_amount]);

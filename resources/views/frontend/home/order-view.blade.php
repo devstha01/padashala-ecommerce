@@ -14,7 +14,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <h3>{{__('front.Order Detail')}}</h3>
                     <hr>
 
@@ -80,13 +80,14 @@
                             <th>{{__('front.Product')}}</th>
                             <th>{{__('front.Price')}}</th>
                             <th>{{__('front.Qty')}}</th>
+                            <th>Tax</th>
                             <th>{{__('front.Subtotal')}}</th>
                             <th>{{__('front.Status')}}</th>
                         </tr>
 
                         @forelse($invoice_items as $invoice_item)
                             <tr>
-                                <th colspan="7">
+                                <th colspan="8">
                                     {{__('front.Invoice')}} : {{$invoice_item['invoice']}}
                                     <a href="{{route('merchant-info',$invoice_item['merchant']->slug)}}"
                                        class="pull-right">{{__('front.Merchant')}}
@@ -105,6 +106,7 @@
                                     </td>
                                     <td>${{$item->sell_price}}</td>
                                     <td>{{$item->quantity}}</td>
+                                    <td>${{$item->net_tax+0}}</td>
                                     <td>${{$item->quantity * $item->sell_price}}</td>
                                     <td>{{$item->getOrderStatus->name}}
                                         <br>
@@ -114,22 +116,22 @@
                             @endforeach
                         @empty
                             <tr>
-                                <td colspan="6"> {{__('front.Empty order')}} !</td>
+                                <td colspan="8"> {{__('front.Empty order')}} !</td>
                             </tr>
                         @endforelse
 
 
                         <tr>
-                            <td colspan="4">{{__('front.Sub Total (exclusive Tax)')}}</td>
+                            <td colspan="5">{{__('front.Sub Total (exclusive Tax)')}}</td>
                             <td colspan="2">${{$orders->sub_total}}</td>
                         </tr>
                         <tr>
-                            <td colspan="4">{{__('front.Delivery')}}</td>
-                            <td colspan="2">${{env('DELIVERY_COST')??0 }}</td>
+                            <td colspan="5">Net Tax</td>
+                            <td colspan="2">${{$orders->tax}}</td>
                         </tr>
 
                         <tr>
-                            <td colspan="4">{{__('front.Net Total (inclusive Tax)')}}</td>
+                            <td colspan="5">{{__('front.Net Total (inclusive Tax)')}}</td>
                             <td colspan="2">
                                 ${{number_format($orders->total_price,2,'.','')}}</td>
                         </tr>

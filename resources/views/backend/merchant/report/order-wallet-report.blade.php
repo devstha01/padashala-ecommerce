@@ -44,8 +44,10 @@
                                                     class="btn blue">{{__('dashboard.Generate Report')}}</button>
                                         </div>
                                     </div>
-                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3">
+                                    </div>
                                 </form>
+
                                 <br>
                                 <table class="table table-striped table-bordered table-hover dataTable dtr-inline"
                                        id="sample_2">
@@ -84,7 +86,7 @@
                                                 @endif
                                             </td>
                                             <td class="text-right">
-                                                $ {{$report->sell_price * $report->quantity}}
+                                                $ {{($report->sell_price * $report->quantity)+$report->net_tax}}
                                             </td>
                                             <td class="text-right">
                                                 @if($report->getShoppingLog !==null)
@@ -134,6 +136,12 @@
         .dataTables_wrapper .dataTables_filter {
             display: block !important;
         }
+        .dt-buttons {
+            display: block !important;
+        }
+        .buttons-print, .buttons-copy, .buttons-pdf {
+            display: none !important;
+        }
     </style>
 @stop
 
@@ -160,6 +168,5 @@
                 format: 'DD-MMM-YYYY',
             },
         });
-
     </script>
 @endsection
