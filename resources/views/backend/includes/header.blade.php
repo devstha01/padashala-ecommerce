@@ -338,6 +338,10 @@
                                                        class="nav-link">{{ __('dashboard.Product Approval List')}}</a>
                                                 </li>
                                                 <li>
+                                                    <a href="{{route('all-product-admin')}}"
+                                                       class="nav-link">Product List</a>
+                                                </li>
+                                                <li>
                                                     <a href="{{route('order-list-admin')}}"
                                                        class="nav-link">{{ __('dashboard.Order List')}}</a>
                                                 </li>

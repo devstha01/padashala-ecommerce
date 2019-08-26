@@ -15,8 +15,14 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::get('order-list', 'ListController@listOrder')->name('order-list-admin');
 
         Route::get('product-list', 'ListController@productApprovalList')->name('product-approval-admin');
+
+        Route::get('product/standard/list', 'StandardProductController@standardProducts')->name('standard-product-admin');
+        Route::get('product/all/list', 'StandardProductController@allProducts')->name('all-product-admin');
+        Route::get('product/normal/list', 'StandardProductController@normalProducts')->name('normal-product-admin');
+        Route::get('product/inactive/list', 'StandardProductController@inactiveProducts')->name('inactive-product-admin');
     });
     Route::group(['middleware' => 'staff_permission:2.Merchant Master.List'], function () {
+        Route::post('standard-product/{id}', 'StandardProductController@standardStatus')->name('admin-change-product-standard');
 
     });
     Route::group(['middleware' => 'staff_permission:1.Merchant Master.Profile'], function () {

@@ -39,7 +39,7 @@
                                             <th>{{__('dashboard.Product')}}</th>
                                             <th style="width: 80px;">{{__('dashboard.Image')}}
                                             </th>
-                                            <th>{{__('dashboard.Detail')}}
+                                            {{--<th>{{__('dashboard.Detail')}}--}}
                                             </th>
                                             <th>
                                                 <i class="fa fa-edit">{{__('dashboard.Edit')}}</i>
@@ -62,8 +62,8 @@
                                                          height="70px"
                                                          alt="image">
                                                 </td>
-                                                <td>{{str_limit($product->detail,70)}}
-                                                </td>
+                                                {{--<td>{{str_limit($product->detail,70)}}--}}
+                                                {{--</td>--}}
                                                 <td>
                                                     <a href="{{route('admin-edit-product',$product->slug)}}"><i
                                                                 class="fa fa-edit"> {{__('dashboard.Edit')}}</i></a>
