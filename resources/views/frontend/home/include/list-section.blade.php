@@ -32,7 +32,7 @@
                     <td>{{++$key}}</td>
                     <td><i class="fa fa-calendar"></i> {{$p_order->order_date}}</td>
                     <td>{{count($p_order->getOrderItem)}}</td>
-                    <td>${{$p_order->total_price}}</td>
+                    <td>Rs. {{$p_order->total_price}}</td>
                     <td>{{$p_order->address}} | {{$p_order->city}} | {{$p_order->getCountry->name}}</td>
                     <td>
                         <a href="{{route('order-detail',$p_order->id)}}"
@@ -63,7 +63,7 @@
                     <td>{{++$key}}</td>
                     <td><i class="fa fa-calendar"></i> {{$c_order->order_date}}</td>
                     <td>{{count($c_order->getOrderItem)}}</td>
-                    <td>${{$c_order->total_price}}</td>
+                    <td>Rs. {{$c_order->total_price}}</td>
                     <td>{{$c_order->address}} | {{$c_order->city}} | {{$c_order->getCountry->name}}</td>
                     <td>
                         <a href="{{route('order-detail',$c_order->id)}}"

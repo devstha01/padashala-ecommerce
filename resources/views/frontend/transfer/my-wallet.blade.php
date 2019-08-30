@@ -11,7 +11,7 @@
                             </tr>
                             <tr>
                                 <td><b> <i class="fa fa-money"></i> {{__('front.E cash Wallet')}} :</b></td>
-                                <td>${{$user->getWallet->ecash_wallet??'0.00'}}</td>
+                                <td>Rs. {{$user->getWallet->ecash_wallet??'0.00'}}</td>
                             </tr>
                         </table>
                     </div>

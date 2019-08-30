@@ -36,7 +36,7 @@
                                 <br>
                             </div>
                             <div class="col-md-6">
-                                <b class="lead">My Balance : $ {{$user->getWallet->ecash_wallet??'0.00'}}</b>
+                                <b class="lead">My Balance : Rs. {{$user->getWallet->ecash_wallet??'0.00'}}</b>
                                 <hr>
                                 <div class="qr-profile-block">
                                     <a title="Save Qr Code" href="{{$user->qr_image}}" style="text-decoration: none">

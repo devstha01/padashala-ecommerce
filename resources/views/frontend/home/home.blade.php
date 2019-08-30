@@ -168,10 +168,10 @@
                                             <div class="price-box">
                                                 @if(count($latest_prod->getProductVariant->where('status',1)) === 0)
                                                     <span
-                                                            class="product-price">${{$latest_prod->sell_price}}</span>
+                                                            class="product-price">Rs.{{$latest_prod->sell_price}}</span>
                                                 @else
                                                     <span
-                                                            class="product-price">${{$latest_prod->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
+                                                            class="product-price">Rs.{{$latest_prod->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
                                                 @endif
                                             </div><!-- End .price-box -->
 

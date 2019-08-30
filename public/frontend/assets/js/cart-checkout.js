@@ -19,12 +19,12 @@ $(function () {
                 }
                 if (!value.options.status) {
                     out_of_stock = "<span class='text-danger'>Out of Stock !</span>"
-                    checkoutProducts += '<tr><td>' + (++sn) + '</td><td>' + value.name + variant_name + '</td><td>  $' + value.price + '</td><td>' + value.qty + '<i class="fa fa-times text-danger" style="font-size: 10px;"> Stock!</i></td><td style=\'color:red;text-decoration:line-through\'><span style=\'color:black\'>  $' + value.price * value.qty + '</span></td></tr>';
+                    checkoutProducts += '<tr><td>' + (++sn) + '</td><td>' + value.name + variant_name + '</td><td>  Rs.' + value.price + '</td><td>' + value.qty + '<i class="fa fa-times text-danger" style="font-size: 10px;"> Stock!</i></td><td style=\'color:red;text-decoration:line-through\'><span style=\'color:black\'>  Rs.' + value.price * value.qty + '</span></td></tr>';
                 } else {
-                    checkoutProducts += '<tr><td>' + (++sn) + '</td><td>' + value.name + variant_name + '</td><td>  $' + value.price + '</td><td style="margin-left:7px">    X ' + value.qty + '</td><td>  $' + value.price * value.qty + '</td></tr>';
+                    checkoutProducts += '<tr><td>' + (++sn) + '</td><td>' + value.name + variant_name + '</td><td>  Rs.' + value.price + '</td><td style="margin-left:7px">    X ' + value.qty + '</td><td>  Rs.' + value.price * value.qty + '</td></tr>';
                     net_total += value.price * value.qty;
                     net_total_tax += value.price * value.qty;
-                    checkoutProductsAddress += '<tr><td>' + (++sn1) + '</td><td>' + value.name + variant_name + '</td><td>  $' + value.price + '</td><td style="margin-left:7px">  X ' + value.qty + '</td><td>  $' + value.price * value.qty + '</td></tr>';
+                    checkoutProductsAddress += '<tr><td>' + (++sn1) + '</td><td>' + value.name + variant_name + '</td><td>  Rs.' + value.price + '</td><td style="margin-left:7px">  X ' + value.qty + '</td><td>  Rs.' + value.price * value.qty + '</td></tr>';
 
                 }
 
@@ -39,7 +39,7 @@ $(function () {
                     '                                            <a href="' + serverCustom.base_url + '/product/' + value.options.slug + '">' + value.name + variant_name + '</a>\n' +
                     '                                        </h2>\n' +
                     '                                    </td>\n' +
-                    '                                    <td>$' + value.price + '</td>\n' +
+                    '                                    <td>Rs.' + value.price + '</td>\n' +
                     '                                    <td>\n' +
                     '                                        <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">' +
                     '                                        <input class="vertical-quantity form-control" type="text" value="' + value.qty + '">\n' +
@@ -48,7 +48,7 @@ $(function () {
                     '<button class="btn btn-outline bootstrap-touchspin-down icon-down-dir checkout-item-down" data-qty="' + value.qty + '" data-rowid="' + value.rowId + '" type="button"></button>' +
                     '</span>' +
                     '</div>' + out_of_stock + '</td>\n' +
-                    '                                    <td>$' + value.price * value.qty + '</td>\n' +
+                    '                                    <td>Rs.' + value.price * value.qty + '</td>\n' +
                     // '                                </tr>\n' +
                     // '                                <tr class="product-action-row">\n' +
                     '                                    <td>\n' +
@@ -76,9 +76,9 @@ $(function () {
             cartSummaryAddress.empty();
             cartSummaryAddress.append(checkoutProductsAddress);
 
-            $('#checkout_net_tax').html('$' + net_tax);
-            $('#checkout_net_total').html('$' + net_total);
-            $('#checkout_net_total_tax').html('$' + net_total_tax);
+            $('#checkout_net_tax').html('Rs.' + net_tax);
+            $('#checkout_net_total').html('Rs.' + net_total);
+            $('#checkout_net_total_tax').html('Rs.' + net_total_tax);
 
             checkoutItemUpDown();
             removeCheckoutProduct();

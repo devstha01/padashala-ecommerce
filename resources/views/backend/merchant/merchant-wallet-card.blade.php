@@ -4,7 +4,7 @@
             <div class="box">
                 <h3>{{__('dashboard.Cash Wallet')}}</h3>
                 <i class="fa fa-money-bill-wave"></i>
-                <h5>${{ $wallet->ecash_wallet }}</h5>
+                <h5>Rs. {{ $wallet->ecash_wallet }}</h5>
             </div>
         </div>
     </div>

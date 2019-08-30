@@ -85,7 +85,7 @@
                             <tfoot>
                             <tr>
                                 <td colspan="4">{{__('front.Total')}}</td>
-                                <td id="checkout_net_total">$0.00</td>
+                                <td id="checkout_net_total">Rs. 0.00</td>
                             </tr>
                             </tfoot>
                         </table>

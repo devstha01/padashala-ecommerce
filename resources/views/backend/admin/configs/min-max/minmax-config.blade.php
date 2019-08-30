@@ -18,12 +18,12 @@
                                     <br>
                                     {{ __('dashboard.Min Amount')}}:
                                     <span style="padding: 10px 20px; background: wheat">
-                                ${{$config->min??0}}
+                                Rs. {{$config->min??0}}
                             </span>
                                     &nbsp;&nbsp;&nbsp;
                                     {{ __('dashboard.Max Amount')}}:
                                     <span style="padding: 10px 20px; background: wheat">
-                            ${{$config->max??5000}}
+                            Rs. {{$config->max??5000}}
                             </span>
                                     <button class="btn blue" id="withdraw-config-edit"><i
                                                 class="fa fa-edit"></i>{{__('dashboard.Edit')}}</button>
