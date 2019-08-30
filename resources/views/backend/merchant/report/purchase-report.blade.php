@@ -49,7 +49,7 @@
                                             <td>{{$report->deliver_date??' - '}}</td>
                                             <td>{{$report->getProduct->name}}</td>
                                             <td>{{$report->quantity}}</td>
-                                            <td>${{($report->sell_price * $report->quantity)+$report->net_tax}}</td>
+                                            <td>Rs.{{($report->sell_price * $report->quantity)+$report->net_tax}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

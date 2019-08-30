@@ -148,9 +148,9 @@
                                                 <p style="font-size: 20px">{{$featured_product->name}}</p>
                                                 <div class="price-box">
                                                     @if(count($featured_product->getProductVariant->where('status',1)) === 0)
-                                                        <span class="product-price">${{$featured_product->sell_price}}</span>
+                                                        <span class="product-price">Rs. {{$featured_product->sell_price}}</span>
                                                     @else
-                                                        <span class="product-price">${{$featured_product->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
+                                                        <span class="product-price">Rs. {{$featured_product->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
                                                     @endif
                                                 </div><!-- End .price-box -->
                                                 <b>{{$featured_product->getBusiness->name}}</b>

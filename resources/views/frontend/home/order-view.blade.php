@@ -49,7 +49,7 @@
                             <td>
                                 @foreach($orders->payment_array as $pay)
                                     @if($pay['status'] ==1)
-                                        {{$pay['name']}} :  $ {{$pay['amount']}} |
+                                        {{$pay['name']}} :  Rs. {{$pay['amount']}} |
                                     @endif
                                 @endforeach
                             </td>
@@ -104,10 +104,10 @@
                                             {{$item->getProduct->name??''}}  {{ (isset($item->getProductVariant->name))? "[".$item->getProductVariant->name."]":''}}
                                         </a>
                                     </td>
-                                    <td>${{$item->sell_price}}</td>
+                                    <td>Rs. {{$item->sell_price}}</td>
                                     <td>{{$item->quantity}}</td>
-                                    <td>${{$item->net_tax+0}}</td>
-                                    <td>${{$item->quantity * $item->sell_price}}</td>
+                                    <td>Rs. {{$item->net_tax+0}}</td>
+                                    <td>Rs. {{$item->quantity * $item->sell_price}}</td>
                                     <td>{{$item->getOrderStatus->name}}
                                         <br>
                                         {{$item->deliver_date??''}}
@@ -123,17 +123,17 @@
 
                         <tr>
                             <td colspan="5">{{__('front.Sub Total (exclusive Tax)')}}</td>
-                            <td colspan="2">${{$orders->sub_total}}</td>
+                            <td colspan="2">Rs. {{$orders->sub_total}}</td>
                         </tr>
                         <tr>
                             <td colspan="5">Net Tax</td>
-                            <td colspan="2">${{$orders->tax}}</td>
+                            <td colspan="2">Rs. {{$orders->tax}}</td>
                         </tr>
 
                         <tr>
                             <td colspan="5">{{__('front.Net Total (inclusive Tax)')}}</td>
                             <td colspan="2">
-                                ${{number_format($orders->total_price,2,'.','')}}</td>
+                                Rs. {{number_format($orders->total_price,2,'.','')}}</td>
                         </tr>
                     </table>
 

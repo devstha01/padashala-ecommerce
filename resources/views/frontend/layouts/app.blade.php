@@ -61,7 +61,7 @@
     };
     //currency symbol
     function cuSymbol() {
-        return "$"
+        return "Rs."
     }
 
     //currency convert

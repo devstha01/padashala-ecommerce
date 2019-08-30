@@ -201,12 +201,12 @@
                             </tr>
                             <tr>
                                 <td><b> <i class="fa fa-money"></i> {{__('front.E cash Wallet')}} :</b></td>
-                                <td>${{$user->getWallet->ecash_wallet??'0.00'}}</td>
+                                <td>Rs. {{$user->getWallet->ecash_wallet??'0.00'}}</td>
                             </tr>
                             @if(Auth::user()->is_member === 1)
                                 <tr>
                                     <td><b> <i class="fa fa-money"></i> {{__('front.E voucher Wallet')}} :</b></td>
-                                    <td>${{$user->getWallet->evoucher_wallet??'0.00'}}</td>
+                                    <td>Rs. {{$user->getWallet->evoucher_wallet??'0.00'}}</td>
                                 </tr>
                             @endif
                         </table>

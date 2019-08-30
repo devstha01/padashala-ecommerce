@@ -121,7 +121,7 @@
                                         @if(Auth::user()->is_member === 1)
                                             <tr class="">
                                                 <td colspan="2" class="text-right">{{__('front.E cash Wallet')}} :
-                                                    $
+                                                    Rs.
                                                 </td>
                                                 <td><input type="text" name="ecash_wallet" id="ecash_wallet"
                                                            class="form-control"
@@ -131,7 +131,7 @@
                                             </tr>
                                             <tr class="">
                                                 <td colspan="2" class="text-right">{{__('front.E voucher Wallet')}}
-                                                    : $
+                                                    : Rs.
                                                 </td>
                                                 <td><input type="text" id="evoucher_wallet" name="evoucher_wallet"
                                                            class="form-control"
@@ -178,12 +178,12 @@
                             </tr>
                             <tr>
                                 <td><b> <i class="fa fa-money"></i> {{__('front.E cash Wallet')}} :</b></td>
-                                <td>${{$user->getWallet->ecash_wallet??'0.00'}}</td>
+                                <td>Rs. {{$user->getWallet->ecash_wallet??'0.00'}}</td>
                             </tr>
                             @if(Auth::user()->is_member === 1)
                                 <tr>
                                     <td><b> <i class="fa fa-money"></i> {{__('front.E voucher Wallet')}} :</b></td>
-                                    <td>${{$user->getWallet->evoucher_wallet??'0.00'}}</td>
+                                    <td>Rs. {{$user->getWallet->evoucher_wallet??'0.00'}}</td>
                                 </tr>
                             @endif
                         </table>
@@ -207,11 +207,11 @@
                             <tfoot>
                             <tr>
                                 <td colspan="4">Net Tax</td>
-                                <td id="checkout_net_tax">$0.00</td>
+                                <td id="checkout_net_tax">Rs. 0.00</td>
                             </tr>
                             <tr>
                                 <td colspan="4">{{__('front.Total')}}</td>
-                                <td id="checkout_net_total_tax">$0.00</td>
+                                <td id="checkout_net_total_tax">Rs. 0.00</td>
                             </tr>
                             </tfoot>
                         </table>

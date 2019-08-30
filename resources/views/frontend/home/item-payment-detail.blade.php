@@ -66,13 +66,13 @@
                             <br>
                             <b>{{__('front.Quantity')}}: {{$item->quantity}}</b>
                             <br>
-                            <b>{{__('front.Sell Price')}}: ${{$item->sell_price}}</b>
+                            <b>{{__('front.Sell Price')}}: Rs. {{$item->sell_price}}</b>
                             <br>
-                            <b>{{__('front.Delivery')}}: $0.00</b>
+                            <b>{{__('front.Delivery')}}: Rs. 0.00</b>
                             <br>
                             <br>
                             <b>{{__('front.Total')}}:
-                                ${{number_format((($item->sell_price * $item->quantity) *1.00),2,'.',0)}}</b>
+                                Rs. {{number_format((($item->sell_price * $item->quantity) *1.00),2,'.',0)}}</b>
                         </div>
                     </div>
                     <br>

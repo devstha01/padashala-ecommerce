@@ -21,9 +21,9 @@
                                     </h2>
                                     <div class="price-box">
                                         @if(count($featured_product->getProductVariant) == 0)
-                                            <span class="product-price">${{$featured_product->sell_price}}</span>
+                                            <span class="product-price">Rs. {{$featured_product->sell_price}}</span>
                                         @else
-                                            <span class="product-price">${{$featured_product->getProductVariant[0]->sell_price??''}}</span>
+                                            <span class="product-price">Rs. {{$featured_product->getProductVariant[0]->sell_price??''}}</span>
                                         @endif
                                     </div><!-- End .price-box -->
 

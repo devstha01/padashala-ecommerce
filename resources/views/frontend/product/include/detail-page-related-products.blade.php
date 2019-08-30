@@ -23,9 +23,9 @@
                                     </h2>
                                     <div class="price-box">
                                         @if(count($relate->getProductVariant) === 0)
-                                            <span class="product-price">${{$relate->sell_price}}</span>
+                                            <span class="product-price">Rs. {{$relate->sell_price}}</span>
                                         @else
-                                            <span class="product-price">${{$relate->getProductVariant[0]->sell_price??''}}</span>
+                                            <span class="product-price">Rs. {{$relate->getProductVariant[0]->sell_price??''}}</span>
                                         @endif
                                     </div><!-- End .price-box -->
 

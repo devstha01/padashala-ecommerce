@@ -40,10 +40,10 @@
                                                 <br>{{$item->getProductVariant?("[".$item->getProductVariant->name."]"):''}}
                                             </td>
                                             <td>
-                                                ${{$item->sell_price}}
+                                                Rs.{{$item->sell_price}}
                                             </td>
                                             <td>X {{$item->quantity}}</td>
-                                            <td>${{$item->net_price}}</td>
+                                            <td>Rs.{{$item->net_price}}</td>
                                             <td>
                                                 @if($item->getOrderStatus->key =='process')
                                                     <i class="badge badge-warning">{{$item->getOrderStatus->name}}</i>
@@ -79,26 +79,26 @@
                                     <tr>
                                         <th colspan="2"></th>
                                         <th colspan="2">{{__('dashboard.Total')}}</th>
-                                        <th>${{$total}}</th>
+                                        <th>Rs.{{$total}}</th>
                                         <th colspan="2"></th>
                                     </tr>
                                     {{--<tr>--}}
                                     {{--<td colspan="2"></td>--}}
                                     {{--<td colspan="2">Tax</td>--}}
-                                    {{--<td>${{$tax}}</td>--}}
+                                    {{--<td>Rs.{{$tax}}</td>--}}
                                     {{--<td colspan="2"></td>--}}
                                     {{--</tr>--}}
                                     <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">{{__('dashboard.Delivery Cost')}}</td>
-                                        <td>${{$delivery}}</td>
+                                        <td>Rs.{{$delivery}}</td>
                                         <td colspan="2"></td>
                                     </tr>
                                     <tr>
                                         <th colspan="2"></th>
                                         <th colspan="2">{{__('dashboard.Net Total')}}</th>
                                         <th>
-                                            ${{$net_total}}</th>
+                                            Rs.{{$net_total}}</th>
                                         <th colspan="2"></th>
                                     </tr>
                                 </table>

@@ -1,6 +1,11 @@
 //    image area select
 //    Product add edit
 $(function () {
+    $('input[name="x1"]').val(0);
+    $('input[name="y1"]').val(0);
+    $('input[name="h1"]').val(300);
+    $('input[name="w1"]').val(300);
+
     var p = $("#previewimage");
     $("body").on("change", ".image", function () {
         var imageReader = new FileReader();

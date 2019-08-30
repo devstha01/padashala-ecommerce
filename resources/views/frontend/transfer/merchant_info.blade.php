@@ -162,9 +162,9 @@
                                                                 </h2>
                                                                 <div class="price-box">
                                                                     @if(count($product->getProductVariant->where('status',1)) == 0)
-                                                                        <span class="product-price">${{$product->sell_price}}</span>
+                                                                        <span class="product-price">Rs. {{$product->sell_price}}</span>
                                                                     @else
-                                                                        <span class="product-price">${{$product->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
+                                                                        <span class="product-price">Rs. {{$product->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
                                                                     @endif
                                                                 </div><!-- End .price-box -->
                                                             </div><!-- End .product-details -->

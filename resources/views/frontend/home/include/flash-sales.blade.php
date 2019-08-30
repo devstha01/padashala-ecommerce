@@ -23,9 +23,9 @@
                                 </h2>
                                 <div class="price-box">
                                     @if(count($flash_sale->getProductVariant->where('status',1)) === 0)
-                                        <span class="product-price">${{$flash_sale->sell_price}}</span>
+                                        <span class="product-price">Rs. {{$flash_sale->sell_price}}</span>
                                     @else
-                                        <span class="product-price">${{$flash_sale->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
+                                        <span class="product-price">Rs. {{$flash_sale->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
                                     @endif
                                 </div><!-- End .price-box -->
 

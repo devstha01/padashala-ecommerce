@@ -102,9 +102,9 @@
                                             <p style="font-size: 20px">{{$prod->name}}</p>
                                             <div class="price-box">
                                                 @if(count($prod->getProductVariant->where('status',1)) === 0)
-                                                    <span class="product-price">${{$prod->sell_price}}</span>
+                                                    <span class="product-price">Rs. {{$prod->sell_price}}</span>
                                                 @else
-                                                    <span class="product-price">${{$prod->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
+                                                    <span class="product-price">Rs. {{$prod->getProductVariant->where('status',1)->first()->sell_price??''}}</span>
                                                 @endif
                                             </div><!-- End .price-box -->
                                             <b>{{$prod->getBusiness->name}}</b>
