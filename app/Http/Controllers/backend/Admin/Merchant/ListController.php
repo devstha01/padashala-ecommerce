@@ -227,7 +227,6 @@ class ListController extends Controller
     }
 
 
-
     function edit($slug)
     {
         // $this->_data['merchant'] = Merchant::where('slug',$slug)->first();
@@ -544,12 +543,14 @@ class ListController extends Controller
 
         $orderItem = [];
         $total = 0;
+        $tax = 0;
         foreach ($order->getOrderItem as $item) {
             $merchant_id = $item->getProduct->getBusiness->getMerchant->id;
             if ($m_id == $merchant_id) {
                 $item['net_price'] = number_format($item->quantity * $item->sell_price, 2, '.', '');
                 $orderItem[] = $item;
                 $total += $item['net_price'];
+                $tax += $item->net_tax;
             }
         }
 
@@ -561,8 +562,9 @@ class ListController extends Controller
         $this->_data['orderItem'] = collect($orderItem);
         $count = count($orderItem);
         $this->_data['delivery'] = number_format($count * (env('DELIVERY_COST') ?? 0), 2, '.', '');
-        $this->_data['tax'] = number_format($total * (env('TAX_PERCENT') ?? 0) / 100, 2, '.', '');
-        $this->_data['net_total'] = number_format($total + ($total * (env('TAX_PERCENT') ?? 0) / 100) + ($count * (env('DELIVERY_COST') ?? 0)), 2, '.', '');
+        $this->_data['tax'] = $tax;
+//            number_format($total * (env('TAX_PERCENT') ?? 0) / 100, 2, '.', '');
+        $this->_data['net_total'] = number_format($total + ($tax), 2, '.', '');
 
         $this->_data['total'] = number_format($total, 2, '.', '');
         return view($this->_path . 'admin-order-details', $this->_data);
@@ -719,13 +721,10 @@ class ListController extends Controller
         $this->_data['net_total'] = number_format($total + ($total * (env('TAX_PERCENT') ?? 0) / 100) + ($count * (env('DELIVERY_COST') ?? 0)), 2, '.', '');
 
         $this->_data['total'] = number_format($total, 2, '.', '');
-//        return view($this->_path . 'admin-order-details', $this->_data);
-
-        $pdf = DomPDF::loadView('pdf.invoice', $this->_data);
-        return $pdf->download('invoice.pdf');
-//       return view('pdf.invoice', $this->_data);
+//        $pdf = DomPDF::loadView('pdf.invoice', $this->_data);
+//        return $pdf->download('invoice.pdf');
+        return view('pdf.invoice', $this->_data);
     }
-
 
 
 //    specifiaction
@@ -750,7 +749,9 @@ class ListController extends Controller
             ]);
         return redirect()->back()->with('success', 'Product specification updated');
     }
-    function deleteSpecs($id){
+
+    function deleteSpecs($id)
+    {
         $spec = Specification::find($id);
         if ($spec)
             $spec->delete();

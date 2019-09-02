@@ -78,12 +78,14 @@ class OrderController extends Controller
 
         $orderItem = [];
         $total = 0;
+        $tax = 0;
         foreach ($order->getOrderItem as $item) {
             $merchant_id = $item->getProduct->getBusiness->getMerchant->id;
             if ($this->_merchant_id == $merchant_id) {
                 $item['net_price'] = number_format($item->quantity * $item->sell_price, 2, '.', '');
                 $orderItem[] = $item;
                 $total += $item['net_price'];
+                $tax += $item->net_tax;
             }
         }
 
@@ -95,8 +97,9 @@ class OrderController extends Controller
         $this->_data['orderItem'] = collect($orderItem);
         $count = count($orderItem);
         $this->_data['delivery'] = number_format($count * (env('DELIVERY_COST') ?? 0), 2, '.', '');
-        $this->_data['tax'] = number_format($total * (env('TAX_PERCENT') ?? 0) / 100, 2, '.', '');
-        $this->_data['net_total'] = number_format($total + ($total * (env('TAX_PERCENT') ?? 0) / 100) + ($count * (env('DELIVERY_COST') ?? 0)), 2, '.', '');
+        $this->_data['tax'] = $tax;
+//        number_format($total * (env('TAX_PERCENT') ?? 0) / 100, 2, '.', '');
+        $this->_data['net_total'] = number_format($total + $tax , 2, '.', '');
 
         $this->_data['total'] = number_format($total, 2, '.', '');
 

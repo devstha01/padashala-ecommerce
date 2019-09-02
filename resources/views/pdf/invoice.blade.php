@@ -1,12 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Invoice</title>
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/print.css')}}" type="text/css">
-</head>
-<body>
+{{--<!doctype html>--}}
+{{--<html lang="en">--}}
+{{--<head>--}}
+    {{--<meta charset="UTF-8">--}}
+    {{--<title>Invoice</title>--}}
+    {{--<link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}" type="text/css">--}}
+    {{--<link rel="stylesheet" href="{{asset('frontend/assets/css/print.css')}}" type="text/css">--}}
+{{--</head>--}}
+{{--<body>--}}
 <table class="table table-borderless">
     <tr>
         <td colspan="8">
@@ -80,9 +80,9 @@
         <td><b>Unit Price</b></td>
         <td><b>Gross Amount</b></td>
         <td><b>Discount</b></td>
+        {{--<td><b>Tax Rate[%]</b></td>--}}
+        <td colspan="2"><b>Tax Amount</b></td>
         <td colspan="2"><b>Net Amount (InclusiveTax)</b></td>
-        <td><b>Tax Rate[%]</b></td>
-        <td><b>Tax Amount</b></td>
     </tr>
     @foreach($orderItem as $item)
         <tr>
@@ -91,10 +91,8 @@
             <td>{{$item->sell_price}}</td>
             <td>{{$item->net_price}}</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="2">{{$item->net_tax+0}}</td>
+            <td colspan="2">{{$item->net_price+$item->net_tax}}</td>
         </tr>
     @endforeach
     @for($i= (0+count($orderItem));$i<8;$i++)
@@ -104,23 +102,23 @@
     @endfor
     <tr class="border">
         <td class="border" colspan="4"><b>Shipping Charges</b></td>
-        <td class="border" colspan="8">asd</td>
+        <td class="border" colspan="8"></td>
     </tr>
     <tr class="border">
-        <td class="border" colspan="5"></td>
+        <td class="border" colspan="4"></td>
         <td class="border" colspan="2"><b>Total Gross Amount</b></td>
-        <td class="border"><b>Total Discount</b></td>
-        <td class="border" colspan="2"><b>Final Net Amount</b></td>
-        <td class="border"><b>Tax Amount</b></td>
-        <td class="border"><b>Total Amount</b></td>
+        <td class="border" colspan="2"><b>Total Discount</b></td>
+        {{--<td class="border" colspan="2"><b>Final Net Amount</b></td>--}}
+        <td class="border" colspan="2"><b>Tax Amount</b></td>
+        <td class="border" colspan="2"><b>Total Amount</b></td>
     </tr>
     <tr class="border">
-        <td class="border" colspan="5"></td>
+        <td class="border" colspan="4"></td>
         <td class="border" colspan="2">{{$total}}</td>
-        <td class="border"></td>
-        <td colspan="2" class="border"></td>
-        <td class="border"></td>
-        <td class="border">{{$total}}</td>
+        <td class="border" colspan="2"></td>
+        {{--<td colspan="2" class="border"></td>--}}
+        <td class="border" colspan="2">{{$tax}}</td>
+        <td class="border">{{$net_total}}</td>
     </tr>
 </table>
 <table class="table table-borderless">
@@ -159,5 +157,5 @@
         </td>
     </tr>
 </table>
-</body>
-</html>
+{{--</body>--}}
+{{--</html>--}}

@@ -26,9 +26,10 @@
                                         <th colspan="2">{{__('dashboard.Product')}}</th>
                                         <th>{{__('dashboard.Price')}}</th>
                                         <th>{{__('dashboard.Qty')}}</th>
+                                        <th>Tax</th>
                                         <th>{{__('dashboard.Net Price')}}</th>
                                         <th>{{__('dashboard.Status')}}</th>
-{{--                                        <th>{{__('dashboard.Action')}}</th>--}}
+                                        {{--                                        <th>{{__('dashboard.Action')}}</th>--}}
                                     </tr>
                                     @foreach($orderItem as $item)
                                         <tr>
@@ -43,7 +44,8 @@
                                                 Rs.{{$item->sell_price}}
                                             </td>
                                             <td>X {{$item->quantity}}</td>
-                                            <td>Rs.{{$item->net_price}}</td>
+                                            <td>Rs.{{$item->net_tax+0}}</td>
+                                            <td>Rs.{{$item->net_price+$item->net_tax}}</td>
                                             <td>
                                                 @if($item->getOrderStatus->key =='process')
                                                     <i class="badge badge-warning">{{$item->getOrderStatus->name}}</i>
@@ -54,25 +56,25 @@
                                                 @endif
                                             </td>
                                             {{--<td>--}}
-                                                {{--@if($item->getOrderStatus->key !='deliver')--}}
-                                                    {{--<form action="{{route('item-status-change',$item->id)}}"--}}
-                                                          {{--method="post">--}}
-                                                        {{--{{csrf_field()}}--}}
-                                                        {{--<span style="color: red">{{$errors->first('action')??''}}</span>--}}
-                                                        {{--<select name="action" class="select-action form-control">--}}
-                                                            {{--<option value="">{{__('dashboard.-->Change Status<--')}}</option>--}}
-                                                            {{--<option value="dispatch">{{__('dashboard.Dispatched')}}</option>--}}
-                                                            {{--<option value="hold">{{__('dashboard.On hold')}}</option>--}}
-                                                            {{--                                                            <option value="stock">{{__('dashboard.Out of Stock')}}</option>--}}
-                                                            {{--<option value="deliver">{{__('dashboard.Delivered')}}</option>--}}
-                                                        {{--</select>--}}
-                                                        {{--<input type="submit" hidden>--}}
-                                                    {{--</form>--}}
-                                                {{--@else--}}
-                                                    {{--<button class="btn blue" disabled><i class="fa fa-check-circle"></i>--}}
-                                                        {{--{{__('dashboard.Delivered')}}--}}
-                                                    {{--</button>--}}
-                                                {{--@endif--}}
+                                            {{--@if($item->getOrderStatus->key !='deliver')--}}
+                                            {{--<form action="{{route('item-status-change',$item->id)}}"--}}
+                                            {{--method="post">--}}
+                                            {{--{{csrf_field()}}--}}
+                                            {{--<span style="color: red">{{$errors->first('action')??''}}</span>--}}
+                                            {{--<select name="action" class="select-action form-control">--}}
+                                            {{--<option value="">{{__('dashboard.-->Change Status<--')}}</option>--}}
+                                            {{--<option value="dispatch">{{__('dashboard.Dispatched')}}</option>--}}
+                                            {{--<option value="hold">{{__('dashboard.On hold')}}</option>--}}
+                                            {{--                                                            <option value="stock">{{__('dashboard.Out of Stock')}}</option>--}}
+                                            {{--<option value="deliver">{{__('dashboard.Delivered')}}</option>--}}
+                                            {{--</select>--}}
+                                            {{--<input type="submit" hidden>--}}
+                                            {{--</form>--}}
+                                            {{--@else--}}
+                                            {{--<button class="btn blue" disabled><i class="fa fa-check-circle"></i>--}}
+                                            {{--{{__('dashboard.Delivered')}}--}}
+                                            {{--</button>--}}
+                                            {{--@endif--}}
                                             {{--</td>--}}
                                         </tr>
                                     @endforeach
@@ -90,8 +92,8 @@
                                     {{--</tr>--}}
                                     <tr>
                                         <td colspan="2"></td>
-                                        <td colspan="2">{{__('dashboard.Delivery Cost')}}</td>
-                                        <td>Rs.{{$delivery}}</td>
+                                        <td colspan="2">Net Tax</td>
+                                        <td>Rs.{{$tax}}</td>
                                         <td colspan="2"></td>
                                     </tr>
                                     <tr>
@@ -122,9 +124,9 @@
                                     : {{$order->getUser->marital_status=='yes'?__('dashboard.Married'):__('dashboard.Single')}}</i>
                                 <br>
                                 {{--@if($order->getUser->is_member)--}}
-                                    {{--<i class="fa fa-check text-success"> {{__('dashboard.Member')}}</i>--}}
+                                {{--<i class="fa fa-check text-success"> {{__('dashboard.Member')}}</i>--}}
                                 {{--@else--}}
-                                    {{--<i class="fa fa-times text-danger"> {{__('dashboard.Member')}}</i>--}}
+                                {{--<i class="fa fa-times text-danger"> {{__('dashboard.Member')}}</i>--}}
                                 {{--@endif--}}
 
                                 {{--                                @include('backend.merchant.order.shipping-detail')--}}

@@ -1,12 +1,4 @@
 @extends('backend.layouts.master')
-@section('stylesheets')
-    <style>
-        lead {
-            font-size: 18px;
-        }
-    </style>
-@stop
-
 @section('content')
     <div class="page-wrapper-row full-height">
         <div class="page-wrapper-middle">
@@ -46,6 +38,7 @@
                                         <th colspan="2">{{__('dashboard.Product')}}</th>
                                         <th>{{__('dashboard.Price')}}</th>
                                         <th>{{__('dashboard.Qty')}}</th>
+                                        <th>Tax</th>
                                         <th>{{__('dashboard.Net Price')}}</th>
                                         <th>{{__('dashboard.Status')}}</th>
                                         <th>{{__('dashboard.Action')}}</th>
@@ -63,7 +56,8 @@
                                                 Rs.{{$item->sell_price}}
                                             </td>
                                             <td>X {{$item->quantity}}</td>
-                                            <td>Rs.{{$item->net_price}}</td>
+                                            <td>Rs.{{$item->net_tax+0}}</td>
+                                            <td>Rs.{{$item->net_price+$item->net_tax}}</td>
                                             <td>
                                                 @if($item->getOrderStatus->key =='process')
                                                     <i class="badge badge-warning">{{$item->getOrderStatus->name}}</i>
@@ -97,7 +91,7 @@
                                         </tr>
                                     @endforeach
                                     <tr>
-                                        <th colspan="2"></th>
+                                        <th colspan="3"></th>
                                         <th colspan="2">{{__('dashboard.Total')}}</th>
                                         <th>Rs.{{$total}}</th>
                                         <th colspan="2"></th>
@@ -109,13 +103,13 @@
                                     {{--<td colspan="2"></td>--}}
                                     {{--</tr>--}}
                                     <tr>
-                                        <td colspan="2"></td>
-                                        <td colspan="2">{{__('dashboard.Delivery Cost')}}</td>
-                                        <td>Rs.{{$delivery}}</td>
+                                        <td colspan="3"></td>
+                                        <td colspan="2">Net Tax</td>
+                                        <td>Rs.{{$tax}}</td>
                                         <td colspan="2"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2"></th>
+                                        <th colspan="3"></th>
                                         <th colspan="2">{{__('dashboard.Net Total')}}</th>
                                         <th>
                                             Rs.{{$net_total}}</th>
@@ -141,11 +135,11 @@
                                     : {{$order->getUser->gender }} | {{__('dashboard.Marital Status')}}
                                     : {{$order->getUser->marital_status}}</i>
                                 <br>
-                                @if($order->getUser->is_member)
-                                    <i class="fa fa-check text-success"> {{__('dashboard.Member')}}</i>
-                                @else
-                                    <i class="fa fa-times text-danger"> {{__('dashboard.Member')}}</i>
-                                @endif
+                                {{--@if($order->getUser->is_member)--}}
+                                {{--<i class="fa fa-check text-success"> {{__('dashboard.Member')}}</i>--}}
+                                {{--@else--}}
+                                {{--<i class="fa fa-times text-danger"> {{__('dashboard.Member')}}</i>--}}
+                                {{--@endif--}}
 
                                 {{--@include('backend.admin.merchant-master.shipping-detail')--}}
 
@@ -154,10 +148,42 @@
 
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <a href="{{route('admin-order-invoice',['id'=>$order->id,'m_id'=>$merchant->id])}}"
+                                {{--<a href="{{route('admin-order-invoice',['id'=>$order->id,'m_id'=>$merchant->id])}}"--}}
                                 {{--<a href="#inProcess"--}}
-                                   style="background:dodgerblue;padding:10px 70px;color:white;text-decoration:none;">
-                                    Generate Invoice</a>
+                                {{--style="background:dodgerblue;padding:10px 70px;color:white;text-decoration:none;">--}}
+                                {{--Generate Invoice</a>--}}
+
+                                <button type="button" data-toggle="modal"
+                                        data-target="#myModal"
+                                        style="background:dodgerblue;padding:10px 70px;color:white;text-decoration:none;">
+                                    Generate Invoice
+                                </button>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog" style="width: 80%">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            {{--<h4 class="modal-title"></h4>--}}
+                                        </div>
+                                        <div class="modal-body">
+
+                                           @include('pdf.invoice')
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
+                                            <button type="button" class="btn btn-default pull-left"
+                                                    id="print-modal-content">Print
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -192,6 +218,38 @@
             });
 
 
+            // $('#print-modal-content').on('click', function(){
+            //     console.log('ok');
+            //     var elem = $('.modal-body');
+            //     var mywindow = window.open('', 'PRINT');
+            //
+            //     mywindow.document.write('<html><head><title>' + document.title + '</title>');
+            //     mywindow.document.write('</head><body >');
+            //     mywindow.document.write('<h1>' + document.title + '</h1>');
+            //     mywindow.document.write(elem.html());
+            //     mywindow.document.write('</body></html>');
+            //
+            //     mywindow.document.close(); // necessary for IE >= 10
+            //     mywindow.focus(); // necessary for IE >= 10*/
+            //
+            //     mywindow.print();
+            //     mywindow.close();
+            //
+            //     return true;
+            //
+            // });
         });
     </script>
 @endsection
+@section('stylesheets')
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/print.css')}}" type="text/css">
+    <style>
+        lead {
+            font-size: 18px;
+        }
+
+        .border {
+            border: 1px solid lightgrey;
+        }
+    </style>
+@stop
