@@ -13,6 +13,7 @@ use App\Models\ProductImage;
 use App\Models\ProductVariant;
 use App\Models\CHProduct;
 use App\Models\CHProductVariant;
+use App\Models\Specification;
 use App\Models\TRCHProduct;
 use App\models\TRCHProductVariant;
 use App\Models\SubCategory;
@@ -63,6 +64,45 @@ class ProductController extends Controller
         return view($this->_path . 'view-product', $this->_data);
     }
 
+    function createStandardProducts($id)
+    {
+        $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
+        if (!$business_id) return redirect()->back();
+        $product = Product::find($id);
+        $product->merchant_business_id = $business_id;
+        $uniq_slug = false;
+        $i = 1;
+        $slug = str_slug($product->name);
+        do {
+            $check = Product::where('slug', $slug)->first();
+            if (!$check)
+                $uniq_slug = true;
+            else
+                $slug = str_slug($product->name) . '-' . $i;
+            $i++;
+        } while ($uniq_slug !== true);
+
+        $product->slug = $slug;
+        $product->admin_flag = 0;
+        $product->admin_flag = 0;
+        $product->is_featured = 0;
+        $product->created_at = Carbon::now();
+        $product->updated_at = Carbon::now();
+        $product->standard_product = 0;
+
+        if (Product::create($product->toArray()))
+            return $this->editProduct($slug);
+        return redirect()->back();
+    }
+
+    function standardProducts()
+    {
+//        $business_id = MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->id ?? false;
+//        if (!$business_id) return redirect()->back();
+        $this->_data['products'] = Product::where('standard_product', 1)->where('admin_flag', 1)->where('status', 1)->get();
+        return view($this->_path . 'view-standard', $this->_data);
+    }
+
 
     function viewProductRequest()
     {
@@ -109,6 +149,13 @@ class ProductController extends Controller
         return $this->editProduct($slug);
     }
 
+    function editProductSpecsTab($slug)
+    {
+        session()->flash('active', 'specs');
+        return $this->editProduct($slug);
+    }
+
+
     function editProduct($slug)
     {
         $this->_data['merchant'] = Merchant::find($this->_merchant_id);
@@ -144,6 +191,9 @@ class ProductController extends Controller
                     break;
                 case 'variant':
                     return view($this->_path . 'tab-content.edit-product-variant', $this->_data);
+                    break;
+                case 'specs':
+                    return view($this->_path . 'tab-content.edit-product-specs', $this->_data);
                     break;
                 default:
                     return view($this->_path . 'tab-content.edit-product', $this->_data);
@@ -560,5 +610,35 @@ class ProductController extends Controller
                 'flag' => 0
             ]);
         return redirect()->back()->with('success', __('message.Feature request sent'));
+    }
+
+
+//    specifiaction
+
+    function addSpecs($id, Request $request)
+    {
+        Specification::create([
+            'product_id' => $id,
+            'name' => $request->name,
+            'detail' => $request->detail,
+        ]);
+        return redirect()->back()->with('success', 'Product specification added');
+    }
+
+    function updateSpecs($id, Request $request)
+    {
+        $spec = Specification::find($id);
+        if ($spec)
+            $spec->update([
+                'name' => $request->name,
+                'detail' => $request->detail,
+            ]);
+        return redirect()->back()->with('success', 'Product specification updated');
+    }
+    function deleteSpecs($id){
+        $spec = Specification::find($id);
+        if ($spec)
+            $spec->delete();
+        return redirect()->back()->with('success', 'Product specification removed');
     }
 }

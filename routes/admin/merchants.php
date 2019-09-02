@@ -52,6 +52,12 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::get('edit/{slug}', 'ListController@editProductGeneralTab')->name('admin-edit-product');
         Route::get('i-edit/{slug}', 'ListController@editProductImageTab')->name('image-edit-product-admin');
         Route::get('v-edit/{slug}', 'ListController@editProductVariantTab')->name('variant-edit-product-admin');
+        Route::get('s-edit/{slug}', 'ListController@editProductSpecsTab')->name('specs-edit-product-admin');
+
+//        Specifications
+        Route::post('s-edit/{id}/add', 'ListController@addSpecs')->name('add-specs-product-admin');
+        Route::post('s-edit/{id}/update', 'ListController@updateSpecs')->name('update-specs-product-admin');
+        Route::post('s-edit/{id}/delete', 'ListController@deleteSpecs')->name('delete-spec-product-admin');
 
         Route::post('edit/{id}', 'ListController@editProductPost')->name('admin-edit-product-post');
         Route::post('add-product-images/{id}', 'ListController@addProductImages')->name('admin-add-product-images');

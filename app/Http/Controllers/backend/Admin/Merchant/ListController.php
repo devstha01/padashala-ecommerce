@@ -19,6 +19,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductVariant;
 use App\Models\ShippingOrderItem;
+use App\Models\Specification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -219,6 +220,13 @@ class ListController extends Controller
         return $this->edit($slug);
     }
 
+    function editProductSpecsTab($slug)
+    {
+        session()->flash('active', 'specs');
+        return $this->edit($slug);
+    }
+
+
 
     function edit($slug)
     {
@@ -268,6 +276,9 @@ class ListController extends Controller
                     break;
                 case 'variant':
                     return view($this->_path . '.tab-content.edit-product-variant', $this->_data);
+                    break;
+                case 'specs':
+                    return view($this->_path . '.tab-content.edit-product-specs', $this->_data);
                     break;
                 default:
                     return view($this->_path . '.tab-content.edit-product', $this->_data);
@@ -713,5 +724,36 @@ class ListController extends Controller
         $pdf = DomPDF::loadView('pdf.invoice', $this->_data);
         return $pdf->download('invoice.pdf');
 //       return view('pdf.invoice', $this->_data);
+    }
+
+
+
+//    specifiaction
+
+    function addSpecs($id, Request $request)
+    {
+        Specification::create([
+            'product_id' => $id,
+            'name' => $request->name,
+            'detail' => $request->detail,
+        ]);
+        return redirect()->back()->with('success', 'Product specification added');
+    }
+
+    function updateSpecs($id, Request $request)
+    {
+        $spec = Specification::find($id);
+        if ($spec)
+            $spec->update([
+                'name' => $request->name,
+                'detail' => $request->detail,
+            ]);
+        return redirect()->back()->with('success', 'Product specification updated');
+    }
+    function deleteSpecs($id){
+        $spec = Specification::find($id);
+        if ($spec)
+            $spec->delete();
+        return redirect()->back()->with('success', 'Product specification removed');
     }
 }
