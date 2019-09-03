@@ -30,14 +30,14 @@
                 Seller Name: <br>
                 Seller Address: <br>
                 Seller Reg No. <br>
-                Seller VAT No.
+                Seller PAN/VAT No.
             </b>
         </td>
         <td colspan="4">
             {{$merchant->getBusiness->name??''}} <br>
             {{$merchant->address??''}} {{$merchant->city??''}}, {{$merchant->getCountry->name??''}} <br>
             {{$merchant->getBusiness->registration_number??''}} <br>
-            <br>
+            {{$merchant->getBusiness->pan??''}} / {{$merchant->getBusiness->vat??''}}
         </td>
         <td colspan="3">
             <b>

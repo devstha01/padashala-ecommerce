@@ -70,7 +70,7 @@ class ProfileController extends Controller
             'name' => 'required',
             'surname' => 'required',
 //            'user_name' => 'required|unique:merchants,user_name,' . $this->_merchant_id,
-            'email' => 'required|email|unique:merchants,email,'.$this->_merchant_id,
+            'email' => 'required|email|unique:merchants,email,' . $this->_merchant_id,
             'country_id' => 'required|not_in:0',
             'gender' => 'required',
             'address' => 'required',
@@ -110,7 +110,9 @@ class ProfileController extends Controller
                 'address' => $request->address,
                 'city' => $request->city,
                 'contact_number' => $request->contact_number,
-                'registration_number' => $request->registration_number ?? null
+                'registration_number' => $request->registration_number ?? null,
+                'pan' => $request->pan,
+                'vat' => $request->vat,
             ];
 
             MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->update($business_input);

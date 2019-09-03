@@ -9,7 +9,7 @@ class MerchantBusiness extends Model
     protected $table = 'merchant_business';
 
     protected $fillable = [
-        'merchant_id', 'name', 'slug', 'country_id', 'address', 'contact_number', 'registration_number','city'
+        'merchant_id', 'name', 'slug', 'country_id', 'address', 'contact_number', 'registration_number', 'city', 'pan', 'vat'
     ];
 
     function getMerchant()

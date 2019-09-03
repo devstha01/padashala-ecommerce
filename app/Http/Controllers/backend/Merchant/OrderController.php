@@ -11,6 +11,7 @@ use App\Models\Commisions\ShoppingBonusDistribution;
 use App\Models\Commisions\ShoppingLog;
 use App\Models\Commisions\ShoppingMerchant;
 use App\Models\Members\MemberAsset;
+use App\Models\Merchant;
 use App\Models\MerchantBusiness;
 use App\Models\OrderItem;
 use App\Models\ShippingOrderItem;
@@ -66,6 +67,7 @@ class OrderController extends Controller
     function orderdetails($id)
     {
         $order = Order::find($id);
+        $this->_data['merchant'] = Merchant::find($this->_merchant_id);
         if (!$order)
             return redirect()->back();
         if ($order->getUser->is_member === 0) {

@@ -111,7 +111,9 @@ class MerchantRegisterController extends Controller
                 'city' => $request->city,
                 'address' => $request->address,
                 'contact_number' => $request->contact_number,
-                'registration_number' => $request->registration_number ?? null
+                'registration_number' => $request->registration_number ?? null,
+                'pan' => $request->pan,
+                'vat' => $request->vat,
             ];
 
             MerchantBusiness::create($business_input);
@@ -243,7 +245,9 @@ class MerchantRegisterController extends Controller
                 'city' => $request->city,
                 'address' => $request->address,
                 'contact_number' => $request->contact_number,
-                'registration_number' => $request->registration_number ?? null
+                'registration_number' => $request->registration_number ?? null,
+                'pan' => $request->pan,
+                'vat' => $request->vat,
             ];
             MerchantBusiness::create($business_input);
 //            $shopping = ShoppingMerchant::where('merchant_id', $id)->first();
@@ -258,7 +262,9 @@ class MerchantRegisterController extends Controller
                     'city' => $request->city,
                     'address' => $request->address,
                     'contact_number' => $request->contact_number,
-                    'registration_number' => $request->registration_number ?? null
+                    'registration_number' => $request->registration_number ?? null,
+                    'pan' => $request->pan,
+                    'vat' => $request->vat,
                 ];
                 $merchant_business->update($business_input);
 

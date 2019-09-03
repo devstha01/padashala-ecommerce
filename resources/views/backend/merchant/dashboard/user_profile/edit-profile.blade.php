@@ -306,6 +306,34 @@
 
                                                                             </div>
                                                                         </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">PAN No.
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           name="pan"
+                                                                                           placeholder=""
+                                                                                           value="{{$merchant->getBusiness->pan??''}}">
+                                                                                    <span style="color: red">{{$errors->first('pan')??''}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">VAT No.
+                                                                                        .
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           name="vat"
+                                                                                           placeholder=""
+                                                                                           value="{{$merchant->getBusiness->vat??''}}">
+                                                                                    <span style="color: red">{{$errors->first('vat')??''}}</span>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
 
                                                                         <button type="submit"
                                                                                 class="btn btn-success">{{__('dashboard.Submit')}}
