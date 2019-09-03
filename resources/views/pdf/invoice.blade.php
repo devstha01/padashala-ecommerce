@@ -17,7 +17,7 @@
                 <b>Retail/Tax Invoice</b>
             </div>
             <div><b>Invoice Date:</b> <f
-                        class="float-right">{{\Carbon\Carbon::parse($order->order_date)->format('d-M-y H:i')}}</f></div>
+                        class="float-right">{{\Carbon\Carbon::parse($order->order_date)->format('d M, Y H:i')}}</f></div>
         </td>
     </tr>
     <tr class="bg-grey">

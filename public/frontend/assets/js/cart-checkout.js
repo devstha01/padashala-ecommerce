@@ -18,13 +18,13 @@ $(function () {
                     variant_name = '<br> [ ' + value.options.variant_name + ' ]';
                 }
                 if (!value.options.status) {
-                    out_of_stock = "<span class='text-danger'>Out of Stock !</span>"
-                    checkoutProducts += '<tr><td>' + (++sn) + '</td><td>' + value.name + variant_name + '</td><td>  Rs.' + value.price + '</td><td>' + value.qty + '<i class="fa fa-times text-danger" style="font-size: 10px;"> Stock!</i></td><td style=\'color:red;text-decoration:line-through\'><span style=\'color:black\'>  Rs.' + value.price * value.qty + '</span></td></tr>';
+                    out_of_stock = "<span class='text-danger'>Out of Stock !</span>";
+                    checkoutProducts += '<tr><td>' + (++sn) + '</td><td class="break-word">' + value.name  + '</td><td>  Rs.' + value.price + '</td><td>' + value.qty + '<i class="fa fa-times text-danger" style="font-size: 10px;"> Stock!</i></td><td style=\'color:red;text-decoration:line-through\'><span style=\'color:black\'>  Rs.' + value.price * value.qty + '</span></td></tr>';
                 } else {
-                    checkoutProducts += '<tr><td>' + (++sn) + '</td><td>' + value.name + variant_name + '</td><td>  Rs.' + value.price + '</td><td style="margin-left:7px">    X ' + value.qty + '</td><td>  Rs.' + value.price * value.qty + '</td></tr>';
+                    checkoutProducts += '<tr><td>' + (++sn) + '</td><td class="break-word">' + value.name  + '</td><td>  Rs.' + value.price + '</td><td style="margin-left:7px">    X ' + value.qty + '</td><td>  Rs.' + value.price * value.qty + '</td></tr>';
                     net_total += value.price * value.qty;
                     net_total_tax += value.price * value.qty;
-                    checkoutProductsAddress += '<tr><td>' + (++sn1) + '</td><td>' + value.name + variant_name + '</td><td>  Rs.' + value.price + '</td><td style="margin-left:7px">  X ' + value.qty + '</td><td>  Rs.' + value.price * value.qty + '</td></tr>';
+                    checkoutProductsAddress += '<tr><td>' + (++sn1) + '</td><td class="break-word">' + value.name  + '</td><td>  Rs.' + value.price + '</td><td style="margin-left:7px">  X ' + value.qty + '</td><td>  Rs.' + value.price * value.qty + '</td></tr>';
 
                 }
 
@@ -36,7 +36,7 @@ $(function () {
                     '                                            </a>\n' +
                     '                                        </figure>\n' +
                     '                                        <h2 class="product-title">\n' +
-                    '                                            <a href="' + serverCustom.base_url + '/product/' + value.options.slug + '">' + value.name + variant_name + '</a>\n' +
+                    '                                            <a href="' + serverCustom.base_url + '/product/' + value.options.slug + '" class="break-word">' + value.name + variant_name + '</a>\n' +
                     '                                        </h2>\n' +
                     '                                    </td>\n' +
                     '                                    <td>Rs.' + value.price + '</td>\n' +
