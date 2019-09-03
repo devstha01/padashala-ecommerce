@@ -64,10 +64,15 @@
                                                             </div>
                                                             <div class="actions">
                                                                 <div class="btn-group btn-group-devided">
-                                                                    <form action="{{route('regen-merchant-qr')}}" method="post" class="float-right">
+                                                                    <form action="{{route('regen-merchant-qr')}}"
+                                                                          method="post" class="float-right">
                                                                         {{csrf_field()}}
-                                                                        <input type="hidden" name="merchant_id" value="{{Auth::guard('merchant')->id()}}">
-                                                                        <button type="submit" class="btn blue"><i class="fa fa-qrcode"> </i> Regenerate QR Code</button>
+                                                                        <input type="hidden" name="merchant_id"
+                                                                               value="{{Auth::guard('merchant')->id()}}">
+                                                                        <button type="submit" class="btn blue"><i
+                                                                                    class="fa fa-qrcode"> </i>
+                                                                            Regenerate QR Code
+                                                                        </button>
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -82,7 +87,11 @@
 
                                                                 <li class="{{(session('edit-profile-merchant') === 'image')?'active':''}}">
                                                                     <a href="#tab_1_2"
-                                                                       data-toggle="tab">{{__('dashboard.Change Image')}}</a>
+                                                                       data-toggle="tab">Change Logo</a>
+                                                                </li>
+                                                                <li class="{{(session('edit-profile-merchant') === 'documents')?'active':''}}">
+                                                                    <a href="#tab_1_4"
+                                                                       data-toggle="tab">Documents</a>
                                                                 </li>
 
                                                                 <li class="{{(session('edit-profile-merchant') === 'pass')?'active':''}}">
@@ -340,60 +349,106 @@
                                                                         </button>
 
                                                                     </form>
+                                                                    <br>
+                                                                    <br>
                                                                 </div>
 
                                                                 <div class="tab-pane {{(session('edit-profile-merchant') === 'image')?'active':''}}"
                                                                      id="tab_1_2">
 
-                                                                    <h3>{{__('dashboard.Logo Image')}}</h3>
+                                                                    <h4>Business Logo</h4>
                                                                     <div class="row">
-                                                                        <form action="{{route('merchant-submit-image-edit',$merchant->id)}}"
-                                                                              method="post"
-                                                                              enctype="multipart/form-data">
-                                                                            {{csrf_field()}}
+                                                                        <div class="col-sm-6">
 
-                                                                            <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
-                                                                                        <input type="file"
-                                                                                               id="exampleInputlogo"
-                                                                                               name="logo">
-                                                                                    </div>
-                                                                                    <br>
-                                                                                    @if($merchant->logo !== null)
-                                                                                        <img src="{{asset('image/merchantlogo/'.$merchant->logo)}}"
-                                                                                             alt="logo"
-                                                                                             style="height: 100px">
+                                                                            <form action="{{route('merchant-submit-image-edit',$merchant->id)}}"
+                                                                                  method="post"
+                                                                                  enctype="multipart/form-data">
+                                                                                {{csrf_field()}}
 
-                                                                                    @endif
+                                                                                <div class="form-group">
+                                                                                    <input type="file"
+                                                                                           class="form-control"
+                                                                                           name="logo">
                                                                                 </div>
-                                                                                {{--<div class="col-md-6">--}}
-                                                                                {{--<div class="form-group">--}}
-                                                                                {{--<label for="exampleInputbanner">Banner</label>--}}
-                                                                                {{--<input type="file"--}}
-                                                                                {{--id="exampleInputbanner"--}}
-                                                                                {{--name="banner"--}}
-                                                                                {{--multiple>--}}
-                                                                                {{--</div>--}}
-                                                                                {{--<br>--}}
-                                                                                {{--@if($merchant->logo !== null)--}}
-                                                                                {{--<img src="{{asset('image/merchantlogo/'.$merchant->logo)}}"--}}
-                                                                                {{--alt="logo"--}}
-                                                                                {{--style="height: 100px">--}}
+                                                                                <br>
+                                                                                @if($merchant->logo !== null)
+                                                                                    <img src="{{asset('image/merchantlogo/'.$merchant->logo)}}"
+                                                                                         alt="logo"
+                                                                                         style="height: 100px">
 
-                                                                                {{--@endif--}}
+                                                                                @endif
 
-                                                                                {{--</div>--}}
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                            </div>
+                                                                                <button type="submit"
+                                                                                        class="btn btn-primary"> {{__('dashboard.Submit')}}
+                                                                                </button>
 
-                                                                            <button type="submit"
-                                                                                    class="btn btn-primary"> {{__('dashboard.Submit')}}
-                                                                            </button>
-
-                                                                        </form>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
+                                                                </div>
+                                                                <div class="tab-pane {{(session('edit-profile-merchant') === 'documents')?'active':''}}"
+                                                                     id="tab_1_4">
+
+                                                                    <h4>Business Documents</h4>
+
+                                                                    <form action="{{route('merchant-submit-doc')}}"
+                                                                          method="post"
+                                                                          enctype="multipart/form-data">
+                                                                        {{csrf_field()}}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <input type="file"
+                                                                                           name="file"
+                                                                                           class="form-control"
+                                                                                           required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <input type="text"
+                                                                                           name="name"
+                                                                                           class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <button type="submit"
+                                                                                class="btn btn-primary"> {{__('dashboard.Submit')}}
+                                                                        </button>
+                                                                        <br>
+                                                                        <br>
+                                                                        <br>
+                                                                    </form>
+
+                                                                    <hr>
+                                                                    <table class="table table-hover">
+                                                                        <tr>
+                                                                            <th>S/N</th>
+                                                                            <th>Name</th>
+                                                                            <th>File</th>
+                                                                            <th>Type</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                        @forelse($merchant->documents as $key=>$document)
+                                                                            <tr>
+                                                                                <td>{{++$key}}</td>
+                                                                                <td>{{$document->name}}</td>
+                                                                                <td><a href="{{asset('image/merchant_documents/'.$document->file)}}"> <i class="fa fa-file"></i></a></td>
+                                                                                <td>{{$document->mime}}</td>
+                                                                                <td>
+                                                                                    <form action="{{route('delete-doc',$document->id)}}" method="post">
+                                                                                        {{csrf_field()}}
+                                                                                        <button class="btn blue">Delete</button>
+                                                                                    </form>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @empty
+                                                                            <tr>
+                                                                                <td colspan="5">No files uploaded
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforelse
+                                                                    </table>
                                                                 </div>
 
                                                                 <div class="tab-pane {{(session('edit-profile-merchant') === 'pass')?'active':''}}"

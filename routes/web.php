@@ -117,6 +117,8 @@ Route::group(['namespace' => 'backend\Merchant', 'prefix' => 'merchant'], functi
     Route::get('edit-merchant', 'ProfileController@editMerchant')->name('merchant-edit-merchant-id');
     Route::post('submit-merchant-profile-edit', 'ProfileController@submitProfileEdit')->name('merchant-submit-merchant-profile-edit');
     Route::post('submit-merchant-image-edit', 'ProfileController@updateImage')->name('merchant-submit-image-edit');
+    Route::post('merchant-submit-doc', 'ProfileController@merchantDoc')->name('merchant-submit-doc');
+    Route::post('delete-doc/{id}', 'ProfileController@deleteDoc')->name('delete-doc');
     Route::post('submit-merchant-pass', 'ProfileController@submitPasswordEdit')->name('merchant-submit-merchant-pass');
 //    Route::post('submit-merchant-transaction-pass', 'ProfileController@submitTrannsactionPasswordEdit')->name('merchant-submit-merchant-transaction-pass');
 

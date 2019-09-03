@@ -42,6 +42,9 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::get('edit-merchant/{id}', 'MerchantRegisterController@editMerchant')->name('edit-merchant-id');
         Route::get('change-status-merchant/{id}', 'MerchantRegisterController@changeStatus')->name('change-status-merchant-admin');
 
+        Route::post('merchant-submit-doc/{id}', 'MerchantRegisterController@merchantDoc')->name('admin-submit-doc');
+        Route::post('delete-doc/{id}', 'MerchantRegisterController@deleteDoc')->name('admin-delete-doc');
+
 
         //admin edit product
         Route::get('add-product/{id}', 'ListController@addProduct')->name('admin-add-product');
