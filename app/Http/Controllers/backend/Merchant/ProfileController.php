@@ -117,7 +117,7 @@ class ProfileController extends Controller
 
             MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->update($business_input);
 
-            return redirect()->to(route('merchant-profile'))->with('success', __('message.Profile updated successfully'));
+            return redirect()->back()->with('success', __('message.Profile updated successfully'));
         }
         return redirect()->back()->with('fail', __('message.Something went wrong'));
     }

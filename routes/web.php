@@ -113,7 +113,7 @@ Route::group(['namespace' => 'backend\Merchant', 'prefix' => 'merchant'], functi
 
 //    Route::post('confirm-transaction-password', 'DashboardController@confirmTransactionPassword');
 
-    Route::get('view-merchant', 'ProfileController@viewMerchant')->name('merchant-profile');
+//    Route::get('view-merchant', 'ProfileController@viewMerchant')->name('merchant-profile');
     Route::get('edit-merchant', 'ProfileController@editMerchant')->name('merchant-edit-merchant-id');
     Route::post('submit-merchant-profile-edit', 'ProfileController@submitProfileEdit')->name('merchant-submit-merchant-profile-edit');
     Route::post('submit-merchant-image-edit', 'ProfileController@updateImage')->name('merchant-submit-image-edit');
