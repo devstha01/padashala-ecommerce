@@ -27,6 +27,9 @@
                                 <li class="">
                                     <a href="{{route('variant-edit-product-merchant',$product->slug)}}"> {{__('dashboard.Product Options')}} </a>
                                 </li>
+                                <li class="">
+                                    <a href="{{route('specs-edit-product-merchant',$product->slug)}}"> Specifications </a>
+                                </li>
                                 <li class="active" style="border-top: 1px solid red">
                                     <a href="{{route('image-edit-product-merchant',$product->slug)}}"> {{__('dashboard.Images')}} </a>
                                 </li>

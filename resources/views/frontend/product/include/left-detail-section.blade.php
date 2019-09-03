@@ -74,19 +74,17 @@
 
             <div class="product-single-details">
                 <h1 class="product-title">{{$product->name}}</h1>
+                <a href="{{route('merchant-info',$product->getBusiness->slug)}}"
+                   style="font-size: 16px;text-decoration:none">
+                    <i class="fa fa-shopping-bag text-primary"></i> <b>{{$product->getBusiness->name}}</b>
+                </a>
                 <div class="price-box">
                     <span class="old-price old-price-cart"></span>
                     <span class="product-price product-price-cart"></span>
                 </div><!-- End .price-box -->
 
-                <div class="product-desc" style="max-height: 120px">
-                    <div class="product-highlight"><?php echo htmlspecialchars_decode($product->detail)?></div>
-                    <br>
-                    <a href="{{route('merchant-info',$product->getBusiness->slug)}}"
-                       style="font-size: 16px;text-decoration:none">
-                        <i class="fa fa-shopping-bag text-primary"></i> <b>{{$product->getBusiness->name}}</b>
-                    </a>
-                </div><!-- End .product-desc -->
+                <div class="product-highlight"
+                     style="border-bottom: 1px solid lightgrey;margin-bottom:20px;padding-bottom:5px"><?php echo htmlspecialchars_decode($product->detail)?></div>
                 <div class="product-filters-container">
                     {{--<div class="product-single-filter">--}}
 
@@ -181,6 +179,20 @@
             <p><b>{{__('front.Description')}} : </b><br>
                 <?php echo htmlspecialchars_decode($product->description)?></p>
         @endif
-    </div><!-- End .product-desc -->
+
+        {{--Specification--}}
+        <hr>
+        <div class="row">
+            @foreach($product->specifications as $specification)
+                <div class="col-md-6">
+                    <b>{{$specification->name}}</b>
+                    <br>
+                    {{$specification->detail}}
+                    <br>
+                    <br>
+                </div>
+            @endforeach
+        </div>
+    </div>
     <br>
-</div><!-- End .product-single-container -->
+</div>

@@ -470,3 +470,20 @@ li.jstree-closed > a .jstree-icon, li.jstree-open > a .jstree-icon {
 .imgareaselect-handle {
     padding: 4px
 }
+
+
+.product-highlight {
+    font-size: 10px;
+}
+
+.product-highlight b::before {
+    /*content: "\f14a";*/
+    /*font-family: FontAwesome;*/
+    margin-right: 10px;
+}
+
+.product-highlight b {
+    font-size: 11px;
+    /*color: lightgreen;*/
+    margin-right: 10px;
+}

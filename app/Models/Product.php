@@ -38,6 +38,10 @@ class Product extends Model
         return $this->hasMany(ProductVariant::class, 'product_id', 'id');
     }
 
+    function specifications()
+    {
+        return $this->hasMany(Specification::class, 'product_id', 'id');
+    }
     function getProductImage()
     {
         return $this->hasMany(ProductImage::class, 'product_id', 'id');

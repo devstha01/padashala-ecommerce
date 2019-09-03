@@ -525,6 +525,9 @@
                                             <li aria-haspopup="true" class=" ">
                                                 <a href="{{route('create-product-merchant')}}"
                                                    class="nav-link  ">{{__('dashboard.Add new product')}}</a></li>
+                                            <li aria-haspopup="true" class=" ">
+                                                <a href="{{route('create-product-merchant-standard')}}"
+                                                   class="nav-link  ">Add Standard Product</a></li>
                                             <li aria-haspopup="true" class=" "><a
                                                         href="{{route('view-product-merchant')}}"
                                                         class="nav-link  ">{{__('dashboard.Products List')}}</a>
