@@ -169,10 +169,10 @@
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             {{--<h4 class="modal-title"></h4>--}}
                                         </div>
-                                        <div class="modal-body">
-
-                                           @include('pdf.invoice')
-
+                                        <div class="modal-body" id="print-invoice">
+                                            <div class="page-margin">
+                                                @include('pdf.invoice')
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close
@@ -218,26 +218,34 @@
             });
 
 
-            // $('#print-modal-content').on('click', function(){
-            //     console.log('ok');
-            //     var elem = $('.modal-body');
-            //     var mywindow = window.open('', 'PRINT');
-            //
-            //     mywindow.document.write('<html><head><title>' + document.title + '</title>');
-            //     mywindow.document.write('</head><body >');
-            //     mywindow.document.write('<h1>' + document.title + '</h1>');
-            //     mywindow.document.write(elem.html());
-            //     mywindow.document.write('</body></html>');
-            //
-            //     mywindow.document.close(); // necessary for IE >= 10
-            //     mywindow.focus(); // necessary for IE >= 10*/
-            //
-            //     mywindow.print();
-            //     mywindow.close();
-            //
-            //     return true;
-            //
-            // });
+            $('#print-modal-content').on('click', function (e) {
+                e.preventDefault();
+                printDiv();
+            });
+
+            function printDiv() {
+                var divToPrint = $('#print-invoice');
+
+                var bootstrap_link = "{!! asset('frontend/assets/css/bootstrap.min.css') !!}";
+                var print_css_link = "{!! asset('frontend/assets/css/print.css') !!}";
+                var printable = "<!doctype html>" +
+                    "<html lang='en'>" +
+                    "<head>" +
+                    "    <meta charset='UTF-8'>" +
+                    "    <title>Invoice</title>" +
+                    "    <link rel='stylesheet' href='" + bootstrap_link + "' type='text/css'>" +
+                    "    <link rel='stylesheet' href='" + print_css_link + "' type='text/css'>" +
+                    "</head>" +
+                    "<body onload='window.print()'>" + divToPrint.html() + "</body></html>";
+
+                var newWin = window.open('', 'Print-Window');
+                newWin.document.open();
+                newWin.document.write(printable);
+                newWin.document.close();
+                setTimeout(function () {
+                    newWin.close();
+                }, 10);
+            }
         });
     </script>
 @endsection

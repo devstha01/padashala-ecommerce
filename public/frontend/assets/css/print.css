@@ -4,7 +4,7 @@ body {
     margin: 10px 25px;
     border: 1px solid black;
     padding: 1px;
-    font-size: 12px;
+    /*font-size: 12px;*/
 }
 
 table {
@@ -18,7 +18,7 @@ table {
 }
 
 .top-left-image {
-    height: 50px;
+    height: 70px;
 }
 
 .bg-grey {
@@ -30,6 +30,9 @@ table {
 }
 
 td {
-
     padding: 2px !important;
+}
+
+.page-margin{
+    margin:20px 10px;
 }

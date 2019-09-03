@@ -83,7 +83,7 @@
                                                     @else
                                                         <?php
                                                         $item = $latest_prod->getProductVariant->where('status', 1)->first()?>
-                                                        {{($item->discount ==0)?('$'. ($item->sell_price)):intval($item->discount).'% Off'}}
+                                                        {{($item->discount ==0)?('Rs. '. ($item->sell_price)):intval($item->discount).'% Off'}}
                                                     @endif
                                                     {{--30% off--}}
                                                 </div>
@@ -192,7 +192,6 @@
                     </div>
                 </div><!-- End .container -->
             </div>
-        </div>
         </div>
     </main>
 @endsection

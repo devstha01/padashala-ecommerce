@@ -118,7 +118,7 @@
         <td class="border" colspan="2"></td>
         {{--<td colspan="2" class="border"></td>--}}
         <td class="border" colspan="2">{{$tax}}</td>
-        <td class="border">{{$net_total}}</td>
+        <td class="border" colspan="2">{{$net_total}}</td>
     </tr>
 </table>
 <table class="table table-borderless">
