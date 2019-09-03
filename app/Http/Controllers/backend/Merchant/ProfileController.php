@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend\Merchant;
 use App\Models\Country;
 use App\Models\Merchant;
 use App\Models\MerchantBusiness;
+use App\Models\MerchantDocument;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -70,7 +71,7 @@ class ProfileController extends Controller
             'name' => 'required',
             'surname' => 'required',
 //            'user_name' => 'required|unique:merchants,user_name,' . $this->_merchant_id,
-            'email' => 'required|email|unique:merchants,email,'.$this->_merchant_id,
+            'email' => 'required|email|unique:merchants,email,' . $this->_merchant_id,
             'country_id' => 'required|not_in:0',
             'gender' => 'required',
             'address' => 'required',
@@ -110,12 +111,14 @@ class ProfileController extends Controller
                 'address' => $request->address,
                 'city' => $request->city,
                 'contact_number' => $request->contact_number,
-                'registration_number' => $request->registration_number ?? null
+                'registration_number' => $request->registration_number ?? null,
+                'pan' => $request->pan,
+                'vat' => $request->vat,
             ];
 
             MerchantBusiness::where('merchant_id', $this->_merchant_id)->first()->update($business_input);
 
-            return redirect()->to(route('merchant-profile'))->with('success', __('message.Profile updated successfully'));
+            return redirect()->back()->with('success', __('message.Profile updated successfully'));
         }
         return redirect()->back()->with('fail', __('message.Something went wrong'));
     }
@@ -221,5 +224,48 @@ class ProfileController extends Controller
             return redirect()->back()->with('success', __('message.Image updated successfully'));
         }
         return redirect()->back()->with('fail', __('message.Something went wrong'));
+    }
+
+    function merchantDoc(Request $request)
+    {
+        session()->flash('edit-profile-merchant', 'documents');
+        $validated = $request->validate([
+            'file' => 'required',
+        ]);
+        $merchant = Merchant::find($this->_merchant_id);
+        if (!$merchant)
+            return redirect()->back();
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $file_name = md5(time() . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
+
+            $destinationPath = public_path('image/merchant_documents');
+            if (!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0777, true, true);
+            }
+            $mime = $file->getMimeType();
+            $file->move($destinationPath, $file_name);
+            $create = MerchantDocument::create([
+                'merchant_id' => $this->_merchant_id,
+                'name' => $request->name,
+                'file' => $file_name,
+                'mime' => $mime,
+            ]);
+            if ($create)
+                return redirect()->back()->with('success', 'File uploaded successfully');
+        }
+        return redirect()->back()->with('fail', __('message.Something went wrong'));
+    }
+
+    function deleteDoc($id)
+    {
+        session()->flash('edit-profile-merchant', 'documents');
+        $docs = MerchantDocument::find($id);
+        $docs_path = public_path('image/merchant_documents/' . $docs->file ?? null);
+        if (File::exists($docs_path)) {
+            File::delete($docs_path);
+        }
+        $docs->delete();
+        return redirect()->back();
     }
 }

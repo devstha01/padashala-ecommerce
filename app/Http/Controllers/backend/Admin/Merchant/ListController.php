@@ -572,30 +572,27 @@ class ListController extends Controller
 
     function itemStatusChange($id, Request $request)
     {
-        $request->validate([
-            'action' => 'required',
-        ]);
         $orderItem = OrderItem::find($id);
+        $orderItem->update([
+            'payment_status' => $request->payment_status,
+            'merchant_status' => $request->merchant_status,
+        ]);
         if ($orderItem->order_status_id != 'deliver') {
-            if ($request->action == 'deliver') {
-                $orderItem->update(['order_status_id' => $request->action, 'deliver_date' => Carbon::now()]);
+            if ($request->order_status == 'deliver') {
+                $orderItem->update(['order_status_id' => $request->order_status, 'deliver_date' => Carbon::now()]);
                 $this->shoppingLogAfterDeliver($orderItem);
 //                $this->bonusOnCashDelivery($orderItem);
 //                $bonus = new ShoppingBonus();
 //                $bonus->assignCashBonus($id);
             } else {
-                $orderItem->update(['order_status_id' => $request->action]);
+                $orderItem->update(['order_status_id' => $request->order_status]);
             }
         } elseif ($orderItem->order_status_id == 'deliver') {
-            if ($request->action != 'deliver') {
+            if ($request->order_status != 'deliver') {
 //                $orderItem->update(['order_status_id' => $request->action, 'deliver_date' => null]);
 //                $this->commisionAfterReturn($id);
             }
         }
-
-//        if ($orderItem) {
-//            $orderItem->update(['order_status_id' => $request->action]);
-//        }
 
         $status = true;
         foreach ($orderItem->getOrder->getOrderItem as $item) {

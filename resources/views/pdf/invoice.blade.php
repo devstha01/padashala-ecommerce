@@ -17,7 +17,7 @@
                 <b>Retail/Tax Invoice</b>
             </div>
             <div><b>Invoice Date:</b> <f
-                        class="float-right">{{\Carbon\Carbon::parse($order->order_date)->format('d-M-y H:i')}}</f></div>
+                        class="float-right">{{\Carbon\Carbon::parse($order->order_date)->format('d M, Y H:i')}}</f></div>
         </td>
     </tr>
     <tr class="bg-grey">
@@ -30,14 +30,14 @@
                 Seller Name: <br>
                 Seller Address: <br>
                 Seller Reg No. <br>
-                Seller VAT No.
+                Seller PAN/VAT No.
             </b>
         </td>
         <td colspan="4">
             {{$merchant->getBusiness->name??''}} <br>
             {{$merchant->address??''}} {{$merchant->city??''}}, {{$merchant->getCountry->name??''}} <br>
             {{$merchant->getBusiness->registration_number??''}} <br>
-            <br>
+            {{$merchant->getBusiness->pan??''}} / {{$merchant->getBusiness->vat??''}}
         </td>
         <td colspan="3">
             <b>

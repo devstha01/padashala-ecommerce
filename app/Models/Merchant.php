@@ -16,11 +16,11 @@ class Merchant extends Authenticatable implements JWTSubject
     protected $fillable = [
         'surname', 'name', 'user_name', 'email', 'password', 'transaction_password',
         'identification_type', 'identification_number', 'country_id', 'address', 'contact_number',
-        'dob', 'gender', 'marital_status', 'joining_date', 'status', 'logo', 'banner', 'qr_code', 'qr_image','city','owner_type'
+        'dob', 'gender', 'marital_status', 'joining_date', 'status', 'logo', 'banner', 'qr_code', 'qr_image', 'city', 'owner_type'
     ];
 
     protected $hidden = [
-        'password', 'remember_token', 'transaction_password', 'address', 'country_id','city'
+        'password', 'remember_token', 'transaction_password', 'address', 'country_id', 'city'
     ];
 
     public function getJWTIdentifier()
@@ -46,5 +46,10 @@ class Merchant extends Authenticatable implements JWTSubject
     function getQrImageAttribute($value)
     {
         return url('image/qr_image/merchant') . '/' . $value;
+    }
+
+    function documents()
+    {
+        return $this->hasMany(MerchantDocument::class, 'merchant_id', 'id');
     }
 }

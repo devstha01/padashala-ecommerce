@@ -11,6 +11,7 @@ use App\Models\Commisions\ShoppingBonusDistribution;
 use App\Models\Commisions\ShoppingLog;
 use App\Models\Commisions\ShoppingMerchant;
 use App\Models\Members\MemberAsset;
+use App\Models\Merchant;
 use App\Models\MerchantBusiness;
 use App\Models\OrderItem;
 use App\Models\ShippingOrderItem;
@@ -66,6 +67,7 @@ class OrderController extends Controller
     function orderdetails($id)
     {
         $order = Order::find($id);
+        $this->_data['merchant'] = Merchant::find($this->_merchant_id);
         if (!$order)
             return redirect()->back();
         if ($order->getUser->is_member === 0) {
@@ -144,41 +146,10 @@ class OrderController extends Controller
 
     function itemStatusChange($id, Request $request)
     {
-        $request->validate([
-            'action' => 'required',
-        ]);
         $orderItem = OrderItem::find($id);
-        if ($orderItem->order_status_id != 'deliver') {
-            if ($request->action == 'deliver') {
-                $orderItem->update(['order_status_id' => $request->action, 'deliver_date' => Carbon::now()]);
-                $this->shoppingLogAfterDeliver($orderItem);
-                $this->bonusOnCashDelivery($orderItem);
-//                $bonus = new ShoppingBonus();
-//                $bonus->assignCashBonus($id);
-            } else {
-                $orderItem->update(['order_status_id' => $request->action]);
-            }
-        } elseif ($orderItem->order_status_id == 'deliver') {
-            if ($request->action != 'deliver') {
-//                $orderItem->update(['order_status_id' => $request->action, 'deliver_date' => null]);
-//                $this->commisionAfterReturn($id);
-            }
-        }
-
-//        if ($orderItem) {
-//            $orderItem->update(['order_status_id' => $request->action]);
-//        }
-
-        $status = true;
-        foreach ($orderItem->getOrder->getOrderItem as $item) {
-            if ($item->order_status_id != 'deliver') {
-                $status = false;
-            }
-        }
-        if ($status) {
-            $orderItem->getOrder->update(['order_status_id' => 'complete']);
-        }
-
+        $orderItem->update([
+            'merchant_status' => $request->merchant_status,
+        ]);
         return redirect()->back();
     }
 

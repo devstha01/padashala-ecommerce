@@ -157,7 +157,7 @@
                                     @if(Request::is('merchant/*'))
                                         @if(Auth::guard('merchant')->check())
                                             <li>
-                                                <a href="{{route('merchant-profile')}}"><i
+                                                <a href="{{route('merchant-edit-merchant-id')}}"><i
                                                             class="fa header-fa fa-user"></i> {{__('dashboard.My Profile')}}
                                                 </a>
                                             </li>

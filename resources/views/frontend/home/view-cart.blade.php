@@ -12,7 +12,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <div class="cart-table-container">
                         <table class="table table-cart">
                             <thead>
@@ -66,7 +66,7 @@
                     {{--</div><!-- End .cart-discount -->--}}
                 </div><!-- End .col-lg-8 -->
 
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="cart-summary">
                         <h3>{{__('front.Summary')}}</h3>
 
@@ -114,6 +114,11 @@
         .product-image img {
             max-height: 140px;
         }
+
+        .break-word{
+            word-break: break-all;
+        }
+
     </style>
 @endsection
 @section('scripts')

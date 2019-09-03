@@ -7,6 +7,7 @@ use App\Mail\WelcomeEmail;
 use App\Models\Country;
 use App\Models\Merchant;
 use App\Models\MerchantAsset;
+use App\Models\MerchantDocument;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\MerchantBusiness;
@@ -111,7 +112,9 @@ class MerchantRegisterController extends Controller
                 'city' => $request->city,
                 'address' => $request->address,
                 'contact_number' => $request->contact_number,
-                'registration_number' => $request->registration_number ?? null
+                'registration_number' => $request->registration_number ?? null,
+                'pan' => $request->pan,
+                'vat' => $request->vat,
             ];
 
             MerchantBusiness::create($business_input);
@@ -243,7 +246,9 @@ class MerchantRegisterController extends Controller
                 'city' => $request->city,
                 'address' => $request->address,
                 'contact_number' => $request->contact_number,
-                'registration_number' => $request->registration_number ?? null
+                'registration_number' => $request->registration_number ?? null,
+                'pan' => $request->pan,
+                'vat' => $request->vat,
             ];
             MerchantBusiness::create($business_input);
 //            $shopping = ShoppingMerchant::where('merchant_id', $id)->first();
@@ -258,7 +263,9 @@ class MerchantRegisterController extends Controller
                     'city' => $request->city,
                     'address' => $request->address,
                     'contact_number' => $request->contact_number,
-                    'registration_number' => $request->registration_number ?? null
+                    'registration_number' => $request->registration_number ?? null,
+                    'pan' => $request->pan,
+                    'vat' => $request->vat,
                 ];
                 $merchant_business->update($business_input);
 
@@ -377,6 +384,49 @@ class MerchantRegisterController extends Controller
             return redirect()->back()->with('success', __('message.Image updated successfully'));
         }
         return redirect()->back()->with('fail', __('message.Something went wrong'));
+    }
+
+    function merchantDoc($id,Request $request)
+    {
+        session()->flash('edit-profile-merchant', 'documents');
+        $validated = $request->validate([
+            'file' => 'required',
+        ]);
+        $merchant = Merchant::find($id);
+        if (!$merchant)
+            return redirect()->back();
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $file_name = md5(time() . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
+
+            $destinationPath = public_path('image/merchant_documents');
+            if (!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0777, true, true);
+            }
+            $mime = $file->getMimeType();
+            $file->move($destinationPath, $file_name);
+            $create = MerchantDocument::create([
+                'merchant_id' => $id,
+                'name' => $request->name,
+                'file' => $file_name,
+                'mime' => $mime,
+            ]);
+            if ($create)
+                return redirect()->back()->with('success', 'File uploaded successfully');
+        }
+        return redirect()->back()->with('fail', __('message.Something went wrong'));
+    }
+
+    function deleteDoc($id)
+    {
+        session()->flash('edit-profile-merchant', 'documents');
+        $docs = MerchantDocument::find($id);
+        $docs_path = public_path('image/merchant_documents/' . $docs->file ?? null);
+        if (File::exists($docs_path)) {
+            File::delete($docs_path);
+        }
+        $docs->delete();
+        return redirect()->back();
     }
 }
 
