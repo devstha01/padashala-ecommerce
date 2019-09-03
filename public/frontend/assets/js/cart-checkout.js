@@ -76,9 +76,9 @@ $(function () {
             cartSummaryAddress.empty();
             cartSummaryAddress.append(checkoutProductsAddress);
 
-            $('#checkout_net_tax').html('Rs.' + net_tax);
-            $('#checkout_net_total').html('Rs.' + net_total);
-            $('#checkout_net_total_tax').html('Rs.' + net_total_tax);
+            $('#checkout_net_tax').html('Rs.' + net_tax.toFixed(2));
+            $('#checkout_net_total').html('Rs.' + net_total.toFixed(2));
+            $('#checkout_net_total_tax').html('Rs.' + net_total_tax.toFixed(2));
 
             checkoutItemUpDown();
             removeCheckoutProduct();
