@@ -98,16 +98,16 @@
 
                 <tr>
                     <td colspan="5">{{__('front.Sub Total (exclusive Tax)')}}</td>
-                    <td colspan="2">Rs. {{$orders->sub_total}}</td>
+                    <td colspan="3">Rs. {{$orders->sub_total}}</td>
                 </tr>
                 <tr>
                     <td colspan="5">Net Tax</td>
-                    <td colspan="2">Rs. {{$orders->tax}}</td>
+                    <td colspan="3">Rs. {{$orders->tax}}</td>
                 </tr>
 
                 <tr>
                     <td colspan="5">{{__('front.Net Total (inclusive Tax)')}}</td>
-                    <td colspan="2">
+                    <td colspan="3">
                         Rs. {{number_format($orders->total_price,2,'.','')}}</td>
                 </tr>
             </table>
