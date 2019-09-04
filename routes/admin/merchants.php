@@ -89,7 +89,8 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
 
 
         Route::post('submit-merchant-profile-edit/{id}', 'MerchantRegisterController@submitProfileEdit')->name('submit-merchant-profile-edit');
-        Route::post('submit-merchant-image/{id}', 'MerchantRegisterController@uploadImage')->name('submit-merchant-image-edit');
+        Route::post('submit-merchant-image/{id}', 'MerchantRegisterController@uploadImage')->name('admin-merchant-image-edit');
+        Route::post('submit-merchant-signature/{id}', 'MerchantRegisterController@uploadSignatureImage')->name('admin-merchant-signature-edit');
 
     });
     Route::group(['middleware' => 'staff_permission:1.Merchant Master.Password'], function () {

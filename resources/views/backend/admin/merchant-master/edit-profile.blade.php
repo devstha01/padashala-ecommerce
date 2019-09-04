@@ -296,7 +296,8 @@
                                                                                     <input type="text"
                                                                                            class="form-control"
                                                                                            name="pan"
-                                                                                           placeholder="" value="{{$merchant->getBusiness->pan??''}}">
+                                                                                           placeholder=""
+                                                                                           value="{{$merchant->getBusiness->pan??''}}">
                                                                                     <span style="color: red">{{$errors->first('pan')??''}}</span>
                                                                                 </div>
                                                                             </div>
@@ -326,32 +327,61 @@
                                                                 <div class="tab-pane {{(session('edit-profile-merchant') === 'image')?'active':''}}"
                                                                      id="tab_1_2">
 
-                                                                    <h3>Business Logo</h3>
                                                                     <div class="row">
-                                                                        <div class="col-md-6">
-                                                                        <form action="{{route('submit-merchant-image-edit',$merchant->id)}}"
-                                                                              method="post"
-                                                                              enctype="multipart/form-data">
-                                                                            {{csrf_field()}}
+                                                                        <div class="col-sm-6">
+                                                                            <h4>Business Logo</h4>
 
-                                                                                    <div class="form-group">
-                                                                                        <input type="file"
-                                                                                               id="exampleInputlogo"
-                                                                                               name="logo">
-                                                                                    </div>
-                                                                                    <br>
-                                                                                    @if($merchant->logo !== null)
-                                                                                        <img src="{{asset('image/merchantlogo/'.$merchant->logo)}}"
-                                                                                             alt="logo"
-                                                                                             style="height: 100px">
+                                                                            <form action="{{route('admin-merchant-image-edit',$merchant->id)}}"
+                                                                                  method="post"
+                                                                                  enctype="multipart/form-data">
+                                                                                {{csrf_field()}}
 
-                                                                                    @endif
-                                                                            <button type="submit"
-                                                                                    class="btn btn-primary"> {{__('dashboard.Submit')}}
-                                                                            </button>
+                                                                                <div class="form-group">
+                                                                                    <input type="file"
+                                                                                           class="form-control"
+                                                                                           name="logo">
+                                                                                </div>
+                                                                                <br>
+                                                                                @if($merchant->logo !== null)
+                                                                                    <img src="{{asset('image/merchantlogo/'.$merchant->logo)}}"
+                                                                                         alt="logo"
+                                                                                         style="height: 100px">
 
-                                                                        </form>
-                                                                    </div>
+                                                                                @endif
+
+                                                                                <button type="submit"
+                                                                                        class="btn btn-primary"> {{__('dashboard.Submit')}}
+                                                                                </button>
+
+                                                                            </form>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <h4>Signature</h4>
+
+                                                                            <form action="{{route('admin-merchant-signature-edit',$merchant->id)}}"
+                                                                                  method="post"
+                                                                                  enctype="multipart/form-data">
+                                                                                {{csrf_field()}}
+
+                                                                                <div class="form-group">
+                                                                                    <input type="file"
+                                                                                           class="form-control"
+                                                                                           name="signature">
+                                                                                </div>
+                                                                                <br>
+                                                                                @if($merchant->signature !== null)
+                                                                                    <img src="{{asset('image/merchant_signature/'.$merchant->signature)}}"
+                                                                                         alt="logo"
+                                                                                         style="height: 100px">
+
+                                                                                @endif
+
+                                                                                <button type="submit"
+                                                                                        class="btn btn-primary"> {{__('dashboard.Submit')}}
+                                                                                </button>
+
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 
@@ -402,12 +432,18 @@
                                                                             <tr>
                                                                                 <td>{{++$key}}</td>
                                                                                 <td>{{$document->name}}</td>
-                                                                                <td><a href="{{asset('image/merchant_documents/'.$document->file)}}"> <i class="fa fa-file"></i></a></td>
+                                                                                <td>
+                                                                                    <a href="{{asset('image/merchant_documents/'.$document->file)}}">
+                                                                                        <i class="fa fa-file"></i></a>
+                                                                                </td>
                                                                                 <td>{{$document->mime}}</td>
                                                                                 <td>
-                                                                                    <form action="{{route('admin-delete-doc',$document->id)}}" method="post">
+                                                                                    <form action="{{route('admin-delete-doc',$document->id)}}"
+                                                                                          method="post">
                                                                                         {{csrf_field()}}
-                                                                                        <button class="btn blue">Delete</button>
+                                                                                        <button class="btn blue">
+                                                                                            Delete
+                                                                                        </button>
                                                                                     </form>
                                                                                 </td>
                                                                             </tr>

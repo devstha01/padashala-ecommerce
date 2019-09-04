@@ -87,7 +87,7 @@
 
                                                                 <li class="{{(session('edit-profile-merchant') === 'image')?'active':''}}">
                                                                     <a href="#tab_1_2"
-                                                                       data-toggle="tab">Change Logo</a>
+                                                                       data-toggle="tab">Change Image</a>
                                                                 </li>
                                                                 <li class="{{(session('edit-profile-merchant') === 'documents')?'active':''}}">
                                                                     <a href="#tab_1_4"
@@ -356,9 +356,9 @@
                                                                 <div class="tab-pane {{(session('edit-profile-merchant') === 'image')?'active':''}}"
                                                                      id="tab_1_2">
 
-                                                                    <h4>Business Logo</h4>
                                                                     <div class="row">
                                                                         <div class="col-sm-6">
+                                                                            <h4>Business Logo</h4>
 
                                                                             <form action="{{route('merchant-submit-image-edit',$merchant->id)}}"
                                                                                   method="post"
@@ -373,6 +373,33 @@
                                                                                 <br>
                                                                                 @if($merchant->logo !== null)
                                                                                     <img src="{{asset('image/merchantlogo/'.$merchant->logo)}}"
+                                                                                         alt="logo"
+                                                                                         style="height: 100px">
+
+                                                                                @endif
+
+                                                                                <button type="submit"
+                                                                                        class="btn btn-primary"> {{__('dashboard.Submit')}}
+                                                                                </button>
+
+                                                                            </form>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <h4>Signature</h4>
+
+                                                                            <form action="{{route('merchant-submit-signature-edit',$merchant->id)}}"
+                                                                                  method="post"
+                                                                                  enctype="multipart/form-data">
+                                                                                {{csrf_field()}}
+
+                                                                                <div class="form-group">
+                                                                                    <input type="file"
+                                                                                           class="form-control"
+                                                                                           name="signature">
+                                                                                </div>
+                                                                                <br>
+                                                                                @if($merchant->signature !== null)
+                                                                                    <img src="{{asset('image/merchant_signature/'.$merchant->signature)}}"
                                                                                          alt="logo"
                                                                                          style="height: 100px">
 

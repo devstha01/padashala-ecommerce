@@ -177,9 +177,7 @@ class ProfileController extends Controller
         session()->flash('edit-profile-merchant', 'image');
         $validated = $request->validate([
             'logo' => 'required',
-//            'banner' => 'required',
         ]);
-        $redirect = false;
         $merchant = Merchant::find($this->_merchant_id);
         if (!$merchant)
             return redirect()->back();
@@ -199,30 +197,40 @@ class ProfileController extends Controller
             }
 
             $merchant->update(['logo' => $validated['logo']]);
-            $redirect = true;
+            return redirect()->back()->with('success', __('message.Image updated successfully'));
         }
 
-        if ($request->hasFile('banner')) {
-            $banner = $request->file('banner');
-            $validated['banner'] = md5(time() . $banner->getClientOriginalName()) . '.' . $banner->getClientOriginalExtension();
+        return redirect()->back()->with('fail', __('message.Something went wrong'));
+    }
+    function updateSignatureImage(Request $request)
+    {
 
-            $destinationPath = public_path('image/merchantlogo');
+        session()->flash('edit-profile-merchant', 'image');
+        $validated = $request->validate([
+            'signature' => 'required',
+        ]);
+        $merchant = Merchant::find($this->_merchant_id);
+        if (!$merchant)
+            return redirect()->back();
+        if ($request->hasFile('signature')) {
+            $signature = $request->file('signature');
+            $validated['signature'] = md5(time() . $signature->getClientOriginalName()) . '.' . $signature->getClientOriginalExtension();
+
+            $destinationPath = public_path('image/merchant_signature');
             if (!File::exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0777, true, true);
             }
-            $img = Image::make($banner->getRealPath());
-            $img->save($destinationPath . '/' . $validated['banner']);
-            $old_img = public_path('image/merchantlogo/' . $merchant->banner);
+            $img = Image::make($signature->getRealPath());
+            $img->save($destinationPath . '/' . $validated['signature']);
+            $old_img = public_path('image/merchant_signature/' . $merchant->signature);
             if (File::exists($old_img)) {
                 File::delete($old_img);
             }
-            $merchant->update(['banner' => $validated['banner']]);
-            $redirect = true;
-        }
 
-        if ($redirect) {
+            $merchant->update(['signature' => $validated['signature']]);
             return redirect()->back()->with('success', __('message.Image updated successfully'));
         }
+
         return redirect()->back()->with('fail', __('message.Something went wrong'));
     }
 
