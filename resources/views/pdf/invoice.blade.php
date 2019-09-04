@@ -1,10 +1,10 @@
 {{--<!doctype html>--}}
 {{--<html lang="en">--}}
 {{--<head>--}}
-    {{--<meta charset="UTF-8">--}}
-    {{--<title>Invoice</title>--}}
-    {{--<link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}" type="text/css">--}}
-    {{--<link rel="stylesheet" href="{{asset('frontend/assets/css/print.css')}}" type="text/css">--}}
+{{--<meta charset="UTF-8">--}}
+{{--<title>Invoice</title>--}}
+{{--<link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}" type="text/css">--}}
+{{--<link rel="stylesheet" href="{{asset('frontend/assets/css/print.css')}}" type="text/css">--}}
 {{--</head>--}}
 {{--<body>--}}
 <table class="table table-borderless">
@@ -16,8 +16,10 @@
             <div class="text-center">
                 <b>Retail/Tax Invoice</b>
             </div>
-            <div><b>Invoice Date:</b> <f
-                        class="float-right">{{\Carbon\Carbon::parse($order->order_date)->format('d M, Y H:i')}}</f></div>
+            <div><b>Invoice Date:</b>
+                <f
+                        class="float-right">{{\Carbon\Carbon::parse($order->order_date)->format('d M, Y H:i')}}</f>
+            </div>
         </td>
     </tr>
     <tr class="bg-grey">
@@ -132,7 +134,12 @@
             facilis hic illo ipsam, officiis quaerat recusandae, veniam voluptatibus! A distinctio ducimus hic molestias
             odit rerum sequi.
         </td>
-        <td colspan="4" class="border"></td>
+        <td colspan="4" class="border text-center">
+            @if($merchant->signature)
+                <img src="{{asset('image/merchant_signature/'.$merchant->signature)}}" alt=" "
+                     class="merchant-signature">
+            @endif
+        </td>
     </tr>
     <tr>
         <td colspan="8"></td>
