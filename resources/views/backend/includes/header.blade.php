@@ -333,14 +333,21 @@
                                                     <a href="{{route('merchant-list-admin')}}"
                                                        class="nav-link">{{ __('dashboard.Merchants List')}}</a>
                                                 </li>
+                                            @endif
+                                            @if($staffHeader->staffHasPermission('1.Merchant Master.Product Approval List'))
+
                                                 <li>
                                                     <a href="{{route('product-approval-admin')}}"
                                                        class="nav-link">{{ __('dashboard.Product Approval List')}}</a>
                                                 </li>
+                                            @endif
+                                            @if($staffHeader->staffHasPermission('1.Merchant Master.Product List'))
                                                 <li>
                                                     <a href="{{route('all-product-admin')}}"
                                                        class="nav-link">Product List</a>
                                                 </li>
+                                            @endif
+                                            @if($staffHeader->staffHasPermission('1.Merchant Master.Order List'))
                                                 <li>
                                                     <a href="{{route('order-list-admin')}}"
                                                        class="nav-link">{{ __('dashboard.Order List')}}</a>

@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="portlet-body form">
                                     <form action="{{route('top-up-post')}}" method="post"
-                                          enctype="multipart/form-data">
+                                          enctype="multipart/form-data" id="top-up-form">
                                         <div class="form-body">
                                             {{csrf_field()}}
                                             <div class="row">
@@ -51,7 +51,7 @@
                                             </div>
 
 
-                                            <button type="submit"
+                                            <button type="submit" id="submit-top-up"
                                                     class="btn btn-success">{{__('dashboard.Submit')}}</button>
 
                                             <br>
@@ -70,6 +70,34 @@
 
 @section('scripts')
     <script>
+        $(function () {
+            $('#submit-top-up').on('click', function (e) {
+                e.preventDefault();
+                var amount = $('input[name="amount"]').val() | 0;
+                var user_name = $('input[name="user_name"]').val() ;
+                confirmTopUp(function () {
+                    $('#top-up-form').submit();
+                });
 
+                function confirmTopUp(successCallBack) {
+                    var areYouSureMessage = "Top up amount Rs. " + amount + " to " + user_name;
+                    if (areYouSureMessage === undefined)
+                        areYouSureMessage = '';
+                    // console.log(areYouSureMessage);
+                    swal({
+                        title: "Do you want to proceed?",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        // type: 'info',
+                        text: areYouSureMessage,
+                    }, function () {
+                        swal.close();
+                        setTimeout(function () {
+                            successCallBack();
+                        }, 300);
+                    });
+                }
+            });
+        });
     </script>
 @stop
