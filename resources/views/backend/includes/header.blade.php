@@ -365,6 +365,10 @@
                                                     <a href="{{route('admin-staff-list')}}"
                                                        class="nav-link  ">{{ __('dashboard.Staffs List')}}</a>
                                                 </li>
+                                                <li>
+                                                    <a href="{{route('top-up')}}"
+                                                       class="nav-link  ">Top up Wallet</a>
+                                                </li>
                                             </ul>
                                         </li>
                                     @endif

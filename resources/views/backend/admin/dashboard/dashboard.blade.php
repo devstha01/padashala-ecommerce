@@ -136,7 +136,21 @@
                 },
                 title: {
                     display: true,
-                    text: 'Product Purchase'
+                    text: 'Product Purchase '
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Merchants'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Quantity'
+                        }
+                    }]
                 }
             }
         });
@@ -171,7 +185,22 @@
                 title: {
                     display: true,
                     text: 'Product Purchase by Date'
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Price in Rs.'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Month'
+                        }
+                    }]
                 }
+
             }
         });
     </script>

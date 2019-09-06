@@ -4,6 +4,10 @@ namespace App\Http\Controllers\backend\Admin\Staff;
 
 use App\Models\Admin;
 use App\Models\Country;
+use App\Models\Members\MemberAsset;
+use App\Models\Merchant;
+use App\Models\MerchantAsset;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\carbon;
 use App\Http\Controllers\Controller;
@@ -271,5 +275,45 @@ class StaffController extends Controller
         $permission = $request->permission ?? [];
         $staff->syncPermissions($permission);
         return redirect()->back()->with('success', __('message.Permission updated successfully'));
+    }
+
+
+//    top up
+    function topUp()
+    {
+        return view('backend.admin.staff-master.top-up');
+    }
+
+    function topUpPost(Request $request)
+    {
+        $request->validate([
+            'user_name' => 'required',
+            'type' => 'required',
+            'amount' => 'required|numeric|min:0',
+        ]);
+
+        switch (strtolower($request->type)) {
+            case 'customer':
+                $user = User::where('user_name', $request->user_name)->first();
+                if ($user) {
+                    $asset = MemberAsset::where('member_id', $user->id)->first();
+                    $asset->update(['ecash_wallet' => $asset->ecash_wallet + $request->amount]);
+                } else
+                    return redirect()->back()->with('fail', 'User not found');
+
+                break;
+            case 'merchant':
+                $user = Merchant::where('user_name', $request->user_name)->first();
+                if ($user) {
+                    $asset = MerchantAsset::where('merchant_id', $user->id)->first();
+                    $asset->update(['ecash_wallet' => $asset->ecash_wallet + $request->amount]);
+                } else
+                    return redirect()->back()->with('fail', 'Merchant not found');
+                break;
+            default:
+                return redirect()->back()->with('fail', 'Invalid Top up');
+                break;
+        }
+        return redirect()->back()->with('success', 'Top up amount Rs.' . $request->amount . ' to ' . $request->user_name    );
     }
 }
