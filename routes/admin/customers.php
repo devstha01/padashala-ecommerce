@@ -35,23 +35,11 @@ Route::group(['namespace' => 'Aboutus', 'prefix' => 'aboutus'], function () {
     });
     Route::group(['middleware' => 'staff_permission:2.Customer.List'], function () {
         Route::get('customer/{id}/status', 'AboutController@customerChangeStatus')->name('change-status-customer');
-    });
-
-    Route::group(['middleware' => 'staff_permission:1.Customer.Profile'], function () {
         Route::get('customer-detail/{id}', 'AboutController@customerDetail')->name('customer-detail');
-
-    });
-
-    Route::group(['middleware' => 'staff_permission:2.Customer.Profile'], function () {
         Route::get('customer/{id}/edit', 'AboutController@editCustomer')->name('admin-customer-edit');
         Route::post('customer/{id}/edit', 'AboutController@updateProfileCustomer')->name('admin-customer-update');
-    });
-
-    Route::group(['middleware' => 'staff_permission:2.Customer.Password'], function () {
         Route::get('edit-customer/{id}/password', 'AboutController@editMemberPassword')->name('admin-customer-edit-password')->middleware('admin');
         Route::post('edit-customer/{id}/password', 'AboutController@updateMemberPassword')->name('admin-customer-update-password')->middleware('admin');
-        Route::post('edit-customer/{id}/transaction', 'AboutController@updateMemberTransaction')->name('admin-customer-update-transaction')->middleware('admin');
-
     });
 
 
@@ -63,16 +51,4 @@ Route::group(['namespace' => 'Aboutus', 'prefix' => 'aboutus'], function () {
     Route::group(['middleware' => 'staff_permission:2.Customer.Subscribers'], function () {
         Route::post('status-subscribe/{id}', 'AboutController@subscribeStatus')->name('admin-subscribe-status');
     });
-});
-
-//Blogs
-Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
-
-    Route::get('blog', 'BlogController@index')->name('admin-blog');
-    Route::get('add-blog-content', 'BlogController@createContent')->name('admin-add-blog-content');
-    Route::post('blog-save-content', 'BlogController@saveContent')->name('admin-save-blog-content');
-
-    Route::get('edit-blog-content/{id}', 'BlogController@editContent')->name('admin-edit-blog-content');
-    Route::post('update-content/{id}', 'BlogController@updateContent')->name('admin-update-blog-content');
-    Route::get('destroy-content/{id}', 'BlogController@destroy')->name('admin-destroy-blog-content');
 });

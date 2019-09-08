@@ -2,10 +2,8 @@
 //merchant module
 Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
 
-    Route::group(['middleware' => 'staff_permission:1.Merchant Master.Add New Merchant'], function () {
-        Route::get('register', 'MerchantRegisterController@showMerchantRegisterForm')->name('admin-merchant-register');
-    });
     Route::group(['middleware' => 'staff_permission:2.Merchant Master.Add New Merchant'], function () {
+        Route::get('register', 'MerchantRegisterController@showMerchantRegisterForm')->name('admin-merchant-register');
         Route::post('register', 'MerchantRegisterController@postMerchantRegisterForm')->name('admin-merchant-register-post');
     });
     Route::group(['middleware' => 'staff_permission:1.Merchant Master.List'], function () {
@@ -14,30 +12,27 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
 
         Route::get('order-list', 'ListController@listOrder')->name('order-list-admin');
 
+    });
+    Route::group(['middleware' => 'staff_permission:1.Merchant Master.Product Approval List'], function () {
         Route::get('product-list', 'ListController@productApprovalList')->name('product-approval-admin');
+    });
+    Route::group(['middleware' => 'staff_permission:2.Merchant Master.Product Approval List'], function () {
+        Route::post('admin-approve-status/{id}', 'ListController@approveProduct')->name('admin-approve-status');
 
+    });
+    Route::group(['middleware' => 'staff_permission:1.Merchant Master.Product List'], function () {
         Route::get('product/standard/list', 'StandardProductController@standardProducts')->name('standard-product-admin');
         Route::get('product/all/list', 'StandardProductController@allProducts')->name('all-product-admin');
         Route::get('product/normal/list', 'StandardProductController@normalProducts')->name('normal-product-admin');
         Route::get('product/inactive/list', 'StandardProductController@inactiveProducts')->name('inactive-product-admin');
+
     });
+
     Route::group(['middleware' => 'staff_permission:2.Merchant Master.List'], function () {
         Route::post('standard-product/{id}', 'StandardProductController@standardStatus')->name('admin-change-product-standard');
 
-    });
-    Route::group(['middleware' => 'staff_permission:1.Merchant Master.Profile'], function () {
         Route::get('view-merchant/{id}', 'ListController@merchantProduct')->name('merchant-product-id');
-        Route::get('detail/{id}/{m_id}', 'ListController@orderdetails')->name('admin-order-details');
 
-        Route::get('invoice/{id}/{m_id}', 'ListController@orderInvoice')->name('admin-order-invoice');
-
-    });
-    Route::group(['middleware' => 'staff_permission:2.Merchant Master.Profile'], function () {
-
-//        Route::get('grant-wallet/{id}', 'MerchantController@showGrantWallet')->name('admin-merchant-grant');
-//        Route::post('grant-wallet', 'MerchantController@postGrantWallet')->name('admin-merchant-grant-post');
-//        Route::get('retain-wallet/{id}', 'MerchantController@showRetainWallet')->name('admin-merchant-retain');
-//        Route::post('retain-wallet', 'MerchantController@postRetainWallet')->name('admin-merchant-retain-post');
 
         Route::get('edit-merchant/{id}', 'MerchantRegisterController@editMerchant')->name('edit-merchant-id');
         Route::get('change-status-merchant/{id}', 'MerchantRegisterController@changeStatus')->name('change-status-merchant-admin');
@@ -77,29 +72,25 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::post('delete-product/{id}', 'ListController@deleteProduct')->name('admin-change-product-status');
 
 
-        Route::post('admin-approve-status/{id}', 'ListController@approveProduct')->name('admin-approve-status');
         Route::post('admin-delete/{id}/product', 'ListController@deleteProductBefore')->name('admin-delete-product-status');
 
-
-        Route::post('item/status/{id}', 'ListController@itemStatusChange')->name('admin-item-status-change');
-        Route::post('item/shipping/{id}', 'ListController@itemShipping')->name('admin-item-shipping');
-
-
         Route::get('featured-product-request/{id}', 'ListController@featuredProductRequest')->name('admin-featured-product-request');
-
 
         Route::post('submit-merchant-profile-edit/{id}', 'MerchantRegisterController@submitProfileEdit')->name('submit-merchant-profile-edit');
         Route::post('submit-merchant-image/{id}', 'MerchantRegisterController@uploadImage')->name('admin-merchant-image-edit');
         Route::post('submit-merchant-signature/{id}', 'MerchantRegisterController@uploadSignatureImage')->name('admin-merchant-signature-edit');
-
-    });
-    Route::group(['middleware' => 'staff_permission:1.Merchant Master.Password'], function () {
-
-    });
-    Route::group(['middleware' => 'staff_permission:2.Merchant Master.Password'], function () {
         Route::post('submit-merchant-pass/{id}', 'MerchantRegisterController@submitPasswordEdit')->name('submit-merchant-pass');
-//        Route::post('submit-merchant-transaction-pass/{id}', 'MerchantRegisterController@submitTrannsactionPasswordEdit')->name('submit-merchant-transaction-pass');
+
+    });
+    Route::group(['middleware' => 'staff_permission:1.Merchant Master.Order list'], function () {
+        Route::get('detail/{id}/{m_id}', 'ListController@orderdetails')->name('admin-order-details');
+        Route::get('invoice/{id}/{m_id}', 'ListController@orderInvoice')->name('admin-order-invoice');
     });
 
-//    Route::get('get-search-merchant', 'MerchantRegisterController@searchMerchant');
+    Route::group(['middleware' => 'staff_permission:2.Merchant Master.Order list'], function () {
+
+        Route::post('item/status/{id}', 'ListController@itemStatusChange')->name('admin-item-status-change');
+        Route::post('item/shipping/{id}', 'ListController@itemShipping')->name('admin-item-shipping');
+    });
+
 });
