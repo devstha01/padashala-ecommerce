@@ -754,4 +754,44 @@ class ListController extends Controller
             $spec->delete();
         return redirect()->back()->with('success', 'Product specification removed');
     }
+
+
+    function merchantStandardProduct($id)
+    {
+        $this->_data['merchant'] = Merchant::find($id);
+        $this->_data['products'] = Product::where('standard_product', 1)->where('admin_flag', 1)->where('status', 1)->get();
+
+        return view($this->_path . 'view-standard', $this->_data);
+    }
+
+    function merchantStandardProductPost($merchant_id,$id)
+    {
+        $business_id = MerchantBusiness::where('merchant_id', $merchant_id)->first()->id ?? false;
+        if (!$business_id) return redirect()->back();
+        $product = Product::find($id);
+        $product->merchant_business_id = $business_id;
+        $uniq_slug = false;
+        $i = 1;
+        $slug = str_slug($product->name);
+        do {
+            $check = Product::where('slug', $slug)->first();
+            if (!$check)
+                $uniq_slug = true;
+            else
+                $slug = str_slug($product->name) . '-' . $i;
+            $i++;
+        } while ($uniq_slug !== true);
+
+        $product->slug = $slug;
+        $product->admin_flag = 0;
+        $product->is_featured = 0;
+        $product->created_at = Carbon::now();
+        $product->updated_at = Carbon::now();
+        $product->standard_product = 0;
+
+        if (Product::create($product->toArray()))
+            return $this->edit($slug)->with('success','Product created successfully');
+        return redirect()->back();
+
+    }
 }
