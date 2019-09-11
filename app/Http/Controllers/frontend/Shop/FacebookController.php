@@ -46,7 +46,7 @@ class FacebookController extends Controller
                     'provider_id'=>$createFacebook_id
                 ]);
             }
-            auth()->login($user);
+            Auth::login($user, true);
             return redirect()->to('/');
         } catch (Exception $e) {
             return redirect()->to(url('login'));
