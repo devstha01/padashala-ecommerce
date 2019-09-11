@@ -46,4 +46,10 @@ return [
         'redirect' => 'https://padashalaonline.com/login/facebook/callback',
     ],
 
+    'google' => [
+        'client_id' => '720349405027-4njgbvftb658t5j73eqk5gn983rvuljl.apps.googleusercontent.com',
+        'client_secret' => 'NQu4ErKHC5WPN7x8w-i8OZ1X',
+        'redirect' => 'https://padashalaonline.com/login/google/callback',
+    ],
+
 ];

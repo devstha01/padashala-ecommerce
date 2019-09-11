@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
+use Socialite;
 
 class SocialiteController extends Controller
 {
@@ -36,8 +36,8 @@ class SocialiteController extends Controller
         }
 
         $authUser = $this->findOrCreateUser($user, $provider);
-        Auth::login($authUser, true);
-//        dd($authUser);
+        auth()->login($authUser, true);
+        User::find(Auth::id())->update(['jwt_token_handle' => '']);
         return redirect('/');
     }
 
