@@ -34,21 +34,18 @@ class FacebookController extends Controller
             $createName = $user->getName();
             $createFacebook_id = $user->getId();
             $createEmail = $user->getEmail() ?? $user->getId() . '@fb.com';
-
             $user = User::where('email', $createEmail)->first();
-            if (!$user)
+            if (!$user){
                 $user = User::create([
                     'name' => $createName,
                     'surname' => $createName,
                     'user_name' => $createFacebook_id,
                     'email' => $createEmail,
-                    'password' => bcrypt($createFacebook_id),
                     'country_id' => 1,
                     'provider'=>'facebook',
                     'provider_id'=>$createFacebook_id
                 ]);
-
-
+            }
             auth()->login($user);
             return redirect()->to('/');
         } catch (Exception $e) {
