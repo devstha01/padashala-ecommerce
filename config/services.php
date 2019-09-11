@@ -43,7 +43,7 @@ return [
     'facebook' => [
         'client_id' => '375576743344357',
         'client_secret' => '6fb58a8e03baf8feb32c035df91e2dc1',
-        'redirect' => 'http://localhost/padashala-ext/login/facebook/callback',
+        'redirect' => 'https://padashalaonline.com/login/facebook/callback',
     ],
 
 ];
