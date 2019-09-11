@@ -49,15 +49,7 @@ class FacebookController extends Controller
                 ]);
 
 
-            if (Auth::attempt(['user_name' => $user->user_name, 'password' => $user->password])) {
-                User::find(Auth::id())->update(['jwt_token_handle' => '']);
-                $login =new LoginController();
-                $login->mergeCartFromDB();
-                $login->refreshCart();
-
-                return redirect()->to(url('/'));
-            }
-            return redirect()->to(url('login'));
+            auth()->login($user);
         } catch (Exception $e) {
             return redirect()->to(url('login'));
         }
