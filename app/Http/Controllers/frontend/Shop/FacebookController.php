@@ -50,6 +50,7 @@ class FacebookController extends Controller
 
 
             auth()->login($user);
+            return redirect()->to('/');
         } catch (Exception $e) {
             return redirect()->to(url('login'));
         }
