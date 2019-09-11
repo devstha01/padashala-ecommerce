@@ -37,6 +37,7 @@ class SocialiteController extends Controller
 
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
+        dd($authUser);
         return redirect('/');
     }
 
