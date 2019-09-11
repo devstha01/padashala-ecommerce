@@ -29,8 +29,6 @@ class FacebookController extends Controller
      */
     public function handleFacebookCallback()
     {
-        dd('test2');
-
         try {
             $user = Socialite::driver('facebook')->user();
             $createName = $user->getName();
@@ -46,6 +44,8 @@ class FacebookController extends Controller
                     'email' => $createEmail,
                     'password' => bcrypt($createFacebook_id),
                     'country_id' => 1,
+                    'provider'=>'facebook',
+                    'provider_id'=>$createFacebook_id
                 ]);
 
 
