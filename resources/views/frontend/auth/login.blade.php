@@ -88,7 +88,7 @@
                         <strong>Login With Facebook</strong>
                     </a>
                     <a href="{{ url('/login/google') }}" class="btn btn-lg btn-primary btn-block">
-                        <strong>Login With Login</strong>
+                        <strong>Login With Google</strong>
                     </a>
 
                 </div>
