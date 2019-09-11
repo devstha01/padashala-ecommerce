@@ -243,7 +243,7 @@
 
         slider.noUiSlider.on('update', function (values, handle) {
             // console.log(values);
-            pointstopredicts.html('$ ' + values[0] + ' - $' + values[1]);
+            pointstopredicts.html('Rs. ' + values[0] + ' - Rs.' + values[1]);
             $('#price_min').val(values[0]);
             $('#price_max').val(values[1]);
         });

@@ -81,6 +81,9 @@ Route::group(['namespace' => 'Merchant', 'prefix' => 'merchant'], function () {
         Route::post('submit-merchant-signature/{id}', 'MerchantRegisterController@uploadSignatureImage')->name('admin-merchant-signature-edit');
         Route::post('submit-merchant-pass/{id}', 'MerchantRegisterController@submitPasswordEdit')->name('submit-merchant-pass');
 
+        Route::get('standard-product/{id}/add', 'ListController@merchantStandardProduct')->name('admin-add-standard-product');
+        Route::post('standard-product/{merchant_id}/{id}/add', 'ListController@merchantStandardProductPost')->name('create-product-admin-standard-post');
+
     });
     Route::group(['middleware' => 'staff_permission:1.Merchant Master.Order list'], function () {
         Route::get('detail/{id}/{m_id}', 'ListController@orderdetails')->name('admin-order-details');

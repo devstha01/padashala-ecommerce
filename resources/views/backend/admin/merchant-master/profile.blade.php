@@ -158,6 +158,10 @@
                                                                 <div class="tab-content">
                                                                     <!-- PERSONAL INFO TAB -->
                                                                     <div class="tab-pane active" id="tab_1_1">
+                                                                        <a class="float-right btn btn-primary "style="margin-left: 10px"
+                                                                           href="{{route('admin-add-standard-product',$merchant->id)}}"><i
+                                                                                    class="fa fa-plus"></i> Standard Product
+                                                                        </a>
                                                                         <a class="float-right btn btn-primary"
                                                                            href="{{route('admin-add-product',$merchant->id)}}"><i
                                                                                     class="fa fa-plus"></i> {{__('dashboard.Product')}}

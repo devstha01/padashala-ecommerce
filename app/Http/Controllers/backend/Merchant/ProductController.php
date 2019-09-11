@@ -84,7 +84,6 @@ class ProductController extends Controller
 
         $product->slug = $slug;
         $product->admin_flag = 0;
-        $product->admin_flag = 0;
         $product->is_featured = 0;
         $product->created_at = Carbon::now();
         $product->updated_at = Carbon::now();
