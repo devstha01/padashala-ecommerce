@@ -54,10 +54,15 @@ class SocialiteController extends Controller
             $user = User::whereEmail($providerUser->getEmail())->first();
 
             if (! $user) {
+
+                $name = $providerUser->getName();
+
+                $nameInArray = explode(' ',$name);
+
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
-                    'surname'=>$provider,
-                    'name'  => $providerUser->getName(),
+                    'surname'=>$nameInArray[1],
+                    'name'  => $nameInArray[0],
                     'user_name'=>$providerUser->getId(),
                     'provider_id'   => $providerUser->getId(),
                     'provider_name' => $provider,
