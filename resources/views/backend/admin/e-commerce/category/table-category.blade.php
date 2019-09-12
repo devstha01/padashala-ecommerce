@@ -235,14 +235,14 @@
                                                             {{__('dashboard.Name')}} <span
                                                                     class="m-l-5 text-danger">*</span>
                                                         </label>
-                                                        <input type="text" name="name" class="form-control input-sm">
+                                                        <input type="text" name="name" class="form-control input-sm" required>
                                                         <br>
                                                         <div class="category-share">
                                                             <label>
                                                                 {{__('dashboard.Category Share')}}
                                                             </label>
                                                             <input type="text" name="category_share"
-                                                                   class="form-control input-sm">
+                                                                   class="form-control input-sm" value="0">
                                                             <br>
                                                         </div>
                                                         <label>
@@ -301,7 +301,7 @@
                                                             </label>
                                                             <input type="text" name="category_share"
                                                                    id="edit-modal-category_share"
-                                                                   class="form-control input-sm">
+                                                                   class="form-control input-sm" required>
                                                             <br>
                                                         </div>
                                                         <label>
