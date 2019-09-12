@@ -264,8 +264,8 @@ Route::group(['namespace' => 'frontend\Shop', 'middleware' => 'multiLog'], funct
 
 
 //    login with facebook
-    Route::get('login/facebook', 'FacebookController@redirectToFacebook');
-    Route::get('login/facebook/callback', 'FacebookController@handleFacebookCallback');
+    Route::get('login/{provider}', 'SocialiteController@redirectToProvider');
+    Route::get('login/{provider}/callback', 'SocialiteController@handleProviderCallback');
 
 
     Route::post('confirm-transaction-password', 'LoginController@confirmTransactionPassword');

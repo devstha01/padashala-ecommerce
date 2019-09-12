@@ -41,9 +41,15 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => env('FACEBOOK_CALLBACK_URL'),
+        'client_id' => '375576743344357',
+        'client_secret' => '6fb58a8e03baf8feb32c035df91e2dc1',
+        'redirect' => 'https://padashalaonline.com/login/facebook/callback',
+    ],
+
+    'google' => [
+        'client_id' => '720349405027-4njgbvftb658t5j73eqk5gn983rvuljl.apps.googleusercontent.com',
+        'client_secret' => 'NQu4ErKHC5WPN7x8w-i8OZ1X',
+        'redirect' => 'https://padashalaonline.com/login/google/callback',
     ],
 
 ];
